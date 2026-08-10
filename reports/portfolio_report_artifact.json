@@ -1,0 +1,590 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "SkillPulse AI Portfolio Readiness",
+    "description": "Evidence-backed local portfolio readiness report for SkillPulse AI, with explicit human-validation and data limitations.",
+    "generatedAt": "2026-08-10T00:00:00+07:00",
+    "sources": [
+      {
+        "id": "portfolio_metrics",
+        "label": "SkillPulse portfolio release evidence snapshot",
+        "path": "reports/portfolio_release_metrics.json",
+        "query": {
+          "engine": "DuckDB",
+          "sql": "SELECT headline.source_rows, headline.primary_reviewed_documents AS primary_reviewed, headline.tests_passed, headline.public_api_endpoints AS api_endpoints, quality_gates FROM read_json_auto('reports/portfolio_release_metrics.json')",
+          "description": "Read the reviewed headline metrics and nested portfolio quality-gate rows used by the metric strip and gate table.",
+          "executed_at": "2026-08-10",
+          "language": "SQL",
+          "tables_used": ["reports/portfolio_release_metrics.json"],
+          "metric_definitions": [
+            "source_rows counts cleaned postings in the pinned Kaggle v1 snapshot.",
+            "primary_reviewed counts AI-assisted, project-owner-reviewed development documents.",
+            "quality_gates preserves exact current and minimum evidence counts; zero human counts are not inferred model scores."
+          ]
+        }
+      },
+      {
+        "id": "data_quality",
+        "label": "SkillPulse data-quality report",
+        "path": "reports/data_quality.json"
+      },
+      {
+        "id": "gold_evaluation",
+        "label": "SkillPulse extraction gold evaluation",
+        "path": "reports/extraction_gold_eval.json"
+      },
+      {
+        "id": "matching_challenger",
+        "label": "SkillPulse baseline versus semantic challenger",
+        "path": "reports/matching_semantic_challenger.json",
+        "query": {
+          "engine": "DuckDB",
+          "sql": "SELECT baseline_metrics.spearman_global AS baseline_spearman, baseline_metrics.mae_on_0_100_scale AS baseline_mae, baseline_metrics.verdict_accuracy AS baseline_verdict_accuracy, baseline_metrics.latency_ms_p50 AS baseline_p50_ms, baseline_metrics.latency_ms_p95 AS baseline_p95_ms, baseline_metrics.explanation_completeness AS baseline_explanation_completeness, challenger_metrics.spearman_global AS challenger_spearman, challenger_metrics.mae_on_0_100_scale AS challenger_mae, challenger_metrics.verdict_accuracy AS challenger_verdict_accuracy, challenger_metrics.latency_ms_p50 AS challenger_p50_ms, challenger_metrics.latency_ms_p95 AS challenger_p95_ms, challenger_metrics.explanation_completeness AS challenger_explanation_completeness FROM read_json_auto('reports/matching_semantic_challenger.json')",
+          "description": "Read both model metric structs from the same frozen 50-pair synthetic challenger report; the report snapshot reshapes them for grouped charts and the exact-value table.",
+          "executed_at": "2026-08-10",
+          "language": "SQL",
+          "tables_used": ["reports/matching_semantic_challenger.json"],
+          "metric_definitions": [
+            "Spearman is global rank correlation against synthetic scenario-oracle targets.",
+            "MAE is absolute score error on a 0-100 scale.",
+            "Latency is local evaluation time per pair and is not a production load-test result."
+          ]
+        }
+      },
+      {
+        "id": "api_smoke",
+        "label": "SkillPulse API container smoke evidence",
+        "path": "reports/api_container_smoke.json"
+      },
+      {
+        "id": "ui_smoke",
+        "label": "SkillPulse Streamlit smoke evidence",
+        "path": "reports/ui_smoke.json"
+      },
+      {
+        "id": "model_card",
+        "label": "SkillPulse AI system model card",
+        "path": "docs/model_card.md"
+      }
+    ],
+    "cards": [
+      {
+        "id": "source_rows",
+        "dataset": "headline",
+        "sourceId": "portfolio_metrics",
+        "description": "Cleaned job postings in the pinned Kaggle v1 snapshot.",
+        "metrics": [
+          {
+            "label": "Source rows",
+            "field": "source_rows",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "primary_reviewed",
+        "dataset": "headline",
+        "sourceId": "portfolio_metrics",
+        "description": "AI-assisted, project-owner-reviewed extraction development documents.",
+        "metrics": [
+          {
+            "label": "Primary reviewed",
+            "field": "primary_reviewed",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "tests_passed",
+        "dataset": "headline",
+        "sourceId": "portfolio_metrics",
+        "description": "Python tests passing in the latest verified engineering handoff.",
+        "metrics": [
+          {
+            "label": "Tests passed",
+            "field": "tests_passed",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "api_endpoints",
+        "dataset": "headline",
+        "sourceId": "portfolio_metrics",
+        "description": "Versioned public health, metadata, extraction, and matching endpoints.",
+        "metrics": [
+          {
+            "label": "API endpoints",
+            "field": "api_endpoints",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "model_quality_comparison",
+        "title": "Model quality comparison",
+        "subtitle": "Same 50 synthetic scenario-oracle pairs; values are diagnostic, not human validation",
+        "showDescription": true,
+        "question": "Did the 20% multilingual semantic hybrid improve unit-scale quality metrics?",
+        "rationale": "Grouped bars compare two models across three measures with the same 0-1 scale.",
+        "type": "bar",
+        "dataset": "model_quality",
+        "sourceId": "matching_challenger",
+        "palette": {
+          "kind": "categorical",
+          "name": "model-comparison"
+        },
+        "encodings": {
+          "x": {
+            "field": "metric",
+            "type": "nominal",
+            "label": "Metric"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative",
+            "label": "Score",
+            "format": "number"
+          },
+          "color": {
+            "field": "model",
+            "type": "nominal",
+            "label": "Model"
+          },
+          "tooltip": [
+            {
+              "field": "model",
+              "type": "nominal",
+              "label": "Model"
+            },
+            {
+              "field": "value",
+              "type": "quantitative",
+              "label": "Score",
+              "format": "number"
+            }
+          ]
+        },
+        "xAxisTitle": "Metric",
+        "yAxisTitle": "Score (0-1)",
+        "valueFormat": "number",
+        "layout": "full",
+        "labels": {
+          "values": "all"
+        },
+        "legend": {
+          "position": "bottom",
+          "sort": "spec",
+          "title": "Model"
+        },
+        "settings": {
+          "groupMode": "grouped",
+          "orientation": "vertical",
+          "sort": "none"
+        },
+        "maxRows": 6,
+        "emptyState": "Model quality comparison is unavailable."
+      },
+      {
+        "id": "model_latency_comparison",
+        "title": "Local latency comparison",
+        "subtitle": "Milliseconds per pair in the same 50-pair challenger run",
+        "showDescription": true,
+        "question": "What local inference-time trade-off did the semantic hybrid introduce?",
+        "rationale": "Grouped bars compare p50 and p95 latency in the same unit for both models.",
+        "type": "bar",
+        "dataset": "model_latency",
+        "sourceId": "matching_challenger",
+        "palette": {
+          "kind": "categorical",
+          "name": "model-comparison"
+        },
+        "encodings": {
+          "x": {
+            "field": "percentile",
+            "type": "nominal",
+            "label": "Latency percentile"
+          },
+          "y": {
+            "field": "latency_ms",
+            "type": "quantitative",
+            "label": "Latency",
+            "format": "number",
+            "unit": "ms"
+          },
+          "color": {
+            "field": "model",
+            "type": "nominal",
+            "label": "Model"
+          },
+          "tooltip": [
+            {
+              "field": "model",
+              "type": "nominal",
+              "label": "Model"
+            },
+            {
+              "field": "latency_ms",
+              "type": "quantitative",
+              "label": "Latency",
+              "format": "number",
+              "unit": "ms"
+            }
+          ]
+        },
+        "xAxisTitle": "Percentile",
+        "yAxisTitle": "Latency (ms)",
+        "valueFormat": "number",
+        "unit": "ms",
+        "layout": "full",
+        "labels": {
+          "values": "all"
+        },
+        "legend": {
+          "position": "bottom",
+          "sort": "spec",
+          "title": "Model"
+        },
+        "settings": {
+          "groupMode": "grouped",
+          "orientation": "vertical",
+          "sort": "none"
+        },
+        "maxRows": 4,
+        "emptyState": "Model latency comparison is unavailable."
+      }
+    ],
+    "tables": [
+      {
+        "id": "quality_gates",
+        "title": "Portfolio quality gates",
+        "subtitle": "Exact evidence counts and limitations as of 10 August 2026",
+        "dataset": "quality_gates",
+        "sourceId": "portfolio_metrics",
+        "defaultSort": {
+          "field": "gate",
+          "direction": "asc"
+        },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "gate",
+            "label": "Gate",
+            "type": "text"
+          },
+          {
+            "field": "evidence",
+            "label": "Evidence",
+            "type": "text"
+          },
+          {
+            "field": "current",
+            "label": "Current",
+            "format": "number"
+          },
+          {
+            "field": "minimum",
+            "label": "Minimum",
+            "format": "number"
+          },
+          {
+            "field": "status",
+            "label": "Status",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# SkillPulse AI Portfolio Readiness"
+      },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "body": "## Executive Summary\n\n- **The end-to-end local product works:** pinned data provenance, bilingual extraction, explainable matching, a strict FastAPI contract, a healthy non-root API container, and a Streamlit journey now have durable evidence.\n- **The deterministic matcher remains the right default:** on the 50-pair synthetic diagnostic, the semantic hybrid slightly reduced rank correlation, increased error, and added substantial latency. This is regression evidence, not human validation.\n- **The portfolio can be demonstrated honestly but is not release-complete:** independent annotation is 0/100, independent relevance scoring is 0/50, responsive browser QA is open, and salary modelling remains blocked at 77/555 disclosed rows."
+      },
+      {
+        "id": "headline_metrics",
+        "type": "metric-strip",
+        "cardIds": [
+          "source_rows",
+          "primary_reviewed",
+          "tests_passed",
+          "api_endpoints"
+        ]
+      },
+      {
+        "id": "definitions",
+        "type": "markdown",
+        "sourceId": "portfolio_metrics",
+        "body": "## Scope and metric definitions\n\n**Source grain:** one cleaned job posting in a 555-row Indonesian data-and-analytics snapshot. **Primary reviewed:** 100 AI-assisted, project-owner-reviewed descriptions used as development evidence. **Matching denominator:** 50 synthetic scenario-oracle CV-job pairs across 10 job groups. **Spearman** measures ranking agreement; **MAE** is score error on 0-100; **latency** is local milliseconds per pair. Human agreement and human matching relevance both remain at zero."
+      },
+      {
+        "id": "key_findings",
+        "type": "markdown",
+        "body": "## Key findings\n\nThe strongest portfolio signal is the engineering chain, not a single headline model score. Source identity is pinned; extraction and matching share one taxonomy; strict domain schemas isolate transport from scoring; the UI consumes the API; and aggregate reports preserve evaluation and privacy decisions. The architecture and model card make those boundaries reviewable."
+      },
+      {
+        "id": "quality_finding",
+        "type": "markdown",
+        "sourceId": "matching_challenger",
+        "body": "### The semantic challenger did not beat the incumbent\n\nAcross the same 50 synthetic scenario-oracle pairs, exact matching achieved 0.9345 Spearman versus 0.9320 for the hybrid. Verdict accuracy and explanation completeness tied at 0.80 and 1.00. Because these targets are synthetic, the comparison supports an engineering decision to retain the simpler incumbent; it does not establish real-user relevance."
+      },
+      {
+        "id": "quality_chart",
+        "type": "chart",
+        "chartId": "model_quality_comparison"
+      },
+      {
+        "id": "latency_finding",
+        "type": "markdown",
+        "sourceId": "matching_challenger",
+        "body": "### The hybrid added a clear local runtime cost\n\nMedian latency rose from 5.995 ms to 83.287 ms, while p95 rose from 9.361 ms to 203.096 ms. The comparison is local and not a production load test, but the direction is large enough that extra model complexity is not justified by the current diagnostic quality."
+      },
+      {
+        "id": "latency_chart",
+        "type": "chart",
+        "chartId": "model_latency_comparison"
+      },
+      {
+        "id": "gate_finding",
+        "type": "markdown",
+        "sourceId": "portfolio_metrics",
+        "body": "### The remaining blockers require new evidence, not more tuning\n\nML-QG-1 is only a conditional development-set pass. ML-QG-2 requires a different human to label 100 blind descriptions, and ML-QG-3 requires 50 independent relevance judgments before comparing matchers on human labels. Salary modelling is data-blocked. Automating any of those human labels would invalidate the claim the gate is designed to measure."
+      },
+      {
+        "id": "gate_table",
+        "type": "table",
+        "tableId": "quality_gates",
+        "layout": "full"
+      },
+      {
+        "id": "recommended_steps",
+        "type": "markdown",
+        "body": "## Recommended next steps\n\n1. Complete responsive browser QA and capture a short public-safe demo walkthrough using the one-command launcher.\n2. Have a different human complete the 100-row blind annotation, then run field-level agreement and adjudication.\n3. Freeze 50 independent human relevance judgments and compare the incumbent and semantic challenger on exactly that set.\n4. Select a public hosting target only after privacy, observability, rollback, and cost constraints are documented."
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "body": "## Further questions\n\n- Which hosting target best preserves the stateless privacy contract while keeping a portfolio demo inexpensive?\n- Which consented or licensed source can support a global comparison and a longer observation window?\n- Which user segment should drive the first human relevance rubric: fresh graduates, experienced analysts, or university career centres?"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "sourceId": "model_card",
+        "body": "## Caveats and assumptions\n\n- The source covers one Indonesian role family and one 30-day window; it does not measure the entire market or a time trend.\n- Extraction metrics come from an AI-assisted development set, not an untouched holdout.\n- Matching quality and latency are based on synthetic scenario-oracle pairs in a local run.\n- Functional API/UI smoke tests do not replace accessibility, security, load, responsive-browser, or public-deployment validation.\n- SkillPulse is decision support and must not be used for automatic applicant ranking or rejection."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-10T00:00:00+07:00",
+    "status": "partial",
+    "datasets": {
+      "headline": [
+        {
+          "source_rows": 555,
+          "primary_reviewed": 100,
+          "tests_passed": 94,
+          "api_endpoints": 4
+        }
+      ],
+      "model_quality": [
+        {
+          "order": 1,
+          "model": "Exact taxonomy",
+          "metric": "Spearman",
+          "value": 0.9345
+        },
+        {
+          "order": 2,
+          "model": "Semantic hybrid",
+          "metric": "Spearman",
+          "value": 0.932
+        },
+        {
+          "order": 3,
+          "model": "Exact taxonomy",
+          "metric": "Verdict accuracy",
+          "value": 0.8
+        },
+        {
+          "order": 4,
+          "model": "Semantic hybrid",
+          "metric": "Verdict accuracy",
+          "value": 0.8
+        },
+        {
+          "order": 5,
+          "model": "Exact taxonomy",
+          "metric": "Explanation completeness",
+          "value": 1.0
+        },
+        {
+          "order": 6,
+          "model": "Semantic hybrid",
+          "metric": "Explanation completeness",
+          "value": 1.0
+        }
+      ],
+      "model_latency": [
+        {
+          "order": 1,
+          "model": "Exact taxonomy",
+          "percentile": "p50",
+          "latency_ms": 5.995
+        },
+        {
+          "order": 2,
+          "model": "Semantic hybrid",
+          "percentile": "p50",
+          "latency_ms": 83.287
+        },
+        {
+          "order": 3,
+          "model": "Exact taxonomy",
+          "percentile": "p95",
+          "latency_ms": 9.361
+        },
+        {
+          "order": 4,
+          "model": "Semantic hybrid",
+          "percentile": "p95",
+          "latency_ms": 203.096
+        }
+      ],
+      "model_detail": [
+        {
+          "order": 1,
+          "model": "Exact taxonomy",
+          "spearman": 0.9345,
+          "mae": 8.29,
+          "verdict_accuracy": 0.8,
+          "p50_ms": 5.995,
+          "p95_ms": 9.361,
+          "decision": "Incumbent"
+        },
+        {
+          "order": 2,
+          "model": "Semantic hybrid",
+          "spearman": 0.932,
+          "mae": 9.92,
+          "verdict_accuracy": 0.8,
+          "p50_ms": 83.287,
+          "p95_ms": 203.096,
+          "decision": "Not promoted"
+        }
+      ],
+      "quality_gates": [
+        {
+          "order": 1,
+          "gate": "ML-QG-1",
+          "evidence": "Primary extraction development set",
+          "current": 100,
+          "minimum": 100,
+          "status": "Conditional pass",
+          "limitation": "AI-assisted primary labels; development-set caveat required"
+        },
+        {
+          "order": 2,
+          "gate": "ML-QG-2",
+          "evidence": "Independent blind second annotation",
+          "current": 0,
+          "minimum": 100,
+          "status": "Human gate open",
+          "limitation": "Different human required without label leakage"
+        },
+        {
+          "order": 3,
+          "gate": "ML-QG-3",
+          "evidence": "Independent human matching relevance",
+          "current": 0,
+          "minimum": 50,
+          "status": "Human gate open",
+          "limitation": "Synthetic scenario-oracle labels are diagnostic only"
+        },
+        {
+          "order": 4,
+          "gate": "Salary data gate",
+          "evidence": "Rows with disclosed salary",
+          "current": 77,
+          "minimum": 300,
+          "status": "Blocked by data",
+          "limitation": "Only 13.87% coverage in the current snapshot"
+        }
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": [
+    {
+        "id": "portfolio_metrics",
+        "label": "SkillPulse portfolio release evidence snapshot",
+        "path": "reports/portfolio_release_metrics.json",
+        "query": {
+          "engine": "DuckDB",
+          "sql": "SELECT headline.source_rows, headline.primary_reviewed_documents AS primary_reviewed, headline.tests_passed, headline.public_api_endpoints AS api_endpoints, quality_gates FROM read_json_auto('reports/portfolio_release_metrics.json')",
+          "description": "Read the reviewed headline metrics and nested portfolio quality-gate rows used by the metric strip and gate table.",
+          "executed_at": "2026-08-10",
+          "language": "SQL",
+          "tables_used": ["reports/portfolio_release_metrics.json"],
+          "metric_definitions": [
+            "source_rows counts cleaned postings in the pinned Kaggle v1 snapshot.",
+            "primary_reviewed counts AI-assisted, project-owner-reviewed development documents.",
+            "quality_gates preserves exact current and minimum evidence counts; zero human counts are not inferred model scores."
+          ]
+        }
+      },
+    {
+      "id": "data_quality",
+      "label": "SkillPulse data-quality report",
+      "path": "reports/data_quality.json"
+    },
+    {
+      "id": "gold_evaluation",
+      "label": "SkillPulse extraction gold evaluation",
+      "path": "reports/extraction_gold_eval.json"
+    },
+    {
+        "id": "matching_challenger",
+        "label": "SkillPulse baseline versus semantic challenger",
+        "path": "reports/matching_semantic_challenger.json",
+        "query": {
+          "engine": "DuckDB",
+          "sql": "SELECT baseline_metrics.spearman_global AS baseline_spearman, baseline_metrics.mae_on_0_100_scale AS baseline_mae, baseline_metrics.verdict_accuracy AS baseline_verdict_accuracy, baseline_metrics.latency_ms_p50 AS baseline_p50_ms, baseline_metrics.latency_ms_p95 AS baseline_p95_ms, baseline_metrics.explanation_completeness AS baseline_explanation_completeness, challenger_metrics.spearman_global AS challenger_spearman, challenger_metrics.mae_on_0_100_scale AS challenger_mae, challenger_metrics.verdict_accuracy AS challenger_verdict_accuracy, challenger_metrics.latency_ms_p50 AS challenger_p50_ms, challenger_metrics.latency_ms_p95 AS challenger_p95_ms, challenger_metrics.explanation_completeness AS challenger_explanation_completeness FROM read_json_auto('reports/matching_semantic_challenger.json')",
+          "description": "Read both model metric structs from the same frozen 50-pair synthetic challenger report; the report snapshot reshapes them for grouped charts and the exact-value table.",
+          "executed_at": "2026-08-10",
+          "language": "SQL",
+          "tables_used": ["reports/matching_semantic_challenger.json"],
+          "metric_definitions": [
+            "Spearman is global rank correlation against synthetic scenario-oracle targets.",
+            "MAE is absolute score error on a 0-100 scale.",
+            "Latency is local evaluation time per pair and is not a production load-test result."
+          ]
+        }
+      },
+    {
+      "id": "api_smoke",
+      "label": "SkillPulse API container smoke evidence",
+      "path": "reports/api_container_smoke.json"
+    },
+    {
+      "id": "ui_smoke",
+      "label": "SkillPulse Streamlit smoke evidence",
+      "path": "reports/ui_smoke.json"
+    },
+    {
+      "id": "model_card",
+      "label": "SkillPulse AI system model card",
+      "path": "docs/model_card.md"
+    }
+  ]
+}

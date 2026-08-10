@@ -1,0 +1,102 @@
+{
+  "artifact_type": "SkillPulse AI portfolio release evidence snapshot",
+  "generated_at": "2026-08-10T00:00:00+07:00",
+  "claim_status": "local_portfolio_candidate_human_gates_open",
+  "headline": {
+    "source_rows": 555,
+    "primary_reviewed_documents": 100,
+    "tests_passed": 94,
+    "public_api_endpoints": 4,
+    "salary_disclosed_rows": 77,
+    "salary_disclosure_rate": 0.1387
+  },
+  "extraction_development_metrics": {
+    "denominator_documents": 100,
+    "technical_skills_f1": 1.0,
+    "tools_f1": 1.0,
+    "soft_skills_f1": 0.9969,
+    "education_f1": 1.0,
+    "experience_exact_match": 1.0,
+    "seniority_exact_match": 0.99,
+    "work_arrangement_exact_match": 1.0,
+    "caveat": "AI-assisted, project-owner-reviewed development evidence; not an independent holdout."
+  },
+  "matching_diagnostic": {
+    "denominator_pairs": 50,
+    "job_groups": 10,
+    "label_type": "synthetic_scenario_oracle_not_human",
+    "models": [
+      {
+        "model": "Exact taxonomy",
+        "spearman": 0.9345,
+        "mae_0_100": 8.29,
+        "verdict_accuracy": 0.8,
+        "explanation_completeness": 1.0,
+        "latency_p50_ms": 5.995,
+        "latency_p95_ms": 9.361,
+        "release_decision": "incumbent"
+      },
+      {
+        "model": "Semantic hybrid",
+        "spearman": 0.932,
+        "mae_0_100": 9.92,
+        "verdict_accuracy": 0.8,
+        "explanation_completeness": 1.0,
+        "latency_p50_ms": 83.287,
+        "latency_p95_ms": 203.096,
+        "release_decision": "not_promoted"
+      }
+    ]
+  },
+  "quality_gates": [
+    {
+      "gate": "ML-QG-1",
+      "evidence": "Primary extraction development set",
+      "current": 100,
+      "minimum": 100,
+      "status": "conditional_pass",
+      "limitation": "AI-assisted primary labels; development-set caveat required"
+    },
+    {
+      "gate": "ML-QG-2",
+      "evidence": "Independent blind second annotation",
+      "current": 0,
+      "minimum": 100,
+      "status": "human_gate_open",
+      "limitation": "Must be completed by a different human without label leakage"
+    },
+    {
+      "gate": "ML-QG-3",
+      "evidence": "Independent human matching relevance",
+      "current": 0,
+      "minimum": 50,
+      "status": "human_gate_open",
+      "limitation": "Synthetic scenario-oracle labels are diagnostic only"
+    },
+    {
+      "gate": "Salary data gate",
+      "evidence": "Rows with disclosed salary",
+      "current": 77,
+      "minimum": 300,
+      "status": "blocked_data",
+      "limitation": "13.87% disclosure coverage in the current snapshot"
+    }
+  ],
+  "runtime_evidence": {
+    "api_container_health": "healthy",
+    "container_runs_as_non_root": true,
+    "streamlit_health": "ok",
+    "streamlit_http_status": 200,
+    "raw_cv_persistence": false,
+    "visual_browser_qa": "open"
+  },
+  "sources": [
+    "reports/data_quality.json",
+    "reports/extraction_gold_eval.json",
+    "reports/matching_relevance_ai_baseline.json",
+    "reports/matching_semantic_challenger.json",
+    "reports/api_container_smoke.json",
+    "reports/ui_smoke.json",
+    "AGENTS.md"
+  ]
+}

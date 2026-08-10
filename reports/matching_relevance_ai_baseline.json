@@ -1,0 +1,66 @@
+{
+  "evaluation_type": "synthetic-oracle relevance evaluation of exact-taxonomy matcher v0.1",
+  "claim_status": "ai_pseudo_labels_not_human_ml_qg_3",
+  "pairs_available": 50,
+  "pairs_reviewed": 50,
+  "job_groups_reviewed": 10,
+  "minimum_pairs": 50,
+  "annotators": [
+    "synthetic_scenario_oracle_v1"
+  ],
+  "ready_for_baseline_evaluation": false,
+  "ready_for_ml_qg_3": false,
+  "metrics": {
+    "spearman_global": 0.9345,
+    "spearman_by_job_group": {
+      "job_01": 0.9,
+      "job_02": 1.0,
+      "job_03": 1.0,
+      "job_04": 0.9,
+      "job_05": 1.0,
+      "job_06": 0.9,
+      "job_07": 0.9,
+      "job_08": 1.0,
+      "job_09": 0.9,
+      "job_10": 1.0
+    },
+    "mae_on_0_100_scale": 8.29,
+    "verdict_accuracy": 0.8,
+    "category_level_error": {
+      "0": {
+        "pairs": 10,
+        "mean_model_score": 15.53,
+        "mae_to_human_scale": 15.53
+      },
+      "1": {
+        "pairs": 10,
+        "mean_model_score": 32.46,
+        "mae_to_human_scale": 13.2
+      },
+      "2": {
+        "pairs": 10,
+        "mean_model_score": 43.1,
+        "mae_to_human_scale": 8.74
+      },
+      "3": {
+        "pairs": 10,
+        "mean_model_score": 72.3,
+        "mae_to_human_scale": 3.96
+      },
+      "4": {
+        "pairs": 10,
+        "mean_model_score": 100.0,
+        "mae_to_human_scale": 0.0
+      }
+    },
+    "latency_ms_p50": 2.948,
+    "latency_ms_p95": 3.553,
+    "explanation_completeness": 1.0
+  },
+  "warnings": [
+    "Scores encode the synthetic scenario design; they are not independent human relevance judgments.",
+    "Pairs are synthetic and cover only taxonomy-supported requirements.",
+    "ML-QG-3 remains open until a semantic challenger is compared on the same frozen human labels."
+  ],
+  "ready_for_experimental_comparison": true
+}

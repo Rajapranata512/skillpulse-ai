@@ -1,0 +1,93 @@
+{
+  "artifact_type": "SkillPulse AI portfolio release readiness audit",
+  "verified_date": "2026-08-10",
+  "overall_status": "no_go_public_release_local_demo_ready",
+  "engineering": {
+    "ruff": "passed",
+    "tests_passed": 94,
+    "demo_launcher_smoke": "passed",
+    "demo_smoke_ports": [
+      18080,
+      18501
+    ],
+    "demo_smoke_cleanup": "no_listeners_remaining",
+    "api_container_health": "healthy",
+    "api_container_non_root": true
+  },
+  "documentation": {
+    "model_card": "docs/model_card.md",
+    "data_card": "reports/data_card.md",
+    "architecture": "docs/architecture.md",
+    "case_study": "docs/case_study.md",
+    "demo_checklist": "docs/demo_checklist.md",
+    "release_checklist": "docs/release_checklist.md",
+    "canonical_portfolio_report": "reports/portfolio_report_artifact.json",
+    "portable_html_status": "blocked_shared_renderer_horizontal_overflow"
+  },
+  "git_publication": {
+    "tracked_files_count": 3,
+    "tracked_product_files_count": 0,
+    "tracked_historical_files": [
+      "AcceptanceLetter (8).pdf",
+      "RM.ipynb",
+      "paper kelompok 12.pdf"
+    ],
+    "product_files_status": "untracked",
+    "configured_remote": "origin",
+    "remote_repository": "RESEARCH_METHODOLOGY",
+    "owner_decision_required": true,
+    "commit_performed": false,
+    "push_performed": false,
+    "pull_request_opened": false
+  },
+  "sensitive_working_data_ignore_checks": {
+    "raw_source_csv": "ignored",
+    "primary_annotation_csv": "ignored",
+    "blind_annotation_csv": "ignored",
+    "ai_challenger_xlsx": "ignored",
+    "processed_csv": "ignored",
+    "annotation_review_html": "ignored"
+  },
+  "open_gates": [
+    {
+      "id": "M5-visual-qa",
+      "status": "environment_human_gate",
+      "current": "functional HTTP smoke only",
+      "required": "responsive and state-based browser QA plus public-safe demo media"
+    },
+    {
+      "id": "ML-QG-2",
+      "status": "human_gate",
+      "current": "0/100",
+      "required": "different human completes blind second annotation"
+    },
+    {
+      "id": "ML-QG-3",
+      "status": "human_gate",
+      "current": "0/50",
+      "required": "independent human relevance judgments"
+    },
+    {
+      "id": "M6-publication",
+      "status": "owner_authorization_gate",
+      "current": "product files untracked in historical research repository",
+      "required": "repository strategy and explicit commit/push authorization"
+    },
+    {
+      "id": "M6-deployment",
+      "status": "owner_external_gate",
+      "current": "local only",
+      "required": "hosting, privacy, monitoring, cost, and rollback decisions"
+    },
+    {
+      "id": "ML-QG-4",
+      "status": "blocked_data",
+      "current": "77/555 salary rows",
+      "required": "at least 300 usable disclosed salary rows plus leakage-safe split"
+    }
+  ],
+  "limitations": [
+    "The audit verifies selected ignore contracts but is not a substitute for a full secret or legal review.",
+    "No public deployment, browser media, commit, push, or pull request was performed."
+  ]
+}

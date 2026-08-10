@@ -1,0 +1,111 @@
+{
+  "evaluation_type": "synthetic-oracle baseline versus semantic challenger",
+  "claim_status": "experimental_ai_labels_not_human_ml_qg_3",
+  "pairs_compared": 50,
+  "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "semantic_weight": 0.2,
+  "ready_for_experimental_comparison": true,
+  "ready_for_ml_qg_3": false,
+  "baseline_metrics": {
+    "spearman_global": 0.9345,
+    "spearman_by_job_group": {
+      "job_01": 0.9,
+      "job_02": 1.0,
+      "job_03": 1.0,
+      "job_04": 0.9,
+      "job_05": 1.0,
+      "job_06": 0.9,
+      "job_07": 0.9,
+      "job_08": 1.0,
+      "job_09": 0.9,
+      "job_10": 1.0
+    },
+    "mae_on_0_100_scale": 8.29,
+    "verdict_accuracy": 0.8,
+    "category_level_error": {
+      "0": {
+        "pairs": 10,
+        "mean_model_score": 15.53,
+        "mae_to_human_scale": 15.53
+      },
+      "1": {
+        "pairs": 10,
+        "mean_model_score": 32.46,
+        "mae_to_human_scale": 13.2
+      },
+      "2": {
+        "pairs": 10,
+        "mean_model_score": 43.1,
+        "mae_to_human_scale": 8.74
+      },
+      "3": {
+        "pairs": 10,
+        "mean_model_score": 72.3,
+        "mae_to_human_scale": 3.96
+      },
+      "4": {
+        "pairs": 10,
+        "mean_model_score": 100.0,
+        "mae_to_human_scale": 0.0
+      }
+    },
+    "latency_ms_p50": 5.995,
+    "latency_ms_p95": 9.361,
+    "explanation_completeness": 1.0
+  },
+  "challenger_metrics": {
+    "spearman_global": 0.932,
+    "spearman_by_job_group": {
+      "job_01": 0.9,
+      "job_02": 1.0,
+      "job_03": 1.0,
+      "job_04": 0.9,
+      "job_05": 1.0,
+      "job_06": 0.9,
+      "job_07": 0.9,
+      "job_08": 1.0,
+      "job_09": 0.9,
+      "job_10": 1.0
+    },
+    "mae_on_0_100_scale": 9.92,
+    "verdict_accuracy": 0.8,
+    "category_level_error": {
+      "0": {
+        "pairs": 10,
+        "mean_model_score": 24.4,
+        "mae_to_human_scale": 24.4
+      },
+      "1": {
+        "pairs": 10,
+        "mean_model_score": 39.22,
+        "mae_to_human_scale": 14.24
+      },
+      "2": {
+        "pairs": 10,
+        "mean_model_score": 48.61,
+        "mae_to_human_scale": 4.25
+      },
+      "3": {
+        "pairs": 10,
+        "mean_model_score": 73.61,
+        "mae_to_human_scale": 3.15
+      },
+      "4": {
+        "pairs": 10,
+        "mean_model_score": 96.44,
+        "mae_to_human_scale": 3.56
+      }
+    },
+    "latency_ms_p50": 83.287,
+    "latency_ms_p95": 203.096,
+    "explanation_completeness": 1.0
+  },
+  "delta": {
+    "spearman_global": -0.0025,
+    "mae_on_0_100_scale": 1.63
+  },
+  "warnings": [
+    "Synthetic scenario labels are not independent human judgments.",
+    "Do not select or tune the semantic challenger as a portfolio claim until human labels are frozen."
+  ]
+}

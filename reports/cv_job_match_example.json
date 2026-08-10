@@ -1,0 +1,123 @@
+{
+  "overall_score": 81.6,
+  "verdict": "strong_match",
+  "matched_skills": [
+    "Communication",
+    "Python",
+    "SQL",
+    "Tableau"
+  ],
+  "missing_skills": [
+    "Power BI"
+  ],
+  "category_scores": [
+    {
+      "category": "technical_skills",
+      "applicable": true,
+      "configured_weight": 0.3,
+      "effective_weight": 0.3158,
+      "score": 1.0,
+      "matched": [
+        "Python",
+        "SQL"
+      ],
+      "missing": [],
+      "candidate_value": null,
+      "job_requirement": null,
+      "explanation": "2 dari 2 persyaratan cocok."
+    },
+    {
+      "category": "tools",
+      "applicable": true,
+      "configured_weight": 0.25,
+      "effective_weight": 0.2632,
+      "score": 0.5,
+      "matched": [
+        "Tableau"
+      ],
+      "missing": [
+        "Power BI"
+      ],
+      "candidate_value": null,
+      "job_requirement": null,
+      "explanation": "1 dari 2 persyaratan cocok."
+    },
+    {
+      "category": "soft_skills",
+      "applicable": true,
+      "configured_weight": 0.1,
+      "effective_weight": 0.1053,
+      "score": 1.0,
+      "matched": [
+        "Communication"
+      ],
+      "missing": [],
+      "candidate_value": null,
+      "job_requirement": null,
+      "explanation": "1 dari 1 persyaratan cocok."
+    },
+    {
+      "category": "education",
+      "applicable": true,
+      "configured_weight": 0.1,
+      "effective_weight": 0.1053,
+      "score": 1.0,
+      "matched": [
+        "Bachelor"
+      ],
+      "missing": [],
+      "candidate_value": "Bachelor",
+      "job_requirement": "Bachelor",
+      "explanation": "Pendidikan memenuhi persyaratan minimum."
+    },
+    {
+      "category": "experience",
+      "applicable": true,
+      "configured_weight": 0.15,
+      "effective_weight": 0.1579,
+      "score": 1.0,
+      "matched": [
+        "2 years"
+      ],
+      "missing": [],
+      "candidate_value": 3.0,
+      "job_requirement": 2.0,
+      "explanation": "Pengalaman memenuhi persyaratan minimum."
+    },
+    {
+      "category": "seniority",
+      "applicable": true,
+      "configured_weight": 0.05,
+      "effective_weight": 0.0526,
+      "score": 0.0,
+      "matched": [],
+      "missing": [
+        "mid"
+      ],
+      "candidate_value": "unknown",
+      "job_requirement": "mid",
+      "explanation": "Kriteria belum cocok atau belum tercantum di CV."
+    },
+    {
+      "category": "work_arrangement",
+      "applicable": false,
+      "configured_weight": 0.05,
+      "effective_weight": 0.0,
+      "score": null,
+      "matched": [],
+      "missing": [],
+      "candidate_value": "unknown",
+      "job_requirement": null,
+      "explanation": "Tidak ada persyaratan work arrangement yang terdeteksi."
+    }
+  ],
+  "learning_priorities": [
+    {
+      "skill": "Power BI",
+      "category": "tools",
+      "priority": "high",
+      "reason": "Disebut pada lowongan tetapi belum terdeteksi di CV (tools)."
+    }
+  ],
+  "disclaimer": "Baseline berbasis taxonomy; gunakan sebagai decision support, bukan keputusan rekrutmen otomatis. Skor hanya mencakup persyaratan yang berhasil diekstrak."
+}

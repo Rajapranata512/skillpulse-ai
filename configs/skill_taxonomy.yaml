@@ -1,0 +1,49 @@
+version: "0.2.0"
+language: [id, en]
+entities:
+  - {canonical: SQL, type: technical_skill, aliases: [sql, structured query language]}
+  - {canonical: Python, type: technical_skill, aliases: [python]}
+  - {canonical: R, type: technical_skill, aliases: [r programming, bahasa r]}
+  - {canonical: Java, type: technical_skill, aliases: [java]}
+  - {canonical: JavaScript, type: technical_skill, aliases: [javascript, js]}
+  - {canonical: Go, type: technical_skill, aliases: [golang, go language]}
+  - {canonical: Machine Learning, type: technical_skill, aliases: [machine learning, pembelajaran mesin, ml]}
+  - {canonical: Deep Learning, type: technical_skill, aliases: [deep learning, pembelajaran mendalam]}
+  - {canonical: Data Analysis, type: technical_skill, aliases: [data analysis, data analytics, analisis data, analisa data]}
+  - {canonical: Data Visualization, type: technical_skill, aliases: [data visualization, data visualisation, visualization, visualisation, visualisasi data, visualisasi]}
+  - {canonical: Statistics, type: technical_skill, aliases: [statistics, statistical analysis, statistical modeling, statistical modelling, statistik, analisis statistik]}
+  - {canonical: ETL, type: technical_skill, aliases: [etl, extract transform load, data pipeline, data pipelines]}
+  - {canonical: NLP, type: technical_skill, aliases: [nlp, natural language processing, pemrosesan bahasa alami]}
+  - {canonical: REST API, type: technical_skill, aliases: [rest api, restful api, api development]}
+  - {canonical: Excel, type: tool, aliases: [microsoft excel, ms excel, excel]}
+  - {canonical: Power BI, type: tool, aliases: [power bi, powerbi]}
+  - {canonical: Tableau, type: tool, aliases: [tableau]}
+  - {canonical: Looker, type: tool, aliases: [looker]}
+  - {canonical: Looker Studio, type: tool, aliases: [looker studio, google data studio, data studio]}
+  - {canonical: Google Analytics, type: tool, aliases: [google analytics, ga4]}
+  - {canonical: Adobe Analytics, type: tool, aliases: [adobe analytics]}
+  - {canonical: Metabase, type: tool, aliases: [metabase]}
+  - {canonical: SPSS, type: tool, aliases: [spss]}
+  - {canonical: SAS, type: tool, aliases: [sas]}
+  - {canonical: PostgreSQL, type: tool, aliases: [postgresql, postgres]}
+  - {canonical: MySQL, type: tool, aliases: [mysql]}
+  - {canonical: SQL Server, type: tool, aliases: [sql server, microsoft sql server, mssql]}
+  - {canonical: Oracle, type: tool, aliases: [oracle database, oracle]}
+  - {canonical: BigQuery, type: tool, aliases: [google bigquery, bigquery]}
+  - {canonical: Snowflake, type: tool, aliases: [snowflake]}
+  - {canonical: MongoDB, type: tool, aliases: [mongodb, mongo db]}
+  - {canonical: AWS, type: tool, aliases: [amazon web services, aws]}
+  - {canonical: Azure, type: tool, aliases: [microsoft azure, azure]}
+  - {canonical: GCP, type: tool, aliases: [google cloud platform, google cloud, gcp]}
+  - {canonical: Docker, type: tool, aliases: [docker]}
+  - {canonical: Kubernetes, type: tool, aliases: [kubernetes, k8s]}
+  - {canonical: Apache Airflow, type: tool, aliases: [apache airflow, airflow]}
+  - {canonical: Apache Spark, type: tool, aliases: [apache spark, pyspark, spark]}
+  - {canonical: Apache Kafka, type: tool, aliases: [apache kafka, kafka]}
+  - {canonical: TensorFlow, type: tool, aliases: [tensorflow]}
+  - {canonical: PyTorch, type: tool, aliases: [pytorch]}
+  - {canonical: Scikit-learn, type: tool, aliases: [scikit-learn, scikit learn, sklearn]}
+  - {canonical: Pandas, type: tool, aliases: [pandas]}
+  - {canonical: NumPy, type: tool, aliases: [numpy]}
+  - {canonical: Git, type: tool, aliases: [git]}
+

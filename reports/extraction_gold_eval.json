@@ -1,0 +1,51 @@
+{
+  "evaluation_type": "gold-set evaluation",
+  "documents_reviewed": 100,
+  "metrics": {
+    "technical_skills": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact_match": 1.0,
+      "true_positives": 120,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "tools": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact_match": 1.0,
+      "true_positives": 94,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "soft_skills": {
+      "precision": 0.9939,
+      "recall": 1.0,
+      "f1": 0.9969,
+      "exact_match": 0.99,
+      "true_positives": 162,
+      "false_positives": 1,
+      "false_negatives": 0
+    },
+    "education": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact_match": 1.0,
+      "true_positives": 86,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "experience_years": {
+      "exact_match": 1.0
+    },
+    "seniority": {
+      "exact_match": 0.99
+    },
+    "work_arrangement": {
+      "exact_match": 1.0
+    }
+  }
+}

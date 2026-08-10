@@ -1,0 +1,13 @@
+{
+  "evaluation_type": "weak-label baseline; manual gold review still required",
+  "documents_total": 555,
+  "documents_evaluated": 332,
+  "taxonomy_label_coverage": 0.949,
+  "true_positives": 896,
+  "false_positives": 339,
+  "false_negatives": 35,
+  "micro_precision": 0.7255,
+  "micro_recall": 0.9624,
+  "micro_f1": 0.8273,
+  "document_exact_match": 0.3343
+}

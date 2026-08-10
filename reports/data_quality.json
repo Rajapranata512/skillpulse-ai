@@ -1,0 +1,24 @@
+{
+  "raw_rows": 555,
+  "clean_rows": 555,
+  "removed_duplicate_rows": 0,
+  "columns": 13,
+  "salary_disclosed_rows": 77,
+  "salary_disclosure_rate": 0.1387,
+  "missing_by_column": {
+    "job_id": 0,
+    "posisi": 0,
+    "perusahaan": 0,
+    "kota": 20,
+    "provinsi": 11,
+    "gaji": 478,
+    "tools": 0,
+    "pendidikan": 136,
+    "pengalaman": 178,
+    "deskripsi_lengkap": 0,
+    "level": 178,
+    "salary_monthly_idr": 478,
+    "salary_disclosed": 0
+  },
+  "unique_job_descriptions": 542
+}

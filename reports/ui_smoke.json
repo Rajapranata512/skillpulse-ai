@@ -1,0 +1,21 @@
+{
+  "artifact_type": "SkillPulse Streamlit local smoke evidence",
+  "verified_date": "2026-08-10",
+  "ui_framework": "Streamlit",
+  "ui_dependency_constraint": ">=1.60,<2.0",
+  "api_status": "ok",
+  "api_contract_version": "1.0.0",
+  "streamlit_health": "ok",
+  "page_http_status": 200,
+  "example_mode": true,
+  "privacy": {
+    "file_upload_disabled": true,
+    "raw_cv_persistence": false,
+    "protected_attributes_used": false
+  },
+  "limitations": [
+    "Smoke evidence verifies process and HTTP readiness, not browser screenshot or responsive visual QA.",
+    "Market dashboard is not included because reconciled trend metrics are not yet available.",
+    "ML-QG-2 and ML-QG-3 remain open and are disclosed in the UI."
+  ]
+}

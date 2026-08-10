@@ -1,0 +1,375 @@
+{
+  "artifact_type": "canonical AI challenger annotations",
+  "claim_status": "not_human_gold_not_ml_qg_2",
+  "transformation_version": "ai_challenger_repair_v1",
+  "rows_input": 100,
+  "rows_output": 100,
+  "unique_source_rows": 100,
+  "source_text_rows_restored": 100,
+  "input_hashes_matching_primary_source": 100,
+  "review_status": "ai_reviewed",
+  "annotators": {
+    "chatgpt_ai_annotator_01": 100
+  },
+  "field_summary": {
+    "gold_technical_skills": {
+      "input_labels": 652,
+      "output_labels": 118,
+      "dropped_labels": 533,
+      "alias_mappings": [
+        {
+          "mapping": "Statistical Analysis -> Statistics",
+          "count": 4
+        },
+        {
+          "mapping": "Data Analytics -> Data Analysis",
+          "count": 1
+        },
+        {
+          "mapping": "API Development -> REST API",
+          "count": 1
+        },
+        {
+          "mapping": "Data Pipelines -> ETL",
+          "count": 1
+        }
+      ],
+      "top_dropped": [
+        {
+          "label": "Requirements Analysis",
+          "count": 23
+        },
+        {
+          "label": "Technical Documentation",
+          "count": 16
+        },
+        {
+          "label": "Reporting",
+          "count": 15
+        },
+        {
+          "label": "Project Management",
+          "count": 13
+        },
+        {
+          "label": "Software Testing",
+          "count": 10
+        },
+        {
+          "label": "ERP",
+          "count": 10
+        },
+        {
+          "label": "Business Process Analysis",
+          "count": 9
+        },
+        {
+          "label": "Troubleshooting",
+          "count": 8
+        },
+        {
+          "label": "System Integration",
+          "count": 7
+        },
+        {
+          "label": "System Design",
+          "count": 7
+        },
+        {
+          "label": "System Analysis",
+          "count": 7
+        },
+        {
+          "label": "UAT",
+          "count": 7
+        },
+        {
+          "label": "SDLC",
+          "count": 7
+        },
+        {
+          "label": "Risk Assessment",
+          "count": 6
+        },
+        {
+          "label": "Process Automation",
+          "count": 5
+        },
+        {
+          "label": "Financial Reporting",
+          "count": 5
+        },
+        {
+          "label": "Business Process Modeling",
+          "count": 5
+        },
+        {
+          "label": "Financial Analysis",
+          "count": 5
+        },
+        {
+          "label": "Forecasting",
+          "count": 5
+        },
+        {
+          "label": "System Implementation",
+          "count": 5
+        },
+        {
+          "label": "Experiment Design",
+          "count": 5
+        },
+        {
+          "label": "Credit Analysis",
+          "count": 5
+        },
+        {
+          "label": "A/B Testing",
+          "count": 5
+        },
+        {
+          "label": "Data Quality",
+          "count": 4
+        },
+        {
+          "label": "Risk Management",
+          "count": 4
+        }
+      ]
+    },
+    "gold_tools": {
+      "input_labels": 185,
+      "output_labels": 95,
+      "dropped_labels": 90,
+      "alias_mappings": [
+        {
+          "mapping": "Microsoft Excel -> Excel",
+          "count": 38
+        },
+        {
+          "mapping": "Google Data Studio -> Looker Studio",
+          "count": 5
+        },
+        {
+          "mapping": "Google Cloud -> GCP",
+          "count": 3
+        },
+        {
+          "mapping": "Microsoft Azure -> Azure",
+          "count": 1
+        }
+      ],
+      "top_dropped": [
+        {
+          "label": "Microsoft Office",
+          "count": 12
+        },
+        {
+          "label": "Microsoft PowerPoint",
+          "count": 9
+        },
+        {
+          "label": "Microsoft Word",
+          "count": 7
+        },
+        {
+          "label": "SAP",
+          "count": 6
+        },
+        {
+          "label": "Google Sheets",
+          "count": 3
+        },
+        {
+          "label": "Microsoft Visio",
+          "count": 3
+        },
+        {
+          "label": "MoEngage",
+          "count": 3
+        },
+        {
+          "label": "dbt",
+          "count": 2
+        },
+        {
+          "label": "Amplitude",
+          "count": 2
+        },
+        {
+          "label": "AS400",
+          "count": 2
+        },
+        {
+          "label": "Google Workspace",
+          "count": 2
+        },
+        {
+          "label": "Workday",
+          "count": 1
+        },
+        {
+          "label": "Microsoft Dynamics 365",
+          "count": 1
+        },
+        {
+          "label": "Odoo",
+          "count": 1
+        },
+        {
+          "label": "Electron.js",
+          "count": 1
+        },
+        {
+          "label": "Netcore",
+          "count": 1
+        },
+        {
+          "label": "Infobip",
+          "count": 1
+        },
+        {
+          "label": "JDE",
+          "count": 1
+        },
+        {
+          "label": "Microsoft Project",
+          "count": 1
+        },
+        {
+          "label": "ServiceNow",
+          "count": 1
+        },
+        {
+          "label": "Siebel",
+          "count": 1
+        },
+        {
+          "label": "Remedy",
+          "count": 1
+        },
+        {
+          "label": "Microsoft Exchange",
+          "count": 1
+        },
+        {
+          "label": "Meta Ads Manager",
+          "count": 1
+        },
+        {
+          "label": "Google Search Console",
+          "count": 1
+        }
+      ]
+    },
+    "gold_soft_skills": {
+      "input_labels": 349,
+      "output_labels": 196,
+      "dropped_labels": 153,
+      "alias_mappings": [],
+      "top_dropped": [
+        {
+          "label": "Analytical Thinking",
+          "count": 44
+        },
+        {
+          "label": "Learning Agility",
+          "count": 18
+        },
+        {
+          "label": "Interpersonal Skills",
+          "count": 14
+        },
+        {
+          "label": "Initiative",
+          "count": 12
+        },
+        {
+          "label": "Stakeholder Management",
+          "count": 10
+        },
+        {
+          "label": "English Proficiency",
+          "count": 10
+        },
+        {
+          "label": "Independence",
+          "count": 9
+        },
+        {
+          "label": "Adaptability",
+          "count": 8
+        },
+        {
+          "label": "Coordination",
+          "count": 5
+        },
+        {
+          "label": "Integrity",
+          "count": 5
+        },
+        {
+          "label": "Organization",
+          "count": 4
+        },
+        {
+          "label": "Work Under Pressure",
+          "count": 3
+        },
+        {
+          "label": "Client Management",
+          "count": 3
+        },
+        {
+          "label": "Negotiation",
+          "count": 2
+        },
+        {
+          "label": "Mandarin Proficiency",
+          "count": 1
+        },
+        {
+          "label": "Persuasion",
+          "count": 1
+        },
+        {
+          "label": "Influencing",
+          "count": 1
+        },
+        {
+          "label": "Business Acumen",
+          "count": 1
+        },
+        {
+          "label": "Planning",
+          "count": 1
+        },
+        {
+          "label": "Creativity",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "invalid_scalar_values_replaced": {
+    "gold_education": 0
+  },
+  "annotation_quality": {
+    "valid": true,
+    "rows": 100,
+    "unique_source_rows": 100,
+    "status_counts": {
+      "ai_reviewed": 100
+    },
+    "completed_rows": 100,
+    "notes_completion_rate": 1.0,
+    "ready_for_provisional_evaluation": true,
+    "ready_for_human_gold_evaluation": false,
+    "issues": []
+  },
+  "limitations": [
+    "Labels were produced by an AI annotator and cannot satisfy the two-human ML-QG-2 gate.",
+    "Unsupported concepts were dropped rather than silently expanding taxonomy v0.2.",
+    "Agreement with primary gold is descriptive AI-vs-human evidence only."
+  ]
+}

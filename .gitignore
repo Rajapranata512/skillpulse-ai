@@ -1,0 +1,50 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.env.*
+
+# Credentials, local databases, and private binary artifacts
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+*.xls
+*.xlsx
+*.pdf
+
+# Local agent/tool state and preserved research Git history
+.agents/
+.codex/
+.git-research-backup-*/
+/RM.ipynb
+/AcceptanceLetter (8).pdf
+/paper kelompok 12.pdf
+
+# Raw and generated row-level data
+/lowongan data dan analytics jobstreet.csv
+/data/raw/*
+!/data/raw/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
+artifacts/
+mlruns/
+
+# Notebook and OS noise
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Human annotation and evaluation-label working data are private-by-default
+/data/annotations/*
+!/data/annotations/.gitkeep
+/data/evaluation/*
+!/data/evaluation/matching_relevance_candidates.csv
+/reports/annotation_review_pack*.html

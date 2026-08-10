@@ -1,0 +1,57 @@
+schema_version: 1
+verified_at: '2026-08-09'
+sources:
+  - id: kaggle_indonesian_data_analytics_jobstreet_v1
+    title: Indonesian Data & Analytics Jobs in Jobstreet
+    platform: Kaggle
+    creator: Rafli Rizkya Sakti Nugraha
+    url: https://www.kaggle.com/datasets/raflirizkya/indonesian-data-and-analytics-jobs-in-jobstreet
+    dataset_ref: raflirizkya/indonesian-data-and-analytics-jobs-in-jobstreet
+    version: 1
+    last_updated: '2025-09-28T09:11:11.007Z'
+    license:
+      name: Attribution 4.0 International (CC BY 4.0)
+      spdx: CC-BY-4.0
+      url: https://creativecommons.org/licenses/by/4.0/
+      attribution_required: true
+    observation_window:
+      start: '2025-08-25'
+      end: '2025-09-24'
+      duration_days: 30
+    scope:
+      geography: Indonesia
+      source_portal: JobStreet Indonesia
+      role_family: Data and Analytics
+      unit: one cleaned job posting per row
+      languages: [Indonesian, English, mixed]
+    acquisition:
+      project_method: downloaded from Kaggle by the project owner
+      project_download_date: unknown
+      publisher_statement: collected from publicly available JobStreet Indonesia postings
+      collection_tooling: not documented by the Kaggle publisher
+    publisher_transformations:
+      - cleaned from an original collection
+      - direct-link columns removed
+      - short-description and tool-count columns removed
+      - personal contact information scrubbed from full descriptions
+    local_artifact:
+      path: lowongan data dan analytics jobstreet.csv
+      bytes: 1059991
+      sha256: a857603f6d8a2b0344f4a4f00747e037ecc4ca3aa6b760800560ad4fe906887c
+      rows: 555
+      columns: 10
+      exact_kaggle_v1_match: true
+    publication_policy:
+      include_raw_file_in_public_repository: false
+      rationale: >-
+        Reproduce by downloading from Kaggle. CC BY 4.0 permits sharing with attribution,
+        but the full descriptions originate from third-party job postings and may carry
+        additional rights or platform-term constraints.
+      allowed_public_outputs:
+        - aggregate statistics with source attribution
+        - derived taxonomy and evaluation metrics
+        - synthetic or separately cleared examples
+    attribution: >-
+      Indonesian Data & Analytics Jobs in Jobstreet by Rafli Rizkya Sakti Nugraha,
+      Kaggle dataset version 1, licensed under CC BY 4.0. Modified by SkillPulse AI
+      through validation, sampling, normalization, annotation, and derived analysis.

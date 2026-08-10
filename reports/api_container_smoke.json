@@ -1,0 +1,34 @@
+{
+  "artifact_type": "SkillPulse API local container smoke evidence",
+  "verified_date": "2026-08-10",
+  "image": "skillpulse-api:local",
+  "docker_server_version": "29.3.0",
+  "build_context_bytes_observed": 410160,
+  "container_health": "healthy",
+  "container_identity": "uid=100(skillpulse) gid=101(skillpulse) groups=101(skillpulse)",
+  "checks": {
+    "health_status": "ok",
+    "contract_version": "1.0.0",
+    "extract_technical_skills": [
+      "Python",
+      "SQL"
+    ],
+    "extract_tools": [
+      "Power BI"
+    ],
+    "match_score": 50.0,
+    "match_missing_skills": [
+      "Power BI"
+    ]
+  },
+  "privacy_checks": {
+    "raw_data_excluded_from_build_context": true,
+    "csv_and_xlsx_excluded_from_build_context": true,
+    "notebooks_and_reports_excluded_from_build_context": true,
+    "access_log_disabled": true
+  },
+  "limitations": [
+    "This is a local smoke test, not a public deployment or load test.",
+    "No CV persistence or external database behavior was tested because the v1 service is stateless."
+  ]
+}

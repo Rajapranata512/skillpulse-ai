@@ -1,0 +1,270 @@
+{
+  "evaluation_type": "AI-vs-human annotation comparison",
+  "minimum_documents": 100,
+  "documents_available": 100,
+  "documents_compared": 100,
+  "primary_annotators": [
+    "project_owner_v1",
+    "project_owner_v2"
+  ],
+  "annotators_are_independent": false,
+  "secondary_notes_complete": true,
+  "ready_for_ml_qg_2": false,
+  "metrics": {
+    "technical_skills": {
+      "documents": 100,
+      "document_exact_match": 0.82,
+      "micro_jaccard": 0.8308,
+      "macro_label_cohen_kappa": 0.8003,
+      "labels": {
+        "Data Analysis": {
+          "cohen_kappa": 0.7598,
+          "primary_support": 35,
+          "secondary_support": 36
+        },
+        "Data Visualization": {
+          "cohen_kappa": 0.8963,
+          "primary_support": 16,
+          "secondary_support": 19
+        },
+        "ETL": {
+          "cohen_kappa": 0.8521,
+          "primary_support": 4,
+          "secondary_support": 3
+        },
+        "JavaScript": {
+          "cohen_kappa": 0.8521,
+          "primary_support": 4,
+          "secondary_support": 3
+        },
+        "Machine Learning": {
+          "cohen_kappa": 0.0,
+          "primary_support": 1,
+          "secondary_support": 0
+        },
+        "Python": {
+          "cohen_kappa": 0.9618,
+          "primary_support": 16,
+          "secondary_support": 15
+        },
+        "R": {
+          "cohen_kappa": 0.928,
+          "primary_support": 8,
+          "secondary_support": 7
+        },
+        "REST API": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "SQL": {
+          "cohen_kappa": 1.0,
+          "primary_support": 28,
+          "secondary_support": 28
+        },
+        "Statistics": {
+          "cohen_kappa": 0.7533,
+          "primary_support": 7,
+          "secondary_support": 6
+        }
+      }
+    },
+    "tools": {
+      "documents": 100,
+      "document_exact_match": 0.97,
+      "micro_jaccard": 0.9688,
+      "macro_label_cohen_kappa": 0.9309,
+      "labels": {
+        "AWS": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "Adobe Analytics": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "Apache Spark": {
+          "cohen_kappa": 0.0,
+          "primary_support": 1,
+          "secondary_support": 0
+        },
+        "Azure": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "BigQuery": {
+          "cohen_kappa": 1.0,
+          "primary_support": 2,
+          "secondary_support": 2
+        },
+        "Docker": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "Excel": {
+          "cohen_kappa": 1.0,
+          "primary_support": 38,
+          "secondary_support": 38
+        },
+        "GCP": {
+          "cohen_kappa": 1.0,
+          "primary_support": 3,
+          "secondary_support": 3
+        },
+        "Google Analytics": {
+          "cohen_kappa": 0.8521,
+          "primary_support": 3,
+          "secondary_support": 4
+        },
+        "Kubernetes": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "Looker": {
+          "cohen_kappa": 1.0,
+          "primary_support": 4,
+          "secondary_support": 4
+        },
+        "Looker Studio": {
+          "cohen_kappa": 0.9038,
+          "primary_support": 5,
+          "secondary_support": 6
+        },
+        "Metabase": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "Oracle": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "Power BI": {
+          "cohen_kappa": 1.0,
+          "primary_support": 14,
+          "secondary_support": 14
+        },
+        "SPSS": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "Snowflake": {
+          "cohen_kappa": 1.0,
+          "primary_support": 2,
+          "secondary_support": 2
+        },
+        "Tableau": {
+          "cohen_kappa": 1.0,
+          "primary_support": 14,
+          "secondary_support": 14
+        }
+      }
+    },
+    "soft_skills": {
+      "documents": 100,
+      "document_exact_match": 0.49,
+      "micro_jaccard": 0.6651,
+      "macro_label_cohen_kappa": 0.6634,
+      "labels": {
+        "Attention to Detail": {
+          "cohen_kappa": 0.901,
+          "primary_support": 26,
+          "secondary_support": 30
+        },
+        "Communication": {
+          "cohen_kappa": 0.7149,
+          "primary_support": 53,
+          "secondary_support": 65
+        },
+        "Critical Thinking": {
+          "cohen_kappa": 0.7778,
+          "primary_support": 10,
+          "secondary_support": 10
+        },
+        "Leadership": {
+          "cohen_kappa": 0.6398,
+          "primary_support": 7,
+          "secondary_support": 8
+        },
+        "Presentation": {
+          "cohen_kappa": 0.4403,
+          "primary_support": 16,
+          "secondary_support": 8
+        },
+        "Problem Solving": {
+          "cohen_kappa": 0.8684,
+          "primary_support": 25,
+          "secondary_support": 26
+        },
+        "Teamwork": {
+          "cohen_kappa": 0.4807,
+          "primary_support": 23,
+          "secondary_support": 43
+        },
+        "Time Management": {
+          "cohen_kappa": 0.4845,
+          "primary_support": 2,
+          "secondary_support": 6
+        }
+      }
+    },
+    "education": {
+      "documents": 100,
+      "document_exact_match": 0.82,
+      "micro_jaccard": 0.7667,
+      "macro_label_cohen_kappa": 0.7173,
+      "labels": {
+        "Bachelor": {
+          "cohen_kappa": 0.7234,
+          "primary_support": 65,
+          "secondary_support": 60
+        },
+        "Diploma": {
+          "cohen_kappa": 0.8238,
+          "primary_support": 15,
+          "secondary_support": 11
+        },
+        "High School": {
+          "cohen_kappa": 1.0,
+          "primary_support": 1,
+          "secondary_support": 1
+        },
+        "Master": {
+          "cohen_kappa": 0.322,
+          "primary_support": 5,
+          "secondary_support": 1
+        }
+      }
+    },
+    "experience_years": {
+      "documents": 100,
+      "exact_match": 0.85,
+      "cohen_kappa": 0.8164
+    },
+    "seniority": {
+      "documents": 100,
+      "exact_match": 0.51,
+      "cohen_kappa": 0.379
+    },
+    "work_arrangement": {
+      "documents": 100,
+      "exact_match": 0.97,
+      "cohen_kappa": 0.8683
+    }
+  },
+  "warnings": [
+    "The challenger annotator is AI; these metrics do not satisfy ML-QG-2 regardless of score.",
+    "Primary gold is AI-assisted and human-confirmed; agreement measures annotation reproducibility, not model generalization."
+  ],
+  "claim_status": "descriptive_only_not_human_agreement",
+  "ai_annotators": [
+    "chatgpt_ai_annotator_01"
+  ]
+}

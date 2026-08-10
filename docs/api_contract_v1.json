@@ -1,0 +1,517 @@
+{
+  "artifact_type": "SkillPulse transport-neutral domain contract",
+  "contract_version": "1.0.0",
+  "taxonomy_version": "0.2.0",
+  "schemas": {
+    "ExtractionRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 50000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "ExtractionRequest",
+      "type": "object"
+    },
+    "ExtractionResponse": {
+      "$defs": {
+        "EntityEvidence": {
+          "additionalProperties": false,
+          "properties": {
+            "canonical": {
+              "minLength": 1,
+              "title": "Canonical",
+              "type": "string"
+            },
+            "matched_text": {
+              "minLength": 1,
+              "title": "Matched Text",
+              "type": "string"
+            },
+            "start": {
+              "minimum": 0,
+              "title": "Start",
+              "type": "integer"
+            },
+            "end": {
+              "exclusiveMinimum": 0,
+              "title": "End",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "canonical",
+            "matched_text",
+            "start",
+            "end"
+          ],
+          "title": "EntityEvidence",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "enum": [
+            "1.0.0"
+          ],
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "model_version": {
+          "const": "taxonomy-rules-0.2.0",
+          "default": "taxonomy-rules-0.2.0",
+          "enum": [
+            "taxonomy-rules-0.2.0"
+          ],
+          "title": "Model Version",
+          "type": "string"
+        },
+        "taxonomy_version": {
+          "const": "0.2.0",
+          "default": "0.2.0",
+          "enum": [
+            "0.2.0"
+          ],
+          "title": "Taxonomy Version",
+          "type": "string"
+        },
+        "technical_skills": {
+          "items": {
+            "$ref": "#/$defs/EntityEvidence"
+          },
+          "title": "Technical Skills",
+          "type": "array"
+        },
+        "tools": {
+          "items": {
+            "$ref": "#/$defs/EntityEvidence"
+          },
+          "title": "Tools",
+          "type": "array"
+        },
+        "soft_skills": {
+          "items": {
+            "$ref": "#/$defs/EntityEvidence"
+          },
+          "title": "Soft Skills",
+          "type": "array"
+        },
+        "education": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Education",
+          "type": "array"
+        },
+        "experience_years": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Experience Years"
+        },
+        "seniority": {
+          "enum": [
+            "entry",
+            "mid",
+            "senior",
+            "unknown"
+          ],
+          "title": "Seniority",
+          "type": "string"
+        },
+        "work_arrangement": {
+          "enum": [
+            "remote",
+            "hybrid",
+            "onsite",
+            "unknown"
+          ],
+          "title": "Work Arrangement",
+          "type": "string"
+        }
+      },
+      "required": [
+        "technical_skills",
+        "tools",
+        "soft_skills",
+        "education",
+        "seniority",
+        "work_arrangement"
+      ],
+      "title": "ExtractionResponse",
+      "type": "object"
+    },
+    "MatchRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "cv_text": {
+          "maxLength": 50000,
+          "minLength": 1,
+          "title": "Cv Text",
+          "type": "string"
+        },
+        "job_text": {
+          "maxLength": 50000,
+          "minLength": 1,
+          "title": "Job Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cv_text",
+        "job_text"
+      ],
+      "title": "MatchRequest",
+      "type": "object"
+    },
+    "MatchResponse": {
+      "$defs": {
+        "CategoryScoreResponse": {
+          "additionalProperties": false,
+          "properties": {
+            "category": {
+              "title": "Category",
+              "type": "string"
+            },
+            "applicable": {
+              "title": "Applicable",
+              "type": "boolean"
+            },
+            "configured_weight": {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "title": "Configured Weight",
+              "type": "number"
+            },
+            "effective_weight": {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "title": "Effective Weight",
+              "type": "number"
+            },
+            "score": {
+              "anyOf": [
+                {
+                  "maximum": 1.0,
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Score"
+            },
+            "matched": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Matched",
+              "type": "array"
+            },
+            "missing": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Missing",
+              "type": "array"
+            },
+            "candidate_value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Candidate Value"
+            },
+            "job_requirement": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Job Requirement"
+            },
+            "explanation": {
+              "title": "Explanation",
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "applicable",
+            "configured_weight",
+            "effective_weight",
+            "matched",
+            "missing",
+            "candidate_value",
+            "job_requirement",
+            "explanation"
+          ],
+          "title": "CategoryScoreResponse",
+          "type": "object"
+        },
+        "LearningPriorityResponse": {
+          "additionalProperties": false,
+          "properties": {
+            "skill": {
+              "title": "Skill",
+              "type": "string"
+            },
+            "category": {
+              "title": "Category",
+              "type": "string"
+            },
+            "priority": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ],
+              "title": "Priority",
+              "type": "string"
+            },
+            "reason": {
+              "title": "Reason",
+              "type": "string"
+            }
+          },
+          "required": [
+            "skill",
+            "category",
+            "priority",
+            "reason"
+          ],
+          "title": "LearningPriorityResponse",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "enum": [
+            "1.0.0"
+          ],
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "model_version": {
+          "const": "exact-taxonomy-0.1.0",
+          "default": "exact-taxonomy-0.1.0",
+          "enum": [
+            "exact-taxonomy-0.1.0"
+          ],
+          "title": "Model Version",
+          "type": "string"
+        },
+        "taxonomy_version": {
+          "const": "0.2.0",
+          "default": "0.2.0",
+          "enum": [
+            "0.2.0"
+          ],
+          "title": "Taxonomy Version",
+          "type": "string"
+        },
+        "overall_score": {
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Overall Score",
+          "type": "number"
+        },
+        "verdict": {
+          "enum": [
+            "strong_match",
+            "potential_match",
+            "skill_gap"
+          ],
+          "title": "Verdict",
+          "type": "string"
+        },
+        "matched_skills": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Matched Skills",
+          "type": "array"
+        },
+        "missing_skills": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Skills",
+          "type": "array"
+        },
+        "category_scores": {
+          "items": {
+            "$ref": "#/$defs/CategoryScoreResponse"
+          },
+          "title": "Category Scores",
+          "type": "array"
+        },
+        "learning_priorities": {
+          "items": {
+            "$ref": "#/$defs/LearningPriorityResponse"
+          },
+          "title": "Learning Priorities",
+          "type": "array"
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "overall_score",
+        "verdict",
+        "matched_skills",
+        "missing_skills",
+        "category_scores",
+        "learning_priorities",
+        "disclaimer"
+      ],
+      "title": "MatchResponse",
+      "type": "object"
+    },
+    "ModelMetadataResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "enum": [
+            "1.0.0"
+          ],
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "taxonomy_version": {
+          "const": "0.2.0",
+          "default": "0.2.0",
+          "enum": [
+            "0.2.0"
+          ],
+          "title": "Taxonomy Version",
+          "type": "string"
+        },
+        "extraction_model_version": {
+          "const": "taxonomy-rules-0.2.0",
+          "default": "taxonomy-rules-0.2.0",
+          "enum": [
+            "taxonomy-rules-0.2.0"
+          ],
+          "title": "Extraction Model Version",
+          "type": "string"
+        },
+        "matching_model_version": {
+          "const": "exact-taxonomy-0.1.0",
+          "default": "exact-taxonomy-0.1.0",
+          "enum": [
+            "exact-taxonomy-0.1.0"
+          ],
+          "title": "Matching Model Version",
+          "type": "string"
+        },
+        "semantic_challenger_status": {
+          "const": "evaluated_not_promoted",
+          "default": "evaluated_not_promoted",
+          "enum": [
+            "evaluated_not_promoted"
+          ],
+          "title": "Semantic Challenger Status",
+          "type": "string"
+        },
+        "decision_support_only": {
+          "const": true,
+          "default": true,
+          "enum": [
+            true
+          ],
+          "title": "Decision Support Only",
+          "type": "boolean"
+        },
+        "stores_input_text": {
+          "const": false,
+          "default": false,
+          "enum": [
+            false
+          ],
+          "title": "Stores Input Text",
+          "type": "boolean"
+        }
+      },
+      "title": "ModelMetadataResponse",
+      "type": "object"
+    },
+    "HealthResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "ok",
+          "default": "ok",
+          "enum": [
+            "ok"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "service": {
+          "const": "skillpulse-api",
+          "default": "skillpulse-api",
+          "enum": [
+            "skillpulse-api"
+          ],
+          "title": "Service",
+          "type": "string"
+        },
+        "contract_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "enum": [
+            "1.0.0"
+          ],
+          "title": "Contract Version",
+          "type": "string"
+        }
+      },
+      "title": "HealthResponse",
+      "type": "object"
+    }
+  },
+  "privacy": {
+    "raw_cv_persistence": false,
+    "request_body_logging": false,
+    "decision_support_only": true
+  }
+}

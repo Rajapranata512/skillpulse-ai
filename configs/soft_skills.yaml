@@ -1,0 +1,10 @@
+version: "0.2.0"
+entities:
+  - {canonical: Communication, aliases: [communication, communication skills, communications, communicate, communicating, komunikasi, kemampuan berkomunikasi, verbal and written]}
+  - {canonical: Leadership, aliases: [leadership, kepemimpinan, memimpin tim]}
+  - {canonical: Problem Solving, aliases: [problem solving, problem-solving, problem solver, pemecahan masalah]}
+  - {canonical: Critical Thinking, aliases: [critical thinking, critically, berpikir kritis]}
+  - {canonical: Teamwork, aliases: [teamwork, team player, part of a team, as a team, work cross-functionally, collaborative team environment, collaborative work environment, work collaboratively in a team, share knowledge with team members, collaborate with the team, collaborate with consultants and developers, collaboration skills, kerja sama tim, bekerja dalam tim, bekerja sama, bekerjasama, koordinasi dalam tim]}
+  - {canonical: Presentation, aliases: [presentation skills, presentation, presentations, present data, present technical, presenting insights, mempresentasikan, menyampaikan insight, data storytelling, kemampuan presentasi]}
+  - {canonical: Attention to Detail, aliases: [attention to detail, detail-oriented, detail oriented, detail person, teliti, ketelitian]}
+  - {canonical: Time Management, aliases: [time management, manajemen waktu]}
