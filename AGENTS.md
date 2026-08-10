@@ -291,14 +291,14 @@ berada di Git/reports.
 Preserved the former research history locally only, added deny-by-default Git ignore rules,
 a staged/commit publication guard, six security tests, an executable pre-push hook, CI guard,
 read-only CI permissions, GitHub noreply commit identity, SECURITY/PRIVACY policies, and
-Dependabot. Verified and applied the official `actions/checkout` v7 update after green bot checks.
+Dependabot. Verified and applied official `actions/checkout` and `actions/setup-python` v7 updates after green bot checks.
 **Evidence:** Ruff passed and `pytest -q` reports 94 passed. The root public snapshot contains
 97 allowlisted text files and no parent; publication guard scanned the complete 456,168-byte
 HEAD successfully. `RM.ipynb`, academic PDFs, raw/processed row-level data, human annotations,
 AI workbooks/labels, review HTML, stale internal reports, credentials, PII patterns, and local
-paths are absent. Public `main` matched local commit `0f6a741`; GitHub CI run `31403489015`
-succeeded, and both Dependabot checkout-v7 checks passed before the same one-line update was
-pushed through the local guard.
+paths are absent. Local/remote `origin/main` equality was verified after each guarded push. CI run
+`31404286936` succeeded on `d705238` with checkout/setup-python v7; both official updates had
+green Dependabot checks before the same one-line changes were applied locally.
 **Limitations/blockers:** Public source publication is complete, but the application is not
 publicly deployed and the project is still a working portfolio project. Responsive browser QA
 and demo media remain an environment-human gate. ML-QG-2 remains 0/100 and ML-QG-3 remains
@@ -320,7 +320,7 @@ and demo media remain an environment-human gate. ML-QG-2 remains 0/100 and ML-QG
 
 **Auto-selected next task:** `M5b — responsive browser QA and public-safe demo media (HUMAN/ENV-GATE)`
 **PRD sync:** synchronized with public clean-history publication, automatic privacy/security push gate,
-green GitHub CI, checkout v7, and remaining visual/human/deployment blockers.
+green GitHub CI, checkout/setup-python v7, and remaining visual/human/deployment blockers.
 <!-- HANDOFF:END -->
 ## 10. Project State
 
@@ -376,11 +376,11 @@ Current verified engineering evidence:
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
 - Public `origin/main` has a clean parentless 97-file product history; root `c9e2854`, security
-  hardening `5a1f05d`, and checkout-v7 `0f6a741` were pushed without force.
+  hardening `5a1f05d`, checkout-v7 `0f6a741`, and setup-python-v7 `d705238` were pushed without force.
 - Publication guard scans staged and committed snapshots, is enforced by executable pre-push hook
   and CI, and passes on the complete 456,168-byte HEAD. Six guard tests cover allow/deny behavior.
-- GitHub repository is PUBLIC with default `main`; CI run `31403489015` succeeded. Dependabot is
-  enabled; official checkout v7 passed bot checks before being applied locally and pushed.
+- GitHub repository is PUBLIC with default `main`; CI run `31404286936` succeeded. Dependabot is
+  enabled; official checkout/setup-python v7 passed bot checks before being applied locally and pushed.
 - Historical research remains local only on `research-history-local-20260810`/`research-origin`;
   public commands must never push that branch, `--all`, `--mirror`, or tags.
 - Weak-label report remains micro F1 0.8273 on 332/555 evaluable documents; weak labels are not gold.

@@ -26,9 +26,10 @@ and public application deployment remain open.
 history locally only, configured GitHub noreply identity, added deny-by-default ignores, staged/commit
 publication guard, executable pre-push hook, six security tests, CI guard/read-only permissions,
 SECURITY/PRIVACY policies, and Dependabot. Pushed `main`, verified CI success, then applied the
-official checkout v7 update after green bot checks.
+official checkout/setup-python v7 updates after green bot checks.
 **Verified baseline:** 94 tests and Ruff passed. Complete HEAD publication guard scanned 97 files /
-456,168 bytes. Public `main` matched local `0f6a741`; CI run `31403489015` succeeded. Raw/processed
+456,168 bytes. Local/remote `origin/main` equality was verified; CI run `31404286936` succeeded on
+checkout/setup-python v7. Raw/processed
 row-level data, annotations, AI workbooks/labels, academic artifacts, stale internal reports,
 credentials, PII patterns, and local paths are absent from the public tree.
 **Selected next task:** `M5b — responsive browser QA and public-safe demo media (HUMAN/ENV-GATE)`.
@@ -516,7 +517,7 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
 - Public `origin/main` has a parentless 97-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
-  SECURITY/PRIVACY policies, Dependabot, and official checkout v7.
+  SECURITY/PRIVACY policies, Dependabot, and official checkout/setup-python v7.
 - Historical research is local-only and absent from public history. The portable report passed package-
   contract validation but shared browser verification still reports desktop overflow; no unverified HTML
   is delivered.

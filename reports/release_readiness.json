@@ -14,7 +14,8 @@
                         "api_container_health":  "healthy",
                         "api_container_non_root":  true,
                         "github_ci_main":  "success",
-                        "actions_checkout":  "v7"
+                        "actions_checkout":  "v7",
+                        "actions_setup_python":  "v7"
                     },
     "documentation":  {
                           "model_card":  "docs/model_card.md",
@@ -42,7 +43,8 @@
                             "owner_decision_required":  false,
                             "commit_performed":  true,
                             "push_performed":  true,
-                            "pull_request_opened_by_agent":  false
+                            "pull_request_opened_by_agent":  false,
+                            "setup_python_v7_commit":  "d705238"
                         },
     "sensitive_working_data_ignore_checks":  {
                                                  "raw_source_csv":  "ignored",
@@ -91,7 +93,8 @@
     "dependency_security":  {
                                 "dependabot_enabled":  true,
                                 "actions_checkout":  "v7",
-                                "checkout_update_source":  "official_release_and_green_dependabot_checks",
-                                "agent_merged_pull_request":  false
+                                "checkout_update_source":  "official_releases_and_green_dependabot_checks",
+                                "agent_merged_pull_request":  false,
+                                "actions_setup_python":  "v7"
                             }
 }
