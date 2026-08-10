@@ -88,7 +88,7 @@ Wajib sebelum setiap push:
 
 1. Jalankan `git status --short` dan review exact staged paths/diff. Jangan gunakan `git add -A`
    pada worktree campuran; stage file produk secara eksplisit.
-2. Jangan stage/publish `RM.ipynb`, PDF akademik, `.git-research-backup-*`, raw/processed row-level
+2. Jangan stage/publish `RM.ipynb`, PDF akademik, local branch `research-history-local-20260810`, raw/processed row-level
    data, human annotations, AI workbooks/labels, review HTML, `.env`, credentials, private keys,
    database lokal, PII, atau file agent/tool state.
 3. Jalankan verification tier task aktif; untuk perubahan lintas repo wajib `ruff check src tests`
@@ -101,8 +101,8 @@ Wajib sebelum setiap push:
 Stop tanpa commit/push jika guard/test gagal, staged scope ambigu, ada perubahan user-owned yang tidak
 terkait, remote berbeda, atau keamanan/privasi tidak dapat dibuktikan. Jangan force-push, rewrite
 history, mengubah remote/visibility, membuka PR, membuat release, atau deploy tanpa instruksi baru.
-Backup Git penelitian lokal `.git-research-backup-20260810` harus tetap ignored dan tidak boleh
-masuk snapshot publik.
+History penelitian hanya disimpan pada local branch `research-history-local-20260810` dan remote
+`research-origin`; jangan pernah push branch/remote itu, `--all`, `--mirror`, atau tags ke origin publik.
 ### Mandatory recommendation format
 
 Gunakan format ringkas berikut di Session Handoff Snapshot dan final response:

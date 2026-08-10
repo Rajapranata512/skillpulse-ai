@@ -48,3 +48,11 @@ Thumbs.db
 /data/evaluation/*
 !/data/evaluation/matching_relevance_candidates.csv
 /reports/annotation_review_pack*.html
+# Historical/internal evidence retained locally but excluded from the clean portfolio release
+/reports/annotation_readiness.json
+/reports/annotation_review_001.md
+/reports/data_provenance_artifact.json
+/reports/data_provenance_audit.json
+/reports/data_provenance_metrics.json
+/reports/data_provenance_report_qa.md
+/reports/extraction_ai_assisted_eval.json

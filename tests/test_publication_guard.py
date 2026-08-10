@@ -31,6 +31,8 @@ def test_historical_academic_artifacts_are_denied() -> None:
     file = publication_guard.PublicationFile("RM.ipynb", b"{}")
     violations = publication_guard.audit_file(file)
     assert any("historical/user-owned" in violation for violation in violations)
+    internal_report = publication_guard.PublicationFile("reports/annotation_readiness.json", b"{}")
+    assert any("internal-only" in item for item in publication_guard.audit_file(internal_report))
 
 
 def test_secret_token_is_detected_without_storing_a_real_token_fixture() -> None:

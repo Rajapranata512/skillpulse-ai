@@ -19,6 +19,15 @@ ALLOWED_DATA_MARKERS = {
     "data/processed/.gitkeep",
     "data/raw/.gitkeep",
 }
+DENIED_INTERNAL_REPORT_PATHS = {
+    "reports/annotation_readiness.json",
+    "reports/annotation_review_001.md",
+    "reports/data_provenance_artifact.json",
+    "reports/data_provenance_audit.json",
+    "reports/data_provenance_metrics.json",
+    "reports/data_provenance_report_qa.md",
+    "reports/extraction_ai_assisted_eval.json",
+}
 SPECIAL_TEXT_FILES = {
     ".dockerignore",
     ".gitattributes",
@@ -126,6 +135,8 @@ def path_violations(path: str) -> list[str]:
 
     if normalized.startswith(".git-research-backup"):
         violations.append("local research Git backup must never be published")
+    if normalized in DENIED_INTERNAL_REPORT_PATHS:
+        violations.append("historical or internal-only report is outside the clean public release")
     if pure.name == "RM.ipynb" or lower.startswith("acceptanceletter") or lower.startswith("paper kelompok"):
         violations.append("historical/user-owned academic artifact is outside the public product scope")
     if "__pycache__" in pure.parts or ".pytest_cache" in pure.parts or ".ruff_cache" in pure.parts:
