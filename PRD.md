@@ -15,27 +15,27 @@ Timpa isi di antara marker; jangan append session log.
 
 <!-- AUTO-SYNC:START -->
 **Last synchronized:** 2026-08-10
-**Current phase:** Phase 3 complete locally; Phase 4 functional demo is at a visual-QA gate;
-Phase 5 public source/story/security evidence is complete and application deployment remains gated
+**Current phase:** Phase 3 complete locally; Phase 4 automated state QA is complete and real-browser
+visual QA remains gated; Phase 5 public source/story/security evidence is complete and application
+deployment remains owner-gated
 **Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
 with clean history, green CI, privacy/security publication controls, verified extraction/matching
 baselines, contract v1, FastAPI, non-root container, Streamlit demo, model card, architecture, and
 case study. It is not portfolio-ready because responsive media, independent annotation/relevance,
 and public application deployment remain open.
-**Completed this session:** created a parentless 97-file public product history, preserved research
-history locally only, configured GitHub noreply identity, added deny-by-default ignores, staged/commit
-publication guard, executable pre-push hook, six security tests, CI guard/read-only permissions,
-SECURITY/PRIVACY policies, and Dependabot. Pushed `main`, verified CI success, then applied the
-official checkout/setup-python v7 updates after green bot checks.
-**Verified baseline:** 94 tests and Ruff passed. Complete HEAD publication guard scanned 97 files /
-456,168 bytes. Local/remote `origin/main` equality was verified; CI run `31404286936` succeeded on
-checkout/setup-python v7. Raw/processed
-row-level data, annotations, AI workbooks/labels, academic artifacts, stale internal reports,
-credentials, PII patterns, and local paths are absent from the public tree.
-**Selected next task:** `M5b — responsive browser QA and public-safe demo media (HUMAN/ENV-GATE)`.
-**Next completion check:** a working browser is used to review desktop/mobile plus loading, error,
-empty, extraction, and matching states; a 2-4 minute walkthrough contains only synthetic/redacted
-text and no crash page or unverified artifact.
+**Completed this session:** added explicit public-safe match/extraction samples, loading and empty
+states, client-side blank validation, safe API errors, and a mobile breakpoint. Added three loopback-only
+Streamlit AppTest journeys, updated CI with the UI dependency, reconciled release evidence, and pushed
+implementation commit `c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d`.
+**Verified baseline:** 97 tests, Ruff, and the one-command launcher smoke passed. The publication guard
+scanned the complete 99-file / 471,913-byte implementation snapshot. GitHub CI run `31409943647`
+succeeded with checkout/setup-python v7, UI dependencies, committed-snapshot guard, lint, and tests.
+Raw/processed row-level data, annotations, AI workbooks/labels, academic artifacts, stale internal
+reports, credentials, PII patterns, and local paths remain absent from the public tree.
+**Selected next task:** `M5b — real-browser responsive QA and public-safe demo media (HUMAN/ENV-GATE)`.
+**Next completion check:** a working interactive browser is used to visually review desktop/mobile
+layout plus loading, error, empty, extraction, and matching states; a 2-4 minute walkthrough contains
+only synthetic/redacted text and no crash page or unverified artifact.
 **Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The public repository is
 not a deployed application; hosting/privacy/monitoring/rollback decisions remain owner-gated. The
 portable report JSON is valid, but shared renderer overflow still blocks verified HTML.
@@ -502,20 +502,22 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 - The non-root API image excludes raw data, annotations, reports, notebooks, CSV, and XLSX files;
   local health/extract/match smoke passed.
 - Exit: complete for local product-service scope; public deployment verification belongs to Phase 5.
-### Phase 4 — Portfolio experience (functional local demo; visual gate open)
+### Phase 4 — Portfolio experience (automated state QA complete; visual gate open)
 
-- API-backed Streamlit demo includes bilingual example mode, match score, matched/missing evidence,
-  deterministic learning priorities, extraction, methodology, privacy, and open-gate disclosures.
+- API-backed Streamlit demo includes explicit bilingual sample controls, match score, matched/missing
+  evidence, deterministic learning priorities, extraction, methodology, privacy, and gate disclosures.
+- Three loopback-only AppTest scenarios verify sample, empty, successful extraction/matching, privacy,
+  and user-safe domain-error states without external networking or raw text in the evidence artifact.
 - The one-command PowerShell launcher starts API/UI together; smoke mode verified both health
   endpoints and cleaned both processes without leaving listeners.
 - Market dashboard remains gated until aggregate trend metrics reconcile.
-- Exit remains open: browser-responsive/loading/error/empty-state visual QA and valid demo media are
+- Exit remains open: interactive desktop/mobile and state-based visual QA plus valid demo media are
   pending because local headless Edge/Chrome rendered crash pages; invalid screenshots were removed.
 ### Phase 5 — Release and storytelling (public source complete; deployment/media gates open)
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- Public `origin/main` has a parentless 97-file product history, green CI, a staged/commit publication
+- Public `origin/main` has a parentless 99-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
   SECURITY/PRIVACY policies, Dependabot, and official checkout/setup-python v7.
 - Historical research is local-only and absent from public history. The portable report passed package-

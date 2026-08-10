@@ -149,7 +149,7 @@ Jangan ulangi pekerjaan berikut selama trigger pada kolom terakhir tidak terjadi
 | Domain contract v1 | `src/skillpulse/domain/`, `docs/api_contract_v1.json` | FROZEN v1 | breaking API requirement is approved |
 | FastAPI service | `src/skillpulse/api/`, `tests/test_api.py` | DONE-LOCAL | contract or endpoint requirement changes |
 | API container | `Dockerfile`, `.dockerignore`, `reports/api_container_smoke.json` | DONE-LOCAL | dependencies, service command, or deployment target changes |
-| Streamlit demo slice | `src/skillpulse/ui/`, `reports/ui_smoke.json` | DONE-SMOKE | contract, journey, or visual QA finding changes |
+| Streamlit demo slice | `src/skillpulse/ui/`, `reports/ui_smoke.json`, `reports/ui_automated_qa.json` | DONE-AUTOMATED-QA / VISUAL-GATE | contract, journey, or visual QA finding changes |
 | Annotation rules | `docs/annotation_guidelines.md` | DONE v0.2 | ambiguity berulang ditemukan |
 | Explainable matcher | `src/skillpulse/matching/` | DONE v0.1 | gold labels atau matching requirements berubah |
 | Match demo | `reports/cv_job_match_example.json` | DONE | matcher/demo scenario berubah |
@@ -286,41 +286,39 @@ berada di Git/reports.
 
 <!-- HANDOFF:START -->
 **Last handoff:** 2026-08-10
-**Completed:** Published SkillPulse AI to the owner-approved public repository
-`https://github.com/Rajapranata512/skillpulse-ai` with a clean parentless product history.
-Preserved the former research history locally only, added deny-by-default Git ignore rules,
-a staged/commit publication guard, six security tests, an executable pre-push hook, CI guard,
-read-only CI permissions, GitHub noreply commit identity, SECURITY/PRIVACY policies, and
-Dependabot. Verified and applied official `actions/checkout` and `actions/setup-python` v7 updates after green bot checks.
-**Evidence:** Ruff passed and `pytest -q` reports 94 passed. The root public snapshot contains
-97 allowlisted text files and no parent; publication guard scanned the complete 456,168-byte
-HEAD successfully. `RM.ipynb`, academic PDFs, raw/processed row-level data, human annotations,
-AI workbooks/labels, review HTML, stale internal reports, credentials, PII patterns, and local
-paths are absent. Local/remote `origin/main` equality was verified after each guarded push. CI run
-`31404286936` succeeded on `d705238` with checkout/setup-python v7; both official updates had
-green Dependabot checks before the same one-line changes were applied locally.
-**Limitations/blockers:** Public source publication is complete, but the application is not
-publicly deployed and the project is still a working portfolio project. Responsive browser QA
-and demo media remain an environment-human gate. ML-QG-2 remains 0/100 and ML-QG-3 remains
-0/50; agents cannot create independent human evidence. Salary modelling remains blocked by
-77/555 disclosed rows. The portable HTML renderer remains blocked by shared desktop overflow.
+**Completed:** Hardened the public Streamlit journey with explicit public-safe sample buttons,
+client-side blank-input handling, loading indicators, user-safe API errors, initial empty states,
+and a mobile CSS breakpoint. Added three end-to-end AppTest scenarios over a temporary loopback
+API, updated CI to install the UI extra, reconciled public evidence, and pushed implementation
+commit `c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d` to `origin/main`.
+**Evidence:** Ruff passed and `pytest -q` reports 97 passed. The one-command API/UI launcher smoke
+passed. `reports/ui_automated_qa.json` records sample, empty, extraction, matching, privacy, and
+safe-error coverage without external networking or raw input in the artifact. Publication guard
+passed on the complete 99-file / 471,913-byte implementation snapshot. GitHub CI run
+`31409943647` passed all dependency, publication, lint, and test steps.
+**Limitations/blockers:** Automated widget-state tests verify behavior, not pixel layout,
+accessibility, or real-browser responsiveness. Desktop/mobile visual review and public-safe demo
+media remain an environment-human gate. ML-QG-2 remains 0/100 and ML-QG-3 remains 0/50; agents
+cannot create independent human evidence. Salary modelling remains blocked by 77/555 disclosed
+rows. Public application deployment remains owner-gated. The portable HTML renderer remains
+blocked by shared desktop overflow.
 
 **Recommended next actions:**
 
-1. **[NEXT][HUMAN/ENV-GATE][M5b] Complete responsive browser QA and capture public-safe demo media** — value:
-   closes the most visible recruiter-facing gap now that source and CI are public; dependency: a working interactive
-   browser; complete when desktop/mobile plus loading, error, empty, extraction, and matching states are reviewed
-   and a 2-4 minute walkthrough contains only synthetic/redacted text.
+1. **[NEXT][HUMAN/ENV-GATE][M5b] Complete real-browser responsive QA and public-safe demo media** — value:
+   closes the remaining recruiter-facing presentation gap; dependency: a working interactive browser;
+   complete when desktop/mobile layouts plus loading, error, empty, extraction, and matching states are
+   visually reviewed and a 2-4 minute walkthrough contains only synthetic/redacted text.
 2. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** — dependency:
-   different human annotators use the frozen blind files/rubric; complete when 100 blind annotations and 50
-   relevance scores are frozen, then agreement and both matcher evaluations are rerun without evaluation-set tuning.
+   different human annotators use the frozen blind files/rubric; complete when 100 blind annotations and
+   50 relevance scores are frozen, then agreement and both matcher evaluations are rerun without tuning.
 3. **[LATER][HUMAN-GATE][M6f] Select and authorize a public deployment target** — dependency: owner decisions
-   for hosting region/cost, logging/retention, rate limits, monitoring, and rollback; complete when privacy controls,
-   health/latency monitoring, deployment smoke, and rollback evidence pass without retaining submitted CV text.
+   for hosting region/cost, logging/retention, rate limits, monitoring, and rollback; complete when privacy
+   controls, health/latency monitoring, deployment smoke, and rollback evidence pass without CV retention.
 
-**Auto-selected next task:** `M5b — responsive browser QA and public-safe demo media (HUMAN/ENV-GATE)`
-**PRD sync:** synchronized with public clean-history publication, automatic privacy/security push gate,
-green GitHub CI, checkout/setup-python v7, and remaining visual/human/deployment blockers.
+**Auto-selected next task:** `M5b — real-browser responsive QA and public-safe demo media (HUMAN/ENV-GATE)`
+**PRD sync:** synchronized with automated Streamlit state QA, 97 passing tests, guarded 99-file public
+snapshot, green implementation CI, and remaining visual/human/deployment blockers.
 <!-- HANDOFF:END -->
 ## 10. Project State
 
@@ -337,14 +335,14 @@ Last materially verified: **2026-08-10**
 | M3a | Explainable CV–job matcher baseline | DONE | CLI + report + unit tests |
 | M3b | Matching relevance dataset and semantic challenger | AI-EXPERIMENTAL / HUMAN-GATE | 50 pseudo-label diagnostics; semantic challenger evaluated and not promoted; ML-QG-3 remains 0/50 human |
 | M4 | FastAPI/domain service | DONE-LOCAL | contract v1; 4 endpoints; OpenAPI tests; healthy non-root container smoke |
-| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / VISUAL-QA-ENV-GATE | API-backed Streamlit journey and self-cleaning launcher smoke passed; browser QA/media pending; market metrics gated |
+| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / AUTOMATED-STATES-DONE / VISUAL-QA-ENV-GATE | sample/loading/empty/error/success journeys and launcher smoke pass; real-browser QA/media pending; market metrics gated |
 | M6 | Containerized public portfolio release | PUBLIC-SOURCE / APP-DEPLOYMENT-VISUAL-HUMAN-GATES | clean public repo, guard, CI, docs, story, and API container evidence complete; public app/media/human gates remain |
 | M7 | Salary prediction | BLOCKED-DATA | only 77/555 salary rows (13.9%); below PRD gate |
 
 Current verified engineering evidence:
 
 - `ruff check src tests`: passed.
-- `pytest -q`: 94 passed.
+- `pytest -q`: 97 passed.
 - Kaggle source: version 1, creator Rafli Rizkya Sakti Nugraha, CC-BY-4.0,
   observation window 2025-08-25 through 2025-09-24.
 - Local raw identity: 1,059,991 bytes and SHA-256
@@ -366,8 +364,9 @@ Current verified engineering evidence:
 - FastAPI endpoints `/health`, `/v1/models`, `/v1/extract`, and `/v1/match` pass contract tests.
 - Docker image `skillpulse-api:local` built from a 410,160-byte privacy-filtered context, became
   healthy, ran as UID 100, and passed health/extract/match smoke.
-- Streamlit/API local health returned HTTP 200; example mode and error-aware API client exist.
-  Headless browser screenshots crashed and were removed, so responsive visual QA remains open.
+- Streamlit/API local health returned HTTP 200; explicit sample/loading/empty/error/success states pass
+  three AppTest journeys using loopback-only fixtures. Headless browser screenshots crashed and were
+  removed, so responsive visual QA remains open.
 - One-command demo smoke started API/UI on ports 18080/18501, verified both health endpoints,
   stopped both processes, and left no listeners.
 - Portfolio evidence is reconciled in `docs/model_card.md`, `docs/architecture.md`,
@@ -375,20 +374,23 @@ Current verified engineering evidence:
 - Portable portfolio artifact passed package-contract checks but browser verification remains
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
-- Public `origin/main` has a clean parentless 97-file product history; root `c9e2854`, security
-  hardening `5a1f05d`, checkout-v7 `0f6a741`, and setup-python-v7 `d705238` were pushed without force.
+- Public `origin/main` has a clean parentless 99-file product history; root `c9e2854`, security
+  hardening `5a1f05d`, checkout-v7 `0f6a741`, setup-python-v7 `d705238`, and UI QA `c3ed33d` were
+  pushed without force.
 - Publication guard scans staged and committed snapshots, is enforced by executable pre-push hook
-  and CI, and passes on the complete 456,168-byte HEAD. Six guard tests cover allow/deny behavior.
-- GitHub repository is PUBLIC with default `main`; CI run `31404286936` succeeded. Dependabot is
-  enabled; official checkout/setup-python v7 passed bot checks before being applied locally and pushed.
+  and CI, and passed on the complete 471,913-byte implementation snapshot. Six guard tests cover
+  allow/deny behavior.
+- GitHub repository is PUBLIC with default `main`; UI implementation CI run `31409943647` succeeded.
+  Dependabot is enabled; official checkout/setup-python v7 passed bot checks before local application.
 - Historical research remains local only on `research-history-local-20260810`/`research-origin`;
   public commands must never push that branch, `--all`, `--mirror`, or tags.
 - Weak-label report remains micro F1 0.8273 on 332/555 evaluable documents; weak labels are not gold.
-- Raw CSV, human annotation CSVs, and repaired AI CSV/XLSX are Git-ignored. No commit, push, or
-  deployment was performed.
+- Raw CSV, human annotation CSVs, and repaired AI CSV/XLSX are Git-ignored. Guarded commits/pushes
+  target only public `origin/main`; no application deployment was performed.
 
-Active next task: **M5b HUMAN/ENV-GATE — use a working interactive browser to review desktop/mobile
-and loading/error/empty/extraction/matching states, then capture a 2-4 minute public-safe walkthrough.**
+Active next task: **M5b HUMAN/ENV-GATE — use a working interactive browser to visually review
+desktop/mobile layout and the automated loading/error/empty/extraction/matching states, then capture
+a 2-4 minute public-safe walkthrough.**
 Known workspace condition: local `RM.ipynb` remains user-owned and is ignored by the clean public
 repository; do not overwrite, revert, stage, normalize, or publish it. Historical research refs are
 local-only and must never be pushed to `origin`.

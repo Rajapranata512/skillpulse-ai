@@ -7,6 +7,8 @@
                         "tests_passed":  97,
                         "demo_launcher_smoke":  "passed",
                         "streamlit_automated_scenarios":  3,
+                        "ui_implementation_commit":  "c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d",
+                        "ui_implementation_ci_run":  31409943647,
                         "demo_smoke_ports":  [
                                                  18080,
                                                  18501
