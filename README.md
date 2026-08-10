@@ -16,7 +16,7 @@ explainable CV-to-job matching product.
 - Explainable CV-to-job matching with evidence, gaps, weights, and learning priorities.
 - A strict four-endpoint FastAPI contract, healthy non-root container, and API-backed
   Streamlit demo.
-- 94 passing tests, model/data documentation, and explicit human/data release gates.
+- 97 passing tests, model/data documentation, and explicit human/data release gates.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human
@@ -229,11 +229,11 @@ Launch the public-safe API and Streamlit demo together from Windows PowerShell:
 powershell -ExecutionPolicy Bypass -File scripts/run_demo.ps1 -Install
 ```
 
-Omit `-Install` on later runs. The demo opens at `http://127.0.0.1:8501`, includes
-bilingual example text, and calls the versioned API instead of importing scoring logic
-into the presentation layer. Stop it with `Ctrl+C`; the launcher cleans up the API process
-it created. See `docs/demo_checklist.md` for the five-minute reviewer walkthrough and port
-options.
+Omit `-Install` on later runs. The demo opens at `http://127.0.0.1:8501`, includes explicit
+public-safe sample buttons plus loading, empty, validation, and API-error states, and calls
+the versioned API instead of importing scoring logic into the presentation layer. Stop it
+with `Ctrl+C`; the launcher cleans up the API process it created. See
+`docs/demo_checklist.md` for the five-minute reviewer walkthrough and port options.
 
 Text is session-only and file upload is intentionally disabled in v1. For manual startup,
 run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
@@ -247,6 +247,7 @@ run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
 - `docs/release_checklist.md` records publication, media, human, and deployment gates.
 - `docs/architecture.md` maps the runtime, evaluation, and trust boundaries.
 - `reports/portfolio_release_metrics.json` is the reconciled release-evidence snapshot.
+- `reports/ui_automated_qa.json` records privacy-safe Streamlit widget-journey coverage.
 - `reports/portfolio_report_artifact.json` is the source-backed canonical report artifact.
 
 The shared portable-report renderer still overflows horizontally during browser
@@ -268,7 +269,7 @@ ruff check src tests
 pytest -q
 ```
 
-Current local verification: 94 tests passed and Ruff is clean.
+Current local verification: 97 tests passed and Ruff is clean.
 
 ## Portfolio roadmap
 
@@ -276,7 +277,8 @@ Current local verification: 94 tests passed and Ruff is clean.
 2. AI challenger remediation and synthetic semantic comparison — complete as diagnostic evidence;
    independent human gates remain open.
 3. Explainable matcher, contract v1, FastAPI, and non-root Docker smoke — complete locally.
-4. Streamlit portfolio journey — functional smoke complete; responsive visual QA and demo media pending.
+4. Streamlit portfolio journey — functional smoke and automated state journeys complete;
+   responsive visual QA and demo media pending.
 5. Model card, architecture/release story, public deployment verification, and monitoring — next.
 6. Market analytics and salary modelling — data/metric gated, not an active claim.
 

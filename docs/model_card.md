@@ -95,8 +95,8 @@ the incumbent. Neither result satisfies the human relevance gate.
 - **ML-QG-2:** open, 0/100 independent blind second annotations.
 - **ML-QG-3:** open, 0/50 independent human relevance judgments.
 - **Salary data gate:** blocked, 77/555 disclosed salary rows versus a 300-row minimum.
-- **Visual release QA:** functional HTTP smoke passed; responsive browser review and demo
-  media remain open.
+- **Visual release QA:** functional HTTP smoke and three automated widget-state scenarios
+  passed; responsive real-browser review and demo media remain open.
 
 ## Explainability
 

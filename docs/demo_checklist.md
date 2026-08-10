@@ -37,6 +37,7 @@ Before recording or sharing:
 - `pytest -q` passes.
 - `reports/api_container_smoke.json` still reports a healthy non-root container.
 - `reports/ui_smoke.json` still reports API and Streamlit health `ok`.
+- `reports/ui_automated_qa.json` still reports sample, empty, success, and safe-error journeys passed.
 - `docs/model_card.md` still matches the latest aggregate evaluation reports.
 - No real CV, raw annotation, CSV, or XLSX file is staged for publication.
 
@@ -65,6 +66,7 @@ Before recording or sharing:
 - Matching exposes the score calculation instead of only a final number.
 - The included example identifies at least one realistic learning gap.
 - No file upload, raw CV retention, or protected-attribute input is present.
+- Blank input is stopped before an API request and API errors do not echo submitted text.
 
 Exact demo scores may change after an intentionally versioned taxonomy or matcher update.
 When that happens, regenerate the dependent evidence and update the model card before

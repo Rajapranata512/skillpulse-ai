@@ -128,11 +128,12 @@ the build context.
 | ML engineering | Frozen contracts, incumbent/challenger comparison, optional semantic dependency |
 | API | Strict FastAPI v1 schemas and four documented endpoints |
 | Deployment | Healthy non-root local Docker smoke |
-| Product/UI | API-backed Streamlit journey and self-cleaning one-command launcher |
+| Product/UI | API-backed Streamlit journey, automated widget-state QA, and self-cleaning launcher |
 | Governance | No CV persistence, protected attributes excluded, open human/data gates |
 
-Latest engineering verification: Ruff passed and 94 tests passed. API container and
-Streamlit health checks passed locally.
+Latest engineering verification: Ruff passed and 97 tests passed. API container and
+Streamlit health checks passed locally; three automated UI scenarios cover sample, empty,
+success, and user-safe error states.
 
 ## What did not work
 

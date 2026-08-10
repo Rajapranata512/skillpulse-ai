@@ -64,6 +64,11 @@
         "path": "reports/ui_smoke.json"
       },
       {
+        "id": "ui_automated_qa",
+        "label": "SkillPulse Streamlit automated journey QA",
+        "path": "reports/ui_automated_qa.json"
+      },
+      {
         "id": "model_card",
         "label": "SkillPulse AI system model card",
         "path": "docs/model_card.md"
@@ -380,7 +385,7 @@
         "id": "caveats",
         "type": "markdown",
         "sourceId": "model_card",
-        "body": "## Caveats and assumptions\n\n- The source covers one Indonesian role family and one 30-day window; it does not measure the entire market or a time trend.\n- Extraction metrics come from an AI-assisted development set, not an untouched holdout.\n- Matching quality and latency are based on synthetic scenario-oracle pairs in a local run.\n- Functional API/UI smoke tests do not replace accessibility, security, load, responsive-browser, or public-deployment validation.\n- SkillPulse is decision support and must not be used for automatic applicant ranking or rejection."
+        "body": "## Caveats and assumptions\n\n- The source covers one Indonesian role family and one 30-day window; it does not measure the entire market or a time trend.\n- Extraction metrics come from an AI-assisted development set, not an untouched holdout.\n- Matching quality and latency are based on synthetic scenario-oracle pairs in a local run.\n- Functional API/UI smoke and automated widget-state tests do not replace accessibility, security, load, responsive-browser, or public-deployment validation.\n- SkillPulse is decision support and must not be used for automatic applicant ranking or rejection."
       }
     ]
   },
@@ -393,7 +398,7 @@
         {
           "source_rows": 555,
           "primary_reviewed": 100,
-          "tests_passed": 94,
+          "tests_passed": 97,
           "api_endpoints": 4
         }
       ],
@@ -580,6 +585,11 @@
       "id": "ui_smoke",
       "label": "SkillPulse Streamlit smoke evidence",
       "path": "reports/ui_smoke.json"
+    },
+    {
+      "id": "ui_automated_qa",
+      "label": "SkillPulse Streamlit automated journey QA",
+      "path": "reports/ui_automated_qa.json"
     },
     {
       "id": "model_card",

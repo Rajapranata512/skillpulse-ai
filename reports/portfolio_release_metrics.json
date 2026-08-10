@@ -5,7 +5,7 @@
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 94,
+    "tests_passed": 97,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
     "salary_disclosure_rate": 0.1387
@@ -87,6 +87,8 @@
     "container_runs_as_non_root": true,
     "streamlit_health": "ok",
     "streamlit_http_status": 200,
+    "streamlit_automated_scenarios": 3,
+    "streamlit_automated_state_qa": "passed",
     "raw_cv_persistence": false,
     "visual_browser_qa": "open"
   },
@@ -97,6 +99,7 @@
     "reports/matching_semantic_challenger.json",
     "reports/api_container_smoke.json",
     "reports/ui_smoke.json",
+    "reports/ui_automated_qa.json",
     "AGENTS.md"
   ]
 }

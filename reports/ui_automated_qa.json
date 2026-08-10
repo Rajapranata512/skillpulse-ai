@@ -1,0 +1,39 @@
+{
+  "artifact_type": "SkillPulse Streamlit automated journey QA",
+  "verified_date": "2026-08-10",
+  "status": "passed_automated_widget_states_visual_qa_open",
+  "framework": "streamlit.testing.v1.AppTest",
+  "scenario_tests": 3,
+  "covered_states": [
+    "initial privacy and methodology disclosures",
+    "explicit empty match and extraction states",
+    "public-safe sample loading",
+    "successful explainable match rendering",
+    "successful structured extraction rendering",
+    "client-side blank-input validation",
+    "user-safe API domain error",
+    "responsive CSS breakpoint presence"
+  ],
+  "privacy_checks": {
+    "file_upload_present": false,
+    "external_network_used_by_tests": false,
+    "test_transport": "temporary loopback HTTP fixture",
+    "raw_cv_or_job_text_in_artifact": false
+  },
+  "verification": {
+    "targeted_ui_tests": "5 passed",
+    "full_test_suite": "97 passed",
+    "ruff": "passed",
+    "launcher_smoke": "passed"
+  },
+  "limitations": [
+    "Automated widget-state tests do not verify pixel layout, accessibility, or real-browser behavior.",
+    "Desktop/mobile visual review and public-safe demo media remain a human/environment gate."
+  ],
+  "sources": [
+    "src/skillpulse/ui/app.py",
+    "tests/test_ui_app.py",
+    "tests/test_ui_api_client.py",
+    "scripts/run_demo.ps1"
+  ]
+}

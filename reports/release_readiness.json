@@ -4,8 +4,9 @@
     "overall_status":  "public_repository_published_local_demo_ready_release_gates_open",
     "engineering":  {
                         "ruff":  "passed",
-                        "tests_passed":  94,
+                        "tests_passed":  97,
                         "demo_launcher_smoke":  "passed",
+                        "streamlit_automated_scenarios":  3,
                         "demo_smoke_ports":  [
                                                  18080,
                                                  18501
@@ -23,6 +24,7 @@
                           "architecture":  "docs/architecture.md",
                           "case_study":  "docs/case_study.md",
                           "demo_checklist":  "docs/demo_checklist.md",
+                          "ui_automated_qa":  "reports/ui_automated_qa.json",
                           "release_checklist":  "docs/release_checklist.md",
                           "canonical_portfolio_report":  "reports/portfolio_report_artifact.json",
                           "portable_html_status":  "blocked_shared_renderer_horizontal_overflow"
@@ -31,7 +33,7 @@
                             "repository_url":  "https://github.com/Rajapranata512/skillpulse-ai",
                             "visibility":  "PUBLIC",
                             "default_branch":  "main",
-                            "public_tree_files":  97,
+                            "public_tree_files":  99,
                             "clean_history_parent":  "none",
                             "root_commit":  "c9e2854fb56280f8126d21df54d904ba6c39ec4d",
                             "security_commit":  "5a1f05d592ccfc11e018d21439c8d13a3c81be47",
@@ -58,8 +60,8 @@
                        {
                            "id":  "M5-visual-qa",
                            "status":  "environment_human_gate",
-                           "current":  "functional HTTP smoke only",
-                           "required":  "responsive and state-based browser QA plus public-safe demo media"
+                           "current":  "functional HTTP smoke plus automated widget-state QA",
+                           "required":  "interactive responsive browser QA plus public-safe demo media"
                        },
                        {
                            "id":  "ML-QG-2",
@@ -88,7 +90,7 @@
                    ],
     "limitations":  [
                         "The audit verifies deny rules, selected public scope, and common secret/PII patterns but is not a substitute for a full legal or penetration review.",
-                        "The repository is public, but no public application deployment, responsive browser media, independent annotation agreement, or human relevance evaluation is complete."
+                        "The repository is public and automated UI states pass, but no public application deployment, responsive browser media, independent annotation agreement, or human relevance evaluation is complete."
                     ],
     "dependency_security":  {
                                 "dependabot_enabled":  true,

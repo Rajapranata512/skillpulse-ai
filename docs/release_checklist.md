@@ -5,9 +5,11 @@
 
 ## What is ready
 
-- Ruff passes and 94 Python tests pass.
+- Ruff passes and 97 Python tests pass.
 - The one-command launcher starts FastAPI and Streamlit, verifies both health endpoints,
   and removes both processes in smoke mode.
+- Three privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,
+  extraction/matching success, and domain-error presentation without external networking.
 - The API container has a verified healthy, non-root local smoke result.
 - Raw source data, primary/blind annotations, AI challenger workbooks, processed CSV, and
   review-pack HTML are covered by explicit Git ignore rules.
@@ -22,7 +24,7 @@
 
 The clean product history is public at
 `https://github.com/Rajapranata512/skillpulse-ai` with `main` as the default branch.
-The first public tree is a parentless root commit containing 97 allowlisted product files;
+The public tree is a parentless product history containing 99 allowlisted product files;
 it has no relationship to the historical research commits.
 
 The former research history remains local only on `research-history-local-20260810` and
@@ -39,9 +41,9 @@ Future publication completion evidence:
 - record the remote SHA and CI result in the handoff.
 ### 2. Visual and media evidence needs a working browser environment
 
-API/UI functional smoke is complete, but local headless Edge/Chrome returned browser crash
-pages. The shared portable-report renderer also reports desktop horizontal overflow. No
-invalid screenshot or unverified HTML is published.
+API/UI functional smoke and automated state journeys are complete, but local headless
+Edge/Chrome returned browser crash pages. The shared portable-report renderer also reports
+desktop horizontal overflow. No invalid screenshot or unverified HTML is published.
 
 Completion evidence:
 

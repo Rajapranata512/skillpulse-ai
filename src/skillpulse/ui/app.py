@@ -70,7 +70,7 @@ def _render_extraction(payload: dict[str, Any]) -> None:
     )
 
 
-def render() -> None:
+def render(client: SkillPulseAPIClient | None = None) -> None:
     st.set_page_config(page_title="SkillPulse AI", page_icon="📈", layout="wide")
     st.markdown(
         """
@@ -80,6 +80,10 @@ def render() -> None:
         .hero {padding:1.6rem 1.8rem;border-radius:24px;background:linear-gradient(120deg,#0f172a,#164e63);
                color:white;margin-bottom:1.2rem;box-shadow:0 18px 45px rgba(15,23,42,.16)}
         .hero p {color:#d8f3f6;margin-bottom:0}.eyebrow {font-size:.78rem;letter-spacing:.14em;color:#67e8f9}
+        @media (max-width: 640px) {
+          .hero {padding:1.2rem 1rem;border-radius:18px}.hero h1 {font-size:2rem}
+          [data-testid="stMetric"] {padding:12px}
+        }
         </style>
         <div class="hero"><div class="eyebrow">INDONESIAN JOB INTELLIGENCE · PORTFOLIO MVP</div>
         <h1>SkillPulse AI</h1>
@@ -87,7 +91,7 @@ def render() -> None:
         """,
         unsafe_allow_html=True,
     )
-    client = SkillPulseAPIClient(os.getenv("SKILLPULSE_API_URL", "http://127.0.0.1:8000"))
+    client = client or SkillPulseAPIClient(os.getenv("SKILLPULSE_API_URL", "http://127.0.0.1:8000"))
     with st.sidebar:
         st.subheader("System status")
         try:
@@ -103,21 +107,56 @@ def render() -> None:
 
     match_tab, extraction_tab, methodology_tab = st.tabs(["CV–Job Match", "Extract Job", "Methodology"])
     with match_tab:
+        if st.button("Gunakan data contoh", key="load_match_example", use_container_width=True):
+            st.session_state["match_cv_text"] = EXAMPLE_CV
+            st.session_state["match_job_text"] = EXAMPLE_JOB
         left, right = st.columns(2)
-        cv_text = left.text_area("CV text", value=EXAMPLE_CV, height=230)
-        job_text = right.text_area("Job description", value=EXAMPLE_JOB, height=230)
-        if st.button("Analyze match", type="primary", use_container_width=True):
-            try:
-                _render_match(client.match(cv_text, job_text))
-            except SkillPulseAPIError as error:
-                st.error(str(error))
+        cv_text = left.text_area(
+            "CV text",
+            value="",
+            key="match_cv_text",
+            height=230,
+            placeholder="Tempel ringkasan CV tanpa nama, email, nomor telepon, atau alamat.",
+        )
+        job_text = right.text_area(
+            "Job description",
+            value="",
+            key="match_job_text",
+            height=230,
+            placeholder="Tempel requirement pekerjaan yang ingin dibandingkan.",
+        )
+        if st.button("Analyze match", key="analyze_match", type="primary", use_container_width=True):
+            if not cv_text.strip() or not job_text.strip():
+                st.error("Isi CV dan job description sebelum menjalankan analisis.")
+            else:
+                try:
+                    with st.spinner("Menganalisis requirement dan skill gap…"):
+                        _render_match(client.match(cv_text, job_text))
+                except SkillPulseAPIError as error:
+                    st.error(str(error))
+        else:
+            st.info("Hasil explainable match akan muncul di sini setelah analisis.")
     with extraction_tab:
-        job_text = st.text_area("Job description to extract", value=EXAMPLE_EXTRACTION, height=250)
-        if st.button("Extract requirements", use_container_width=True):
-            try:
-                _render_extraction(client.extract(job_text))
-            except SkillPulseAPIError as error:
-                st.error(str(error))
+        if st.button("Gunakan contoh extraction", key="load_extraction_example", use_container_width=True):
+            st.session_state["extraction_job_text"] = EXAMPLE_EXTRACTION
+        extraction_text = st.text_area(
+            "Job description to extract",
+            value="",
+            key="extraction_job_text",
+            height=250,
+            placeholder="Tempel job description untuk mengekstrak requirement eksplisit.",
+        )
+        if st.button("Extract requirements", key="extract_requirements", use_container_width=True):
+            if not extraction_text.strip():
+                st.error("Isi job description sebelum menjalankan extraction.")
+            else:
+                try:
+                    with st.spinner("Mengekstrak requirement eksplisit…"):
+                        _render_extraction(client.extract(extraction_text))
+                except SkillPulseAPIError as error:
+                    st.error(str(error))
+        else:
+            st.info("Entity hasil extraction akan muncul di sini setelah diproses.")
     with methodology_tab:
         st.subheader("How the score works")
         st.write(
@@ -134,4 +173,5 @@ def render() -> None:
         st.warning("SkillPulse adalah decision support, bukan alat auto-reject atau penilaian nilai kandidat.")
 
 
-render()
+if __name__ == "__main__":
+    render()
