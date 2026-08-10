@@ -1,93 +1,97 @@
 {
-  "artifact_type": "SkillPulse AI portfolio release readiness audit",
-  "verified_date": "2026-08-10",
-  "overall_status": "no_go_public_release_local_demo_ready",
-  "engineering": {
-    "ruff": "passed",
-    "tests_passed": 94,
-    "demo_launcher_smoke": "passed",
-    "demo_smoke_ports": [
-      18080,
-      18501
-    ],
-    "demo_smoke_cleanup": "no_listeners_remaining",
-    "api_container_health": "healthy",
-    "api_container_non_root": true
-  },
-  "documentation": {
-    "model_card": "docs/model_card.md",
-    "data_card": "reports/data_card.md",
-    "architecture": "docs/architecture.md",
-    "case_study": "docs/case_study.md",
-    "demo_checklist": "docs/demo_checklist.md",
-    "release_checklist": "docs/release_checklist.md",
-    "canonical_portfolio_report": "reports/portfolio_report_artifact.json",
-    "portable_html_status": "blocked_shared_renderer_horizontal_overflow"
-  },
-  "git_publication": {
-    "tracked_files_count": 3,
-    "tracked_product_files_count": 0,
-    "tracked_historical_files": [
-      "AcceptanceLetter (8).pdf",
-      "RM.ipynb",
-      "paper kelompok 12.pdf"
-    ],
-    "product_files_status": "untracked",
-    "configured_remote": "origin",
-    "remote_repository": "RESEARCH_METHODOLOGY",
-    "owner_decision_required": true,
-    "commit_performed": false,
-    "push_performed": false,
-    "pull_request_opened": false
-  },
-  "sensitive_working_data_ignore_checks": {
-    "raw_source_csv": "ignored",
-    "primary_annotation_csv": "ignored",
-    "blind_annotation_csv": "ignored",
-    "ai_challenger_xlsx": "ignored",
-    "processed_csv": "ignored",
-    "annotation_review_html": "ignored"
-  },
-  "open_gates": [
-    {
-      "id": "M5-visual-qa",
-      "status": "environment_human_gate",
-      "current": "functional HTTP smoke only",
-      "required": "responsive and state-based browser QA plus public-safe demo media"
-    },
-    {
-      "id": "ML-QG-2",
-      "status": "human_gate",
-      "current": "0/100",
-      "required": "different human completes blind second annotation"
-    },
-    {
-      "id": "ML-QG-3",
-      "status": "human_gate",
-      "current": "0/50",
-      "required": "independent human relevance judgments"
-    },
-    {
-      "id": "M6-publication",
-      "status": "owner_authorization_gate",
-      "current": "product files untracked in historical research repository",
-      "required": "repository strategy and explicit commit/push authorization"
-    },
-    {
-      "id": "M6-deployment",
-      "status": "owner_external_gate",
-      "current": "local only",
-      "required": "hosting, privacy, monitoring, cost, and rollback decisions"
-    },
-    {
-      "id": "ML-QG-4",
-      "status": "blocked_data",
-      "current": "77/555 salary rows",
-      "required": "at least 300 usable disclosed salary rows plus leakage-safe split"
-    }
-  ],
-  "limitations": [
-    "The audit verifies selected ignore contracts but is not a substitute for a full secret or legal review.",
-    "No public deployment, browser media, commit, push, or pull request was performed."
-  ]
+    "artifact_type":  "SkillPulse AI portfolio release readiness audit",
+    "verified_date":  "2026-08-10",
+    "overall_status":  "public_repository_published_local_demo_ready_release_gates_open",
+    "engineering":  {
+                        "ruff":  "passed",
+                        "tests_passed":  94,
+                        "demo_launcher_smoke":  "passed",
+                        "demo_smoke_ports":  [
+                                                 18080,
+                                                 18501
+                                             ],
+                        "demo_smoke_cleanup":  "no_listeners_remaining",
+                        "api_container_health":  "healthy",
+                        "api_container_non_root":  true,
+                        "github_ci_main":  "success",
+                        "actions_checkout":  "v7"
+                    },
+    "documentation":  {
+                          "model_card":  "docs/model_card.md",
+                          "data_card":  "reports/data_card.md",
+                          "architecture":  "docs/architecture.md",
+                          "case_study":  "docs/case_study.md",
+                          "demo_checklist":  "docs/demo_checklist.md",
+                          "release_checklist":  "docs/release_checklist.md",
+                          "canonical_portfolio_report":  "reports/portfolio_report_artifact.json",
+                          "portable_html_status":  "blocked_shared_renderer_horizontal_overflow"
+                      },
+    "git_publication":  {
+                            "repository_url":  "https://github.com/Rajapranata512/skillpulse-ai",
+                            "visibility":  "PUBLIC",
+                            "default_branch":  "main",
+                            "public_tree_files":  97,
+                            "clean_history_parent":  "none",
+                            "root_commit":  "c9e2854fb56280f8126d21df54d904ba6c39ec4d",
+                            "security_commit":  "5a1f05d592ccfc11e018d21439c8d13a3c81be47",
+                            "checkout_v7_commit":  "0f6a741",
+                            "publication_guard":  "passed",
+                            "commit_identity":  "github_noreply",
+                            "historical_branch":  "research-history-local-20260810_local_only",
+                            "historical_remote":  "research-origin_local_only",
+                            "owner_decision_required":  false,
+                            "commit_performed":  true,
+                            "push_performed":  true,
+                            "pull_request_opened_by_agent":  false
+                        },
+    "sensitive_working_data_ignore_checks":  {
+                                                 "raw_source_csv":  "ignored",
+                                                 "primary_annotation_csv":  "ignored",
+                                                 "blind_annotation_csv":  "ignored",
+                                                 "ai_challenger_xlsx":  "ignored",
+                                                 "processed_csv":  "ignored",
+                                                 "annotation_review_html":  "ignored"
+                                             },
+    "open_gates":  [
+                       {
+                           "id":  "M5-visual-qa",
+                           "status":  "environment_human_gate",
+                           "current":  "functional HTTP smoke only",
+                           "required":  "responsive and state-based browser QA plus public-safe demo media"
+                       },
+                       {
+                           "id":  "ML-QG-2",
+                           "status":  "human_gate",
+                           "current":  "0/100",
+                           "required":  "different human completes blind second annotation"
+                       },
+                       {
+                           "id":  "ML-QG-3",
+                           "status":  "human_gate",
+                           "current":  "0/50",
+                           "required":  "independent human relevance judgments"
+                       },
+                       {
+                           "id":  "M6-deployment",
+                           "status":  "owner_external_gate",
+                           "current":  "local only",
+                           "required":  "hosting, privacy, monitoring, cost, and rollback decisions"
+                       },
+                       {
+                           "id":  "ML-QG-4",
+                           "status":  "blocked_data",
+                           "current":  "77/555 salary rows",
+                           "required":  "at least 300 usable disclosed salary rows plus leakage-safe split"
+                       }
+                   ],
+    "limitations":  [
+                        "The audit verifies deny rules, selected public scope, and common secret/PII patterns but is not a substitute for a full legal or penetration review.",
+                        "The repository is public, but no public application deployment, responsive browser media, independent annotation agreement, or human relevance evaluation is complete."
+                    ],
+    "dependency_security":  {
+                                "dependabot_enabled":  true,
+                                "actions_checkout":  "v7",
+                                "checkout_update_source":  "official_release_and_green_dependabot_checks",
+                                "agent_merged_pull_request":  false
+                            }
 }

@@ -1,10 +1,10 @@
 # SkillPulse AI — Product Requirements Document
 
-**Product:** SkillPulse AI  
-**Tagline:** Indonesian and Global Job Intelligence Platform  
-**Status:** Active product direction  
-**Version:** 1.1  
-**Owner:** Portfolio project  
+**Product:** SkillPulse AI
+**Tagline:** Indonesian and Global Job Intelligence Platform
+**Status:** Active product direction
+**Version:** 1.1
+**Owner:** Portfolio project
 **Last updated:** 2026-08-10
 
 ## 0. Auto-Sync Delivery Snapshot
@@ -14,28 +14,30 @@ Ini adalah ringkasan delivery, bukan pengganti requirement detail atau Project S
 Timpa isi di antara marker; jangan append session log.
 
 <!-- AUTO-SYNC:START -->
-**Last synchronized:** 2026-08-10  
+**Last synchronized:** 2026-08-10
 **Current phase:** Phase 3 complete locally; Phase 4 functional demo is at a visual-QA gate;
-Phase 5 documentation/storytelling is complete locally and publication awaits owner authorization  
-**Status:** Working portfolio product with verified extraction/matching baselines, contract v1,
-FastAPI, privacy-minimized container, Streamlit demo, model card, architecture, case study, and
-release audit. It is not portfolio-release-ready because publication, responsive visual/media,
-independent annotation/relevance, and public deployment gates remain open.  
-**Completed this session:** delivered the system model card, architecture/trust-boundary diagram,
-one-command demo launcher and walkthrough, answer-first README, recruiter case study, release
-checklist/audit, and a source-backed canonical portfolio report. Demo smoke started and health-
-checked API/UI and cleaned both processes.  
-**Verified baseline:** 94 tests and Ruff passed. The release evidence reconciles the 555-row source,
-100-row primary development evaluation, exact matcher incumbent, negative semantic challenger,
-four API endpoints, healthy non-root container, and open human/salary gates. Selected sensitive
-working-data paths are Git-ignored.  
-**Selected next task:** `M6c — owner decision on repository strategy and explicit publication authorization (HUMAN-GATE)`.  
-**Next completion check:** the owner chooses a dedicated SkillPulse repository or the historical
-research remote, states visibility and exact public file scope, and explicitly authorizes any
-commit/push/PR action; ignored raw/human-working data must remain excluded.  
-**Other gates:** responsive browser QA/demo media require a working browser; ML-QG-2 is 0/100 and
-ML-QG-3 is 0/50; salary is 77/555. The portable report JSON is valid, but no HTML is delivered
-because the shared renderer still fails desktop overflow verification.
+Phase 5 public source/story/security evidence is complete and application deployment remains gated
+**Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
+with clean history, green CI, privacy/security publication controls, verified extraction/matching
+baselines, contract v1, FastAPI, non-root container, Streamlit demo, model card, architecture, and
+case study. It is not portfolio-ready because responsive media, independent annotation/relevance,
+and public application deployment remain open.
+**Completed this session:** created a parentless 97-file public product history, preserved research
+history locally only, configured GitHub noreply identity, added deny-by-default ignores, staged/commit
+publication guard, executable pre-push hook, six security tests, CI guard/read-only permissions,
+SECURITY/PRIVACY policies, and Dependabot. Pushed `main`, verified CI success, then applied the
+official checkout v7 update after green bot checks.
+**Verified baseline:** 94 tests and Ruff passed. Complete HEAD publication guard scanned 97 files /
+456,168 bytes. Public `main` matched local `0f6a741`; CI run `31403489015` succeeded. Raw/processed
+row-level data, annotations, AI workbooks/labels, academic artifacts, stale internal reports,
+credentials, PII patterns, and local paths are absent from the public tree.
+**Selected next task:** `M5b — responsive browser QA and public-safe demo media (HUMAN/ENV-GATE)`.
+**Next completion check:** a working browser is used to review desktop/mobile plus loading, error,
+empty, extraction, and matching states; a 2-4 minute walkthrough contains only synthetic/redacted
+text and no crash page or unverified artifact.
+**Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The public repository is
+not a deployed application; hosting/privacy/monitoring/rollback decisions remain owner-gated. The
+portable report JSON is valid, but shared renderer overflow still blocks verified HTML.
 <!-- AUTO-SYNC:END -->
 ## 1. Executive summary
 
@@ -119,20 +121,20 @@ estimate tanpa data cukup, atau memberi skor yang tampak presisi tetapi sulit di
 
 ### P0 — primary personas
 
-**Job seeker / fresh graduate**  
+**Job seeker / fresh graduate**
 Ketika melihat lowongan, saya ingin mengetahui requirement yang dapat diverifikasi,
 kecocokan CV, dan gap prioritas agar saya dapat memilih pekerjaan serta rencana belajar.
 
-**Portfolio reviewer / recruiter teknis**  
+**Portfolio reviewer / recruiter teknis**
 Ketika menilai proyek, saya ingin melihat data-to-product flow, metodologi evaluasi, dan
 trade-off agar kemampuan engineering, ML, statistik, serta product thinking terbukti.
 
 ### P1 — secondary personas
 
-**University career center / training provider**  
+**University career center / training provider**
 Ingin melihat tren skill per role dan lokasi untuk menentukan intervensi kurikulum.
 
-**Recruiter / platform partner**  
+**Recruiter / platform partner**
 Ingin API extraction dan structured requirements yang dapat diaudit, bukan black-box
 candidate rejection.
 
@@ -508,15 +510,18 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 - Market dashboard remains gated until aggregate trend metrics reconcile.
 - Exit remains open: browser-responsive/loading/error/empty-state visual QA and valid demo media are
   pending because local headless Edge/Chrome rendered crash pages; invalid screenshots were removed.
-### Phase 5 — Release and storytelling (local docs complete; publication gate open)
+### Phase 5 — Release and storytelling (public source complete; deployment/media gates open)
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- The portable report passed package-contract validation but shared browser verification still reports
-  desktop horizontal overflow; no unverified HTML is delivered.
-- API container evidence is complete locally. Product files are untracked in the historical research
-  repository; repository strategy, commit/push authorization, public hosting, monitoring, demo media,
-  and CI badge remain open.
+- Public `origin/main` has a parentless 97-file product history, green CI, a staged/commit publication
+  guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
+  SECURITY/PRIVACY policies, Dependabot, and official checkout v7.
+- Historical research is local-only and absent from public history. The portable report passed package-
+  contract validation but shared browser verification still reports desktop overflow; no unverified HTML
+  is delivered.
+- API container evidence is complete locally. Responsive demo media, public application hosting,
+  monitoring, rollback, and independent human evidence remain open.
 - Exit: all Portfolio-ready Definition below is satisfied.
 ### Phase 6 — Optional research expansion
 
@@ -546,6 +551,8 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 - Domain contract v1 is frozen for extraction/matching transport; breaking changes require a version bump.
 - FastAPI is the service boundary and Streamlit is the v1 portfolio UI; presentation logic does not
   import or duplicate scoring logic.
+- Public source repository is `Rajapranata512/skillpulse-ai` on clean `main`; automatic pushes require
+  staged/commit guard, passing tests, explicit product paths, no force, and no research-history refs.
 - Current salary data is insufficient for an active feature.
 - Matching score is requirement coverage, not candidate worth.
 - UI/API follow extraction evaluation and domain-contract stabilization.
@@ -560,8 +567,6 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 
 ### Open, to resolve with evidence
 
-- Whether SkillPulse should use a dedicated public repository or reuse the historical research remote,
-  and which files the owner authorizes for publication.
 - Which API/UI hosting targets meet privacy, monitoring, rollback, region, and cost constraints.
 
 - Which job families beyond data/analytics enter taxonomy v0.2?

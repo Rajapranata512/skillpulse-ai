@@ -154,6 +154,8 @@ Jangan ulangi pekerjaan berikut selama trigger pada kolom terakhir tidak terjadi
 | Explainable matcher | `src/skillpulse/matching/` | DONE v0.1 | gold labels atau matching requirements berubah |
 | Match demo | `reports/cv_job_match_example.json` | DONE | matcher/demo scenario berubah |
 | CI foundation | `.github/workflows/ci.yml`, `pyproject.toml` | DONE | dependency/commands/platform berubah |
+| Publication privacy/security guard | `scripts/publication_guard.py`, `.githooks/pre-push`, `tests/test_publication_guard.py`, `SECURITY.md`, `PRIVACY.md` | DONE v1 | public-scope policy, secret/PII patterns, or Git layout changes |
+| Clean public Git history | public `origin/main`, root `c9e2854`, local `research-history-local-20260810` | VERIFIED | owner changes repository/visibility or public-history policy |
 | Original research notebook | `RM.ipynb` | USER-OWNED | pengguna secara eksplisit meminta perubahan |
 
 Aturan tambahan:
@@ -283,42 +285,42 @@ setelah pekerjaan selesai; jangan menambah riwayat sesi di sini. Evidence histor
 berada di Git/reports.
 
 <!-- HANDOFF:START -->
-**Last handoff:** 2026-08-10  
-**Completed:** Finished M6a/M6b local portfolio packaging: delivered a reconciled system
-model card, architecture/trust-boundary diagram, one-command PowerShell demo launcher with
-self-cleaning smoke mode, reviewer walkthrough, answer-first README, recruiter-facing case
-study, release checklist/audit, and a source-backed canonical portfolio report artifact.
-The semantic negative result, human gates, salary block, and privacy contract remain explicit.  
-**Evidence:** `ruff check src tests` passed and `pytest -q` reports 94 passed. The launcher
-started API and Streamlit on temporary ports, verified both health endpoints, stopped both,
-and left no listeners. JSON/source reconciliation and Markdown link checks passed. The
-portable report passed package-contract validation, including exact SQL source metadata,
-but shared browser verification still reports desktop horizontal overflow after one targeted
-width correction; no unverified HTML or failure screenshot is retained. Release audit
-confirmed selected raw/annotation/processed files are ignored.  
-**Limitations/blockers:** The product files are still untracked while the configured remote
-is the historical `RESEARCH_METHODOLOGY` repository; commit, remote changes, push, PR, and
-deployment require explicit owner authorization. Responsive browser QA/demo media remain an
-environment-human gate. ML-QG-2 remains 0/100 and ML-QG-3 remains 0/50; AI/synthetic evidence
-cannot close them. Salary modelling remains blocked by 77/555 disclosed rows. `RM.ipynb`
-remains user-owned and modified.
+**Last handoff:** 2026-08-10
+**Completed:** Published SkillPulse AI to the owner-approved public repository
+`https://github.com/Rajapranata512/skillpulse-ai` with a clean parentless product history.
+Preserved the former research history locally only, added deny-by-default Git ignore rules,
+a staged/commit publication guard, six security tests, an executable pre-push hook, CI guard,
+read-only CI permissions, GitHub noreply commit identity, SECURITY/PRIVACY policies, and
+Dependabot. Verified and applied the official `actions/checkout` v7 update after green bot checks.
+**Evidence:** Ruff passed and `pytest -q` reports 94 passed. The root public snapshot contains
+97 allowlisted text files and no parent; publication guard scanned the complete 456,168-byte
+HEAD successfully. `RM.ipynb`, academic PDFs, raw/processed row-level data, human annotations,
+AI workbooks/labels, review HTML, stale internal reports, credentials, PII patterns, and local
+paths are absent. Public `main` matched local commit `0f6a741`; GitHub CI run `31403489015`
+succeeded, and both Dependabot checkout-v7 checks passed before the same one-line update was
+pushed through the local guard.
+**Limitations/blockers:** Public source publication is complete, but the application is not
+publicly deployed and the project is still a working portfolio project. Responsive browser QA
+and demo media remain an environment-human gate. ML-QG-2 remains 0/100 and ML-QG-3 remains
+0/50; agents cannot create independent human evidence. Salary modelling remains blocked by
+77/555 disclosed rows. The portable HTML renderer remains blocked by shared desktop overflow.
 
 **Recommended next actions:**
 
-1. **[NEXT][HUMAN-GATE][M6c] Choose the repository publication strategy and authorize the exact Git scope** — value:
-   makes the completed product evidence reviewable without mixing it accidentally with unrelated academic files;
-   dependency: owner chooses a dedicated SkillPulse repository or reuse of the historical remote and states visibility;
-   complete when repository target, public file scope, and commit/push/PR authorization are explicit.
-2. **[LATER][HUMAN/ENV-GATE][M5b] Perform responsive browser QA and capture public-safe demo media** — dependency:
-   a working interactive browser environment; complete when desktop/mobile plus loading, error, empty, extraction,
-   and matching states are reviewed and a 2-4 minute walkthrough contains no private/raw data.
-3. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** — dependency:
-   different human annotators using the frozen blind files/rubric; complete when 100 blind annotations and 50
+1. **[NEXT][HUMAN/ENV-GATE][M5b] Complete responsive browser QA and capture public-safe demo media** — value:
+   closes the most visible recruiter-facing gap now that source and CI are public; dependency: a working interactive
+   browser; complete when desktop/mobile plus loading, error, empty, extraction, and matching states are reviewed
+   and a 2-4 minute walkthrough contains only synthetic/redacted text.
+2. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** — dependency:
+   different human annotators use the frozen blind files/rubric; complete when 100 blind annotations and 50
    relevance scores are frozen, then agreement and both matcher evaluations are rerun without evaluation-set tuning.
+3. **[LATER][HUMAN-GATE][M6f] Select and authorize a public deployment target** — dependency: owner decisions
+   for hosting region/cost, logging/retention, rate limits, monitoring, and rollback; complete when privacy controls,
+   health/latency monitoring, deployment smoke, and rollback evidence pass without retaining submitted CV text.
 
-**Auto-selected next task:** `M6c — owner decision on repository strategy and explicit publication authorization (HUMAN-GATE)`  
-**PRD sync:** synchronized with M6a/M6b local completion, reproducible demo smoke, report-renderer blocker,
-and Git/publication authorization gate.
+**Auto-selected next task:** `M5b — responsive browser QA and public-safe demo media (HUMAN/ENV-GATE)`
+**PRD sync:** synchronized with public clean-history publication, automatic privacy/security push gate,
+green GitHub CI, checkout v7, and remaining visual/human/deployment blockers.
 <!-- HANDOFF:END -->
 ## 10. Project State
 
@@ -336,7 +338,7 @@ Last materially verified: **2026-08-10**
 | M3b | Matching relevance dataset and semantic challenger | AI-EXPERIMENTAL / HUMAN-GATE | 50 pseudo-label diagnostics; semantic challenger evaluated and not promoted; ML-QG-3 remains 0/50 human |
 | M4 | FastAPI/domain service | DONE-LOCAL | contract v1; 4 endpoints; OpenAPI tests; healthy non-root container smoke |
 | M5 | Portfolio UI and market dashboard | DEMO-LOCAL / VISUAL-QA-ENV-GATE | API-backed Streamlit journey and self-cleaning launcher smoke passed; browser QA/media pending; market metrics gated |
-| M6 | Containerized public portfolio release | DOCS-STORY-DONE / PUBLICATION-AUTH-GATE | model card, architecture, case study, release audit, and API container evidence complete locally; product files untracked; no public deployment |
+| M6 | Containerized public portfolio release | PUBLIC-SOURCE / APP-DEPLOYMENT-VISUAL-HUMAN-GATES | clean public repo, guard, CI, docs, story, and API container evidence complete; public app/media/human gates remain |
 | M7 | Salary prediction | BLOCKED-DATA | only 77/555 salary rows (13.9%); below PRD gate |
 
 Current verified engineering evidence:
@@ -373,16 +375,21 @@ Current verified engineering evidence:
 - Portable portfolio artifact passed package-contract checks but browser verification remains
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
-- Release audit found zero tracked product files; the configured remote is the historical research
-  repository. Selected sensitive working-data paths are ignored; publication requires owner scope
-  and authorization.
+- Public `origin/main` has a clean parentless 97-file product history; root `c9e2854`, security
+  hardening `5a1f05d`, and checkout-v7 `0f6a741` were pushed without force.
+- Publication guard scans staged and committed snapshots, is enforced by executable pre-push hook
+  and CI, and passes on the complete 456,168-byte HEAD. Six guard tests cover allow/deny behavior.
+- GitHub repository is PUBLIC with default `main`; CI run `31403489015` succeeded. Dependabot is
+  enabled; official checkout v7 passed bot checks before being applied locally and pushed.
+- Historical research remains local only on `research-history-local-20260810`/`research-origin`;
+  public commands must never push that branch, `--all`, `--mirror`, or tags.
 - Weak-label report remains micro F1 0.8273 on 332/555 evaluable documents; weak labels are not gold.
 - Raw CSV, human annotation CSVs, and repaired AI CSV/XLSX are Git-ignored. No commit, push, or
   deployment was performed.
 
-Active next task: **M6c HUMAN-GATE — the owner chooses a dedicated SkillPulse repository or reuse
-of the historical research remote, states visibility/public file scope, and explicitly authorizes
-any commit, push, or PR action.**
-Known workspace condition: `RM.ipynb` is modified in the worktree and is user-owned;
-do not overwrite, revert, stage, or normalize it.
+Active next task: **M5b HUMAN/ENV-GATE — use a working interactive browser to review desktop/mobile
+and loading/error/empty/extraction/matching states, then capture a 2-4 minute public-safe walkthrough.**
+Known workspace condition: local `RM.ipynb` remains user-owned and is ignored by the clean public
+repository; do not overwrite, revert, stage, normalize, or publish it. Historical research refs are
+local-only and must never be pushed to `origin`.
 

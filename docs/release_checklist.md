@@ -1,6 +1,6 @@
 # SkillPulse AI Portfolio Release Checklist
 
-**Audit date:** 10 August 2026  
+**Audit date:** 10 August 2026
 **Current decision:** no-go for public release; local portfolio demo is reproducible
 
 ## What is ready
@@ -18,25 +18,25 @@
 
 ## Release blockers
 
-### 1. Repository publication needs an owner decision
+### 1. Repository publication is complete
 
-The existing Git repository tracks only three historical research artifacts:
-`RM.ipynb`, an acceptance-letter PDF, and a group-paper PDF. The SkillPulse application
-files are currently untracked. The configured remote is the older
-`RESEARCH_METHODOLOGY` repository.
+The clean product history is public at
+`https://github.com/Rajapranata512/skillpulse-ai` with `main` as the default branch.
+The first public tree is a parentless root commit containing 97 allowlisted product files;
+it has no relationship to the historical research commits.
 
-No agent may commit, change the remote, push, or open a pull request without explicit user
-authorization. A dedicated SkillPulse repository is the cleaner portfolio option because
-it avoids mixing product history with unrelated academic PDFs, but the owner must choose
-the publication strategy.
+The former research history remains local only on `research-history-local-20260810` and
+`research-origin`. `RM.ipynb`, both academic PDFs, raw/processed row-level data, annotations,
+AI workbooks/labels, and stale internal reports are absent from the public tree. Every push
+runs `.githooks/pre-push`, and CI runs the same committed-snapshot guard.
 
-Completion evidence:
+Future publication completion evidence:
 
-- the intended repository and visibility are named;
-- the exact public file scope is reviewed;
-- the user explicitly authorizes commit/push/PR actions;
-- ignored raw/human-working data remains absent from the commit.
-
+- stage only intended product paths;
+- run full tests plus the publication guard;
+- use a GitHub noreply commit identity;
+- push only `origin main`, never `--all`, `--mirror`, tags, or the research branch;
+- record the remote SHA and CI result in the handoff.
 ### 2. Visual and media evidence needs a working browser environment
 
 API/UI functional smoke is complete, but local headless Edge/Chrome returned browser crash
@@ -77,6 +77,7 @@ authorized. Before deployment, document:
 ruff check src tests
 pytest -q
 powershell -ExecutionPolicy Bypass -File scripts/run_demo.ps1 -SmokeTest
+python scripts/publication_guard.py --commit HEAD
 git status --short
 ```
 
