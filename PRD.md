@@ -15,30 +15,28 @@ Timpa isi di antara marker; jangan append session log.
 
 <!-- AUTO-SYNC:START -->
 **Last synchronized:** 2026-08-11
-**Current phase:** Phase 3 complete locally; Phase 4 aggregate market snapshot and
-Chromium/Firefox/Playwright-WebKit automation are complete, while human accessibility,
-real-device review, and narrated media remain gated; Phase 5 public source/story/security
-evidence is complete and application deployment remains owner-gated.
+**Current phase:** Phase 3 complete locally; Phase 4 aggregate market snapshot and three-engine
+automation are complete, and the M5c private human-review pack/validator is ready while actual
+screen-reader, real-device, and narrated-media evidence remains human-gated. Phase 5 public
+source/story/security evidence is complete and application deployment remains owner-gated.
 **Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
 with clean history, green CI, privacy/security publication controls, verified extraction/matching
-baselines, FastAPI, non-root container, Streamlit match/extraction experience, filterable 30-day
-market snapshot, model/data documentation, architecture, and case study. It is not portfolio-ready
-because independent human annotation/relevance, human accessibility/usability media, and public
-application deployment remain open.
-**Completed this session:** built a deterministic aggregate generator and public JSON, reconciled
-555 listings against 542 unique descriptions, added four location and four normalized-role slices,
-documented denominator/suppression/non-claim rules, and rendered three charts plus KPI/title details
-in Streamlit. The dashboard never loads row-level data. Pushed implementation commit
-`3e459cb0a89e7fdae646a112704f1393e094fac7`.
-**Verified baseline:** 107 tests and Ruff passed; launcher smoke passed. CI run `31480441499`
-passed committed-snapshot guard, tests, Chromium/Firefox/WebKit installation, seven Chromium states,
-desktop/mobile market captures, both secondary-engine chart/match smokes, and artifact upload.
-Publication guard scanned the complete 112-file / 1,314,645-byte public snapshot. Row-level data,
-annotations, workbooks, academic artifacts, credentials, PII patterns, and local paths remain absent.
-**Selected next task:** `M5c - human screen-reader/real-device review and narrated walkthrough (HUMAN-GATE)`.
-**Next completion check:** a human reviews focus/contrast/screen-reader and real Safari/mobile behavior
-and records a 2-4 minute walkthrough using only synthetic/redacted text; the automated dashboard and
-resilience QA must remain green.
+baselines, FastAPI, non-root container, Streamlit product journey, aggregate 30-day market snapshot,
+and a fail-closed accessibility/media review workflow. It is not portfolio-ready because independent
+human annotation/relevance, human accessibility/usability media, and public application deployment remain open.
+**Completed this session:** added a blank v1 M5c JSON template, private-by-default reviewer workflow,
+strict completion validator/CLI, seven failure-path tests, condensed 2-4 minute recording guidance,
+and synchronized release/architecture/model/case-study evidence. The validator never creates or
+attests human judgments. Pushed implementation commit `48ebf2624ea1111beb10ec1938f7c6b680095850`.
+**Verified baseline:** 114 tests and Ruff passed. The untouched template is structurally valid but
+`completion_ready=false`, and `--require-complete` returns exit code 1. CI run `31492708944` passed
+committed-snapshot guard, tests, Chromium/Firefox/WebKit QA, and artifact upload. Publication guard
+scanned the complete 117-file / 1,344,349-byte implementation snapshot; private records/media,
+row-level data, annotations, workbooks, academic artifacts, credentials, PII patterns, and local paths remain absent.
+**Selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`.
+**Next completion check:** a human completes `docs/human_accessibility_media_review.md`; the private JSON
+passes `skillpulse-release-review ... --require-complete`, no blocker/high finding remains open, and a
+120-240 second synthetic/redacted walkthrough passes human privacy review while automated QA stays green.
 **Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The snapshot is one source/
 one 30-day window, so trend, whole-market, and global claims remain blocked. Public hosting/privacy/
 monitoring/rollback decisions remain owner-gated; shared renderer overflow still blocks verified HTML.
@@ -525,6 +523,8 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
   mobile market views, Firefox/WebKit chart renders and keyboard matches, and exact viewport widths.
   Eight synthetic captures stay in CI; three reviewed screenshots remain SHA-pinned without metadata.
 - The one-command PowerShell launcher starts API/UI, verifies both endpoints, and cleans both processes.
+- A blank v1 M5c template, private-by-default workflow, and strict validator are ready; automation
+  rejects incomplete/unsafe evidence but cannot create observations or attest their truth.
 - Exit remains open only for human screen-reader/focus/contrast, real Safari/device review, and a
   2-4 minute public-safe narrated walkthrough.
 
@@ -532,7 +532,7 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- Public `origin/main` has a parentless 112-file product history, green CI, a staged/commit publication
+- Public `origin/main` has a parentless 117-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
   SECURITY/PRIVACY policies, Dependabot, and official checkout/setup-python v7.
 - Historical research is local-only and absent from public history. The portable report passed package-
@@ -566,6 +566,8 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
   on synthetic diagnostics and not promoted because error and latency worsened.
 - Automated AI/synthetic artifacts never satisfy human quality gates; remediation allows engineering
   continuation only with explicit non-human claim labels.
+- M5c accessibility/media observations are private by default and human-attested. Automation may
+  validate completeness and fail-closed rules but never create or certify the judgments.
 - Domain contract v1 is frozen for extraction/matching transport; breaking changes require a version bump.
 - FastAPI is the service boundary and Streamlit is the v1 portfolio UI; presentation logic does not
   import or duplicate scoring logic.

@@ -150,6 +150,7 @@ Jangan ulangi pekerjaan berikut selama trigger pada kolom terakhir tidak terjadi
 | FastAPI service | `src/skillpulse/api/`, `tests/test_api.py` | DONE-LOCAL | contract or endpoint requirement changes |
 | API container | `Dockerfile`, `.dockerignore`, `reports/api_container_smoke.json` | DONE-LOCAL | dependencies, service command, or deployment target changes |
 | Streamlit demo slice | `src/skillpulse/ui/`, `reports/ui_smoke.json`, `reports/ui_automated_qa.json`, `reports/ui_browser_qa.json` | DONE-THREE-ENGINE-RESILIENCE / STATIC-MEDIA / HUMAN-A11Y-VIDEO-GATE | contract, journey, browser, resilience, or media requirement changes |
+| Human accessibility/media review pack | `configs/human_accessibility_review.template.json`, `docs/human_accessibility_media_review.md`, `src/skillpulse/release/human_review.py` | READY-HUMAN-GATE v1 | review schema/completion rules change or genuine human evidence becomes available |
 | Aggregate market snapshot | `src/skillpulse/market/`, `configs/market_snapshot.json`, `reports/market_snapshot_quality.json`, `docs/market_snapshot_metrics.md` | DONE-SNAPSHOT-v0.1 | processed source, taxonomy/extractor, metric contract, or snapshot window changes |
 | Annotation rules | `docs/annotation_guidelines.md` | DONE v0.2 | ambiguity berulang ditemukan |
 | Explainable matcher | `src/skillpulse/matching/` | DONE v0.1 | gold labels atau matching requirements berubah |
@@ -287,33 +288,30 @@ berada di Git/reports.
 
 <!-- HANDOFF:START -->
 **Last handoff:** 2026-08-11
-**Completed:** Delivered M5d/FR-05 v0.1 as a reproducible, aggregate-only 30-day market
-snapshot. The Streamlit market tab now shows four source-backed KPI cards, three ranked
-charts, top normalized titles, requirement-category controls, and four location plus four
-normalized-role slices. Groups below three observations and slices below ten exact-unique
-descriptions are suppressed. Pushed implementation commit
-`3e459cb0a89e7fdae646a112704f1393e094fac7` to `origin/main`.
-**Evidence:** `configs/market_snapshot.json` reconciles 555 listings and 542 unique
-descriptions; `reports/market_snapshot_quality.json` passes all ten reconciliation,
-denominator, suppression, privacy, and single-window checks. Ruff passed and `pytest -q`
-reports 107 passed. The one-command launcher smoke passed. Local and CI Playwright render
-all three dashboard charts on Chromium desktop/mobile plus Firefox and WebKit desktop,
-with 1440/1440 and 390/390 document/viewport widths. CI run `31480441499` passed test,
-committed-snapshot guard, three-engine browser capture, and artifact upload. Publication
-guard passed on the 112-file / 1,314,645-byte public snapshot.
-**Limitations/blockers:** The dashboard describes one source portal and one 30-day window;
-it is not a time-series, whole-market, global comparison, or salary model. Skill counts are
-rule-extracted explicit mentions, not human-validated market labels. Playwright WebKit is
-not a real Safari/device review, and automation does not replace human screen-reader,
-focus/contrast, or narrated walkthrough evidence. ML-QG-2 remains 0/100, ML-QG-3 remains
-0/50, salary remains 77/555, and public deployment remains owner-gated.
+**Completed:** Delivered the privacy-preserving M5c execution pack without creating human evidence.
+The public template stays blank, completed records/media default to Git-ignored `artifacts/`, and the
+new validator fail-closes on malformed schemas, missing human attestation, missing screen-reader or
+real-device evidence, any of nine incomplete checks, unsafe/short/long narrated media, and unresolved
+blocker/high findings. Pushed implementation commit `48ebf2624ea1111beb10ec1938f7c6b680095850`
+to `origin/main`.
+**Evidence:** Ruff passed and `pytest -q` reports 114 passed, including seven focused validator tests.
+The blank v1 template is structurally valid but `completion_ready=false`; `--require-complete` returns
+exit code 1 as designed. Publication guard passed on the complete 117-file / 1,344,349-byte implementation
+snapshot. GitHub CI run `31492708944` passed committed-snapshot guard, dependency installation, Ruff,
+114 tests, three-engine browser QA, and artifact upload.
+**Limitations/blockers:** No human accessibility observation, attestation, real-device result, or narrated
+video was created; M5c human evidence remains 0 and automation cannot close it. Real Safari may be
+documented as unavailable with a reason, but screen-reader and physical-mobile review cannot be waived.
+ML-QG-2 remains 0/100, ML-QG-3 remains 0/50, salary remains 77/555, and public deployment remains
+owner-gated. Completed review JSON and media must stay private until separately checked and authorized.
 
 **Recommended next actions:**
 
-1. **[NEXT][HUMAN-GATE][M5c] Complete screen-reader/real-device review and narrated walkthrough** - value:
-   closes the final recruiter-facing accessibility/presentation gap; dependency: a human reviewer
-   with a screen reader and preferably real Safari/mobile access; complete when focus/contrast/screen-reader
-   behavior and a 2-4 minute synthetic-data walkthrough are reviewed without private text.
+1. **[NEXT][HUMAN-GATE][M5c] Execute the M5c human review pack and narrated walkthrough** - value:
+   closes the final recruiter-facing accessibility/presentation gap; dependency: a human reviewer uses
+   `docs/human_accessibility_media_review.md` with a screen reader and physical mobile device; complete
+   when the private record passes `skillpulse-release-review ... --require-complete`, no blocker/high
+   finding is open, and the 2-4 minute synthetic/redacted media passes human privacy review.
 2. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** - dependency:
    different humans use the frozen blind files/rubric; complete when 100 blind annotations and
    50 relevance scores are frozen, then agreement and both matcher evaluations rerun without tuning.
@@ -321,9 +319,9 @@ focus/contrast, or narrated walkthrough evidence. ML-QG-2 remains 0/100, ML-QG-3
    for hosting region/cost, logging/retention, rate limits, monitoring, and rollback; complete when privacy
    controls, health/latency monitoring, deployment smoke, and rollback evidence pass without CV retention.
 
-**Auto-selected next task:** `M5c - human screen-reader/real-device review and narrated walkthrough (HUMAN-GATE)`
-**PRD sync:** synchronized with the aggregate market snapshot, 107 passing tests, green three-engine
-dashboard CI, guarded 112-file public source, and unchanged human/deployment/salary gates.
+**Auto-selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`
+**PRD sync:** synchronized with the M5c review-pack/validator readiness, 114 passing tests, green
+implementation CI, guarded 117-file public source, and unchanged human/deployment/salary gates.
 <!-- HANDOFF:END -->
 
 ## 10. Project State
@@ -341,14 +339,14 @@ Last materially verified: **2026-08-11**
 | M3a | Explainable CV–job matcher baseline | DONE | CLI + report + unit tests |
 | M3b | Matching relevance dataset and semantic challenger | AI-EXPERIMENTAL / HUMAN-GATE | 50 pseudo-label diagnostics; semantic challenger evaluated and not promoted; ML-QG-3 remains 0/50 human |
 | M4 | FastAPI/domain service | DONE-LOCAL | contract v1; 4 endpoints; OpenAPI tests; healthy non-root container smoke |
-| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / MARKET-SNAPSHOT-DONE / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / HUMAN-A11Y-VIDEO-GATE | aggregate 30-day dashboard, safe filters, Chromium/Firefox/WebKit, loading/offline, responsive, launcher, and pinned-media evidence pass; human accessibility/video remains gated |
+| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / MARKET-SNAPSHOT-DONE / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / HUMAN-REVIEW-PACK-READY / HUMAN-EVIDENCE-0 | aggregate dashboard and three-engine automation pass; strict private review pack is ready, but no human accessibility/video evidence exists |
 | M6 | Containerized public portfolio release | PUBLIC-SOURCE / STATIC-MEDIA / APP-DEPLOYMENT-HUMAN-GATES | clean public repo, guard, CI, docs, story, API container, and reviewed media complete; public app and human gates remain |
 | M7 | Salary prediction | BLOCKED-DATA | only 77/555 salary rows (13.9%); below PRD gate |
 
 Current verified engineering evidence:
 
 - `ruff check src tests`: passed.
-- `pytest -q`: 107 passed.
+- `pytest -q`: 114 passed.
 - Kaggle source: version 1, creator Rafli Rizkya Sakti Nugraha, CC-BY-4.0,
   observation window 2025-08-25 through 2025-09-24.
 - Local raw identity: 1,059,991 bytes and SHA-256
@@ -380,17 +378,20 @@ Current verified engineering evidence:
   remain SHA-pinned. Invalid local crash captures remain excluded.
 - One-command demo smoke started API/UI on ports 18080/18501, verified both health endpoints,
   stopped both processes, and left no listeners.
+- M5c review workflow v1 provides a blank private-by-default template and strict validator. Seven
+  focused tests pass; the untouched template validates structurally but correctly fails completion.
+  No reviewer judgment, attestation, or narrated media is claimed.
 - Portfolio evidence is reconciled in `docs/model_card.md`, `docs/architecture.md`,
   `docs/case_study.md`, and `reports/portfolio_release_metrics.json`; JSON/link QA passed.
 - Portable portfolio artifact passed package-contract checks but browser verification remains
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
-- Public `origin/main` has a clean parentless 112-file product history; market snapshot commit
-  `3e459cb` and earlier guarded release commits were pushed without force.
+- Public `origin/main` has a clean parentless 117-file product history; M5c implementation commit
+  `48ebf26` and earlier guarded release commits were pushed without force.
 - Publication guard scans staged and committed snapshots, is enforced by the executable pre-push hook
-  and CI, and passed on the complete 1,314,645-byte / 112-file dashboard snapshot. Eight guard tests
+  and CI, and passed on the complete 1,344,349-byte / 117-file M5c implementation snapshot. Eight guard tests
   cover allow/deny behavior plus exact-hash and PNG-metadata enforcement.
-- GitHub repository is PUBLIC with default `main`; dashboard CI run `31480441499` passed both test
+- GitHub repository is PUBLIC with default `main`; M5c CI run `31492708944` passed both test
   and browser-qa jobs. Dependabot is enabled; CI actions v7 are pinned.
 - Historical research remains local only on `research-history-local-20260810`/`research-origin`;
   public commands must never push that branch, `--all`, `--mirror`, or tags.
@@ -398,8 +399,8 @@ Current verified engineering evidence:
 - Raw CSV, human annotation CSVs, and repaired AI CSV/XLSX are Git-ignored. Guarded commits/pushes
   target only public `origin/main`; no application deployment was performed.
 
-Active next task: **M5c HUMAN-GATE — complete screen-reader/real-device usability review and
-record a 2-4 minute public-safe narrated walkthrough.**
+Active next task: **M5c HUMAN-GATE — a human executes `docs/human_accessibility_media_review.md`,
+completes screen-reader/physical-mobile evidence, and records a 2-4 minute public-safe walkthrough.**
 Known workspace condition: local `RM.ipynb` remains user-owned and is ignored by the clean public
 repository; do not overwrite, revert, stage, normalize, or publish it. Historical research refs are
 local-only and must never be pushed to `origin`.

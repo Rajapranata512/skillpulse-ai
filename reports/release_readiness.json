@@ -4,7 +4,7 @@
   "overall_status": "public_repository_published_local_demo_ready_release_gates_open",
   "engineering": {
     "ruff": "passed",
-    "tests_passed": 103,
+    "tests_passed": 114,
     "demo_launcher_smoke": "passed",
     "streamlit_automated_scenarios": 3,
     "ui_implementation_commit": "c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d",
@@ -32,7 +32,11 @@
     "media_publication_commit": "9ff0030a8fd7d0717a3d52e61a14552ce2220298",
     "media_publication_ci_run": 31464246600,
     "match_loading_capture": true,
-    "api_offline_safe_error_capture": true
+    "api_offline_safe_error_capture": true,
+    "human_review_schema_version": "1.0.0",
+    "human_review_template_status": "structurally_valid_incomplete",
+    "human_review_validator_tests": 7,
+    "human_review_completion_ready": false
   },
   "documentation": {
     "model_card": "docs/model_card.md",
@@ -43,6 +47,8 @@
     "ui_automated_qa": "reports/ui_automated_qa.json",
     "ui_browser_qa": "reports/ui_browser_qa.json",
     "release_checklist": "docs/release_checklist.md",
+    "human_accessibility_media_review": "docs/human_accessibility_media_review.md",
+    "human_review_template": "configs/human_accessibility_review.template.json",
     "canonical_portfolio_report": "reports/portfolio_report_artifact.json",
     "portable_html_status": "blocked_shared_renderer_horizontal_overflow"
   },
@@ -50,7 +56,7 @@
     "repository_url": "https://github.com/Rajapranata512/skillpulse-ai",
     "visibility": "PUBLIC",
     "default_branch": "main",
-    "public_tree_files": 105,
+    "public_tree_files": 117,
     "clean_history_parent": "none",
     "root_commit": "c9e2854fb56280f8126d21df54d904ba6c39ec4d",
     "security_commit": "5a1f05d592ccfc11e018d21439c8d13a3c81be47",
@@ -64,8 +70,8 @@
     "push_performed": true,
     "pull_request_opened_by_agent": false,
     "setup_python_v7_commit": "d705238",
-    "latest_product_commit": "83bea8ddada5ac46ea6d9ebbf6e5c84552a33848",
-    "latest_green_ci_run": 31470951008
+    "latest_product_commit": "48ebf2624ea1111beb10ec1938f7c6b680095850",
+    "latest_green_ci_run": 31492708944
   },
   "sensitive_working_data_ignore_checks": {
     "raw_source_csv": "ignored",
@@ -79,7 +85,7 @@
     {
       "id": "M5-accessibility-media",
       "status": "human_gate",
-      "current": "Chromium responsive/loading/offline QA, Firefox/WebKit keyboard matches, and three reviewed static screenshots passed",
+      "current": "Automated browser/static QA passed; blank private review pack and fail-closed validator are ready; human observations remain 0",
       "required": "human screen-reader/focus/contrast and real Safari/device review plus narrated walkthrough"
     },
     {
@@ -109,7 +115,7 @@
   ],
   "limitations": [
     "The audit verifies deny rules, selected public scope, and common secret/PII patterns but is not a substitute for a full legal or penetration review.",
-    "The public repository has three-engine automation and reviewed static media, but no public deployment, screen-reader/real-device human review, independent annotation agreement, or human relevance evaluation is complete."
+    "The public repository has three-engine automation, reviewed static media, and a validated blank M5c review workflow, but no public deployment, screen-reader/real-device human review, narrated human media, independent annotation agreement, or human relevance evaluation is complete."
   ],
   "dependency_security": {
     "dependabot_enabled": true,

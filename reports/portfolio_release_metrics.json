@@ -5,7 +5,7 @@
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 107,
+    "tests_passed": 114,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
     "salary_disclosure_rate": 0.1387,
@@ -75,6 +75,14 @@
       "limitation": "Synthetic scenario-oracle labels are diagnostic only"
     },
     {
+      "gate": "M5c",
+      "evidence": "Human accessibility, real-device, and narrated-media review",
+      "current": 0,
+      "minimum": 1,
+      "status": "human_gate_open_review_pack_ready",
+      "limitation": "The blank template and validator are ready, but no human attestation or observation exists"
+    },
+    {
       "gate": "Salary data gate",
       "evidence": "Rows with disclosed salary",
       "current": 77,
@@ -106,11 +114,15 @@
     "match_loading_capture": "passed_artifact_only",
     "api_offline_safe_error_capture": "passed_artifact_only",
     "human_screen_reader_real_device_narrated_video_gate": "open",
+    "human_review_schema_version": "1.0.0",
+    "human_review_template_status": "structurally_valid_incomplete",
+    "human_review_validator_tests": 7,
+    "human_judgments_recorded": 0,
     "market_dashboard_charts": 3,
     "market_dashboard_desktop_mobile_chromium": "passed_ci_31480441499",
     "market_dashboard_firefox_webkit": "passed_ci_31480441499",
-    "latest_ci_run": 31480441499,
-    "latest_ci_commit": "3e459cb0a89e7fdae646a112704f1393e094fac7"
+    "latest_ci_run": 31492708944,
+    "latest_ci_commit": "48ebf2624ea1111beb10ec1938f7c6b680095850"
   },
   "sources": [
     "reports/data_quality.json",
@@ -124,7 +136,9 @@
     "AGENTS.md",
     "configs/market_snapshot.json",
     "reports/market_snapshot_quality.json",
-    "docs/market_snapshot_metrics.md"
+    "docs/market_snapshot_metrics.md",
+    "docs/human_accessibility_media_review.md",
+    "configs/human_accessibility_review.template.json"
   ],
   "market_snapshot": {
     "status": "bounded_30_day_aggregate_active_no_trend_claim",
