@@ -128,7 +128,9 @@ def _save(page: Any, output: Path, filename: str) -> None:
 def _wait_for_app(page: Any, ui_url: str) -> None:
     page.goto(ui_url, wait_until="domcontentloaded", timeout=45_000)
     page.get_by_role("heading", name="SkillPulse AI", exact=True).wait_for(timeout=30_000)
-    page.get_by_text("API online", exact=False).wait_for(timeout=30_000)
+    # Streamlit intentionally collapses the sidebar on a mobile viewport, so the
+    # health text remains attached but is not visible until the sidebar is opened.
+    page.get_by_text("API online", exact=False).wait_for(state="attached", timeout=30_000)
 
 
 def _capture(output: Path, ui_url: str) -> tuple[list[dict[str, int | str]], list[dict[str, int | str]]]:
