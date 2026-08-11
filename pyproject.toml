@@ -31,6 +31,9 @@ api = [
 ui = [
   "streamlit>=1.60,<2.0",
 ]
+browser = [
+  "playwright>=1.61,<2.0",
+]
 
 [project.scripts]
 skillpulse-prepare = "skillpulse.data.pipeline:main"
