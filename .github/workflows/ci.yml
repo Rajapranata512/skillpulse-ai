@@ -40,6 +40,7 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - run: python scripts/capture_demo_media.py --output artifacts/browser-qa
       - uses: actions/upload-artifact@v7
+        if: always()
         with:
           name: skillpulse-browser-qa-${{ github.sha }}
           path: artifacts/browser-qa/

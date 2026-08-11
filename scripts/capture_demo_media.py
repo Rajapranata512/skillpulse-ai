@@ -134,7 +134,7 @@ def _wait_for_app(page: Any, ui_url: str) -> None:
 
 
 def _capture(output: Path, ui_url: str) -> tuple[list[dict[str, int | str]], list[dict[str, int | str]]]:
-    from playwright.sync_api import sync_playwright
+    from playwright.sync_api import expect, sync_playwright
 
     measurements: list[dict[str, int | str]] = []
     with sync_playwright() as playwright:
@@ -169,10 +169,17 @@ def _capture(output: Path, ui_url: str) -> tuple[list[dict[str, int | str]], lis
             )
             page = mobile.new_page()
             _wait_for_app(page, ui_url)
-            page.get_by_role("tab", name="Extract Job", exact=True).click()
+            extraction_tab = page.get_by_role("tab", name="Extract Job", exact=True)
+            extraction_tab.click()
             page.get_by_role("button", name="Gunakan contoh extraction", exact=True).click()
+            extraction_text = page.get_by_label("Job description to extract", exact=True)
+            expect(extraction_text).to_be_visible(timeout=30_000)
+            expect(extraction_text).not_to_have_value("", timeout=30_000)
             page.get_by_role("button", name="Extract requirements", exact=True).click()
-            page.get_by_text("Technical skills", exact=True).wait_for(timeout=30_000)
+            technical_heading = page.get_by_text("Technical skills", exact=True)
+            technical_heading.wait_for(state="attached", timeout=30_000)
+            extraction_tab.click()
+            technical_heading.wait_for(state="visible", timeout=30_000)
             page.get_by_text("Power BI", exact=True).wait_for(timeout=30_000)
             measurements.append(_responsive_measurement(page, "mobile_extraction"))
             _save(page, output, "mobile-extraction.png")
