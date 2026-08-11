@@ -5,7 +5,7 @@
 
 ## What is ready
 
-- Ruff passes and 107 Python tests pass.
+- Ruff passes and 114 Python tests pass.
 - The one-command launcher starts FastAPI and Streamlit, verifies both health endpoints,
   and removes both processes in smoke mode.
 - Four privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,
@@ -19,6 +19,8 @@
   review-pack HTML are covered by explicit Git ignore rules.
 - Model card, data card, architecture, annotation guide, case study, API contract, demo
   checklist, and aggregate evaluation evidence exist.
+- A strict, privacy-minimizing M5c JSON template and validator reject premature accessibility/media
+  completion, missing human attestation, unsafe media flags, and unresolved high-severity findings.
 - Unsupported human-agreement, human-relevance, salary, and global-market claims are
   explicitly blocked.
 
@@ -54,9 +56,11 @@ The unrelated portable-report renderer still blocks its own unverified HTML outp
 
 Remaining completion evidence:
 
-- human focus/contrast review, screen-reader validation, and a real Safari/device check where available;
-- a 2-4 minute public-safe video/GIF following `docs/demo_checklist.md`;
-- no real CV or third-party raw description in any additional media.
+- a human completes the private-by-default [M5c review pack](human_accessibility_media_review.md),
+  including focus/contrast, screen-reader, mobile real-device, and real Safari evidence where available;
+- `skillpulse-release-review artifacts/human_accessibility_media_review.json --require-complete` returns `0`;
+- a 2-4 minute public-safe video/GIF follows the condensed journey in `docs/demo_checklist.md`;
+- no real CV, third-party raw description, PII, credential, or local path appears in review evidence or media.
 
 ### 3. Independent ML evidence requires humans
 
@@ -85,6 +89,7 @@ ruff check src tests
 pytest -q
 powershell -ExecutionPolicy Bypass -File scripts/run_demo.ps1 -SmokeTest
 python scripts/publication_guard.py --commit HEAD
+python -m skillpulse.release.human_review configs/human_accessibility_review.template.json
 git status --short
 ```
 

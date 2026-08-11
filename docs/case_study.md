@@ -138,7 +138,7 @@ the build context.
 | Product/UI | API-backed Streamlit journey, filterable aggregate market snapshot, three-engine chart QA, reviewed static media, and launcher |
 | Governance | No CV persistence, protected attributes excluded, open human/data gates |
 
-Latest engineering verification: Ruff passed and 107 tests passed. API container and
+Latest engineering verification: Ruff passed and 114 tests passed. API container and
 Streamlit health checks passed locally; widget-state tests cover aggregate filter changes without API
 calls. Playwright Chromium covers desktop/mobile market charts plus empty, loading, match, validation,
 extraction, and API-offline states; Firefox and WebKit each render all three dashboard charts before
@@ -176,7 +176,8 @@ limits, abuse controls, accessibility checks, monitoring, and a verified retenti
 
 ## Next evidence milestones
 
-1. Complete human screen-reader/real-device usability review, then record a public-safe narrated walkthrough.
+1. Complete the private-by-default `docs/human_accessibility_media_review.md` pack with a human
+   screen-reader/real-device review, then record a public-safe narrated walkthrough.
 2. Have a different human complete the 100-row blind annotation and publish agreement.
 3. Freeze 50 independent human relevance judgments and rerun both matchers without tuning
    on the evaluation set.

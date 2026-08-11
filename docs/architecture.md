@@ -48,6 +48,7 @@ becoming runtime dependencies.
 | API | `src/skillpulse/api/` | Expose health, model metadata, extraction, and matching endpoints |
 | UI | `src/skillpulse/ui/` | Provide a public-safe bilingual demo without duplicating model logic |
 | Evidence | `reports/` | Preserve aggregate evaluations, smoke tests, and release decisions |
+| Release review | `src/skillpulse/release/` | Validate a private human accessibility/media record without creating reviewer judgments |
 
 ## Runtime contract
 
@@ -101,4 +102,6 @@ their data and comparability gates are met.
 The API has a non-root Docker image with a health check. The Streamlit UI currently runs
 as a local process and targets `SKILLPULSE_API_URL`. This is enough for a reproducible local
 portfolio walkthrough, but a public release still needs an explicit hosting design,
-environment configuration, browser QA, monitoring, and rollback evidence.
+environment configuration, browser QA, monitoring, and rollback evidence. Human M5c observations
+remain in a Git-ignored local record; the release validator checks completeness and fail-closed
+conditions but cannot attest that an accessibility or privacy judgment is true.

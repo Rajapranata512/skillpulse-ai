@@ -17,7 +17,7 @@ explainable CV-to-job matching product, and privacy-safe 30-day market snapshot.
 - A strict four-endpoint FastAPI contract, healthy non-root container, and API-backed
   Streamlit demo.
 - An aggregate-only market dashboard with requirement-category, location, and normalized-role slices.
-- 107 passing tests, model/data documentation, and explicit human/data release gates.
+- 114 passing tests, model/data documentation, and explicit human/data release gates.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human
@@ -250,7 +250,9 @@ public-safe sample buttons plus loading, empty, validation, API-error, and aggre
 states. Location/role slices require at least ten unique descriptions. Matching calls the
 versioned API instead of importing scoring logic into the presentation layer. Stop it
 with `Ctrl+C`; the launcher cleans up the API process it created. See
-`docs/demo_checklist.md` for the five-minute reviewer walkthrough and port options.
+`docs/demo_checklist.md` for the five-minute reviewer walkthrough and port options. Use
+`docs/human_accessibility_media_review.md` for the separate screen-reader, real-device,
+privacy-safe recording, and human-attestation gate.
 
 Text is session-only and file upload is intentionally disabled in v1. For manual startup,
 run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
@@ -262,6 +264,8 @@ run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
   criteria.
 - `docs/case_study.md` presents the recruiter-facing problem-to-product narrative.
 - `docs/release_checklist.md` records publication, media, human, and deployment gates.
+- `docs/human_accessibility_media_review.md` and the blank JSON template define the private-by-default
+  M5c human-review workflow; automation validates completeness but cannot create the judgments.
 - `docs/architecture.md` maps the runtime, evaluation, and trust boundaries.
 - `reports/portfolio_release_metrics.json` is the reconciled release-evidence snapshot.
 - `reports/ui_automated_qa.json` records privacy-safe Streamlit widget-journey coverage.

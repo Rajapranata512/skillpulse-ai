@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "milestone": "M5c",
+  "review_status": "not_reviewed",
+  "reviewer": {
+    "reviewer_code": "",
+    "reviewed_on": "",
+    "human_attestation": false
+  },
+  "environments": [
+    {
+      "id": "screen_reader",
+      "status": "not_reviewed",
+      "platform": "",
+      "browser": "",
+      "assistive_technology": "",
+      "device_class": "",
+      "notes": ""
+    },
+    {
+      "id": "mobile_real_device",
+      "status": "not_reviewed",
+      "platform": "",
+      "browser": "",
+      "assistive_technology": "",
+      "device_class": "",
+      "notes": ""
+    },
+    {
+      "id": "real_safari",
+      "status": "not_reviewed",
+      "platform": "",
+      "browser": "",
+      "assistive_technology": "",
+      "device_class": "",
+      "notes": ""
+    }
+  ],
+  "checks": [
+    {"id": "keyboard_focus_order", "status": "not_reviewed", "evidence_note": ""},
+    {"id": "visible_focus", "status": "not_reviewed", "evidence_note": ""},
+    {"id": "contrast", "status": "not_reviewed", "evidence_note": ""},
+    {"id": "screen_reader_structure", "status": "not_reviewed", "evidence_note": ""},
+    {"id": "status_announcements", "status": "not_reviewed", "evidence_note": ""},
+    {"id": "error_identification", "status": "not_reviewed", "evidence_note": ""},
+    {"id": "chart_text_alternatives", "status": "not_reviewed", "evidence_note": ""},
+    {"id": "mobile_responsiveness", "status": "not_reviewed", "evidence_note": ""},
+    {"id": "data_table_readability", "status": "not_reviewed", "evidence_note": ""}
+  ],
+  "findings": [],
+  "media": {
+    "status": "not_reviewed",
+    "duration_seconds": null,
+    "synthetic_or_redacted_only": false,
+    "no_personal_data": false,
+    "narration_complete": false,
+    "artifact_reference": ""
+  }
+}

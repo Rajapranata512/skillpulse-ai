@@ -150,6 +150,8 @@ appropriately governed language and user segments.
   `reports/market_snapshot_quality.json`
 - Contract: `docs/api_contract_v1.json`
 - Local demo: `docs/demo_checklist.md` and `scripts/run_demo.ps1`
+- Human accessibility/media gate: `docs/human_accessibility_media_review.md` and
+  `configs/human_accessibility_review.template.json` (blank; no human result claimed)
 
 Run `ruff check src tests` and `pytest -q` before publishing any new metric. Re-run only
 the dependent evaluations when taxonomy, labels, matcher behavior, or source identity

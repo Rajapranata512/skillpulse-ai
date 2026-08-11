@@ -47,6 +47,7 @@ skillpulse-ai-challenger = "skillpulse.extraction.ai_challenger:main"
 skillpulse-contract = "skillpulse.domain.contracts:main"
 skillpulse-api = "skillpulse.api.app:main"
 skillpulse-ui = "skillpulse.ui.launcher:main"
+skillpulse-release-review = "skillpulse.release.human_review:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

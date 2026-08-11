@@ -1,7 +1,9 @@
 # SkillPulse AI Demo Checklist
 
 Use this checklist to run a repeatable five-minute portfolio demonstration without raw
-CV files, unpublished annotations, or salary claims.
+CV files, unpublished annotations, or salary claims. For the separate 2-4 minute narrated
+release artifact, use a condensed version of this journey and complete
+`docs/human_accessibility_media_review.md`; the live walkthrough is not itself human evidence.
 
 ## One-command start
 
@@ -65,6 +67,13 @@ Before recording or sharing:
    Distinguish the 100-row AI-assisted primary evaluation from the pending independent
    0/100 annotation and 0/50 human relevance gates. State why the semantic challenger was
    not promoted.
+
+## Condensed 2-4 minute recording
+
+Keep the problem/scope, extraction, matching, and market sections to roughly 30-40 seconds each.
+Use the remaining time for evaluation caveats, privacy, and the decision-support disclaimer; API
+internals can remain in the five-minute live version. Record only built-in synthetic examples, then
+complete the private media checks and human attestation in the M5c review pack.
 
 ## Expected observations
 
