@@ -5,13 +5,13 @@
 
 ## What is ready
 
-- Ruff passes and 102 Python tests pass.
+- Ruff passes and 103 Python tests pass.
 - The one-command launcher starts FastAPI and Streamlit, verifies both health endpoints,
   and removes both processes in smoke mode.
 - Three privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,
   extraction/matching success, and domain-error presentation without external networking.
-- CI Playwright Chromium verifies four 1440px/390px states without horizontal overflow; three
-  synthetic screenshots were visually reviewed and published with pinned hashes.
+- CI Playwright verifies four Chromium 1440px/390px states plus a Firefox desktop keyboard-match
+  smoke without horizontal overflow; three synthetic screenshots were reviewed and published with pinned hashes.
 - The API container has a verified healthy, non-root local smoke result.
 - Raw source data, primary/blind annotations, AI challenger workbooks, processed CSV, and
   review-pack HTML are covered by explicit Git ignore rules.
@@ -41,16 +41,17 @@ Future publication completion evidence:
 - use a GitHub noreply commit identity;
 - push only `origin main`, never `--all`, `--mirror`, tags, or the research branch;
 - record the remote SHA and CI result in the handoff.
-### 2. Accessibility, cross-browser, and narrated media remain open
+### 2. Human accessibility, WebKit, loading/offline media, and narration remain open
 
-CI-hosted Playwright Chromium now passes desktop/mobile overflow assertions and produced
-reviewed empty, matching, validation-error, and mobile-extraction captures. Three synthetic
-screenshots are published with exact SHA-256 pins; the invalid local crash pages remain excluded.
+CI-hosted Playwright Chromium passes desktop/mobile overflow assertions and keyboard activation;
+Firefox independently passes the keyboard-triggered desktop match at 1440px. Reviewed empty,
+matching, and mobile-extraction screenshots are published with exact SHA-256 pins; invalid local
+crash pages remain excluded.
 The unrelated portable-report renderer still blocks its own unverified HTML output.
 
 Remaining completion evidence:
 
-- keyboard, focus, screen-reader, contrast, and at least one second-browser review;
+- human focus/contrast review, screen-reader validation, and WebKit/Safari coverage where available;
 - real-browser loading and API-offline states, beyond existing widget/API-client automation;
 - a 2-4 minute public-safe video/GIF following `docs/demo_checklist.md`;
 - no real CV or third-party raw description in any additional media.

@@ -5,7 +5,7 @@
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 102,
+    "tests_passed": 103,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
     "salary_disclosure_rate": 0.1387
@@ -90,10 +90,17 @@
     "streamlit_automated_scenarios": 3,
     "streamlit_automated_state_qa": "passed",
     "raw_cv_persistence": false,
-    "visual_browser_qa": "chromium_desktop_mobile_passed",
+    "visual_browser_qa": "chromium_desktop_mobile_and_firefox_keyboard_match_passed",
     "browser_qa_states": 4,
     "published_static_media": 3,
-    "accessibility_cross_browser_video_gate": "open"
+    "browser_engines": [
+      "Chromium",
+      "Firefox"
+    ],
+    "chromium_responsive_states": 4,
+    "firefox_keyboard_match_smoke": "passed",
+    "keyboard_activation_verified": true,
+    "screen_reader_webkit_loading_video_gate": "open"
   },
   "sources": [
     "reports/data_quality.json",

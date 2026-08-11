@@ -5,7 +5,7 @@
 **Status:** Active product direction
 **Version:** 1.1
 **Owner:** Portfolio project
-**Last updated:** 2026-08-10
+**Last updated:** 2026-08-11
 
 ## 0. Auto-Sync Delivery Snapshot
 
@@ -14,31 +14,32 @@ Ini adalah ringkasan delivery, bukan pengganti requirement detail atau Project S
 Timpa isi di antara marker; jangan append session log.
 
 <!-- AUTO-SYNC:START -->
-**Last synchronized:** 2026-08-10
-**Current phase:** Phase 3 complete locally; Phase 4 automated state QA is complete and real-browser
-visual QA remains gated; Phase 5 public source/story/security evidence is complete and application
-deployment remains owner-gated
+**Last synchronized:** 2026-08-11
+**Current phase:** Phase 3 complete locally; Phase 4 Chromium/Firefox automated browser QA and
+pinned static media are complete, while human accessibility/WebKit review and narrated media remain
+gated; Phase 5 public source/story/security evidence is complete and deployment remains owner-gated
 **Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
 with clean history, green CI, privacy/security publication controls, verified extraction/matching
-baselines, contract v1, FastAPI, non-root container, Streamlit demo, model card, architecture, and
-case study. It is not portfolio-ready because responsive media, independent annotation/relevance,
-and public application deployment remain open.
-**Completed this session:** added explicit public-safe match/extraction samples, loading and empty
-states, client-side blank validation, safe API errors, and a mobile breakpoint. Added three loopback-only
-Streamlit AppTest journeys, updated CI with the UI dependency, reconciled release evidence, and pushed
-implementation commit `c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d`.
-**Verified baseline:** 97 tests, Ruff, and the one-command launcher smoke passed. The publication guard
-scanned the complete 99-file / 471,913-byte implementation snapshot. GitHub CI run `31409943647`
-succeeded with checkout/setup-python v7, UI dependencies, committed-snapshot guard, lint, and tests.
-Raw/processed row-level data, annotations, AI workbooks/labels, academic artifacts, stale internal
-reports, credentials, PII patterns, and local paths remain absent from the public tree.
-**Selected next task:** `M5b — real-browser responsive QA and public-safe demo media (HUMAN/ENV-GATE)`.
-**Next completion check:** a working interactive browser is used to visually review desktop/mobile
-layout plus loading, error, empty, extraction, and matching states; a 2-4 minute walkthrough contains
-only synthetic/redacted text and no crash page or unverified artifact.
-**Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The public repository is
-not a deployed application; hosting/privacy/monitoring/rollback decisions remain owner-gated. The
-portable report JSON is valid, but shared renderer overflow still blocks verified HTML.
+baselines, contract v1, FastAPI, non-root container, Streamlit demo, cross-browser evidence, model
+card, architecture, and case study. It is not portfolio-ready because independent human annotation/
+relevance, human accessibility/usability media, and public application deployment remain open.
+**Completed this session:** added CI-hosted Chromium desktop/mobile capture, Firefox desktop match
+smoke, keyboard activation assertions, four responsive overflow measurements, and three reviewed
+public-safe screenshots. Pinned the only allowed PNG paths and hashes in the publication guard.
+Pushed media commit `9ff0030a8fd7d0717a3d52e61a14552ce2220298` and cross-browser commit
+`1ec4012926d0e481365dd63bc3125f23083901cc`.
+**Verified baseline:** 103 tests and Ruff passed. CI run `31464896296` passed committed-snapshot
+guard, lint/tests, Chromium/Firefox install, keyboard journeys, responsive assertions, and artifact
+upload; media CI `31464246600` also passed. Publication guard scanned the complete 105-file /
+1,226,952-byte cross-browser snapshot. Row-level data, annotations, AI workbooks, academic artifacts,
+credentials, PII patterns, and local paths remain absent from the public tree.
+**Selected next task:** `M5c — human screen-reader/WebKit usability review and narrated walkthrough (HUMAN-GATE)`.
+**Next completion check:** a human reviews focus/contrast/screen-reader and WebKit/Safari behavior,
+captures loading and API-offline states, and records a 2-4 minute walkthrough using only synthetic/
+redacted text; automated Chromium/Firefox QA must remain green.
+**Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. Public hosting/privacy/
+monitoring/rollback decisions remain owner-gated. The portable report JSON is valid, but shared
+renderer overflow still blocks verified HTML.
 <!-- AUTO-SYNC:END -->
 ## 1. Executive summary
 
@@ -502,29 +503,32 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 - The non-root API image excludes raw data, annotations, reports, notebooks, CSV, and XLSX files;
   local health/extract/match smoke passed.
 - Exit: complete for local product-service scope; public deployment verification belongs to Phase 5.
-### Phase 4 — Portfolio experience (automated state QA complete; visual gate open)
+### Phase 4 — Portfolio experience (cross-browser automation/static media complete; human gate open)
 
 - API-backed Streamlit demo includes explicit bilingual sample controls, match score, matched/missing
   evidence, deterministic learning priorities, extraction, methodology, privacy, and gate disclosures.
 - Three loopback-only AppTest scenarios verify sample, empty, successful extraction/matching, privacy,
   and user-safe domain-error states without external networking or raw text in the evidence artifact.
+- CI Playwright verifies four Chromium desktop/mobile states, keyboard activation, a Firefox desktop
+  keyboard-match smoke, and exact document/viewport widths. Three reviewed synthetic screenshots are
+  published only at SHA-pinned paths without text/EXIF metadata.
 - The one-command PowerShell launcher starts API/UI together; smoke mode verified both health
   endpoints and cleaned both processes without leaving listeners.
 - Market dashboard remains gated until aggregate trend metrics reconcile.
-- Exit remains open: interactive desktop/mobile and state-based visual QA plus valid demo media are
-  pending because local headless Edge/Chrome rendered crash pages; invalid screenshots were removed.
-### Phase 5 — Release and storytelling (public source complete; deployment/media gates open)
+- Exit remains open for human screen-reader/focus/contrast and WebKit/Safari review, loading/API-offline
+  media, and a 2-4 minute public-safe narrated walkthrough.
+### Phase 5 — Release and storytelling (public source/static media complete; deployment/human gates open)
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- Public `origin/main` has a parentless 99-file product history, green CI, a staged/commit publication
+- Public `origin/main` has a parentless 105-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
   SECURITY/PRIVACY policies, Dependabot, and official checkout/setup-python v7.
 - Historical research is local-only and absent from public history. The portable report passed package-
   contract validation but shared browser verification still reports desktop overflow; no unverified HTML
   is delivered.
-- API container evidence is complete locally. Responsive demo media, public application hosting,
-  monitoring, rollback, and independent human evidence remain open.
+- API container and reviewed responsive static-media evidence are complete. Human accessibility/narrated
+  media, public application hosting, monitoring, rollback, and independent ML evidence remain open.
 - Exit: all Portfolio-ready Definition below is satisfied.
 ### Phase 6 — Optional research expansion
 

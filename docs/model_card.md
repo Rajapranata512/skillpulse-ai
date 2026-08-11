@@ -96,8 +96,8 @@ the incumbent. Neither result satisfies the human relevance gate.
 - **ML-QG-3:** open, 0/50 independent human relevance judgments.
 - **Salary data gate:** blocked, 77/555 disclosed salary rows versus a 300-row minimum.
 - **Visual release QA:** functional smoke, widget-state automation, CI Chromium desktop/mobile
-  overflow checks, and three reviewed static screenshots passed; accessibility, cross-browser
-  review, and narrated media remain open.
+  overflow and keyboard checks, a Firefox keyboard-match smoke, and three reviewed static screenshots
+  passed; screen-reader/WebKit human review and narrated media remain open.
 
 ## Explainability
 
@@ -130,7 +130,7 @@ appropriately governed language and user segments.
 - Matching relevance has synthetic pseudo-labels only.
 - The semantic model may require a first-run model download and is not part of the default
   API/UI runtime.
-- No public load, security, accessibility, or cross-browser test has been completed.
+- No public load/security test, screen-reader audit, WebKit/Safari check, or human usability study has been completed.
 
 ## Reproducibility and evidence
 
@@ -151,5 +151,5 @@ changes.
 
 The system may be shown as a transparent local portfolio demo now, provided the caveats
 above remain visible. It must not be presented as independently validated or production
-ready until the blind annotation, human relevance, responsive visual QA, public deployment,
-and monitoring gates are completed.
+ready until blind annotation, human relevance, human accessibility/usability, narrated media, public
+deployment, and monitoring gates are completed.

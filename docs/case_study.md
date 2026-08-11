@@ -128,12 +128,13 @@ the build context.
 | ML engineering | Frozen contracts, incumbent/challenger comparison, optional semantic dependency |
 | API | Strict FastAPI v1 schemas and four documented endpoints |
 | Deployment | Healthy non-root local Docker smoke |
-| Product/UI | API-backed Streamlit journey, Chromium responsive QA, reviewed static media, and launcher |
+| Product/UI | API-backed Streamlit journey, Chromium responsive QA, Firefox keyboard smoke, reviewed static media, and launcher |
 | Governance | No CV persistence, protected attributes excluded, open human/data gates |
 
-Latest engineering verification: Ruff passed and 102 tests passed. API container and
+Latest engineering verification: Ruff passed and 103 tests passed. API container and
 Streamlit health checks passed locally; widget-state tests plus CI Chromium cover empty,
-match, validation-error, and mobile extraction states without horizontal overflow.
+match, validation-error, and mobile extraction states; Firefox repeats the desktop match using keyboard
+activation. All measured document widths equal their viewports.
 
 ## What did not work
 
@@ -161,12 +162,12 @@ limits, abuse controls, accessibility checks, monitoring, and a verified retenti
 - Primary extraction results are development-set evidence.
 - No independent annotation agreement yet.
 - No independent human matching relevance yet.
-- No public deployment, load test, independent usability study, accessibility audit, or cross-browser QA.
+- No public deployment, load test, independent usability study, screen-reader audit, or WebKit/Safari QA.
 - No market-trend or salary feature supported by current evidence.
 
 ## Next evidence milestones
 
-1. Complete keyboard/accessibility and cross-browser review, then record a public-safe narrated walkthrough.
+1. Complete human screen-reader/WebKit usability review, then record a public-safe narrated walkthrough.
 2. Have a different human complete the 100-row blind annotation and publish agreement.
 3. Freeze 50 independent human relevance judgments and rerun both matchers without tuning
    on the evaluation set.
