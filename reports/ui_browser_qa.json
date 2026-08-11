@@ -1,7 +1,7 @@
 {
-  "artifact_type": "SkillPulse three-engine responsive, resilience, keyboard, and static-media QA",
+  "artifact_type": "SkillPulse three-engine responsive, resilience, market-dashboard, keyboard, and static-media QA",
   "verified_date": "2026-08-11",
-  "status": "chromium_resilience_firefox_webkit_keyboard_passed_human_accessibility_video_open",
+  "status": "market_snapshot_three_engine_passed_human_accessibility_video_open",
   "responsive_measurements": [
     {
       "state": "desktop_empty",
@@ -32,7 +32,9 @@
     "crash_page_detected": false,
     "horizontal_overflow_detected": false,
     "desktop_loading": "passed: spinner and loading message are visible while only synthetic sample fields are shown",
-    "desktop_api_offline": "passed: safe connectivity message is readable without credentials, stack traces, or private input"
+    "desktop_api_offline": "passed: safe connectivity message is readable without credentials, stack traces, or private input",
+    "desktop_market": "passed: source/window context, four KPI cards, active controls, concentration caveat, and chart are readable",
+    "mobile_market": "passed: hero, tab navigation, source context, and stacked KPI cards are readable at 390px without overflow"
   },
   "published_media": [
     {
@@ -154,5 +156,22 @@
       ],
       "raw_user_cv_used": false
     }
+  },
+  "market_snapshot_automation": {
+    "run_id": 31480441499,
+    "run_url": "https://github.com/Rajapranata512/skillpulse-ai/actions/runs/31480441499",
+    "commit": "3e459cb0a89e7fdae646a112704f1393e094fac7",
+    "artifact_name": "skillpulse-browser-qa-3e459cb0a89e7fdae646a112704f1393e094fac7",
+    "test_job": "passed_107_tests",
+    "browser_qa_job": "passed",
+    "chromium_states": 7,
+    "artifact_captures": 8,
+    "market_charts_per_engine": 3,
+    "chromium_desktop_mobile_market": true,
+    "firefox_market": true,
+    "webkit_market": true,
+    "desktop_document_viewport": "1440/1440",
+    "mobile_document_viewport": "390/390",
+    "raw_user_cv_used": false
   }
 }

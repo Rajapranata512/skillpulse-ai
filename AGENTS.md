@@ -150,6 +150,7 @@ Jangan ulangi pekerjaan berikut selama trigger pada kolom terakhir tidak terjadi
 | FastAPI service | `src/skillpulse/api/`, `tests/test_api.py` | DONE-LOCAL | contract or endpoint requirement changes |
 | API container | `Dockerfile`, `.dockerignore`, `reports/api_container_smoke.json` | DONE-LOCAL | dependencies, service command, or deployment target changes |
 | Streamlit demo slice | `src/skillpulse/ui/`, `reports/ui_smoke.json`, `reports/ui_automated_qa.json`, `reports/ui_browser_qa.json` | DONE-THREE-ENGINE-RESILIENCE / STATIC-MEDIA / HUMAN-A11Y-VIDEO-GATE | contract, journey, browser, resilience, or media requirement changes |
+| Aggregate market snapshot | `src/skillpulse/market/`, `configs/market_snapshot.json`, `reports/market_snapshot_quality.json`, `docs/market_snapshot_metrics.md` | DONE-SNAPSHOT-v0.1 | processed source, taxonomy/extractor, metric contract, or snapshot window changes |
 | Annotation rules | `docs/annotation_guidelines.md` | DONE v0.2 | ambiguity berulang ditemukan |
 | Explainable matcher | `src/skillpulse/matching/` | DONE v0.1 | gold labels atau matching requirements berubah |
 | Match demo | `reports/cv_job_match_example.json` | DONE | matcher/demo scenario berubah |
@@ -183,16 +184,16 @@ Gunakan algoritme ini:
 
 Urutan default saat ini:
 
-1. If a different human is available, complete all 100 blind annotations, run agreement, and
+1. Complete human screen-reader/real-device usability review and a narrated public-safe walkthrough;
+   Chromium/Firefox/Playwright-WebKit dashboard and resilience automation are already complete.
+2. If a different human is available, complete all 100 blind annotations, run agreement, and
    adjudicate fields below 0.75; otherwise keep ML-QG-2 explicitly open.
-2. If an independent relevance rater is available, freeze all 50 scores/rationales and rerun
+3. If an independent relevance rater is available, freeze all 50 scores/rationales and rerun
    exact-taxonomy plus semantic evaluation without tuning; otherwise keep ML-QG-3 open.
-3. Complete M6a portfolio release documentation, architecture evidence, and reproducible demo
-   checklist using only verified reports.
-4. Complete human screen-reader/real-device usability review and a narrated public-safe walkthrough;
-   Chromium/Firefox/Playwright-WebKit plus loading/offline automation are already complete.
-5. Add a market dashboard only after metric definitions and aggregate trend data reconcile.
-6. Public release verification, monitoring, and maintenance; salary remains data-gated.
+4. Select a public deployment target only after the owner approves hosting, privacy, monitoring,
+   rollback, region, and cost decisions.
+5. Continue release verification and maintenance; time-series, global comparison, and salary remain gated.
+
 ## 6. Engineering rules
 
 ### Repository boundaries
@@ -286,42 +287,45 @@ berada di Git/reports.
 
 <!-- HANDOFF:START -->
 **Last handoff:** 2026-08-11
-**Completed:** Closed every automatable M5c browser-resilience item by extending the existing CI
-harness with a loopback-only delayed proxy, deterministic loading capture, safe API-offline capture,
-and Playwright WebKit keyboard-match smoke alongside Chromium and Firefox. The proxy allowlists only
-the four public API paths and never uses raw user data or external application networking. Pushed
-implementation commit `83bea8ddada5ac46ea6d9ebbf6e5c84552a33848` to `origin/main`.
-**Evidence:** Ruff passed and `pytest -q` reports 103 passed. CI run `31470951008` passed committed-
-snapshot guard, lint/tests, Chromium/Firefox/WebKit installation, five Chromium responsive states,
-Firefox and WebKit 1440px keyboard matches, loading and safe API-offline captures, and artifact upload.
-Every measured document width equals its viewport (1440px desktop, 390px mobile). Agent inspection
-confirmed the spinner and connectivity error are readable and contain only repository synthetic text;
-the six-capture artifact records exact hashes. Publication guard passed on the complete 105-file /
-1,234,717-byte implementation snapshot.
-**Limitations/blockers:** Playwright WebKit is compatibility evidence, not a real Safari/device or
-human usability review. Automated focus/keyboard checks do not replace a screen-reader and human
-focus/contrast audit. A narrated 2-4 minute walkthrough remains human-gated. ML-QG-2 remains 0/100
-and ML-QG-3 remains 0/50 because agents cannot create independent human evidence. Salary modelling
-remains blocked by 77/555 rows. Public deployment and hosting/privacy/monitoring/rollback decisions
-remain owner-gated. The portable HTML renderer remains blocked by shared desktop overflow.
+**Completed:** Delivered M5d/FR-05 v0.1 as a reproducible, aggregate-only 30-day market
+snapshot. The Streamlit market tab now shows four source-backed KPI cards, three ranked
+charts, top normalized titles, requirement-category controls, and four location plus four
+normalized-role slices. Groups below three observations and slices below ten exact-unique
+descriptions are suppressed. Pushed implementation commit
+`3e459cb0a89e7fdae646a112704f1393e094fac7` to `origin/main`.
+**Evidence:** `configs/market_snapshot.json` reconciles 555 listings and 542 unique
+descriptions; `reports/market_snapshot_quality.json` passes all ten reconciliation,
+denominator, suppression, privacy, and single-window checks. Ruff passed and `pytest -q`
+reports 107 passed. The one-command launcher smoke passed. Local and CI Playwright render
+all three dashboard charts on Chromium desktop/mobile plus Firefox and WebKit desktop,
+with 1440/1440 and 390/390 document/viewport widths. CI run `31480441499` passed test,
+committed-snapshot guard, three-engine browser capture, and artifact upload. Publication
+guard passed on the 112-file / 1,314,645-byte public snapshot.
+**Limitations/blockers:** The dashboard describes one source portal and one 30-day window;
+it is not a time-series, whole-market, global comparison, or salary model. Skill counts are
+rule-extracted explicit mentions, not human-validated market labels. Playwright WebKit is
+not a real Safari/device review, and automation does not replace human screen-reader,
+focus/contrast, or narrated walkthrough evidence. ML-QG-2 remains 0/100, ML-QG-3 remains
+0/50, salary remains 77/555, and public deployment remains owner-gated.
 
 **Recommended next actions:**
 
-1. **[NEXT][HUMAN-GATE][M5c] Complete screen-reader/real-device review and narrated walkthrough** — value:
-   closes the final recruiter-facing human-accessibility/presentation gap; dependency: a human reviewer
+1. **[NEXT][HUMAN-GATE][M5c] Complete screen-reader/real-device review and narrated walkthrough** - value:
+   closes the final recruiter-facing accessibility/presentation gap; dependency: a human reviewer
    with a screen reader and preferably real Safari/mobile access; complete when focus/contrast/screen-reader
    behavior and a 2-4 minute synthetic-data walkthrough are reviewed without private text.
-2. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** — dependency:
-   different human annotators use the frozen blind files/rubric; complete when 100 blind annotations and
-   50 relevance scores are frozen, then agreement and both matcher evaluations are rerun without tuning.
-3. **[LATER][HUMAN-GATE][M6f] Select and authorize a public deployment target** — dependency: owner decisions
+2. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** - dependency:
+   different humans use the frozen blind files/rubric; complete when 100 blind annotations and
+   50 relevance scores are frozen, then agreement and both matcher evaluations rerun without tuning.
+3. **[LATER][HUMAN-GATE][M6f] Select and authorize a public deployment target** - dependency: owner decisions
    for hosting region/cost, logging/retention, rate limits, monitoring, and rollback; complete when privacy
    controls, health/latency monitoring, deployment smoke, and rollback evidence pass without CV retention.
 
-**Auto-selected next task:** `M5c — human screen-reader/real-device review and narrated walkthrough (HUMAN-GATE)`
-**PRD sync:** synchronized with 103 passing tests, three-engine keyboard QA, deterministic loading/
-offline evidence, three pinned public screenshots, green CI, and remaining human/deployment/data gates.
+**Auto-selected next task:** `M5c - human screen-reader/real-device review and narrated walkthrough (HUMAN-GATE)`
+**PRD sync:** synchronized with the aggregate market snapshot, 107 passing tests, green three-engine
+dashboard CI, guarded 112-file public source, and unchanged human/deployment/salary gates.
 <!-- HANDOFF:END -->
+
 ## 10. Project State
 
 Last materially verified: **2026-08-11**
@@ -337,18 +341,21 @@ Last materially verified: **2026-08-11**
 | M3a | Explainable CV–job matcher baseline | DONE | CLI + report + unit tests |
 | M3b | Matching relevance dataset and semantic challenger | AI-EXPERIMENTAL / HUMAN-GATE | 50 pseudo-label diagnostics; semantic challenger evaluated and not promoted; ML-QG-3 remains 0/50 human |
 | M4 | FastAPI/domain service | DONE-LOCAL | contract v1; 4 endpoints; OpenAPI tests; healthy non-root container smoke |
-| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / HUMAN-A11Y-VIDEO-GATE | Chromium/Firefox/WebKit, loading/offline, keyboard, responsive, launcher, and pinned-media evidence pass; human accessibility/video and market metrics remain gated |
+| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / MARKET-SNAPSHOT-DONE / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / HUMAN-A11Y-VIDEO-GATE | aggregate 30-day dashboard, safe filters, Chromium/Firefox/WebKit, loading/offline, responsive, launcher, and pinned-media evidence pass; human accessibility/video remains gated |
 | M6 | Containerized public portfolio release | PUBLIC-SOURCE / STATIC-MEDIA / APP-DEPLOYMENT-HUMAN-GATES | clean public repo, guard, CI, docs, story, API container, and reviewed media complete; public app and human gates remain |
 | M7 | Salary prediction | BLOCKED-DATA | only 77/555 salary rows (13.9%); below PRD gate |
 
 Current verified engineering evidence:
 
 - `ruff check src tests`: passed.
-- `pytest -q`: 103 passed.
+- `pytest -q`: 107 passed.
 - Kaggle source: version 1, creator Rafli Rizkya Sakti Nugraha, CC-BY-4.0,
   observation window 2025-08-25 through 2025-09-24.
 - Local raw identity: 1,059,991 bytes and SHA-256
   `a857603f6d8a2b0344f4a4f00747e037ecc4ca3aa6b760800560ad4fe906887c`; exact fresh-download match.
+- Aggregate market snapshot: 555 listings, 542 exact-unique descriptions, 18 reported provinces,
+  four safe location slices, four safe normalized-role slices, and 77/555 salary coverage. All ten
+  snapshot QA checks pass; Jakarta Raya concentration is disclosed as 399/555 (71.9%).
 - Primary annotation quality: valid; 100 unique reviewed rows; notes and audit coverage 100/100.
 - ML-QG-1 baseline: technical/tools/education F1 1.0000, soft-skill F1 0.9969,
   experience/work-arrangement exact 1.0000, seniority exact 0.9900; share only with the
@@ -366,10 +373,11 @@ Current verified engineering evidence:
 - FastAPI endpoints `/health`, `/v1/models`, `/v1/extract`, and `/v1/match` pass contract tests.
 - Docker image `skillpulse-api:local` built from a 410,160-byte privacy-filtered context, became
   healthy, ran as UID 100, and passed health/extract/match smoke.
-- Streamlit/API local health returned HTTP 200; three AppTest journeys pass. CI Playwright verifies
-  five Chromium responsive/loading states, safe API-offline handling, Firefox and WebKit keyboard matches,
-  exact viewport widths, and six synthetic artifact captures; three reviewed screenshots remain SHA-pinned.
-  Invalid local crash captures remain excluded.
+- Streamlit/API local health returned HTTP 200; four AppTest scenarios pass, including location/role
+  market-filter changes without API POSTs. CI Playwright verifies seven Chromium states, three market
+  charts on desktop/mobile, safe loading/offline behavior, Firefox/WebKit chart renders and keyboard
+  matches, exact viewport widths, and eight synthetic artifact captures; three reviewed screenshots
+  remain SHA-pinned. Invalid local crash captures remain excluded.
 - One-command demo smoke started API/UI on ports 18080/18501, verified both health endpoints,
   stopped both processes, and left no listeners.
 - Portfolio evidence is reconciled in `docs/model_card.md`, `docs/architecture.md`,
@@ -377,14 +385,13 @@ Current verified engineering evidence:
 - Portable portfolio artifact passed package-contract checks but browser verification remains
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
-- Public `origin/main` has a clean parentless 105-file product history; root `c9e2854`, security
-  hardening `5a1f05d`, pinned media `9ff0030`, cross-browser QA `1ec4012`, and WebKit/resilience
-  QA `83bea8d` were pushed without force.
-- Publication guard scans staged and committed snapshots, is enforced by executable pre-push hook
-  and CI, and passed on the complete 1,234,717-byte three-engine resilience snapshot. Eight guard tests cover
-  allow/deny behavior plus exact-hash and PNG-metadata enforcement.
-- GitHub repository is PUBLIC with default `main`; media run `31464246600` and three-engine
-  resilience run `31470951008` succeeded. Dependabot is enabled; CI actions v7 are pinned.
+- Public `origin/main` has a clean parentless 112-file product history; market snapshot commit
+  `3e459cb` and earlier guarded release commits were pushed without force.
+- Publication guard scans staged and committed snapshots, is enforced by the executable pre-push hook
+  and CI, and passed on the complete 1,314,645-byte / 112-file dashboard snapshot. Eight guard tests
+  cover allow/deny behavior plus exact-hash and PNG-metadata enforcement.
+- GitHub repository is PUBLIC with default `main`; dashboard CI run `31480441499` passed both test
+  and browser-qa jobs. Dependabot is enabled; CI actions v7 are pinned.
 - Historical research remains local only on `research-history-local-20260810`/`research-origin`;
   public commands must never push that branch, `--all`, `--mirror`, or tags.
 - Weak-label report remains micro F1 0.8273 on 332/555 evaluable documents; weak labels are not gold.

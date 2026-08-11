@@ -107,8 +107,10 @@
     "api_offline_safe_error_capture": "passed_artifact_only",
     "human_screen_reader_real_device_narrated_video_gate": "open",
     "market_dashboard_charts": 3,
-    "market_dashboard_desktop_mobile_chromium": "passed_local",
-    "market_dashboard_firefox_webkit": "passed_local"
+    "market_dashboard_desktop_mobile_chromium": "passed_ci_31480441499",
+    "market_dashboard_firefox_webkit": "passed_ci_31480441499",
+    "latest_ci_run": 31480441499,
+    "latest_ci_commit": "3e459cb0a89e7fdae646a112704f1393e094fac7"
   },
   "sources": [
     "reports/data_quality.json",

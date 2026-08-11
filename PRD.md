@@ -15,33 +15,35 @@ Timpa isi di antara marker; jangan append session log.
 
 <!-- AUTO-SYNC:START -->
 **Last synchronized:** 2026-08-11
-**Current phase:** Phase 3 complete locally; Phase 4 Chromium/Firefox/Playwright-WebKit automation,
-responsive/loading/offline evidence, and pinned static media are complete, while human accessibility/
-real-device review and narrated media remain gated; Phase 5 public source/story/security evidence is
-complete and deployment remains owner-gated
+**Current phase:** Phase 3 complete locally; Phase 4 aggregate market snapshot and
+Chromium/Firefox/Playwright-WebKit automation are complete, while human accessibility,
+real-device review, and narrated media remain gated; Phase 5 public source/story/security
+evidence is complete and application deployment remains owner-gated.
 **Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
 with clean history, green CI, privacy/security publication controls, verified extraction/matching
-baselines, FastAPI, non-root container, Streamlit demo, three-engine resilience evidence, model card,
-architecture, and case study. It is not portfolio-ready because independent human annotation/relevance,
-human accessibility/usability media, and public application deployment remain open.
-**Completed this session:** extended the existing CI harness with a loopback path-allowlisted delayed
-proxy, deterministic loading and safe API-offline captures, and a Playwright WebKit keyboard match.
-The six CI captures use only repository synthetic examples; the three recruiter-facing PNGs remain
-the only SHA-pinned binary files in public Git. Pushed implementation commit
-`83bea8ddada5ac46ea6d9ebbf6e5c84552a33848`.
-**Verified baseline:** 103 tests and Ruff passed. CI run `31470951008` passed committed-snapshot guard,
-lint/tests, Chromium/Firefox/WebKit installation, five Chromium states, both secondary-engine matches,
-loading/offline assertions, and artifact upload. Publication guard scanned the complete 105-file /
-1,234,717-byte implementation snapshot. Row-level data, annotations, AI workbooks, academic artifacts,
-credentials, PII patterns, and local paths remain absent from the public tree.
-**Selected next task:** `M5c — human screen-reader/real-device review and narrated walkthrough (HUMAN-GATE)`.
+baselines, FastAPI, non-root container, Streamlit match/extraction experience, filterable 30-day
+market snapshot, model/data documentation, architecture, and case study. It is not portfolio-ready
+because independent human annotation/relevance, human accessibility/usability media, and public
+application deployment remain open.
+**Completed this session:** built a deterministic aggregate generator and public JSON, reconciled
+555 listings against 542 unique descriptions, added four location and four normalized-role slices,
+documented denominator/suppression/non-claim rules, and rendered three charts plus KPI/title details
+in Streamlit. The dashboard never loads row-level data. Pushed implementation commit
+`3e459cb0a89e7fdae646a112704f1393e094fac7`.
+**Verified baseline:** 107 tests and Ruff passed; launcher smoke passed. CI run `31480441499`
+passed committed-snapshot guard, tests, Chromium/Firefox/WebKit installation, seven Chromium states,
+desktop/mobile market captures, both secondary-engine chart/match smokes, and artifact upload.
+Publication guard scanned the complete 112-file / 1,314,645-byte public snapshot. Row-level data,
+annotations, workbooks, academic artifacts, credentials, PII patterns, and local paths remain absent.
+**Selected next task:** `M5c - human screen-reader/real-device review and narrated walkthrough (HUMAN-GATE)`.
 **Next completion check:** a human reviews focus/contrast/screen-reader and real Safari/mobile behavior
-and records a 2-4 minute walkthrough using only synthetic/redacted text; the automated three-engine
+and records a 2-4 minute walkthrough using only synthetic/redacted text; the automated dashboard and
 resilience QA must remain green.
-**Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. Public hosting/privacy/
-monitoring/rollback decisions remain owner-gated. The portable report JSON is valid, but shared
-renderer overflow still blocks verified HTML.
+**Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The snapshot is one source/
+one 30-day window, so trend, whole-market, and global claims remain blocked. Public hosting/privacy/
+monitoring/rollback decisions remain owner-gated; shared renderer overflow still blocks verified HTML.
 <!-- AUTO-SYNC:END -->
+
 ## 1. Executive summary
 
 SkillPulse AI membantu pencari kerja memahami kecocokan antara CV dan lowongan,
@@ -253,14 +255,20 @@ hidden factor, dan gagal dengan jelas bila job requirement tidak dapat diekstrak
 
 **Accept:** tidak ada invented course; setiap priority traceable ke requirement.
 
-### FR-05 — Market insight (P1)
+### FR-05 - Market insight (P1, snapshot v0.1 delivered)
 
-- Tampilkan top skills/tools berdasarkan role, location, dan observation period.
-- Setiap chart menampilkan denominator, sample size, source, dan filter aktif.
-- Perbandingan Indonesia/global hanya untuk data dengan definisi dan periode sebanding.
+- Show top canonical skills/tools for the overall snapshot and privacy-safe independent location or
+  normalized-role slices; filtered slices require at least ten exact-unique descriptions.
+- Every market view shows the active denominator, sample size, source, observation period, and filter.
+- Count each canonical requirement at most once per exact-unique description; keep listing composition
+  metrics on the 555-row posting grain.
+- Suppress title/skill groups below three observations and publish no row-level fields, companies,
+  descriptions, IDs, or salary values.
+- Indonesia/global and time-series comparisons remain blocked until definitions and periods are comparable.
 
-**Accept:** metric definitions konsisten, no double-counted jobs, dan dashboard numbers
-reconcile dengan processed dataset.
+**Accept:** delivered v0.1 numbers reconcile with the processed dataset and all snapshot QA checks pass;
+desktop/mobile Chromium plus Firefox/WebKit render all three charts. This accepts a bounded 30-day
+snapshot, not trend, whole-market, global, or human-validated demand claims.
 
 ### FR-06 — Salary estimate (P2, blocked)
 
@@ -504,25 +512,27 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 - The non-root API image excludes raw data, annotations, reports, notebooks, CSV, and XLSX files;
   local health/extract/match smoke passed.
 - Exit: complete for local product-service scope; public deployment verification belongs to Phase 5.
-### Phase 4 — Portfolio experience (three-engine resilience/static media complete; human gate open)
+### Phase 4 - Portfolio experience (market/three-engine automation complete; human gate open)
 
-- API-backed Streamlit demo includes explicit bilingual sample controls, match score, matched/missing
-  evidence, deterministic learning priorities, extraction, methodology, privacy, and gate disclosures.
-- Three loopback-only AppTest scenarios verify sample, empty, successful extraction/matching, privacy,
-  and user-safe domain-error states without external networking or raw text in the evidence artifact.
-- CI Playwright verifies five Chromium responsive/loading states, safe API-offline handling, Firefox
-  and WebKit keyboard matches, and exact document/viewport widths. Six synthetic captures stay in CI;
-  three reviewed screenshots are published only at SHA-pinned paths without text/EXIF metadata.
-- The one-command PowerShell launcher starts API/UI together; smoke mode verified both health
-  endpoints and cleaned both processes without leaving listeners.
-- Market dashboard remains gated until aggregate trend metrics reconcile.
-- Exit remains open for human screen-reader/focus/contrast and real Safari/device review plus a
+- API-backed Streamlit demo includes bilingual samples, explainable matching, extraction, methodology,
+  privacy/gate disclosures, and an aggregate-only market tab.
+- Four loopback-only AppTest scenarios verify sample, empty, extraction/matching, local market-filter,
+  privacy, and user-safe error behavior without external networking or raw text in evidence.
+- The market artifact reconciles 555 listings and 542 unique descriptions with four location and four
+  normalized-role slices. Three chart families expose active denominator/source/window/caveats; salary
+  remains coverage-only at 77/555 and time-series claims are disabled.
+- CI Playwright verifies seven Chromium responsive/loading states, safe API-offline handling, desktop/
+  mobile market views, Firefox/WebKit chart renders and keyboard matches, and exact viewport widths.
+  Eight synthetic captures stay in CI; three reviewed screenshots remain SHA-pinned without metadata.
+- The one-command PowerShell launcher starts API/UI, verifies both endpoints, and cleans both processes.
+- Exit remains open only for human screen-reader/focus/contrast, real Safari/device review, and a
   2-4 minute public-safe narrated walkthrough.
+
 ### Phase 5 — Release and storytelling (public source/static media complete; deployment/human gates open)
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- Public `origin/main` has a parentless 105-file product history, green CI, a staged/commit publication
+- Public `origin/main` has a parentless 112-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
   SECURITY/PRIVACY policies, Dependabot, and official checkout/setup-python v7.
 - Historical research is local-only and absent from public history. The portable report passed package-
@@ -530,7 +540,7 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
   is delivered.
 - API container and reviewed responsive static-media evidence are complete. Human accessibility/narrated
   media, public application hosting, monitoring, rollback, and independent ML evidence remain open.
-- Exit: all Portfolio-ready Definition below is satisfied.
+- Exit remains open until human accessibility/media, independent ML evidence, and public deployment gates are satisfied.
 ### Phase 6 — Optional research expansion
 
 - Larger/global dataset, trends, classification/clustering, salary only after gates.
@@ -562,6 +572,7 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 - Public source repository is `Rajapranata512/skillpulse-ai` on clean `main`; automatic pushes require
   staged/commit guard, passing tests, explicit product paths, no force, and no research-history refs.
 - Current salary data is insufficient for an active feature.
+- FR-05 v0.1 is a bounded aggregate snapshot: independent overall/location/role slices are active; time-series, whole-market, global, and salary claims remain gated.
 - Matching score is requirement coverage, not candidate worth.
 - UI/API follow extraction evaluation and domain-contract stabilization.
 - `RM.ipynb` remains preserved as research history.
