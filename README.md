@@ -20,7 +20,7 @@ explainable CV-to-job matching product.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human
-relevance (0/50), screen-reader/WebKit usability review, a narrated walkthrough, public
+relevance (0/50), human screen-reader/real-device usability review, a narrated walkthrough, public
 deployment, and salary modelling remain open. Start with the [case study](docs/case_study.md),
 [architecture](docs/architecture.md), and [model card](docs/model_card.md).
 
@@ -31,9 +31,9 @@ deployment, and salary modelling remain open. Start with the [case study](docs/c
   <img src="docs/assets/skillpulse-mobile-extraction.png" alt="SkillPulse mobile extraction result" width="27%">
 </p>
 
-These captures use only repository synthetic examples. Chromium CI verified desktop/mobile
-widths and Firefox verified a keyboard-triggered desktop match without horizontal overflow; exact
-hashes and limitations are in
+These captures use only repository synthetic examples. Chromium verifies desktop/mobile, loading,
+validation, and API-offline states; Firefox and Playwright WebKit repeat the keyboard-triggered desktop
+match without horizontal overflow. Exact hashes and limitations are in
 [`reports/ui_browser_qa.json`](reports/ui_browser_qa.json).
 
 ## Current dataset
@@ -260,7 +260,7 @@ run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
 - `docs/architecture.md` maps the runtime, evaluation, and trust boundaries.
 - `reports/portfolio_release_metrics.json` is the reconciled release-evidence snapshot.
 - `reports/ui_automated_qa.json` records privacy-safe Streamlit widget-journey coverage.
-- `reports/ui_browser_qa.json` records Chromium/Firefox dimensions, keyboard activation, hashes, inspection, and limitations.
+- `reports/ui_browser_qa.json` records Chromium/Firefox/WebKit dimensions, loading/offline resilience, hashes, inspection, and limitations.
 - `reports/portfolio_report_artifact.json` is the source-backed canonical report artifact.
 
 The shared portable-report renderer still overflows horizontally during browser
@@ -291,8 +291,8 @@ Current local verification: 103 tests passed and Ruff is clean.
 2. AI challenger remediation and synthetic semantic comparison — complete as diagnostic evidence;
    independent human gates remain open.
 3. Explainable matcher, contract v1, FastAPI, and non-root Docker smoke — complete locally.
-4. Streamlit portfolio journey — Chromium desktop/mobile QA, Firefox keyboard smoke, and reviewed static
-   media complete; screen-reader/WebKit usability review and narrated walkthrough pending.
+4. Streamlit portfolio journey — Chromium responsive/loading/offline QA, Firefox and Playwright WebKit
+   keyboard smoke, and reviewed static media complete; human accessibility/real-device review and narration pending.
 5. Model card, architecture/release story, public deployment verification, and monitoring — next.
 6. Market analytics and salary modelling — data/metric gated, not an active claim.
 

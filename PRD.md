@@ -15,28 +15,29 @@ Timpa isi di antara marker; jangan append session log.
 
 <!-- AUTO-SYNC:START -->
 **Last synchronized:** 2026-08-11
-**Current phase:** Phase 3 complete locally; Phase 4 Chromium/Firefox automated browser QA and
-pinned static media are complete, while human accessibility/WebKit review and narrated media remain
-gated; Phase 5 public source/story/security evidence is complete and deployment remains owner-gated
+**Current phase:** Phase 3 complete locally; Phase 4 Chromium/Firefox/Playwright-WebKit automation,
+responsive/loading/offline evidence, and pinned static media are complete, while human accessibility/
+real-device review and narrated media remain gated; Phase 5 public source/story/security evidence is
+complete and deployment remains owner-gated
 **Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
 with clean history, green CI, privacy/security publication controls, verified extraction/matching
-baselines, contract v1, FastAPI, non-root container, Streamlit demo, cross-browser evidence, model
-card, architecture, and case study. It is not portfolio-ready because independent human annotation/
-relevance, human accessibility/usability media, and public application deployment remain open.
-**Completed this session:** added CI-hosted Chromium desktop/mobile capture, Firefox desktop match
-smoke, keyboard activation assertions, four responsive overflow measurements, and three reviewed
-public-safe screenshots. Pinned the only allowed PNG paths and hashes in the publication guard.
-Pushed media commit `9ff0030a8fd7d0717a3d52e61a14552ce2220298` and cross-browser commit
-`1ec4012926d0e481365dd63bc3125f23083901cc`.
-**Verified baseline:** 103 tests and Ruff passed. CI run `31464896296` passed committed-snapshot
-guard, lint/tests, Chromium/Firefox install, keyboard journeys, responsive assertions, and artifact
-upload; media CI `31464246600` also passed. Publication guard scanned the complete 105-file /
-1,226,952-byte cross-browser snapshot. Row-level data, annotations, AI workbooks, academic artifacts,
+baselines, FastAPI, non-root container, Streamlit demo, three-engine resilience evidence, model card,
+architecture, and case study. It is not portfolio-ready because independent human annotation/relevance,
+human accessibility/usability media, and public application deployment remain open.
+**Completed this session:** extended the existing CI harness with a loopback path-allowlisted delayed
+proxy, deterministic loading and safe API-offline captures, and a Playwright WebKit keyboard match.
+The six CI captures use only repository synthetic examples; the three recruiter-facing PNGs remain
+the only SHA-pinned binary files in public Git. Pushed implementation commit
+`83bea8ddada5ac46ea6d9ebbf6e5c84552a33848`.
+**Verified baseline:** 103 tests and Ruff passed. CI run `31470951008` passed committed-snapshot guard,
+lint/tests, Chromium/Firefox/WebKit installation, five Chromium states, both secondary-engine matches,
+loading/offline assertions, and artifact upload. Publication guard scanned the complete 105-file /
+1,234,717-byte implementation snapshot. Row-level data, annotations, AI workbooks, academic artifacts,
 credentials, PII patterns, and local paths remain absent from the public tree.
-**Selected next task:** `M5c — human screen-reader/WebKit usability review and narrated walkthrough (HUMAN-GATE)`.
-**Next completion check:** a human reviews focus/contrast/screen-reader and WebKit/Safari behavior,
-captures loading and API-offline states, and records a 2-4 minute walkthrough using only synthetic/
-redacted text; automated Chromium/Firefox QA must remain green.
+**Selected next task:** `M5c — human screen-reader/real-device review and narrated walkthrough (HUMAN-GATE)`.
+**Next completion check:** a human reviews focus/contrast/screen-reader and real Safari/mobile behavior
+and records a 2-4 minute walkthrough using only synthetic/redacted text; the automated three-engine
+resilience QA must remain green.
 **Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. Public hosting/privacy/
 monitoring/rollback decisions remain owner-gated. The portable report JSON is valid, but shared
 renderer overflow still blocks verified HTML.
@@ -503,20 +504,20 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 - The non-root API image excludes raw data, annotations, reports, notebooks, CSV, and XLSX files;
   local health/extract/match smoke passed.
 - Exit: complete for local product-service scope; public deployment verification belongs to Phase 5.
-### Phase 4 — Portfolio experience (cross-browser automation/static media complete; human gate open)
+### Phase 4 — Portfolio experience (three-engine resilience/static media complete; human gate open)
 
 - API-backed Streamlit demo includes explicit bilingual sample controls, match score, matched/missing
   evidence, deterministic learning priorities, extraction, methodology, privacy, and gate disclosures.
 - Three loopback-only AppTest scenarios verify sample, empty, successful extraction/matching, privacy,
   and user-safe domain-error states without external networking or raw text in the evidence artifact.
-- CI Playwright verifies four Chromium desktop/mobile states, keyboard activation, a Firefox desktop
-  keyboard-match smoke, and exact document/viewport widths. Three reviewed synthetic screenshots are
-  published only at SHA-pinned paths without text/EXIF metadata.
+- CI Playwright verifies five Chromium responsive/loading states, safe API-offline handling, Firefox
+  and WebKit keyboard matches, and exact document/viewport widths. Six synthetic captures stay in CI;
+  three reviewed screenshots are published only at SHA-pinned paths without text/EXIF metadata.
 - The one-command PowerShell launcher starts API/UI together; smoke mode verified both health
   endpoints and cleaned both processes without leaving listeners.
 - Market dashboard remains gated until aggregate trend metrics reconcile.
-- Exit remains open for human screen-reader/focus/contrast and WebKit/Safari review, loading/API-offline
-  media, and a 2-4 minute public-safe narrated walkthrough.
+- Exit remains open for human screen-reader/focus/contrast and real Safari/device review plus a
+  2-4 minute public-safe narrated walkthrough.
 ### Phase 5 — Release and storytelling (public source/static media complete; deployment/human gates open)
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release

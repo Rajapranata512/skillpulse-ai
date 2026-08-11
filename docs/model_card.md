@@ -95,9 +95,9 @@ the incumbent. Neither result satisfies the human relevance gate.
 - **ML-QG-2:** open, 0/100 independent blind second annotations.
 - **ML-QG-3:** open, 0/50 independent human relevance judgments.
 - **Salary data gate:** blocked, 77/555 disclosed salary rows versus a 300-row minimum.
-- **Visual release QA:** functional smoke, widget-state automation, CI Chromium desktop/mobile
-  overflow and keyboard checks, a Firefox keyboard-match smoke, and three reviewed static screenshots
-  passed; screen-reader/WebKit human review and narrated media remain open.
+- **Visual release QA:** functional/widget automation plus CI Chromium responsive, loading, validation,
+  extraction, and API-offline checks passed; Firefox and Playwright WebKit keyboard-match smokes and
+  three reviewed static screenshots passed. Human screen-reader/real-device review and narration remain open.
 
 ## Explainability
 
@@ -130,7 +130,7 @@ appropriately governed language and user segments.
 - Matching relevance has synthetic pseudo-labels only.
 - The semantic model may require a first-run model download and is not part of the default
   API/UI runtime.
-- No public load/security test, screen-reader audit, WebKit/Safari check, or human usability study has been completed.
+- No public load/security test, screen-reader audit, real Safari/device check, or human usability study has been completed.
 
 ## Reproducibility and evidence
 

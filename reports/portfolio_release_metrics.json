@@ -90,17 +90,21 @@
     "streamlit_automated_scenarios": 3,
     "streamlit_automated_state_qa": "passed",
     "raw_cv_persistence": false,
-    "visual_browser_qa": "chromium_desktop_mobile_and_firefox_keyboard_match_passed",
-    "browser_qa_states": 4,
+    "visual_browser_qa": "chromium_resilience_firefox_webkit_keyboard_passed",
+    "browser_qa_states": 8,
     "published_static_media": 3,
     "browser_engines": [
       "Chromium",
-      "Firefox"
+      "Firefox",
+      "Playwright WebKit"
     ],
-    "chromium_responsive_states": 4,
+    "chromium_responsive_states": 5,
     "firefox_keyboard_match_smoke": "passed",
     "keyboard_activation_verified": true,
-    "screen_reader_webkit_loading_video_gate": "open"
+    "webkit_keyboard_match_smoke": "passed",
+    "match_loading_capture": "passed_artifact_only",
+    "api_offline_safe_error_capture": "passed_artifact_only",
+    "human_screen_reader_real_device_narrated_video_gate": "open"
   },
   "sources": [
     "reports/data_quality.json",

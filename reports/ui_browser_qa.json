@@ -1,7 +1,7 @@
 {
-  "artifact_type": "SkillPulse cross-browser responsive, keyboard, and static-media QA",
+  "artifact_type": "SkillPulse three-engine responsive, resilience, keyboard, and static-media QA",
   "verified_date": "2026-08-11",
-  "status": "chromium_responsive_firefox_keyboard_passed_human_accessibility_video_open",
+  "status": "chromium_resilience_firefox_webkit_keyboard_passed_human_accessibility_video_open",
   "responsive_measurements": [
     {
       "state": "desktop_empty",
@@ -30,7 +30,9 @@
     "desktop_validation_error": "passed: validation message is visible and does not echo submitted text",
     "mobile_extraction": "passed: navigation, example control, stacked input, CTA, and extracted skills are readable",
     "crash_page_detected": false,
-    "horizontal_overflow_detected": false
+    "horizontal_overflow_detected": false,
+    "desktop_loading": "passed: spinner and loading message are visible while only synthetic sample fields are shown",
+    "desktop_api_offline": "passed: safe connectivity message is readable without credentials, stack traces, or private input"
   },
   "published_media": [
     {
@@ -62,9 +64,9 @@
   },
   "limitations": [
     "Agent visual inspection is not independent human usability research.",
-    "Automated Chromium/Firefox keyboard evidence does not replace screen-reader, WebKit/Safari, or human focus/contrast review.",
-    "Transient loading/API-offline states and a narrated 2-4 minute walkthrough are not captured in published media.",
-    "CI browser evidence is not public application deployment evidence."
+    "Automated Chromium/Firefox/Playwright-WebKit evidence does not replace screen-reader, real Safari/device, or human focus/contrast review.",
+    "Loading and API-offline captures are retained in the short-lived CI artifact, not the three SHA-pinned public screenshots.",
+    "A narrated 2-4 minute walkthrough and public application deployment remain unverified."
   ],
   "visual_review_github_actions": {
     "run_id": 31462470916,
@@ -75,13 +77,14 @@
     "browser_qa_job": "passed"
   },
   "cross_browser_automation": {
-    "run_id": 31464896296,
-    "run_url": "https://github.com/Rajapranata512/skillpulse-ai/actions/runs/31464896296",
-    "commit": "1ec4012926d0e481365dd63bc3125f23083901cc",
-    "artifact_name": "skillpulse-browser-qa-1ec4012926d0e481365dd63bc3125f23083901cc",
+    "run_id": 31470951008,
+    "run_url": "https://github.com/Rajapranata512/skillpulse-ai/actions/runs/31470951008",
+    "commit": "83bea8ddada5ac46ea6d9ebbf6e5c84552a33848",
+    "artifact_name": "skillpulse-browser-qa-83bea8ddada5ac46ea6d9ebbf6e5c84552a33848",
     "engines": [
       "Playwright Chromium",
-      "Playwright Firefox"
+      "Playwright Firefox",
+      "Playwright WebKit"
     ],
     "test_job": "passed_103_tests",
     "browser_qa_job": "passed",
@@ -89,6 +92,11 @@
     "chromium_measurements": [
       {
         "state": "desktop_empty",
+        "viewport_width": 1440,
+        "document_width": 1440
+      },
+      {
+        "state": "desktop_loading",
         "viewport_width": 1440,
         "document_width": 1440
       },
@@ -112,6 +120,39 @@
       "state": "desktop_match_keyboard",
       "viewport_width": 1440,
       "document_width": 1440
+    },
+    "webkit_measurement": {
+      "state": "desktop_match_keyboard",
+      "viewport_width": 1440,
+      "document_width": 1440
+    },
+    "api_offline_measurement": {
+      "state": "desktop_api_offline",
+      "viewport_width": 1440,
+      "document_width": 1440,
+      "safe_error_visible": true
+    },
+    "artifact_only_captures": [
+      {
+        "file": "desktop-loading.png",
+        "bytes": 320461,
+        "sha256": "d990ff5e2211de4776be932c8441ed6e4ddfd786a17f08be8a38ac47e8fac376"
+      },
+      {
+        "file": "desktop-api-offline.png",
+        "bytes": 323272,
+        "sha256": "425d47ae3d4c88ccaa5fff02d222b63ca3f4757f774100d289b6da34b8982f55"
+      }
+    ],
+    "privacy": {
+      "loopback_only": true,
+      "proxy_path_allowlist": [
+        "/health",
+        "/v1/models",
+        "/v1/extract",
+        "/v1/match"
+      ],
+      "raw_user_cv_used": false
     }
   }
 }

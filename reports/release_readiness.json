@@ -9,9 +9,9 @@
     "streamlit_automated_scenarios": 3,
     "ui_implementation_commit": "c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d",
     "ui_implementation_ci_run": 31409943647,
-    "browser_qa_commit": "1ec4012926d0e481365dd63bc3125f23083901cc",
-    "browser_qa_ci_run": 31464896296,
-    "browser_qa_states": 4,
+    "browser_qa_commit": "83bea8ddada5ac46ea6d9ebbf6e5c84552a33848",
+    "browser_qa_ci_run": 31470951008,
+    "browser_qa_states": 8,
     "published_static_media": 3,
     "demo_smoke_ports": [
       18080,
@@ -25,11 +25,14 @@
     "actions_setup_python": "v7",
     "browser_engines": [
       "Chromium",
-      "Firefox"
+      "Firefox",
+      "Playwright WebKit"
     ],
     "keyboard_activation_verified": true,
     "media_publication_commit": "9ff0030a8fd7d0717a3d52e61a14552ce2220298",
-    "media_publication_ci_run": 31464246600
+    "media_publication_ci_run": 31464246600,
+    "match_loading_capture": true,
+    "api_offline_safe_error_capture": true
   },
   "documentation": {
     "model_card": "docs/model_card.md",
@@ -61,8 +64,8 @@
     "push_performed": true,
     "pull_request_opened_by_agent": false,
     "setup_python_v7_commit": "d705238",
-    "latest_product_commit": "1ec4012926d0e481365dd63bc3125f23083901cc",
-    "latest_green_ci_run": 31464896296
+    "latest_product_commit": "83bea8ddada5ac46ea6d9ebbf6e5c84552a33848",
+    "latest_green_ci_run": 31470951008
   },
   "sensitive_working_data_ignore_checks": {
     "raw_source_csv": "ignored",
@@ -76,8 +79,8 @@
     {
       "id": "M5-accessibility-media",
       "status": "human_gate",
-      "current": "Chromium desktop/mobile QA, Firefox keyboard match, and three reviewed static screenshots passed",
-      "required": "human screen-reader/focus/contrast review, WebKit/Safari where available, loading/offline capture, and narrated walkthrough"
+      "current": "Chromium responsive/loading/offline QA, Firefox/WebKit keyboard matches, and three reviewed static screenshots passed",
+      "required": "human screen-reader/focus/contrast and real Safari/device review plus narrated walkthrough"
     },
     {
       "id": "ML-QG-2",
@@ -106,7 +109,7 @@
   ],
   "limitations": [
     "The audit verifies deny rules, selected public scope, and common secret/PII patterns but is not a substitute for a full legal or penetration review.",
-    "The public repository has Chromium/Firefox automation and reviewed static media, but no public deployment, screen-reader/WebKit human review, independent annotation agreement, or human relevance evaluation is complete."
+    "The public repository has three-engine automation and reviewed static media, but no public deployment, screen-reader/real-device human review, independent annotation agreement, or human relevance evaluation is complete."
   ],
   "dependency_security": {
     "dependabot_enabled": true,

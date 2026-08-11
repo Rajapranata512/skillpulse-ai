@@ -149,7 +149,7 @@ Jangan ulangi pekerjaan berikut selama trigger pada kolom terakhir tidak terjadi
 | Domain contract v1 | `src/skillpulse/domain/`, `docs/api_contract_v1.json` | FROZEN v1 | breaking API requirement is approved |
 | FastAPI service | `src/skillpulse/api/`, `tests/test_api.py` | DONE-LOCAL | contract or endpoint requirement changes |
 | API container | `Dockerfile`, `.dockerignore`, `reports/api_container_smoke.json` | DONE-LOCAL | dependencies, service command, or deployment target changes |
-| Streamlit demo slice | `src/skillpulse/ui/`, `reports/ui_smoke.json`, `reports/ui_automated_qa.json`, `reports/ui_browser_qa.json` | DONE-CROSS-BROWSER-AUTOMATED / STATIC-MEDIA / HUMAN-A11Y-VIDEO-GATE | contract, journey, browser, or media requirement changes |
+| Streamlit demo slice | `src/skillpulse/ui/`, `reports/ui_smoke.json`, `reports/ui_automated_qa.json`, `reports/ui_browser_qa.json` | DONE-THREE-ENGINE-RESILIENCE / STATIC-MEDIA / HUMAN-A11Y-VIDEO-GATE | contract, journey, browser, resilience, or media requirement changes |
 | Annotation rules | `docs/annotation_guidelines.md` | DONE v0.2 | ambiguity berulang ditemukan |
 | Explainable matcher | `src/skillpulse/matching/` | DONE v0.1 | gold labels atau matching requirements berubah |
 | Match demo | `reports/cv_job_match_example.json` | DONE | matcher/demo scenario berubah |
@@ -189,8 +189,8 @@ Urutan default saat ini:
    exact-taxonomy plus semantic evaluation without tuning; otherwise keep ML-QG-3 open.
 3. Complete M6a portfolio release documentation, architecture evidence, and reproducible demo
    checklist using only verified reports.
-4. Complete human screen-reader/WebKit usability review and a narrated public-safe walkthrough;
-   Chromium/Firefox automation and pinned static media are already complete.
+4. Complete human screen-reader/real-device usability review and a narrated public-safe walkthrough;
+   Chromium/Firefox/Playwright-WebKit plus loading/offline automation are already complete.
 5. Add a market dashboard only after metric definitions and aggregate trend data reconcile.
 6. Public release verification, monitoring, and maintenance; salary remains data-gated.
 ## 6. Engineering rules
@@ -286,29 +286,31 @@ berada di Git/reports.
 
 <!-- HANDOFF:START -->
 **Last handoff:** 2026-08-11
-**Completed:** Closed the automatable M5 browser gap with CI-hosted Chromium desktop/mobile QA,
-three reviewed and SHA-pinned public screenshots, keyboard-triggered match validation, and an
-independent Firefox desktop match smoke. Hardened the publication guard so only the three reviewed
-PNG paths and exact hashes are publishable. Pushed media commit `9ff0030a8fd7d0717a3d52e61a14552ce2220298`
-and cross-browser commit `1ec4012926d0e481365dd63bc3125f23083901cc` to `origin/main`.
-**Evidence:** Ruff passed and `pytest -q` reports 103 passed. CI run `31464896296` passed its test
-and browser jobs, including Chromium 1440/390px states, Firefox 1440px match, keyboard activation,
-zero measured horizontal overflow, loopback-only synthetic inputs, and artifact upload. Media CI
-run `31464246600` passed. Publication guard passed on the complete 105-file / 1,226,952-byte
-cross-browser commit; published PNGs contain no text/EXIF metadata and require pinned SHA-256 values.
-**Limitations/blockers:** Automated keyboard checks and agent screenshot inspection are not a human
-screen-reader, focus/contrast, or usability audit; WebKit/Safari, loading/API-offline media, and a
-narrated 2-4 minute walkthrough remain open. ML-QG-2 remains 0/100 and ML-QG-3 remains 0/50 because
-agents cannot create independent human evidence. Salary modelling remains blocked by 77/555 salary
-rows. Public application deployment and its hosting/privacy/monitoring/rollback decisions remain
-owner-gated. The portable HTML renderer remains blocked by shared desktop overflow.
+**Completed:** Closed every automatable M5c browser-resilience item by extending the existing CI
+harness with a loopback-only delayed proxy, deterministic loading capture, safe API-offline capture,
+and Playwright WebKit keyboard-match smoke alongside Chromium and Firefox. The proxy allowlists only
+the four public API paths and never uses raw user data or external application networking. Pushed
+implementation commit `83bea8ddada5ac46ea6d9ebbf6e5c84552a33848` to `origin/main`.
+**Evidence:** Ruff passed and `pytest -q` reports 103 passed. CI run `31470951008` passed committed-
+snapshot guard, lint/tests, Chromium/Firefox/WebKit installation, five Chromium responsive states,
+Firefox and WebKit 1440px keyboard matches, loading and safe API-offline captures, and artifact upload.
+Every measured document width equals its viewport (1440px desktop, 390px mobile). Agent inspection
+confirmed the spinner and connectivity error are readable and contain only repository synthetic text;
+the six-capture artifact records exact hashes. Publication guard passed on the complete 105-file /
+1,234,717-byte implementation snapshot.
+**Limitations/blockers:** Playwright WebKit is compatibility evidence, not a real Safari/device or
+human usability review. Automated focus/keyboard checks do not replace a screen-reader and human
+focus/contrast audit. A narrated 2-4 minute walkthrough remains human-gated. ML-QG-2 remains 0/100
+and ML-QG-3 remains 0/50 because agents cannot create independent human evidence. Salary modelling
+remains blocked by 77/555 rows. Public deployment and hosting/privacy/monitoring/rollback decisions
+remain owner-gated. The portable HTML renderer remains blocked by shared desktop overflow.
 
 **Recommended next actions:**
 
-1. **[NEXT][HUMAN-GATE][M5c] Complete screen-reader/WebKit usability review and narrated walkthrough** — value:
-   closes the remaining recruiter-facing presentation and human-accessibility gap; dependency: a human reviewer
-   with screen-reader/Safari-or-WebKit access; complete when focus/contrast/screen-reader behavior, loading and
-   offline states, and a 2-4 minute synthetic-data walkthrough are reviewed without private text.
+1. **[NEXT][HUMAN-GATE][M5c] Complete screen-reader/real-device review and narrated walkthrough** — value:
+   closes the final recruiter-facing human-accessibility/presentation gap; dependency: a human reviewer
+   with a screen reader and preferably real Safari/mobile access; complete when focus/contrast/screen-reader
+   behavior and a 2-4 minute synthetic-data walkthrough are reviewed without private text.
 2. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** — dependency:
    different human annotators use the frozen blind files/rubric; complete when 100 blind annotations and
    50 relevance scores are frozen, then agreement and both matcher evaluations are rerun without tuning.
@@ -316,9 +318,9 @@ owner-gated. The portable HTML renderer remains blocked by shared desktop overfl
    for hosting region/cost, logging/retention, rate limits, monitoring, and rollback; complete when privacy
    controls, health/latency monitoring, deployment smoke, and rollback evidence pass without CV retention.
 
-**Auto-selected next task:** `M5c — human screen-reader/WebKit usability review and narrated walkthrough (HUMAN-GATE)`
-**PRD sync:** synchronized with 103 passing tests, Chromium/Firefox keyboard QA, three pinned static
-media files, guarded 105-file public snapshot, green CI, and remaining human/deployment/data gates.
+**Auto-selected next task:** `M5c — human screen-reader/real-device review and narrated walkthrough (HUMAN-GATE)`
+**PRD sync:** synchronized with 103 passing tests, three-engine keyboard QA, deterministic loading/
+offline evidence, three pinned public screenshots, green CI, and remaining human/deployment/data gates.
 <!-- HANDOFF:END -->
 ## 10. Project State
 
@@ -335,7 +337,7 @@ Last materially verified: **2026-08-11**
 | M3a | Explainable CV–job matcher baseline | DONE | CLI + report + unit tests |
 | M3b | Matching relevance dataset and semantic challenger | AI-EXPERIMENTAL / HUMAN-GATE | 50 pseudo-label diagnostics; semantic challenger evaluated and not promoted; ML-QG-3 remains 0/50 human |
 | M4 | FastAPI/domain service | DONE-LOCAL | contract v1; 4 endpoints; OpenAPI tests; healthy non-root container smoke |
-| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / CROSS-BROWSER-AUTOMATED / STATIC-MEDIA-DONE / HUMAN-A11Y-VIDEO-GATE | Chromium/Firefox, keyboard, responsive, state, launcher, and pinned-media evidence pass; human accessibility/video and market metrics remain gated |
+| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / HUMAN-A11Y-VIDEO-GATE | Chromium/Firefox/WebKit, loading/offline, keyboard, responsive, launcher, and pinned-media evidence pass; human accessibility/video and market metrics remain gated |
 | M6 | Containerized public portfolio release | PUBLIC-SOURCE / STATIC-MEDIA / APP-DEPLOYMENT-HUMAN-GATES | clean public repo, guard, CI, docs, story, API container, and reviewed media complete; public app and human gates remain |
 | M7 | Salary prediction | BLOCKED-DATA | only 77/555 salary rows (13.9%); below PRD gate |
 
@@ -364,10 +366,10 @@ Current verified engineering evidence:
 - FastAPI endpoints `/health`, `/v1/models`, `/v1/extract`, and `/v1/match` pass contract tests.
 - Docker image `skillpulse-api:local` built from a 410,160-byte privacy-filtered context, became
   healthy, ran as UID 100, and passed health/extract/match smoke.
-- Streamlit/API local health returned HTTP 200; explicit sample/loading/empty/error/success states pass
-  three AppTest journeys using loopback-only fixtures. CI Playwright verifies four Chromium responsive
-  states, a Firefox keyboard-triggered match, exact viewport widths, and three reviewed pinned screenshots;
-  invalid local crash captures remain excluded.
+- Streamlit/API local health returned HTTP 200; three AppTest journeys pass. CI Playwright verifies
+  five Chromium responsive/loading states, safe API-offline handling, Firefox and WebKit keyboard matches,
+  exact viewport widths, and six synthetic artifact captures; three reviewed screenshots remain SHA-pinned.
+  Invalid local crash captures remain excluded.
 - One-command demo smoke started API/UI on ports 18080/18501, verified both health endpoints,
   stopped both processes, and left no listeners.
 - Portfolio evidence is reconciled in `docs/model_card.md`, `docs/architecture.md`,
@@ -376,21 +378,21 @@ Current verified engineering evidence:
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
 - Public `origin/main` has a clean parentless 105-file product history; root `c9e2854`, security
-  hardening `5a1f05d`, UI QA `c3ed33d`, pinned media `9ff0030`, and cross-browser QA `1ec4012` were
-  pushed without force.
+  hardening `5a1f05d`, pinned media `9ff0030`, cross-browser QA `1ec4012`, and WebKit/resilience
+  QA `83bea8d` were pushed without force.
 - Publication guard scans staged and committed snapshots, is enforced by executable pre-push hook
-  and CI, and passed on the complete 1,226,952-byte cross-browser snapshot. Eight guard tests cover
+  and CI, and passed on the complete 1,234,717-byte three-engine resilience snapshot. Eight guard tests cover
   allow/deny behavior plus exact-hash and PNG-metadata enforcement.
-- GitHub repository is PUBLIC with default `main`; media run `31464246600` and cross-browser run
-  `31464896296` succeeded. Dependabot is enabled; checkout/setup-python/upload-artifact v7 are pinned.
+- GitHub repository is PUBLIC with default `main`; media run `31464246600` and three-engine
+  resilience run `31470951008` succeeded. Dependabot is enabled; CI actions v7 are pinned.
 - Historical research remains local only on `research-history-local-20260810`/`research-origin`;
   public commands must never push that branch, `--all`, `--mirror`, or tags.
 - Weak-label report remains micro F1 0.8273 on 332/555 evaluable documents; weak labels are not gold.
 - Raw CSV, human annotation CSVs, and repaired AI CSV/XLSX are Git-ignored. Guarded commits/pushes
   target only public `origin/main`; no application deployment was performed.
 
-Active next task: **M5c HUMAN-GATE — complete screen-reader/WebKit usability review, capture
-loading/API-offline states, and record a 2-4 minute public-safe narrated walkthrough.**
+Active next task: **M5c HUMAN-GATE — complete screen-reader/real-device usability review and
+record a 2-4 minute public-safe narrated walkthrough.**
 Known workspace condition: local `RM.ipynb` remains user-owned and is ignored by the clean public
 repository; do not overwrite, revert, stage, normalize, or publish it. Historical research refs are
 local-only and must never be pushed to `origin`.

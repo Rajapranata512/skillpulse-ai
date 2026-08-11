@@ -10,8 +10,8 @@
   and removes both processes in smoke mode.
 - Three privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,
   extraction/matching success, and domain-error presentation without external networking.
-- CI Playwright verifies four Chromium 1440px/390px states plus a Firefox desktop keyboard-match
-  smoke without horizontal overflow; three synthetic screenshots were reviewed and published with pinned hashes.
+- CI Playwright verifies five Chromium responsive/loading states, safe API-offline handling, and
+  Firefox plus WebKit keyboard matches without horizontal overflow; three reviewed screenshots remain SHA-pinned.
 - The API container has a verified healthy, non-root local smoke result.
 - Raw source data, primary/blind annotations, AI challenger workbooks, processed CSV, and
   review-pack HTML are covered by explicit Git ignore rules.
@@ -41,18 +41,17 @@ Future publication completion evidence:
 - use a GitHub noreply commit identity;
 - push only `origin main`, never `--all`, `--mirror`, tags, or the research branch;
 - record the remote SHA and CI result in the handoff.
-### 2. Human accessibility, WebKit, loading/offline media, and narration remain open
+### 2. Human accessibility, real-device review, and narration remain open
 
-CI-hosted Playwright Chromium passes desktop/mobile overflow assertions and keyboard activation;
-Firefox independently passes the keyboard-triggered desktop match at 1440px. Reviewed empty,
-matching, and mobile-extraction screenshots are published with exact SHA-256 pins; invalid local
-crash pages remain excluded.
+CI-hosted Chromium passes desktop/mobile overflow, loading, keyboard, validation, extraction, and
+safe API-offline assertions. Firefox and Playwright WebKit independently pass the keyboard-triggered
+desktop match at 1440px. Six synthetic captures are retained as CI artifacts; three recruiter-facing
+screenshots remain published with exact SHA-256 pins, and invalid local crash pages stay excluded.
 The unrelated portable-report renderer still blocks its own unverified HTML output.
 
 Remaining completion evidence:
 
-- human focus/contrast review, screen-reader validation, and WebKit/Safari coverage where available;
-- real-browser loading and API-offline states, beyond existing widget/API-client automation;
+- human focus/contrast review, screen-reader validation, and a real Safari/device check where available;
 - a 2-4 minute public-safe video/GIF following `docs/demo_checklist.md`;
 - no real CV or third-party raw description in any additional media.
 
