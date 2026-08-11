@@ -95,7 +95,11 @@ def test_browser_qa_contract_declares_three_engines_and_resilience(
         "Playwright WebKit",
     ]
     assert report["assertions"]["keyboard_activation_verified"] is True
+    assert report["assertions"]["market_snapshot_three_charts_captured"] is True
+    assert report["assertions"]["market_snapshot_mobile_layout_captured"] is True
+    assert report["assertions"]["market_snapshot_secondary_engines_verified"] is True
     assert report["assertions"]["match_loading_state_captured"] is True
+    assert any(capture["state"] == "market_snapshot" for capture in report["captures"])
     assert report["firefox_smoke"]["keyboard_activation"] is True
     assert report["webkit_smoke"]["keyboard_activation"] is True
     assert report["api_offline"]["safe_error_visible"] is True

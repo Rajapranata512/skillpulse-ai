@@ -6,7 +6,8 @@ SkillPulse AI turns Indonesian-English CV and job-description text into structur
 requirements, an explainable match score, missing-skill evidence, and learning priorities.
 The repository now demonstrates an end-to-end local product: reproducible data provenance,
 annotation governance, evaluated NLP baselines, a strict API contract, a non-root container,
-a Streamlit UI, automated tests, and honest release gates.
+a Streamlit UI, an aggregate-only 30-day market dashboard, automated tests, and honest
+release gates.
 
 It is a working portfolio project, not yet an independently validated production service.
 That distinction is intentional and visible throughout the product.
@@ -41,6 +42,11 @@ download matched the local raw file byte-for-byte and by SHA-256.
 This supports a bounded Indonesian data-and-analytics snapshot. It does not support a
 whole-market or global comparison. Raw descriptions are excluded from Git; reproducibility
 uses attribution, a pinned source version, an acquisition script, and a hash check.
+
+The public dashboard summarizes 542 exact-unique descriptions and exposes safe overall,
+location, and normalized-role requirement slices. Jakarta Raya contributes 399/555 listings
+(71.9%), so the UI presents geography as source composition rather than representativeness.
+Groups below three observations and filter slices below ten unique descriptions are suppressed.
 
 Only 77/555 rows disclose salary, so salary modelling remains blocked rather than producing
 a fragile portfolio metric.
@@ -106,11 +112,12 @@ remains 0/50, so neither score is presented as real-user validation.
 The application separates responsibilities:
 
 ```text
-pinned source -> data/provenance -> bilingual taxonomy -> extraction -> matching
-                                                            ^             ^
+pinned source -> cleaned rows -> aggregate snapshot -> Streamlit market tab
+                 \-> bilingual taxonomy -> extraction -> matching
+                                                ^             ^
 user text -> Streamlit UI -> FastAPI v1 -> strict domain contract ----------+
 
-evaluation reports -> model card / case study / release decisions
+evaluation/quality reports -> model card / case study / release decisions
 ```
 
 FastAPI exposes four endpoints and returns contract/model/taxonomy versions. The UI calls
@@ -128,13 +135,14 @@ the build context.
 | ML engineering | Frozen contracts, incumbent/challenger comparison, optional semantic dependency |
 | API | Strict FastAPI v1 schemas and four documented endpoints |
 | Deployment | Healthy non-root local Docker smoke |
-| Product/UI | API-backed Streamlit journey, Chromium resilience QA, Firefox/WebKit keyboard smokes, reviewed static media, and launcher |
+| Product/UI | API-backed Streamlit journey, filterable aggregate market snapshot, three-engine chart QA, reviewed static media, and launcher |
 | Governance | No CV persistence, protected attributes excluded, open human/data gates |
 
-Latest engineering verification: Ruff passed and 103 tests passed. API container and
-Streamlit health checks passed locally; widget-state tests plus CI Chromium cover empty, loading, match, validation, mobile extraction, and
-API-offline states; Firefox and Playwright WebKit repeat the desktop match using keyboard activation.
-All measured document widths equal their viewports.
+Latest engineering verification: Ruff passed and 107 tests passed. API container and
+Streamlit health checks passed locally; widget-state tests cover aggregate filter changes without API
+calls. Playwright Chromium covers desktop/mobile market charts plus empty, loading, match, validation,
+extraction, and API-offline states; Firefox and WebKit each render all three dashboard charts before
+repeating the keyboard match. All measured document widths equal their viewports.
 
 ## What did not work
 
@@ -163,7 +171,8 @@ limits, abuse controls, accessibility checks, monitoring, and a verified retenti
 - No independent annotation agreement yet.
 - No independent human matching relevance yet.
 - No public deployment, load test, independent usability study, screen-reader audit, or real Safari/device QA.
-- No market-trend or salary feature supported by current evidence.
+- The market view is a single-window descriptive snapshot; no trend, global-market, or salary
+  capability is supported by current evidence.
 
 ## Next evidence milestones
 

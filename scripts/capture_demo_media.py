@@ -22,9 +22,11 @@ from urllib.request import Request, urlopen
 
 CAPTURE_SPECS = (
     ("desktop-empty.png", "initial_empty"),
+    ("desktop-market.png", "market_snapshot"),
     ("desktop-loading.png", "match_loading"),
     ("desktop-match.png", "successful_match"),
     ("desktop-validation-error.png", "blank_input_error"),
+    ("mobile-market.png", "mobile_market_snapshot"),
     ("mobile-extraction.png", "successful_extraction"),
     ("desktop-api-offline.png", "api_offline_error"),
 )
@@ -201,6 +203,19 @@ def _wait_for_app(page: Any, ui_url: str) -> None:
     page.get_by_text("API online", exact=False).wait_for(state="attached", timeout=30_000)
 
 
+def _open_market_snapshot(page: Any) -> int:
+    from playwright.sync_api import expect
+
+    page.get_by_role("tab", name="Market Snapshot", exact=True).click()
+    page.get_by_role("heading", name="30-day market snapshot", exact=True).wait_for(timeout=30_000)
+    page.get_by_text("Salary prediction and time-series claims remain intentionally disabled", exact=False).wait_for(
+        timeout=30_000
+    )
+    charts = page.locator('[data-testid="stVegaLiteChart"]')
+    expect(charts).to_have_count(3, timeout=30_000)
+    return charts.count()
+
+
 def _activate_with_keyboard(page: Any, locator: Any) -> None:
     locator.focus()
     is_focused = locator.evaluate("element => element === document.activeElement")
@@ -245,6 +260,12 @@ def _capture_chromium(
         measurements.append(_responsive_measurement(page, "chromium_desktop_empty"))
         _save(page, output, "desktop-empty.png")
 
+        if _open_market_snapshot(page) != 3:
+            raise AssertionError("Expected three market snapshot charts.")
+        measurements.append(_responsive_measurement(page, "chromium_desktop_market_snapshot"))
+        _save(page, output, "desktop-market.png")
+        page.get_by_role("tab", name="CV–Job Match", exact=True).click()
+
         loading_measurement = _complete_match_with_keyboard(page, loading_output=output)
         if loading_measurement is None:
             raise AssertionError("Expected a loading-state measurement.")
@@ -269,6 +290,10 @@ def _capture_chromium(
         )
         page = mobile.new_page()
         _wait_for_app(page, ui_url)
+        if _open_market_snapshot(page) != 3:
+            raise AssertionError("Expected three mobile market snapshot charts.")
+        measurements.append(_responsive_measurement(page, "chromium_mobile_market_snapshot"))
+        _save(page, output, "mobile-market.png")
         extraction_tab = page.get_by_role("tab", name="Extract Job", exact=True)
         extraction_tab.click()
         page.get_by_role("button", name="Gunakan contoh extraction", exact=True).click()
@@ -276,11 +301,12 @@ def _capture_chromium(
         expect(extraction_text).to_be_visible(timeout=30_000)
         expect(extraction_text).not_to_have_value("", timeout=30_000)
         page.get_by_role("button", name="Extract requirements", exact=True).click()
-        technical_heading = page.get_by_text("Technical skills", exact=True)
+        extraction_panel = page.get_by_label("Extract Job")
+        technical_heading = extraction_panel.get_by_text("Technical skills", exact=True)
         technical_heading.wait_for(state="attached", timeout=30_000)
         extraction_tab.click()
         technical_heading.wait_for(state="visible", timeout=30_000)
-        page.get_by_text("Power BI", exact=True).wait_for(timeout=30_000)
+        extraction_panel.get_by_text("Power BI", exact=True).wait_for(timeout=30_000)
         measurements.append(_responsive_measurement(page, "chromium_mobile_extraction"))
         _save(page, output, "mobile-extraction.png")
         mobile.close()
@@ -299,12 +325,14 @@ def _smoke_secondary_browser(
         context = browser.new_context(viewport=DESKTOP_VIEWPORT, color_scheme="light")
         page = context.new_page()
         _wait_for_app(page, ui_url)
+        market_chart_count = _open_market_snapshot(page)
+        page.get_by_role("tab", name="CV–Job Match", exact=True).click()
         _complete_match_with_keyboard(page)
         measurement = _responsive_measurement(page, f"{engine_name}_desktop_match_keyboard")
         context.close()
     finally:
         browser.close()
-    return measurement | {"keyboard_activation": True}
+    return measurement | {"keyboard_activation": True, "market_chart_count": market_chart_count}
 
 
 def _capture_api_offline(
@@ -404,6 +432,9 @@ def capture_demo(
             "horizontal_overflow_tolerance_px": OVERFLOW_TOLERANCE_PX,
             "all_states_within_viewport": True,
             "keyboard_activation_verified": True,
+            "market_snapshot_three_charts_captured": True,
+            "market_snapshot_mobile_layout_captured": True,
+            "market_snapshot_secondary_engines_verified": True,
             "match_loading_state_captured": True,
             "api_offline_safe_error_captured": True,
             "firefox_match_smoke": True,

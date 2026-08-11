@@ -9,6 +9,14 @@ import streamlit as st
 
 from skillpulse.ui.api_client import SkillPulseAPIClient, SkillPulseAPIError
 from skillpulse.ui.examples import EXAMPLE_CV, EXAMPLE_EXTRACTION, EXAMPLE_JOB
+from skillpulse.ui.market import (
+    CATEGORY_LABELS,
+    load_market_snapshot,
+    market_slice,
+    market_slice_options,
+    top_rows,
+    top_skill_rows,
+)
 
 
 def _chips(items: list[str], *, empty: str) -> None:
@@ -70,6 +78,143 @@ def _render_extraction(payload: dict[str, Any]) -> None:
     )
 
 
+@st.cache_data(show_spinner=False)
+def _market_snapshot() -> dict[str, Any]:
+    return load_market_snapshot()
+
+
+def _render_market_snapshot() -> None:
+    try:
+        snapshot = _market_snapshot()
+    except (FileNotFoundError, ValueError) as error:
+        st.error(f"Market snapshot belum tersedia: {error}")
+        return
+
+    source = snapshot["source"]
+    window = source["observation_window"]
+    summary = snapshot["summary"]
+    st.subheader("30-day market snapshot")
+    st.write(
+        "Ringkasan deskriptif lowongan data dan analytics pada satu dataset Indonesia. "
+        "Gunakan untuk eksplorasi requirement, bukan sebagai klaim tren atau keseluruhan pasar."
+    )
+    st.caption(
+        f"{window['start']} hingga {window['end']} · Kaggle version {source['version']} · "
+        f"{source['license']} · satu source portal"
+    )
+
+    first, second, third, fourth = st.columns(4)
+    first.metric("Listings in snapshot", f"{summary['total_listings']:,}")
+    second.metric("Unique descriptions", f"{summary['unique_descriptions']:,}")
+    third.metric("Reported provinces", summary["reported_provinces"])
+    fourth.metric(
+        "Salary disclosed",
+        f"{summary['salary_disclosed_listings']} ({100 * summary['salary_disclosure_rate']:.1f}%)",
+    )
+
+    province_leader = top_rows(snapshot, "province_counts", 1)[0]
+    st.info(
+        f"Coverage is concentrated: {province_leader['label']} contributes "
+        f"{province_leader['count']}/{summary['total_listings']} listings "
+        f"({100 * province_leader['share']:.1f}%). Read location comparisons as source composition."
+    )
+
+    st.markdown("### Explicit requirement demand")
+    segment_options = market_slice_options(snapshot)
+    segment_label = st.selectbox(
+        "Market segment",
+        list(segment_options),
+        key="market_segment",
+        help="Choose one privacy-safe aggregate by location or normalized job title.",
+    )
+    selected_slice = market_slice(snapshot, segment_options[segment_label])
+    label_to_category = {label: key for key, label in CATEGORY_LABELS.items()}
+    category_label = st.selectbox(
+        "Requirement category",
+        list(label_to_category),
+        key="market_skill_category",
+        help="This local filter changes only the requirement chart.",
+    )
+    top_n = st.select_slider(
+        "Requirements shown",
+        options=[10, 15, 20],
+        value=15,
+        key="market_skill_limit",
+    )
+    skill_rows = top_skill_rows(
+        snapshot,
+        label_to_category[category_label],
+        top_n,
+        slice_id=selected_slice["id"],
+    )
+    chart_rows = [{"Requirement": row["label"], "Descriptions": row["count"]} for row in skill_rows]
+    st.bar_chart(
+        chart_rows,
+        x="Descriptions",
+        y="Requirement",
+        horizontal=True,
+        color="#0e7490",
+        height=430,
+    )
+    st.caption(
+        f"Active filter: {selected_slice['label']} · denominator: "
+        f"{selected_slice['unique_descriptions']} exact-unique descriptions from "
+        f"{selected_slice['listing_count']} listings. Each canonical requirement counts at most once "
+        "per description; extraction is rule-based."
+    )
+
+    location_column, seniority_column = st.columns(2)
+    with location_column:
+        st.markdown("### Location mix")
+        province_rows = [
+            {"Province": row["label"], "Listings": row["count"]}
+            for row in top_rows(snapshot, "province_counts", 8)
+        ]
+        st.bar_chart(
+            province_rows,
+            x="Listings",
+            y="Province",
+            horizontal=True,
+            color="#ea580c",
+            height=360,
+        )
+    with seniority_column:
+        st.markdown("### Source-provided seniority")
+        seniority_rows = [
+            {"Seniority": row["label"], "Listings": row["count"]}
+            for row in top_rows(snapshot, "seniority_counts", 10)
+        ]
+        st.bar_chart(
+            seniority_rows,
+            x="Listings",
+            y="Seniority",
+            horizontal=True,
+            color="#7c3aed",
+            height=360,
+        )
+        st.caption("Missing source labels remain visible as Unknown; they are not model-inferred.")
+
+    st.markdown("### Most repeated normalized titles")
+    title_rows = [
+        {
+            "Job title": row["label"],
+            "Listings": row["count"],
+            "Share of snapshot": f"{100 * row['share']:.1f}%",
+        }
+        for row in top_rows(snapshot, "title_counts", 10)
+    ]
+    st.table(title_rows)
+    st.caption(
+        f"Case and whitespace variants are merged. Groups below {snapshot['suppression']['minimum_published_count']} "
+        "listings are omitted from the public aggregate."
+    )
+    st.warning(
+        "Only 77/555 listings disclose salary, and this dataset contains one 30-day window. "
+        "Salary prediction and time-series claims remain intentionally disabled."
+    )
+    st.markdown(f"Source: [{source['title']}]({source['url']}) by {source['creator']}.")
+
+
 def render(client: SkillPulseAPIClient | None = None) -> None:
     st.set_page_config(page_title="SkillPulse AI", page_icon="📈", layout="wide")
     st.markdown(
@@ -105,7 +250,9 @@ def render(client: SkillPulseAPIClient | None = None) -> None:
         st.markdown("**Evidence status**")
         st.caption("ML-QG-2/3 masih terbuka. Metrik AI/synthetic adalah diagnostic evidence, bukan human validation.")
 
-    match_tab, extraction_tab, methodology_tab = st.tabs(["CV–Job Match", "Extract Job", "Methodology"])
+    match_tab, extraction_tab, market_tab, methodology_tab = st.tabs(
+        ["CV–Job Match", "Extract Job", "Market Snapshot", "Methodology"]
+    )
     with match_tab:
         if st.button("Gunakan data contoh", key="load_match_example", use_container_width=True):
             st.session_state["match_cv_text"] = EXAMPLE_CV
@@ -157,6 +304,8 @@ def render(client: SkillPulseAPIClient | None = None) -> None:
                     st.error(str(error))
         else:
             st.info("Entity hasil extraction akan muncul di sini setelah diproses.")
+    with market_tab:
+        _render_market_snapshot()
     with methodology_tab:
         st.subheader("How the score works")
         st.write(

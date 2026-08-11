@@ -1,0 +1,1602 @@
+{
+  "schema_version": "1.0.0",
+  "source": {
+    "dataset_id": "kaggle_indonesian_data_analytics_jobstreet_v1",
+    "title": "Indonesian Data & Analytics Jobs in Jobstreet",
+    "creator": "Rafli Rizkya Sakti Nugraha",
+    "url": "https://www.kaggle.com/datasets/raflirizkya/indonesian-data-and-analytics-jobs-in-jobstreet",
+    "version": 1,
+    "license": "CC-BY-4.0",
+    "observation_window": {
+      "start": "2025-08-25",
+      "end": "2025-09-24",
+      "duration_days": 30
+    },
+    "scope": {
+      "geography": "Indonesia",
+      "source_portal": "JobStreet Indonesia",
+      "role_family": "Data and Analytics",
+      "unit": "one cleaned job posting per row",
+      "languages": [
+        "Indonesian",
+        "English",
+        "mixed"
+      ]
+    },
+    "raw_sha256": "a857603f6d8a2b0344f4a4f00747e037ecc4ca3aa6b760800560ad4fe906887c"
+  },
+  "input_fingerprint": {
+    "processed_sha256": "c05cfaf33ef37eb8fc85683133afc21711ee918583f3141ce853f32a1c8c7abd"
+  },
+  "summary": {
+    "total_listings": 555,
+    "unique_descriptions": 542,
+    "reported_provinces": 18,
+    "salary_disclosed_listings": 77,
+    "salary_disclosure_rate": 0.1387,
+    "unknown_province_listings": 11
+  },
+  "metric_contract": {
+    "listing_denominator": 555,
+    "skill_demand_denominator": 542,
+    "listing_grain": "one cleaned job posting row",
+    "skill_demand_grain": "one exact-unique full job description",
+    "skill_measure": "documents with at least one canonical taxonomy match",
+    "title_normalization": "case-insensitive with collapsed whitespace",
+    "seniority_source": "source-provided level; missing values shown as Unknown",
+    "filter_design": "one independent overall, province, or normalized-title slice",
+    "filter_slice_minimum_unique_descriptions": 10
+  },
+  "province_counts": [
+    {
+      "label": "Jakarta Raya",
+      "count": 399,
+      "share": 0.7189
+    },
+    {
+      "label": "Banten",
+      "count": 42,
+      "share": 0.0757
+    },
+    {
+      "label": "Jawa Barat",
+      "count": 40,
+      "share": 0.0721
+    },
+    {
+      "label": "Jawa Timur",
+      "count": 24,
+      "share": 0.0432
+    },
+    {
+      "label": "Unknown",
+      "count": 11,
+      "share": 0.0198
+    },
+    {
+      "label": "Jawa Tengah",
+      "count": 7,
+      "share": 0.0126
+    },
+    {
+      "label": "Bali",
+      "count": 5,
+      "share": 0.009
+    },
+    {
+      "label": "Sumatera Utara",
+      "count": 5,
+      "share": 0.009
+    },
+    {
+      "label": "Sulawesi Selatan",
+      "count": 4,
+      "share": 0.0072
+    },
+    {
+      "label": "DI Yogyakarta",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Kalimantan Timur",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Jambi",
+      "count": 2,
+      "share": 0.0036
+    },
+    {
+      "label": "Kalimantan Barat",
+      "count": 2,
+      "share": 0.0036
+    },
+    {
+      "label": "Riau",
+      "count": 2,
+      "share": 0.0036
+    },
+    {
+      "label": "Sumatera Selatan",
+      "count": 2,
+      "share": 0.0036
+    },
+    {
+      "label": "Bangka Belitung",
+      "count": 1,
+      "share": 0.0018
+    },
+    {
+      "label": "Kalimantan Selatan",
+      "count": 1,
+      "share": 0.0018
+    },
+    {
+      "label": "Sulawesi Tengah",
+      "count": 1,
+      "share": 0.0018
+    },
+    {
+      "label": "Sulawesi Tenggara",
+      "count": 1,
+      "share": 0.0018
+    }
+  ],
+  "seniority_counts": [
+    {
+      "label": "Mid Level",
+      "count": 239,
+      "share": 0.4306
+    },
+    {
+      "label": "Unknown",
+      "count": 178,
+      "share": 0.3207
+    },
+    {
+      "label": "Entry Level",
+      "count": 94,
+      "share": 0.1694
+    },
+    {
+      "label": "Senior Level",
+      "count": 44,
+      "share": 0.0793
+    }
+  ],
+  "title_counts": [
+    {
+      "label": "Data Analyst",
+      "count": 42,
+      "share": 0.0757
+    },
+    {
+      "label": "Business Analyst",
+      "count": 29,
+      "share": 0.0523
+    },
+    {
+      "label": "System Analyst",
+      "count": 12,
+      "share": 0.0216
+    },
+    {
+      "label": "IT Business Analyst",
+      "count": 11,
+      "share": 0.0198
+    },
+    {
+      "label": "Data Analyst Staff",
+      "count": 6,
+      "share": 0.0108
+    },
+    {
+      "label": "Business System Analyst",
+      "count": 5,
+      "share": 0.009
+    },
+    {
+      "label": "Credit Analyst",
+      "count": 5,
+      "share": 0.009
+    },
+    {
+      "label": "Data Analyst Intern",
+      "count": 5,
+      "share": 0.009
+    },
+    {
+      "label": "Finance Analyst",
+      "count": 4,
+      "share": 0.0072
+    },
+    {
+      "label": "Senior Business Analyst",
+      "count": 4,
+      "share": 0.0072
+    },
+    {
+      "label": "Senior Data Analyst",
+      "count": 4,
+      "share": 0.0072
+    },
+    {
+      "label": "Business Analyst Staff",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Data Analyst Associate",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Equity Research Analyst",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Junior Business Analyst",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Market Research Analyst",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Marketing Analyst",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Product Analyst",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Sales Data Analyst",
+      "count": 3,
+      "share": 0.0054
+    },
+    {
+      "label": "Supply Chain Analyst",
+      "count": 3,
+      "share": 0.0054
+    }
+  ],
+  "skill_counts": [
+    {
+      "category": "soft_skill",
+      "label": "Communication",
+      "count": 322,
+      "share": 0.5941
+    },
+    {
+      "category": "soft_skill",
+      "label": "Problem Solving",
+      "count": 158,
+      "share": 0.2915
+    },
+    {
+      "category": "soft_skill",
+      "label": "Attention to Detail",
+      "count": 137,
+      "share": 0.2528
+    },
+    {
+      "category": "soft_skill",
+      "label": "Teamwork",
+      "count": 94,
+      "share": 0.1734
+    },
+    {
+      "category": "soft_skill",
+      "label": "Presentation",
+      "count": 77,
+      "share": 0.1421
+    },
+    {
+      "category": "soft_skill",
+      "label": "Leadership",
+      "count": 37,
+      "share": 0.0683
+    },
+    {
+      "category": "soft_skill",
+      "label": "Critical Thinking",
+      "count": 36,
+      "share": 0.0664
+    },
+    {
+      "category": "soft_skill",
+      "label": "Time Management",
+      "count": 18,
+      "share": 0.0332
+    },
+    {
+      "category": "technical_skill",
+      "label": "Data Analysis",
+      "count": 203,
+      "share": 0.3745
+    },
+    {
+      "category": "technical_skill",
+      "label": "SQL",
+      "count": 153,
+      "share": 0.2823
+    },
+    {
+      "category": "technical_skill",
+      "label": "Data Visualization",
+      "count": 84,
+      "share": 0.155
+    },
+    {
+      "category": "technical_skill",
+      "label": "Python",
+      "count": 73,
+      "share": 0.1347
+    },
+    {
+      "category": "technical_skill",
+      "label": "Statistics",
+      "count": 43,
+      "share": 0.0793
+    },
+    {
+      "category": "technical_skill",
+      "label": "R",
+      "count": 38,
+      "share": 0.0701
+    },
+    {
+      "category": "technical_skill",
+      "label": "ETL",
+      "count": 24,
+      "share": 0.0443
+    },
+    {
+      "category": "technical_skill",
+      "label": "Machine Learning",
+      "count": 13,
+      "share": 0.024
+    },
+    {
+      "category": "technical_skill",
+      "label": "Java",
+      "count": 10,
+      "share": 0.0185
+    },
+    {
+      "category": "technical_skill",
+      "label": "JavaScript",
+      "count": 10,
+      "share": 0.0185
+    },
+    {
+      "category": "technical_skill",
+      "label": "REST API",
+      "count": 3,
+      "share": 0.0055
+    },
+    {
+      "category": "tool",
+      "label": "Excel",
+      "count": 211,
+      "share": 0.3893
+    },
+    {
+      "category": "tool",
+      "label": "Power BI",
+      "count": 99,
+      "share": 0.1827
+    },
+    {
+      "category": "tool",
+      "label": "Tableau",
+      "count": 92,
+      "share": 0.1697
+    },
+    {
+      "category": "tool",
+      "label": "Looker Studio",
+      "count": 28,
+      "share": 0.0517
+    },
+    {
+      "category": "tool",
+      "label": "Looker",
+      "count": 21,
+      "share": 0.0387
+    },
+    {
+      "category": "tool",
+      "label": "Google Analytics",
+      "count": 17,
+      "share": 0.0314
+    },
+    {
+      "category": "tool",
+      "label": "Oracle",
+      "count": 17,
+      "share": 0.0314
+    },
+    {
+      "category": "tool",
+      "label": "PostgreSQL",
+      "count": 13,
+      "share": 0.024
+    },
+    {
+      "category": "tool",
+      "label": "MySQL",
+      "count": 11,
+      "share": 0.0203
+    },
+    {
+      "category": "tool",
+      "label": "SQL Server",
+      "count": 11,
+      "share": 0.0203
+    },
+    {
+      "category": "tool",
+      "label": "AWS",
+      "count": 10,
+      "share": 0.0185
+    },
+    {
+      "category": "tool",
+      "label": "Azure",
+      "count": 10,
+      "share": 0.0185
+    },
+    {
+      "category": "tool",
+      "label": "BigQuery",
+      "count": 9,
+      "share": 0.0166
+    },
+    {
+      "category": "tool",
+      "label": "GCP",
+      "count": 8,
+      "share": 0.0148
+    },
+    {
+      "category": "tool",
+      "label": "Metabase",
+      "count": 8,
+      "share": 0.0148
+    },
+    {
+      "category": "tool",
+      "label": "SPSS",
+      "count": 6,
+      "share": 0.0111
+    },
+    {
+      "category": "tool",
+      "label": "Snowflake",
+      "count": 5,
+      "share": 0.0092
+    },
+    {
+      "category": "tool",
+      "label": "Adobe Analytics",
+      "count": 3,
+      "share": 0.0055
+    },
+    {
+      "category": "tool",
+      "label": "Apache Airflow",
+      "count": 3,
+      "share": 0.0055
+    },
+    {
+      "category": "tool",
+      "label": "Apache Spark",
+      "count": 3,
+      "share": 0.0055
+    }
+  ],
+  "skill_slices": [
+    {
+      "id": "overall",
+      "dimension": "overall",
+      "label": "All listings",
+      "listing_count": 555,
+      "unique_descriptions": 542,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 322,
+          "share": 0.5941
+        },
+        {
+          "category": "soft_skill",
+          "label": "Problem Solving",
+          "count": 158,
+          "share": 0.2915
+        },
+        {
+          "category": "soft_skill",
+          "label": "Attention to Detail",
+          "count": 137,
+          "share": 0.2528
+        },
+        {
+          "category": "soft_skill",
+          "label": "Teamwork",
+          "count": 94,
+          "share": 0.1734
+        },
+        {
+          "category": "soft_skill",
+          "label": "Presentation",
+          "count": 77,
+          "share": 0.1421
+        },
+        {
+          "category": "soft_skill",
+          "label": "Leadership",
+          "count": 37,
+          "share": 0.0683
+        },
+        {
+          "category": "soft_skill",
+          "label": "Critical Thinking",
+          "count": 36,
+          "share": 0.0664
+        },
+        {
+          "category": "soft_skill",
+          "label": "Time Management",
+          "count": 18,
+          "share": 0.0332
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Analysis",
+          "count": 203,
+          "share": 0.3745
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 153,
+          "share": 0.2823
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Visualization",
+          "count": 84,
+          "share": 0.155
+        },
+        {
+          "category": "technical_skill",
+          "label": "Python",
+          "count": 73,
+          "share": 0.1347
+        },
+        {
+          "category": "technical_skill",
+          "label": "Statistics",
+          "count": 43,
+          "share": 0.0793
+        },
+        {
+          "category": "technical_skill",
+          "label": "R",
+          "count": 38,
+          "share": 0.0701
+        },
+        {
+          "category": "technical_skill",
+          "label": "ETL",
+          "count": 24,
+          "share": 0.0443
+        },
+        {
+          "category": "technical_skill",
+          "label": "Machine Learning",
+          "count": 13,
+          "share": 0.024
+        },
+        {
+          "category": "technical_skill",
+          "label": "Java",
+          "count": 10,
+          "share": 0.0185
+        },
+        {
+          "category": "technical_skill",
+          "label": "JavaScript",
+          "count": 10,
+          "share": 0.0185
+        },
+        {
+          "category": "technical_skill",
+          "label": "REST API",
+          "count": 3,
+          "share": 0.0055
+        },
+        {
+          "category": "tool",
+          "label": "Excel",
+          "count": 211,
+          "share": 0.3893
+        },
+        {
+          "category": "tool",
+          "label": "Power BI",
+          "count": 99,
+          "share": 0.1827
+        },
+        {
+          "category": "tool",
+          "label": "Tableau",
+          "count": 92,
+          "share": 0.1697
+        },
+        {
+          "category": "tool",
+          "label": "Looker Studio",
+          "count": 28,
+          "share": 0.0517
+        },
+        {
+          "category": "tool",
+          "label": "Looker",
+          "count": 21,
+          "share": 0.0387
+        },
+        {
+          "category": "tool",
+          "label": "Google Analytics",
+          "count": 17,
+          "share": 0.0314
+        },
+        {
+          "category": "tool",
+          "label": "Oracle",
+          "count": 17,
+          "share": 0.0314
+        },
+        {
+          "category": "tool",
+          "label": "PostgreSQL",
+          "count": 13,
+          "share": 0.024
+        },
+        {
+          "category": "tool",
+          "label": "MySQL",
+          "count": 11,
+          "share": 0.0203
+        },
+        {
+          "category": "tool",
+          "label": "SQL Server",
+          "count": 11,
+          "share": 0.0203
+        },
+        {
+          "category": "tool",
+          "label": "AWS",
+          "count": 10,
+          "share": 0.0185
+        },
+        {
+          "category": "tool",
+          "label": "Azure",
+          "count": 10,
+          "share": 0.0185
+        },
+        {
+          "category": "tool",
+          "label": "BigQuery",
+          "count": 9,
+          "share": 0.0166
+        },
+        {
+          "category": "tool",
+          "label": "GCP",
+          "count": 8,
+          "share": 0.0148
+        },
+        {
+          "category": "tool",
+          "label": "Metabase",
+          "count": 8,
+          "share": 0.0148
+        },
+        {
+          "category": "tool",
+          "label": "SPSS",
+          "count": 6,
+          "share": 0.0111
+        },
+        {
+          "category": "tool",
+          "label": "Snowflake",
+          "count": 5,
+          "share": 0.0092
+        },
+        {
+          "category": "tool",
+          "label": "Adobe Analytics",
+          "count": 3,
+          "share": 0.0055
+        },
+        {
+          "category": "tool",
+          "label": "Apache Airflow",
+          "count": 3,
+          "share": 0.0055
+        },
+        {
+          "category": "tool",
+          "label": "Apache Spark",
+          "count": 3,
+          "share": 0.0055
+        }
+      ]
+    },
+    {
+      "id": "province:jakarta raya",
+      "dimension": "province",
+      "label": "Location · Jakarta Raya",
+      "listing_count": 399,
+      "unique_descriptions": 393,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 240,
+          "share": 0.6107
+        },
+        {
+          "category": "soft_skill",
+          "label": "Problem Solving",
+          "count": 115,
+          "share": 0.2926
+        },
+        {
+          "category": "soft_skill",
+          "label": "Attention to Detail",
+          "count": 97,
+          "share": 0.2468
+        },
+        {
+          "category": "soft_skill",
+          "label": "Teamwork",
+          "count": 72,
+          "share": 0.1832
+        },
+        {
+          "category": "soft_skill",
+          "label": "Presentation",
+          "count": 56,
+          "share": 0.1425
+        },
+        {
+          "category": "soft_skill",
+          "label": "Leadership",
+          "count": 29,
+          "share": 0.0738
+        },
+        {
+          "category": "soft_skill",
+          "label": "Critical Thinking",
+          "count": 26,
+          "share": 0.0662
+        },
+        {
+          "category": "soft_skill",
+          "label": "Time Management",
+          "count": 15,
+          "share": 0.0382
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Analysis",
+          "count": 145,
+          "share": 0.369
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 114,
+          "share": 0.2901
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Visualization",
+          "count": 53,
+          "share": 0.1349
+        },
+        {
+          "category": "technical_skill",
+          "label": "Python",
+          "count": 51,
+          "share": 0.1298
+        },
+        {
+          "category": "technical_skill",
+          "label": "Statistics",
+          "count": 29,
+          "share": 0.0738
+        },
+        {
+          "category": "technical_skill",
+          "label": "R",
+          "count": 24,
+          "share": 0.0611
+        },
+        {
+          "category": "technical_skill",
+          "label": "ETL",
+          "count": 19,
+          "share": 0.0483
+        },
+        {
+          "category": "technical_skill",
+          "label": "Machine Learning",
+          "count": 9,
+          "share": 0.0229
+        },
+        {
+          "category": "technical_skill",
+          "label": "JavaScript",
+          "count": 7,
+          "share": 0.0178
+        },
+        {
+          "category": "technical_skill",
+          "label": "Java",
+          "count": 6,
+          "share": 0.0153
+        },
+        {
+          "category": "technical_skill",
+          "label": "REST API",
+          "count": 3,
+          "share": 0.0076
+        },
+        {
+          "category": "tool",
+          "label": "Excel",
+          "count": 147,
+          "share": 0.374
+        },
+        {
+          "category": "tool",
+          "label": "Power BI",
+          "count": 72,
+          "share": 0.1832
+        },
+        {
+          "category": "tool",
+          "label": "Tableau",
+          "count": 68,
+          "share": 0.173
+        },
+        {
+          "category": "tool",
+          "label": "Looker Studio",
+          "count": 19,
+          "share": 0.0483
+        },
+        {
+          "category": "tool",
+          "label": "Looker",
+          "count": 18,
+          "share": 0.0458
+        },
+        {
+          "category": "tool",
+          "label": "Google Analytics",
+          "count": 12,
+          "share": 0.0305
+        },
+        {
+          "category": "tool",
+          "label": "Oracle",
+          "count": 12,
+          "share": 0.0305
+        },
+        {
+          "category": "tool",
+          "label": "PostgreSQL",
+          "count": 10,
+          "share": 0.0254
+        },
+        {
+          "category": "tool",
+          "label": "BigQuery",
+          "count": 8,
+          "share": 0.0204
+        },
+        {
+          "category": "tool",
+          "label": "SQL Server",
+          "count": 8,
+          "share": 0.0204
+        },
+        {
+          "category": "tool",
+          "label": "MySQL",
+          "count": 6,
+          "share": 0.0153
+        },
+        {
+          "category": "tool",
+          "label": "AWS",
+          "count": 5,
+          "share": 0.0127
+        },
+        {
+          "category": "tool",
+          "label": "Azure",
+          "count": 5,
+          "share": 0.0127
+        },
+        {
+          "category": "tool",
+          "label": "GCP",
+          "count": 5,
+          "share": 0.0127
+        },
+        {
+          "category": "tool",
+          "label": "Snowflake",
+          "count": 5,
+          "share": 0.0127
+        },
+        {
+          "category": "tool",
+          "label": "SPSS",
+          "count": 5,
+          "share": 0.0127
+        },
+        {
+          "category": "tool",
+          "label": "Metabase",
+          "count": 4,
+          "share": 0.0102
+        },
+        {
+          "category": "tool",
+          "label": "Adobe Analytics",
+          "count": 3,
+          "share": 0.0076
+        },
+        {
+          "category": "tool",
+          "label": "Apache Airflow",
+          "count": 3,
+          "share": 0.0076
+        }
+      ]
+    },
+    {
+      "id": "province:banten",
+      "dimension": "province",
+      "label": "Location · Banten",
+      "listing_count": 42,
+      "unique_descriptions": 42,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 29,
+          "share": 0.6905
+        },
+        {
+          "category": "soft_skill",
+          "label": "Attention to Detail",
+          "count": 13,
+          "share": 0.3095
+        },
+        {
+          "category": "soft_skill",
+          "label": "Problem Solving",
+          "count": 11,
+          "share": 0.2619
+        },
+        {
+          "category": "soft_skill",
+          "label": "Presentation",
+          "count": 8,
+          "share": 0.1905
+        },
+        {
+          "category": "soft_skill",
+          "label": "Teamwork",
+          "count": 5,
+          "share": 0.119
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Analysis",
+          "count": 15,
+          "share": 0.3571
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 14,
+          "share": 0.3333
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Visualization",
+          "count": 12,
+          "share": 0.2857
+        },
+        {
+          "category": "technical_skill",
+          "label": "Python",
+          "count": 7,
+          "share": 0.1667
+        },
+        {
+          "category": "technical_skill",
+          "label": "R",
+          "count": 5,
+          "share": 0.119
+        },
+        {
+          "category": "technical_skill",
+          "label": "Statistics",
+          "count": 4,
+          "share": 0.0952
+        },
+        {
+          "category": "technical_skill",
+          "label": "Java",
+          "count": 3,
+          "share": 0.0714
+        },
+        {
+          "category": "tool",
+          "label": "Excel",
+          "count": 14,
+          "share": 0.3333
+        },
+        {
+          "category": "tool",
+          "label": "Power BI",
+          "count": 10,
+          "share": 0.2381
+        },
+        {
+          "category": "tool",
+          "label": "Tableau",
+          "count": 9,
+          "share": 0.2143
+        },
+        {
+          "category": "tool",
+          "label": "Looker Studio",
+          "count": 3,
+          "share": 0.0714
+        },
+        {
+          "category": "tool",
+          "label": "Metabase",
+          "count": 3,
+          "share": 0.0714
+        }
+      ]
+    },
+    {
+      "id": "province:jawa barat",
+      "dimension": "province",
+      "label": "Location · Jawa Barat",
+      "listing_count": 40,
+      "unique_descriptions": 40,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 27,
+          "share": 0.675
+        },
+        {
+          "category": "soft_skill",
+          "label": "Problem Solving",
+          "count": 10,
+          "share": 0.25
+        },
+        {
+          "category": "soft_skill",
+          "label": "Teamwork",
+          "count": 10,
+          "share": 0.25
+        },
+        {
+          "category": "soft_skill",
+          "label": "Attention to Detail",
+          "count": 8,
+          "share": 0.2
+        },
+        {
+          "category": "soft_skill",
+          "label": "Presentation",
+          "count": 7,
+          "share": 0.175
+        },
+        {
+          "category": "soft_skill",
+          "label": "Critical Thinking",
+          "count": 5,
+          "share": 0.125
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Analysis",
+          "count": 16,
+          "share": 0.4
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Visualization",
+          "count": 12,
+          "share": 0.3
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 12,
+          "share": 0.3
+        },
+        {
+          "category": "technical_skill",
+          "label": "Python",
+          "count": 7,
+          "share": 0.175
+        },
+        {
+          "category": "technical_skill",
+          "label": "R",
+          "count": 4,
+          "share": 0.1
+        },
+        {
+          "category": "tool",
+          "label": "Excel",
+          "count": 23,
+          "share": 0.575
+        },
+        {
+          "category": "tool",
+          "label": "Power BI",
+          "count": 8,
+          "share": 0.2
+        },
+        {
+          "category": "tool",
+          "label": "Tableau",
+          "count": 8,
+          "share": 0.2
+        },
+        {
+          "category": "tool",
+          "label": "Looker Studio",
+          "count": 6,
+          "share": 0.15
+        },
+        {
+          "category": "tool",
+          "label": "Azure",
+          "count": 3,
+          "share": 0.075
+        },
+        {
+          "category": "tool",
+          "label": "MySQL",
+          "count": 3,
+          "share": 0.075
+        }
+      ]
+    },
+    {
+      "id": "province:jawa timur",
+      "dimension": "province",
+      "label": "Location · Jawa Timur",
+      "listing_count": 24,
+      "unique_descriptions": 23,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 8,
+          "share": 0.3478
+        },
+        {
+          "category": "soft_skill",
+          "label": "Problem Solving",
+          "count": 8,
+          "share": 0.3478
+        },
+        {
+          "category": "soft_skill",
+          "label": "Attention to Detail",
+          "count": 6,
+          "share": 0.2609
+        },
+        {
+          "category": "soft_skill",
+          "label": "Teamwork",
+          "count": 3,
+          "share": 0.1304
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 8,
+          "share": 0.3478
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Analysis",
+          "count": 7,
+          "share": 0.3043
+        },
+        {
+          "category": "technical_skill",
+          "label": "Python",
+          "count": 6,
+          "share": 0.2609
+        },
+        {
+          "category": "technical_skill",
+          "label": "Statistics",
+          "count": 6,
+          "share": 0.2609
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Visualization",
+          "count": 5,
+          "share": 0.2174
+        },
+        {
+          "category": "technical_skill",
+          "label": "R",
+          "count": 4,
+          "share": 0.1739
+        },
+        {
+          "category": "tool",
+          "label": "Excel",
+          "count": 10,
+          "share": 0.4348
+        },
+        {
+          "category": "tool",
+          "label": "Power BI",
+          "count": 7,
+          "share": 0.3043
+        },
+        {
+          "category": "tool",
+          "label": "Tableau",
+          "count": 4,
+          "share": 0.1739
+        }
+      ]
+    },
+    {
+      "id": "role:data analyst",
+      "dimension": "role",
+      "label": "Role · Data Analyst",
+      "listing_count": 42,
+      "unique_descriptions": 41,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 22,
+          "share": 0.5366
+        },
+        {
+          "category": "soft_skill",
+          "label": "Problem Solving",
+          "count": 14,
+          "share": 0.3415
+        },
+        {
+          "category": "soft_skill",
+          "label": "Attention to Detail",
+          "count": 11,
+          "share": 0.2683
+        },
+        {
+          "category": "soft_skill",
+          "label": "Presentation",
+          "count": 8,
+          "share": 0.1951
+        },
+        {
+          "category": "soft_skill",
+          "label": "Teamwork",
+          "count": 8,
+          "share": 0.1951
+        },
+        {
+          "category": "soft_skill",
+          "label": "Critical Thinking",
+          "count": 4,
+          "share": 0.0976
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Analysis",
+          "count": 27,
+          "share": 0.6585
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Visualization",
+          "count": 22,
+          "share": 0.5366
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 22,
+          "share": 0.5366
+        },
+        {
+          "category": "technical_skill",
+          "label": "Python",
+          "count": 17,
+          "share": 0.4146
+        },
+        {
+          "category": "technical_skill",
+          "label": "R",
+          "count": 11,
+          "share": 0.2683
+        },
+        {
+          "category": "technical_skill",
+          "label": "Statistics",
+          "count": 8,
+          "share": 0.1951
+        },
+        {
+          "category": "technical_skill",
+          "label": "ETL",
+          "count": 4,
+          "share": 0.0976
+        },
+        {
+          "category": "tool",
+          "label": "Excel",
+          "count": 23,
+          "share": 0.561
+        },
+        {
+          "category": "tool",
+          "label": "Power BI",
+          "count": 20,
+          "share": 0.4878
+        },
+        {
+          "category": "tool",
+          "label": "Tableau",
+          "count": 20,
+          "share": 0.4878
+        },
+        {
+          "category": "tool",
+          "label": "Looker",
+          "count": 8,
+          "share": 0.1951
+        },
+        {
+          "category": "tool",
+          "label": "BigQuery",
+          "count": 4,
+          "share": 0.0976
+        },
+        {
+          "category": "tool",
+          "label": "GCP",
+          "count": 4,
+          "share": 0.0976
+        },
+        {
+          "category": "tool",
+          "label": "Looker Studio",
+          "count": 4,
+          "share": 0.0976
+        },
+        {
+          "category": "tool",
+          "label": "Metabase",
+          "count": 4,
+          "share": 0.0976
+        },
+        {
+          "category": "tool",
+          "label": "Snowflake",
+          "count": 3,
+          "share": 0.0732
+        }
+      ]
+    },
+    {
+      "id": "role:business analyst",
+      "dimension": "role",
+      "label": "Role · Business Analyst",
+      "listing_count": 29,
+      "unique_descriptions": 29,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 24,
+          "share": 0.8276
+        },
+        {
+          "category": "soft_skill",
+          "label": "Problem Solving",
+          "count": 11,
+          "share": 0.3793
+        },
+        {
+          "category": "soft_skill",
+          "label": "Presentation",
+          "count": 9,
+          "share": 0.3103
+        },
+        {
+          "category": "soft_skill",
+          "label": "Attention to Detail",
+          "count": 8,
+          "share": 0.2759
+        },
+        {
+          "category": "soft_skill",
+          "label": "Teamwork",
+          "count": 7,
+          "share": 0.2414
+        },
+        {
+          "category": "soft_skill",
+          "label": "Critical Thinking",
+          "count": 3,
+          "share": 0.1034
+        },
+        {
+          "category": "soft_skill",
+          "label": "Time Management",
+          "count": 3,
+          "share": 0.1034
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Analysis",
+          "count": 7,
+          "share": 0.2414
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 6,
+          "share": 0.2069
+        },
+        {
+          "category": "technical_skill",
+          "label": "Data Visualization",
+          "count": 3,
+          "share": 0.1034
+        },
+        {
+          "category": "tool",
+          "label": "Excel",
+          "count": 13,
+          "share": 0.4483
+        },
+        {
+          "category": "tool",
+          "label": "Power BI",
+          "count": 8,
+          "share": 0.2759
+        },
+        {
+          "category": "tool",
+          "label": "Tableau",
+          "count": 6,
+          "share": 0.2069
+        },
+        {
+          "category": "tool",
+          "label": "Looker",
+          "count": 3,
+          "share": 0.1034
+        }
+      ]
+    },
+    {
+      "id": "role:system analyst",
+      "dimension": "role",
+      "label": "Role · System Analyst",
+      "listing_count": 12,
+      "unique_descriptions": 12,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 7,
+          "share": 0.5833
+        },
+        {
+          "category": "soft_skill",
+          "label": "Problem Solving",
+          "count": 3,
+          "share": 0.25
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 6,
+          "share": 0.5
+        }
+      ]
+    },
+    {
+      "id": "role:it business analyst",
+      "dimension": "role",
+      "label": "Role · IT Business Analyst",
+      "listing_count": 11,
+      "unique_descriptions": 11,
+      "skill_counts": [
+        {
+          "category": "soft_skill",
+          "label": "Communication",
+          "count": 8,
+          "share": 0.7273
+        },
+        {
+          "category": "technical_skill",
+          "label": "SQL",
+          "count": 5,
+          "share": 0.4545
+        }
+      ]
+    }
+  ],
+  "suppression": {
+    "minimum_published_count": 3,
+    "minimum_slice_descriptions": 10,
+    "suppressed_title_listings": 401,
+    "applies_to": [
+      "title_counts",
+      "skill_counts"
+    ]
+  },
+  "privacy": {
+    "aggregate_only": true,
+    "row_level_fields_included": false,
+    "company_names_included": false,
+    "raw_descriptions_included": false,
+    "salary_values_included": false
+  },
+  "caveats": [
+    "This is a 30-day snapshot of one Kaggle dataset sourced from JobStreet Indonesia, not the whole market.",
+    "There is only one observation window, so the dashboard cannot support trend or change claims.",
+    "Skill demand is rule-extracted from explicit text and is not a human-validated market label.",
+    "Salary is shown only as disclosure coverage because the modelling data gate is not met."
+  ]
+}

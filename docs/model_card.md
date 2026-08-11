@@ -1,7 +1,7 @@
 # SkillPulse AI System Model Card
 
 **Version:** 0.1.0  
-**Last verified:** 10 August 2026  
+**Last verified:** 11 August 2026
 **Status:** local portfolio candidate; human validation gates remain open
 
 ## Summary
@@ -9,7 +9,8 @@
 SkillPulse AI is a bilingual Indonesian-English job-intelligence system. It extracts
 explicit requirements from CV and job-description text, then produces an explainable
 CV-to-job match with matched evidence, missing requirements, component scores, and
-learning priorities.
+learning priorities. A separate aggregate-only dashboard describes canonical requirement demand
+within the documented 30-day source window; it is not a predictive model output.
 
 The public demo uses two deterministic production candidates:
 
@@ -25,7 +26,8 @@ substantially slower.
 - Help job seekers inspect requirements that are explicit in a job description.
 - Explain which supported skills or tools are present or missing from supplied CV text.
 - Demonstrate reproducible NLP, evaluation, API, UI, and ML-governance engineering.
-- Support analyst review and career exploration, not make hiring decisions.
+- Support analyst review and career exploration, including bounded location/role market slices,
+  not make hiring decisions.
 
 ## Out-of-scope use
 
@@ -53,6 +55,10 @@ The source snapshot contains 555 Indonesian Data & Analytics vacancies from Kagg
 version 1, covering JobStreet Indonesia postings from 25 August to 24 September 2025.
 The declared license is CC BY 4.0. The local raw file is pinned by byte size and SHA-256,
 but is excluded from Git because descriptions originate from third-party postings.
+
+The public market artifact aggregates 555 listings and 542 exact-unique descriptions. It
+suppresses title/skill groups below three observations and location/role slices below ten unique
+descriptions, and excludes company names, job IDs, raw descriptions, and salary values.
 
 The primary extraction set contains 100 project-owner-reviewed documents. These labels
 were AI-assisted and used during development, so they are development evidence rather
@@ -140,6 +146,8 @@ appropriately governed language and user segments.
 - Matching: `reports/matching_relevance_ai_baseline.json` and
   `reports/matching_semantic_challenger.json`
 - Runtime: `reports/api_container_smoke.json` and `reports/ui_smoke.json`
+- Market snapshot: `configs/market_snapshot.json`, `docs/market_snapshot_metrics.md`, and
+  `reports/market_snapshot_quality.json`
 - Contract: `docs/api_contract_v1.json`
 - Local demo: `docs/demo_checklist.md` and `scripts/run_demo.ps1`
 

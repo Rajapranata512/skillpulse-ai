@@ -6,8 +6,8 @@
 
 SkillPulse AI is an Indonesian job-intelligence portfolio project built from research on
 data and analytics job descriptions. The current milestone turns the original notebook
-into a reproducible data pipeline, bilingual extraction baseline, review workflow, and
-explainable CV-to-job matching product.
+into a reproducible data pipeline, bilingual extraction baseline, review workflow,
+explainable CV-to-job matching product, and privacy-safe 30-day market snapshot.
 
 ## What works now
 
@@ -16,7 +16,8 @@ explainable CV-to-job matching product.
 - Explainable CV-to-job matching with evidence, gaps, weights, and learning priorities.
 - A strict four-endpoint FastAPI contract, healthy non-root container, and API-backed
   Streamlit demo.
-- 103 passing tests, model/data documentation, and explicit human/data release gates.
+- An aggregate-only market dashboard with requirement-category, location, and normalized-role slices.
+- 107 passing tests, model/data documentation, and explicit human/data release gates.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human
@@ -46,12 +47,15 @@ from 25 August to 24 September 2025 and is licensed under
 
 The local CSV is pinned by SHA-256 and matches a fresh Kaggle download exactly. It contains
 555 rows; salary is disclosed in 77 rows (13.9%), so salary modelling remains blocked.
-The raw CSV is intentionally ignored by Git. Reproduce it from the source and verify its
-identity:
+The raw CSV is intentionally ignored by Git. The public UI reads only a deterministic
+aggregate of 555 listings and 542 unique descriptions; it exposes no company, job ID, raw
+description, or salary value. Reproduce the private input and public aggregate with:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/fetch_dataset.ps1
 python -m skillpulse.data.provenance --require-local
+skillpulse-prepare
+skillpulse-market-snapshot
 ```
 
 See `DATA_ATTRIBUTION.md`, `data/provenance/sources.yaml`, and `reports/data_card.md` for attribution, permitted
@@ -242,8 +246,9 @@ powershell -ExecutionPolicy Bypass -File scripts/run_demo.ps1 -Install
 ```
 
 Omit `-Install` on later runs. The demo opens at `http://127.0.0.1:8501`, includes explicit
-public-safe sample buttons plus loading, empty, validation, and API-error states, and calls
-the versioned API instead of importing scoring logic into the presentation layer. Stop it
+public-safe sample buttons plus loading, empty, validation, API-error, and aggregate market
+states. Location/role slices require at least ten unique descriptions. Matching calls the
+versioned API instead of importing scoring logic into the presentation layer. Stop it
 with `Ctrl+C`; the launcher cleans up the API process it created. See
 `docs/demo_checklist.md` for the five-minute reviewer walkthrough and port options.
 
@@ -260,7 +265,10 @@ run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
 - `docs/architecture.md` maps the runtime, evaluation, and trust boundaries.
 - `reports/portfolio_release_metrics.json` is the reconciled release-evidence snapshot.
 - `reports/ui_automated_qa.json` records privacy-safe Streamlit widget-journey coverage.
-- `reports/ui_browser_qa.json` records Chromium/Firefox/WebKit dimensions, loading/offline resilience, hashes, inspection, and limitations.
+- `reports/ui_browser_qa.json` records Chromium/Firefox/WebKit dimensions, dashboard charts,
+  loading/offline resilience, hashes, inspection, and limitations.
+- `docs/market_snapshot_metrics.md` and `reports/market_snapshot_quality.json` define and reconcile
+  the aggregate market metrics, filters, suppression, and non-claims.
 - `reports/portfolio_report_artifact.json` is the source-backed canonical report artifact.
 
 The shared portable-report renderer still overflows horizontally during browser
@@ -283,7 +291,7 @@ ruff check src tests
 pytest -q
 ```
 
-Current local verification: 103 tests passed and Ruff is clean.
+Current local verification: 107 tests passed and Ruff is clean.
 
 ## Portfolio roadmap
 
@@ -294,7 +302,8 @@ Current local verification: 103 tests passed and Ruff is clean.
 4. Streamlit portfolio journey — Chromium responsive/loading/offline QA, Firefox and Playwright WebKit
    keyboard smoke, and reviewed static media complete; human accessibility/real-device review and narration pending.
 5. Model card, architecture/release story, public deployment verification, and monitoring — next.
-6. Market analytics and salary modelling — data/metric gated, not an active claim.
+6. Aggregate 30-day market snapshot with safe location/role slices — complete; time-series,
+   global comparison, and salary modelling remain data-gated.
 
 ## Responsible use
 

@@ -5,12 +5,14 @@
 
 ## What is ready
 
-- Ruff passes and 103 Python tests pass.
+- Ruff passes and 107 Python tests pass.
 - The one-command launcher starts FastAPI and Streamlit, verifies both health endpoints,
   and removes both processes in smoke mode.
-- Three privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,
-  extraction/matching success, and domain-error presentation without external networking.
-- CI Playwright verifies five Chromium responsive/loading states, safe API-offline handling, and
+- Four privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,
+  extraction/matching success, market filters, and domain-error presentation without external networking.
+- The public aggregate reconciles 555 listings and 542 unique descriptions, provides four location
+  and four normalized-role slices, and excludes company/job/raw-description/salary-value fields.
+- Playwright verifies seven Chromium responsive/loading states, safe API-offline handling, and
   Firefox plus WebKit keyboard matches without horizontal overflow; three reviewed screenshots remain SHA-pinned.
 - The API container has a verified healthy, non-root local smoke result.
 - Raw source data, primary/blind annotations, AI challenger workbooks, processed CSV, and
@@ -26,7 +28,7 @@
 
 The clean product history is public at
 `https://github.com/Rajapranata512/skillpulse-ai` with `main` as the default branch.
-The public tree is a parentless product history containing 105 allowlisted product files;
+The public tree is a parentless product history containing only allowlisted product files;
 it has no relationship to the historical research commits.
 
 The former research history remains local only on `research-history-local-20260810` and
@@ -45,8 +47,9 @@ Future publication completion evidence:
 
 CI-hosted Chromium passes desktop/mobile overflow, loading, keyboard, validation, extraction, and
 safe API-offline assertions. Firefox and Playwright WebKit independently pass the keyboard-triggered
-desktop match at 1440px. Six synthetic captures are retained as CI artifacts; three recruiter-facing
-screenshots remain published with exact SHA-256 pins, and invalid local crash pages stay excluded.
+desktop match at 1440px. Eight synthetic captures are retained as CI artifacts; three recruiter-facing
+screenshots remain published with exact SHA-256 pins. Desktop/mobile market captures stay in
+short-lived QA artifacts, and invalid local crash pages stay excluded.
 The unrelated portable-report renderer still blocks its own unverified HTML output.
 
 Remaining completion evidence:

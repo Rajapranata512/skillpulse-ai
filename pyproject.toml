@@ -37,6 +37,7 @@ browser = [
 
 [project.scripts]
 skillpulse-prepare = "skillpulse.data.pipeline:main"
+skillpulse-market-snapshot = "skillpulse.market.snapshot:main"
 skillpulse-verify-source = "skillpulse.data.provenance:main"
 skillpulse-extract = "skillpulse.extraction.cli:main"
 skillpulse-evaluate = "skillpulse.extraction.evaluation:main"

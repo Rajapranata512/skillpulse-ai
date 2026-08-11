@@ -5,10 +5,11 @@
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 103,
+    "tests_passed": 107,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
-    "salary_disclosure_rate": 0.1387
+    "salary_disclosure_rate": 0.1387,
+    "unique_job_descriptions": 542
   },
   "extraction_development_metrics": {
     "denominator_documents": 100,
@@ -87,24 +88,27 @@
     "container_runs_as_non_root": true,
     "streamlit_health": "ok",
     "streamlit_http_status": 200,
-    "streamlit_automated_scenarios": 3,
+    "streamlit_automated_scenarios": 4,
     "streamlit_automated_state_qa": "passed",
     "raw_cv_persistence": false,
     "visual_browser_qa": "chromium_resilience_firefox_webkit_keyboard_passed",
-    "browser_qa_states": 8,
+    "browser_qa_states": 10,
     "published_static_media": 3,
     "browser_engines": [
       "Chromium",
       "Firefox",
       "Playwright WebKit"
     ],
-    "chromium_responsive_states": 5,
+    "chromium_responsive_states": 7,
     "firefox_keyboard_match_smoke": "passed",
     "keyboard_activation_verified": true,
     "webkit_keyboard_match_smoke": "passed",
     "match_loading_capture": "passed_artifact_only",
     "api_offline_safe_error_capture": "passed_artifact_only",
-    "human_screen_reader_real_device_narrated_video_gate": "open"
+    "human_screen_reader_real_device_narrated_video_gate": "open",
+    "market_dashboard_charts": 3,
+    "market_dashboard_desktop_mobile_chromium": "passed_local",
+    "market_dashboard_firefox_webkit": "passed_local"
   },
   "sources": [
     "reports/data_quality.json",
@@ -115,6 +119,23 @@
     "reports/ui_smoke.json",
     "reports/ui_automated_qa.json",
     "reports/ui_browser_qa.json",
-    "AGENTS.md"
-  ]
+    "AGENTS.md",
+    "configs/market_snapshot.json",
+    "reports/market_snapshot_quality.json",
+    "docs/market_snapshot_metrics.md"
+  ],
+  "market_snapshot": {
+    "status": "bounded_30_day_aggregate_active_no_trend_claim",
+    "listing_denominator": 555,
+    "skill_demand_denominator": 542,
+    "observation_days": 30,
+    "location_slices": 4,
+    "normalized_role_slices": 4,
+    "minimum_group_count": 3,
+    "minimum_slice_unique_descriptions": 10,
+    "jakarta_raya_listings": 399,
+    "jakarta_raya_share": 0.7189,
+    "quality_verdict": "pass",
+    "row_level_fields_included": false
+  }
 }

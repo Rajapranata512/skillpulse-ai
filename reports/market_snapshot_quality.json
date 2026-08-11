@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_sha256": "2a29d19eaffe9421f43df338ee5501706138837341a2cf228ab278af9f9fbc8b",
+  "rows_profiled": 555,
+  "unique_descriptions_profiled": 542,
+  "checks": {
+    "province_counts_reconcile_to_listings": true,
+    "seniority_counts_reconcile_to_listings": true,
+    "title_counts_reconcile_after_suppression": true,
+    "skill_counts_do_not_exceed_denominator": true,
+    "slice_counts_do_not_exceed_denominators": true,
+    "filtered_slices_meet_minimum_size": true,
+    "overall_slice_reconciles": true,
+    "public_counts_meet_threshold": true,
+    "aggregate_privacy_contract": true,
+    "single_window_disables_trend_claims": true
+  },
+  "verdict": "pass"
+}

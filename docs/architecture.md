@@ -1,7 +1,7 @@
 # SkillPulse AI Architecture
 
-**Architecture version:** 1.0  
-**Last verified:** 10 August 2026
+**Architecture version:** 1.1
+**Last verified:** 11 August 2026
 
 ## System view
 
@@ -9,8 +9,10 @@
 flowchart LR
     S[Kaggle v1 source\n555 job postings] --> P[Reproducible data pipeline\nschema, cleaning, provenance]
     P --> T[Bilingual taxonomy v0.2]
+    P --> A[Aggregate-only 30-day snapshot\n555 listings / 542 unique descriptions]
     T --> E[Rule extraction\ntaxonomy-rules-0.2.0]
     E --> M[Explainable matcher\nexact-taxonomy-0.1.0]
+    E -. canonical requirement counts .-> A
 
     U[User-pasted CV and job text] --> API[FastAPI v1\nstrict stateless contract]
     API --> E
@@ -18,6 +20,7 @@ flowchart LR
     API --> R[Versioned JSON response\nevidence, gaps, disclaimer]
     UI[Streamlit portfolio UI] --> API
     R --> UI
+    A --> UI
 
     E -. aggregate evaluation .-> G[Gold and diagnostic reports]
     M -. synthetic evaluation .-> G
@@ -40,6 +43,7 @@ becoming runtime dependencies.
 | Taxonomy | `configs/` | Store canonical bilingual labels and aliases once |
 | Extraction | `src/skillpulse/extraction/` | Extract only explicit supported requirements and run annotation workflows |
 | Matching | `src/skillpulse/matching/` | Score detected job requirements against CV evidence and explain gaps |
+| Market snapshot | `src/skillpulse/market/`, `configs/market_snapshot.json` | Generate deterministic aggregate metrics and safe location/role slices from private cleaned rows |
 | Domain contract | `src/skillpulse/domain/` | Enforce versioned strict request/response schemas and privacy metadata |
 | API | `src/skillpulse/api/` | Expose health, model metadata, extraction, and matching endpoints |
 | UI | `src/skillpulse/ui/` | Provide a public-safe bilingual demo without duplicating model logic |
@@ -69,8 +73,10 @@ Browser session
   -> browser rendering
 ```
 
-Raw CV/job text is not written by the application. The portfolio container excludes raw
-data, annotations, notebooks, reports, CSV, and XLSX files from its build context. Access
+Raw CV/job text is not written by the application. The market tab loads only the committed
+aggregate JSON; company names, job IDs, raw descriptions, and salary values never enter that
+runtime path. The portfolio container excludes raw data, annotations, notebooks, reports, CSV,
+and XLSX files from its build context. Access
 logging is disabled by the packaged API command. Production deployment would still need
 TLS, rate limiting, abuse controls, retention verification, and operational monitoring.
 
@@ -86,8 +92,9 @@ Three evidence classes must remain distinct:
 
 The semantic challenger is isolated behind an optional dependency. Because it did not
 improve the current diagnostic, the default API and UI keep the deterministic exact
-matcher. Salary prediction and market-trend components remain outside the runtime until
-their data and metric gates are met.
+matcher. A bounded single-window market snapshot is active, but salary prediction,
+time-series change detection, and whole-market/global claims remain outside the runtime until
+their data and comparability gates are met.
 
 ## Deployment shape
 
