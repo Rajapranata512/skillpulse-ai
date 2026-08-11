@@ -38,7 +38,9 @@ observability, and rollback procedures.
 Every commit pushed by the project workflow must pass `scripts/publication_guard.py`. The
 guard audits the exact staged/committed snapshot, denies raw and human-annotation data,
 blocks academic/private artifacts and high-risk file types, and scans text for common
-credentials, local user paths, email addresses, and Indonesian mobile numbers.
+credentials, local user paths, email addresses, and Indonesian mobile numbers. Binary files
+remain denied except three reviewed PNG paths pinned to exact SHA-256 values; the guard also
+rejects tampering and embedded PNG text/EXIF metadata.
 
 The guard is defense in depth, not a guarantee. Agents must still inspect the staged file
 list and diff before every push. Force-pushes and bypassing the hook are prohibited by the

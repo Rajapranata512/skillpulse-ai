@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import sys
 from pathlib import Path
@@ -49,3 +50,24 @@ def test_local_user_path_is_detected() -> None:
 
 def test_binary_content_is_denied() -> None:
     assert "binary content is not allowed" in publication_guard.content_violations(b"abc\x00def")
+
+def test_only_hash_pinned_reviewed_png_media_is_allowed(monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    png = b"\x89PNG\r\n\x1a\n" + (0).to_bytes(4, "big") + b"IEND" + b"\x00" * 4
+    path = "docs/assets/reviewed.png"
+    monkeypatch.setitem(publication_guard.ALLOWED_PUBLIC_MEDIA_SHA256, path, hashlib.sha256(png).hexdigest())
+
+    assert publication_guard.audit_file(publication_guard.PublicationFile(path, png)) == []
+    assert "public media does not match its reviewed SHA-256" in publication_guard.audit_file(
+        publication_guard.PublicationFile(path, png + b"tampered")
+    )
+
+
+def test_pinned_png_with_text_metadata_is_denied(monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    text_chunk = (0).to_bytes(4, "big") + b"tEXt" + b"\x00" * 4
+    iend = (0).to_bytes(4, "big") + b"IEND" + b"\x00" * 4
+    png = b"\x89PNG\r\n\x1a\n" + text_chunk + iend
+    path = "docs/assets/metadata.png"
+    monkeypatch.setitem(publication_guard.ALLOWED_PUBLIC_MEDIA_SHA256, path, hashlib.sha256(png).hexdigest())
+
+    violations = publication_guard.audit_file(publication_guard.PublicationFile(path, png))
+    assert "public PNG contains metadata chunk tEXt" in violations

@@ -128,19 +128,19 @@ the build context.
 | ML engineering | Frozen contracts, incumbent/challenger comparison, optional semantic dependency |
 | API | Strict FastAPI v1 schemas and four documented endpoints |
 | Deployment | Healthy non-root local Docker smoke |
-| Product/UI | API-backed Streamlit journey, automated widget-state QA, and self-cleaning launcher |
+| Product/UI | API-backed Streamlit journey, Chromium responsive QA, reviewed static media, and launcher |
 | Governance | No CV persistence, protected attributes excluded, open human/data gates |
 
-Latest engineering verification: Ruff passed and 97 tests passed. API container and
-Streamlit health checks passed locally; three automated UI scenarios cover sample, empty,
-success, and user-safe error states.
+Latest engineering verification: Ruff passed and 102 tests passed. API container and
+Streamlit health checks passed locally; widget-state tests plus CI Chromium cover empty,
+match, validation-error, and mobile extraction states without horizontal overflow.
 
 ## What did not work
 
 - Treating an AI-authored workbook as a second human annotation would have invalidated the
   independence claim. It was repaired into a separate AI challenger instead.
 - The semantic hybrid did not improve the frozen synthetic diagnostic and was not shipped.
-- Local headless browser tooling produced crash pages for UI screenshots.
+- Local headless browser tooling produced crash pages; CI-hosted Playwright Chromium later produced reviewed media.
 - The shared portable-report renderer still reports horizontal overflow at desktop width,
   even after a targeted table-width correction. The canonical JSON is retained, but no
   unverified HTML report is published.
@@ -161,12 +161,12 @@ limits, abuse controls, accessibility checks, monitoring, and a verified retenti
 - Primary extraction results are development-set evidence.
 - No independent annotation agreement yet.
 - No independent human matching relevance yet.
-- No public deployment, load test, or responsive browser QA.
+- No public deployment, load test, independent usability study, accessibility audit, or cross-browser QA.
 - No market-trend or salary feature supported by current evidence.
 
 ## Next evidence milestones
 
-1. Complete responsive visual QA and public-safe demo media in a working browser environment.
+1. Complete keyboard/accessibility and cross-browser review, then record a public-safe narrated walkthrough.
 2. Have a different human complete the 100-row blind annotation and publish agreement.
 3. Freeze 50 independent human relevance judgments and rerun both matchers without tuning
    on the evaluation set.

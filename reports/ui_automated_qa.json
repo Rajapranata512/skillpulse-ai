@@ -22,7 +22,7 @@
   },
   "verification": {
     "targeted_ui_tests": "5 passed",
-    "full_test_suite": "97 passed",
+    "full_test_suite_at_verification": "97 passed",
     "ruff": "passed",
     "launcher_smoke": "passed"
   },

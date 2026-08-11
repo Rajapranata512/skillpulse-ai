@@ -1,0 +1,77 @@
+{
+  "artifact_type": "SkillPulse Chromium responsive and static-media QA",
+  "verified_date": "2026-08-11",
+  "status": "chromium_desktop_mobile_passed_video_accessibility_open",
+  "github_actions": {
+    "run_id": 31462470916,
+    "run_url": "https://github.com/Rajapranata512/skillpulse-ai/actions/runs/31462470916",
+    "commit": "4a7e6bf7362e3ea61dd027df25b33230e91a1898",
+    "artifact_name": "skillpulse-browser-qa-4a7e6bf7362e3ea61dd027df25b33230e91a1898",
+    "test_job": "passed",
+    "browser_qa_job": "passed"
+  },
+  "responsive_measurements": [
+    {
+      "state": "desktop_empty",
+      "viewport_width": 1440,
+      "document_width": 1440
+    },
+    {
+      "state": "desktop_match",
+      "viewport_width": 1440,
+      "document_width": 1440
+    },
+    {
+      "state": "desktop_validation_error",
+      "viewport_width": 1440,
+      "document_width": 1440
+    },
+    {
+      "state": "mobile_extraction",
+      "viewport_width": 390,
+      "document_width": 390
+    }
+  ],
+  "agent_visual_inspection": {
+    "desktop_empty": "passed: hero, API/privacy sidebar, inputs, CTA, and empty state are readable",
+    "desktop_match": "passed: score, verdict, gap count, coverage, and evidence tabs are readable",
+    "desktop_validation_error": "passed: validation message is visible and does not echo submitted text",
+    "mobile_extraction": "passed: navigation, example control, stacked input, CTA, and extracted skills are readable",
+    "crash_page_detected": false,
+    "horizontal_overflow_detected": false
+  },
+  "published_media": [
+    {
+      "path": "docs/assets/skillpulse-desktop-empty.png",
+      "bytes": 302695,
+      "sha256": "f7e4b926faf2409453c345f1371bb9be3876c576243cbed1a96ba645d168d22c"
+    },
+    {
+      "path": "docs/assets/skillpulse-desktop-match.png",
+      "bytes": 310910,
+      "sha256": "6c65c9b4a2df78ac31addecbfd0136344fe1ddaa97b97ba0f5ee32dc32a6db91"
+    },
+    {
+      "path": "docs/assets/skillpulse-mobile-extraction.png",
+      "bytes": 115590,
+      "sha256": "feb1913e314b80cf2bce3a7e4336a2a046a35b40a8c27b5bcea0957c4212ff28"
+    }
+  ],
+  "publication_controls": {
+    "source": "repository public-safe synthetic examples only",
+    "raw_user_cv_used": false,
+    "png_chunk_types": [
+      "IHDR",
+      "IDAT",
+      "IEND"
+    ],
+    "embedded_text_metadata": false,
+    "guard_policy": "exact path and reviewed SHA-256 required; all other binary content remains denied"
+  },
+  "limitations": [
+    "Agent visual inspection is not independent human usability research.",
+    "Chromium evidence does not replace keyboard, screen-reader, accessibility, or cross-browser review.",
+    "Transient loading animation and a narrated 2-4 minute walkthrough are not captured.",
+    "Local-browser evidence is not public application deployment evidence."
+  ]
+}

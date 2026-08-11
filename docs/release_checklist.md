@@ -1,15 +1,17 @@
 # SkillPulse AI Portfolio Release Checklist
 
-**Audit date:** 10 August 2026
+**Audit date:** 11 August 2026
 **Current decision:** no-go for public release; local portfolio demo is reproducible
 
 ## What is ready
 
-- Ruff passes and 97 Python tests pass.
+- Ruff passes and 102 Python tests pass.
 - The one-command launcher starts FastAPI and Streamlit, verifies both health endpoints,
   and removes both processes in smoke mode.
 - Three privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,
   extraction/matching success, and domain-error presentation without external networking.
+- CI Playwright Chromium verifies four 1440px/390px states without horizontal overflow; three
+  synthetic screenshots were visually reviewed and published with pinned hashes.
 - The API container has a verified healthy, non-root local smoke result.
 - Raw source data, primary/blind annotations, AI challenger workbooks, processed CSV, and
   review-pack HTML are covered by explicit Git ignore rules.
@@ -24,7 +26,7 @@
 
 The clean product history is public at
 `https://github.com/Rajapranata512/skillpulse-ai` with `main` as the default branch.
-The public tree is a parentless product history containing 99 allowlisted product files;
+The public tree is a parentless product history containing 105 allowlisted product files;
 it has no relationship to the historical research commits.
 
 The former research history remains local only on `research-history-local-20260810` and
@@ -39,19 +41,19 @@ Future publication completion evidence:
 - use a GitHub noreply commit identity;
 - push only `origin main`, never `--all`, `--mirror`, tags, or the research branch;
 - record the remote SHA and CI result in the handoff.
-### 2. Visual and media evidence needs a working browser environment
+### 2. Accessibility, cross-browser, and narrated media remain open
 
-API/UI functional smoke and automated state journeys are complete, but local headless
-Edge/Chrome returned browser crash pages. The shared portable-report renderer also reports
-desktop horizontal overflow. No invalid screenshot or unverified HTML is published.
+CI-hosted Playwright Chromium now passes desktop/mobile overflow assertions and produced
+reviewed empty, matching, validation-error, and mobile-extraction captures. Three synthetic
+screenshots are published with exact SHA-256 pins; the invalid local crash pages remain excluded.
+The unrelated portable-report renderer still blocks its own unverified HTML output.
 
-Completion evidence:
+Remaining completion evidence:
 
-- desktop and mobile layouts are reviewed in a working browser;
-- loading, empty, API-offline, validation-error, extraction, and matching states are
-  captured;
-- a 2-4 minute public-safe video/GIF follows `docs/demo_checklist.md`;
-- no real CV or third-party raw description appears in the media.
+- keyboard, focus, screen-reader, contrast, and at least one second-browser review;
+- real-browser loading and API-offline states, beyond existing widget/API-client automation;
+- a 2-4 minute public-safe video/GIF following `docs/demo_checklist.md`;
+- no real CV or third-party raw description in any additional media.
 
 ### 3. Independent ML evidence requires humans
 

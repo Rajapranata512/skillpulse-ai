@@ -16,13 +16,24 @@ explainable CV-to-job matching product.
 - Explainable CV-to-job matching with evidence, gaps, weights, and learning priorities.
 - A strict four-endpoint FastAPI contract, healthy non-root container, and API-backed
   Streamlit demo.
-- 97 passing tests, model/data documentation, and explicit human/data release gates.
+- 102 passing tests, model/data documentation, and explicit human/data release gates.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human
-relevance (0/50), responsive visual QA, public deployment, and salary modelling remain
-open. Start with the [case study](docs/case_study.md), [architecture](docs/architecture.md),
-and [model card](docs/model_card.md) for the evidence and limitations.
+relevance (0/50), cross-browser/accessibility review, a narrated walkthrough, public
+deployment, and salary modelling remain open. Start with the [case study](docs/case_study.md),
+[architecture](docs/architecture.md), and [model card](docs/model_card.md).
+
+## Product preview
+
+<p align="center">
+  <img src="docs/assets/skillpulse-desktop-match.png" alt="SkillPulse desktop match result" width="68%">
+  <img src="docs/assets/skillpulse-mobile-extraction.png" alt="SkillPulse mobile extraction result" width="27%">
+</p>
+
+These captures use only repository synthetic examples. Chromium CI verified desktop/mobile
+widths without horizontal overflow; exact hashes and limitations are in
+[`reports/ui_browser_qa.json`](reports/ui_browser_qa.json).
 
 ## Current dataset
 
@@ -248,6 +259,7 @@ run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
 - `docs/architecture.md` maps the runtime, evaluation, and trust boundaries.
 - `reports/portfolio_release_metrics.json` is the reconciled release-evidence snapshot.
 - `reports/ui_automated_qa.json` records privacy-safe Streamlit widget-journey coverage.
+- `reports/ui_browser_qa.json` records Chromium dimensions, hashes, inspection, and limitations.
 - `reports/portfolio_report_artifact.json` is the source-backed canonical report artifact.
 
 The shared portable-report renderer still overflows horizontally during browser
@@ -258,7 +270,8 @@ in `reports/portfolio_report_notes.md` remain available for a future renderer fi
 The repository uses a deny-by-default publication guard before every push. It blocks raw
 and processed row-level data, annotations, evaluation labels, workbooks, academic/private
 artifacts, credentials, local paths, email addresses, phone numbers, and common secret
-patterns. CI reruns the same guard against the committed snapshot.
+patterns. Three reviewed PNG media paths are the only binary exception and must match pinned
+SHA-256 values without text-metadata chunks. CI audits the exact committed snapshot.
 
 See [SECURITY.md](SECURITY.md) for vulnerability reporting and security boundaries, and
 [PRIVACY.md](PRIVACY.md) for the verified local data flow and public-deployment requirements.
@@ -269,7 +282,7 @@ ruff check src tests
 pytest -q
 ```
 
-Current local verification: 97 tests passed and Ruff is clean.
+Current local verification: 102 tests passed and Ruff is clean.
 
 ## Portfolio roadmap
 
@@ -277,8 +290,8 @@ Current local verification: 97 tests passed and Ruff is clean.
 2. AI challenger remediation and synthetic semantic comparison — complete as diagnostic evidence;
    independent human gates remain open.
 3. Explainable matcher, contract v1, FastAPI, and non-root Docker smoke — complete locally.
-4. Streamlit portfolio journey — functional smoke and automated state journeys complete;
-   responsive visual QA and demo media pending.
+4. Streamlit portfolio journey — Chromium desktop/mobile QA and reviewed static media complete;
+   accessibility, cross-browser review, and narrated walkthrough pending.
 5. Model card, architecture/release story, public deployment verification, and monitoring — next.
 6. Market analytics and salary modelling — data/metric gated, not an active claim.
 

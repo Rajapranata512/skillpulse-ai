@@ -1,11 +1,11 @@
 {
   "artifact_type": "SkillPulse AI portfolio release evidence snapshot",
-  "generated_at": "2026-08-10T00:00:00+07:00",
+  "generated_at": "2026-08-11T00:00:00+07:00",
   "claim_status": "local_portfolio_candidate_human_gates_open",
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 97,
+    "tests_passed": 102,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
     "salary_disclosure_rate": 0.1387
@@ -90,7 +90,10 @@
     "streamlit_automated_scenarios": 3,
     "streamlit_automated_state_qa": "passed",
     "raw_cv_persistence": false,
-    "visual_browser_qa": "open"
+    "visual_browser_qa": "chromium_desktop_mobile_passed",
+    "browser_qa_states": 4,
+    "published_static_media": 3,
+    "accessibility_cross_browser_video_gate": "open"
   },
   "sources": [
     "reports/data_quality.json",
@@ -100,6 +103,7 @@
     "reports/api_container_smoke.json",
     "reports/ui_smoke.json",
     "reports/ui_automated_qa.json",
+    "reports/ui_browser_qa.json",
     "AGENTS.md"
   ]
 }

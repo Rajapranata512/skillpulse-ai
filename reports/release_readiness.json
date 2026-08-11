@@ -1,14 +1,18 @@
 {
     "artifact_type":  "SkillPulse AI portfolio release readiness audit",
-    "verified_date":  "2026-08-10",
+    "verified_date":  "2026-08-11",
     "overall_status":  "public_repository_published_local_demo_ready_release_gates_open",
     "engineering":  {
                         "ruff":  "passed",
-                        "tests_passed":  97,
+                        "tests_passed":  102,
                         "demo_launcher_smoke":  "passed",
                         "streamlit_automated_scenarios":  3,
                         "ui_implementation_commit":  "c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d",
                         "ui_implementation_ci_run":  31409943647,
+                        "browser_qa_commit":  "4a7e6bf7362e3ea61dd027df25b33230e91a1898",
+                        "browser_qa_ci_run":  31462470916,
+                        "browser_qa_states":  4,
+                        "published_static_media":  3,
                         "demo_smoke_ports":  [
                                                  18080,
                                                  18501
@@ -27,6 +31,7 @@
                           "case_study":  "docs/case_study.md",
                           "demo_checklist":  "docs/demo_checklist.md",
                           "ui_automated_qa":  "reports/ui_automated_qa.json",
+                          "ui_browser_qa":  "reports/ui_browser_qa.json",
                           "release_checklist":  "docs/release_checklist.md",
                           "canonical_portfolio_report":  "reports/portfolio_report_artifact.json",
                           "portable_html_status":  "blocked_shared_renderer_horizontal_overflow"
@@ -35,7 +40,7 @@
                             "repository_url":  "https://github.com/Rajapranata512/skillpulse-ai",
                             "visibility":  "PUBLIC",
                             "default_branch":  "main",
-                            "public_tree_files":  99,
+                            "public_tree_files":  105,
                             "clean_history_parent":  "none",
                             "root_commit":  "c9e2854fb56280f8126d21df54d904ba6c39ec4d",
                             "security_commit":  "5a1f05d592ccfc11e018d21439c8d13a3c81be47",
@@ -60,10 +65,10 @@
                                              },
     "open_gates":  [
                        {
-                           "id":  "M5-visual-qa",
-                           "status":  "environment_human_gate",
-                           "current":  "functional HTTP smoke plus automated widget-state QA",
-                           "required":  "interactive responsive browser QA plus public-safe demo media"
+                           "id":  "M5-accessibility-media",
+                           "status":  "human_gate",
+                           "current":  "Chromium desktop/mobile QA and three reviewed static screenshots passed",
+                           "required":  "accessibility, second-browser review, loading/offline capture, and narrated walkthrough"
                        },
                        {
                            "id":  "ML-QG-2",
@@ -92,13 +97,15 @@
                    ],
     "limitations":  [
                         "The audit verifies deny rules, selected public scope, and common secret/PII patterns but is not a substitute for a full legal or penetration review.",
-                        "The repository is public and automated UI states pass, but no public application deployment, responsive browser media, independent annotation agreement, or human relevance evaluation is complete."
+                        "The repository is public with reviewed Chromium media, but no public application deployment, accessibility/cross-browser review, independent annotation agreement, or human relevance evaluation is complete."
                     ],
     "dependency_security":  {
                                 "dependabot_enabled":  true,
                                 "actions_checkout":  "v7",
                                 "checkout_update_source":  "official_releases_and_green_dependabot_checks",
                                 "agent_merged_pull_request":  false,
-                                "actions_setup_python":  "v7"
+                                "actions_setup_python":  "v7",
+                                "actions_upload_artifact":  "v7",
+                                "playwright":  ">=1.61,<2.0"
                             }
 }

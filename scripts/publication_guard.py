@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import re
 import subprocess
 import sys
@@ -19,6 +20,18 @@ ALLOWED_DATA_MARKERS = {
     "data/processed/.gitkeep",
     "data/raw/.gitkeep",
 }
+ALLOWED_PUBLIC_MEDIA_SHA256 = {
+    "docs/assets/skillpulse-desktop-empty.png": (
+        "f7e4b926faf2409453c345f1371bb9be3876c576243cbed1a96ba645d168d22c"
+    ),
+    "docs/assets/skillpulse-desktop-match.png": (
+        "6c65c9b4a2df78ac31addecbfd0136344fe1ddaa97b97ba0f5ee32dc32a6db91"
+    ),
+    "docs/assets/skillpulse-mobile-extraction.png": (
+        "feb1913e314b80cf2bce3a7e4336a2a046a35b40a8c27b5bcea0957c4212ff28"
+    ),
+}
+PNG_METADATA_CHUNKS = {b"eXIf", b"iTXt", b"tEXt", b"zTXt"}
 DENIED_INTERNAL_REPORT_PATHS = {
     "reports/annotation_readiness.json",
     "reports/annotation_review_001.md",
@@ -157,8 +170,43 @@ def path_violations(path: str) -> list[str]:
         violations.append("derived row-level data is not part of the public release")
     if normalized.startswith("data/evaluation/") and normalized not in ALLOWED_CSV_PATHS:
         violations.append("evaluation labels are private-by-default to prevent human-gate leakage")
-    if pure.name not in SPECIAL_TEXT_FILES and suffix not in TEXT_SUFFIXES:
+    if (
+        normalized not in ALLOWED_PUBLIC_MEDIA_SHA256
+        and pure.name not in SPECIAL_TEXT_FILES
+        and suffix not in TEXT_SUFFIXES
+    ):
         violations.append("file type is not on the public text allowlist")
+    return violations
+
+
+def pinned_media_violations(path: str, content: bytes) -> list[str]:
+    violations: list[str] = []
+    expected_sha256 = ALLOWED_PUBLIC_MEDIA_SHA256[path]
+    if len(content) > MAX_PUBLIC_FILE_BYTES:
+        violations.append(f"file exceeds {MAX_PUBLIC_FILE_BYTES} bytes")
+    if hashlib.sha256(content).hexdigest() != expected_sha256:
+        violations.append("public media does not match its reviewed SHA-256")
+    if not content.startswith(b"\x89PNG\r\n\x1a\n"):
+        violations.append("public media is not a valid PNG signature")
+        return violations
+
+    offset = 8
+    found_iend = False
+    while offset + 12 <= len(content):
+        length = int.from_bytes(content[offset : offset + 4], "big")
+        chunk_type = content[offset + 4 : offset + 8]
+        chunk_end = offset + 12 + length
+        if chunk_end > len(content):
+            violations.append("public PNG has a malformed chunk boundary")
+            break
+        if chunk_type in PNG_METADATA_CHUNKS:
+            violations.append(f"public PNG contains metadata chunk {chunk_type.decode('ascii')}")
+        offset = chunk_end
+        if chunk_type == b"IEND":
+            found_iend = True
+            break
+    if not found_iend:
+        violations.append("public PNG is missing IEND")
     return violations
 
 
@@ -182,6 +230,9 @@ def content_violations(content: bytes) -> list[str]:
 
 
 def audit_file(file: PublicationFile) -> list[str]:
+    normalized = file.path.replace("\\", "/")
+    if normalized in ALLOWED_PUBLIC_MEDIA_SHA256:
+        return [*path_violations(normalized), *pinned_media_violations(normalized, file.content)]
     return [*path_violations(file.path), *content_violations(file.content)]
 
 

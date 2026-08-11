@@ -38,6 +38,7 @@ Before recording or sharing:
 - `reports/api_container_smoke.json` still reports a healthy non-root container.
 - `reports/ui_smoke.json` still reports API and Streamlit health `ok`.
 - `reports/ui_automated_qa.json` still reports sample, empty, success, and safe-error journeys passed.
+- `reports/ui_browser_qa.json` still matches the three pinned screenshots in `docs/assets/`.
 - `docs/model_card.md` still matches the latest aggregate evaluation reports.
 - No real CV, raw annotation, CSV, or XLSX file is staged for publication.
 
@@ -64,6 +65,7 @@ Before recording or sharing:
 - The UI displays API status and contract version.
 - Extraction returns structured canonical entities and a disclaimer.
 - Matching exposes the score calculation instead of only a final number.
+- Desktop and mobile layouts match the reviewed Chromium media without horizontal overflow.
 - The included example identifies at least one realistic learning gap.
 - No file upload, raw CV retention, or protected-attribute input is present.
 - Blank input is stopped before an API request and API errors do not echo submitted text.
