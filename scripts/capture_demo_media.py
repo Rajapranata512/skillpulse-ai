@@ -1,4 +1,4 @@
-"""Capture public-safe SkillPulse browser states and verify responsive overflow."""
+"""Capture public-safe SkillPulse browser states and run cross-browser smoke QA."""
 
 from __future__ import annotations
 
@@ -133,62 +133,105 @@ def _wait_for_app(page: Any, ui_url: str) -> None:
     page.get_by_text("API online", exact=False).wait_for(state="attached", timeout=30_000)
 
 
-def _capture(output: Path, ui_url: str) -> tuple[list[dict[str, int | str]], list[dict[str, int | str]]]:
-    from playwright.sync_api import expect, sync_playwright
+def _activate_with_keyboard(page: Any, locator: Any) -> None:
+    locator.focus()
+    is_focused = locator.evaluate("element => element === document.activeElement")
+    if not is_focused:
+        raise AssertionError("Expected the keyboard target to receive focus.")
+    page.keyboard.press("Enter")
+
+
+def _complete_match_with_keyboard(page: Any) -> None:
+    from playwright.sync_api import expect
+
+    sample_button = page.get_by_role("button", name="Gunakan data contoh", exact=True)
+    _activate_with_keyboard(page, sample_button)
+    expect(page.get_by_label("CV text", exact=True)).not_to_have_value("", timeout=30_000)
+    expect(page.get_by_label("Job description", exact=True)).not_to_have_value("", timeout=30_000)
+    _activate_with_keyboard(page, page.get_by_role("button", name="Analyze match", exact=True))
+    page.get_by_text("67.5/100", exact=True).wait_for(timeout=30_000)
+
+
+def _capture_chromium(
+    playwright: Any, output: Path, ui_url: str
+) -> tuple[list[dict[str, int | str]], list[dict[str, int | str]]]:
+    from playwright.sync_api import expect
 
     measurements: list[dict[str, int | str]] = []
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
-        try:
-            desktop = browser.new_context(viewport=DESKTOP_VIEWPORT, color_scheme="light")
-            page = desktop.new_page()
-            _wait_for_app(page, ui_url)
-            measurements.append(_responsive_measurement(page, "desktop_empty"))
-            _save(page, output, "desktop-empty.png")
+    browser = playwright.chromium.launch(headless=True)
+    try:
+        desktop = browser.new_context(viewport=DESKTOP_VIEWPORT, color_scheme="light")
+        page = desktop.new_page()
+        _wait_for_app(page, ui_url)
+        measurements.append(_responsive_measurement(page, "chromium_desktop_empty"))
+        _save(page, output, "desktop-empty.png")
 
-            page.get_by_role("button", name="Gunakan data contoh", exact=True).click()
-            page.get_by_role("button", name="Analyze match", exact=True).click()
-            page.get_by_text("67.5/100", exact=True).wait_for(timeout=30_000)
-            measurements.append(_responsive_measurement(page, "desktop_match"))
-            _save(page, output, "desktop-match.png")
+        _complete_match_with_keyboard(page)
+        measurements.append(_responsive_measurement(page, "chromium_desktop_match_keyboard"))
+        _save(page, output, "desktop-match.png")
 
-            page.get_by_label("CV text", exact=True).fill("")
-            page.get_by_role("button", name="Analyze match", exact=True).click()
-            page.get_by_text("Isi CV dan job description sebelum menjalankan analisis.", exact=True).wait_for(
-                timeout=30_000
-            )
-            measurements.append(_responsive_measurement(page, "desktop_validation_error"))
-            _save(page, output, "desktop-validation-error.png")
-            desktop.close()
+        page.get_by_label("CV text", exact=True).fill("")
+        _activate_with_keyboard(page, page.get_by_role("button", name="Analyze match", exact=True))
+        page.get_by_text("Isi CV dan job description sebelum menjalankan analisis.", exact=True).wait_for(
+            timeout=30_000
+        )
+        measurements.append(_responsive_measurement(page, "chromium_desktop_validation_error"))
+        _save(page, output, "desktop-validation-error.png")
+        desktop.close()
 
-            mobile = browser.new_context(
-                viewport=MOBILE_VIEWPORT,
-                color_scheme="light",
-                device_scale_factor=1,
-                is_mobile=True,
-            )
-            page = mobile.new_page()
-            _wait_for_app(page, ui_url)
-            extraction_tab = page.get_by_role("tab", name="Extract Job", exact=True)
-            extraction_tab.click()
-            page.get_by_role("button", name="Gunakan contoh extraction", exact=True).click()
-            extraction_text = page.get_by_label("Job description to extract", exact=True)
-            expect(extraction_text).to_be_visible(timeout=30_000)
-            expect(extraction_text).not_to_have_value("", timeout=30_000)
-            page.get_by_role("button", name="Extract requirements", exact=True).click()
-            technical_heading = page.get_by_text("Technical skills", exact=True)
-            technical_heading.wait_for(state="attached", timeout=30_000)
-            extraction_tab.click()
-            technical_heading.wait_for(state="visible", timeout=30_000)
-            page.get_by_text("Power BI", exact=True).wait_for(timeout=30_000)
-            measurements.append(_responsive_measurement(page, "mobile_extraction"))
-            _save(page, output, "mobile-extraction.png")
-            mobile.close()
-        finally:
-            browser.close()
+        mobile = browser.new_context(
+            viewport=MOBILE_VIEWPORT,
+            color_scheme="light",
+            device_scale_factor=1,
+            is_mobile=True,
+        )
+        page = mobile.new_page()
+        _wait_for_app(page, ui_url)
+        extraction_tab = page.get_by_role("tab", name="Extract Job", exact=True)
+        extraction_tab.click()
+        page.get_by_role("button", name="Gunakan contoh extraction", exact=True).click()
+        extraction_text = page.get_by_label("Job description to extract", exact=True)
+        expect(extraction_text).to_be_visible(timeout=30_000)
+        expect(extraction_text).not_to_have_value("", timeout=30_000)
+        page.get_by_role("button", name="Extract requirements", exact=True).click()
+        technical_heading = page.get_by_text("Technical skills", exact=True)
+        technical_heading.wait_for(state="attached", timeout=30_000)
+        extraction_tab.click()
+        technical_heading.wait_for(state="visible", timeout=30_000)
+        page.get_by_text("Power BI", exact=True).wait_for(timeout=30_000)
+        measurements.append(_responsive_measurement(page, "chromium_mobile_extraction"))
+        _save(page, output, "mobile-extraction.png")
+        mobile.close()
+    finally:
+        browser.close()
 
     captures = [png_metadata(output / filename) | {"state": state} for filename, state in CAPTURE_SPECS]
     return captures, measurements
+
+
+def _smoke_firefox(playwright: Any, ui_url: str) -> dict[str, int | str | bool]:
+    browser = playwright.firefox.launch(headless=True)
+    try:
+        context = browser.new_context(viewport=DESKTOP_VIEWPORT, color_scheme="light")
+        page = context.new_page()
+        _wait_for_app(page, ui_url)
+        _complete_match_with_keyboard(page)
+        measurement = _responsive_measurement(page, "firefox_desktop_match_keyboard")
+        context.close()
+    finally:
+        browser.close()
+    return measurement | {"keyboard_activation": True}
+
+
+def _run_browser_qa(
+    output: Path, ui_url: str
+) -> tuple[list[dict[str, int | str]], list[dict[str, int | str]], dict[str, int | str | bool]]:
+    from playwright.sync_api import sync_playwright
+
+    with sync_playwright() as playwright:
+        captures, measurements = _capture_chromium(playwright, output, ui_url)
+        firefox = _smoke_firefox(playwright, ui_url)
+    return captures, measurements, firefox
 
 
 def capture_demo(output: Path, api_port: int, ui_port: int) -> dict[str, Any]:
@@ -213,16 +256,16 @@ def capture_demo(output: Path, api_port: int, ui_port: int) -> dict[str, Any]:
                     env=environment,
                 )
                 _wait_for_http(f"http://127.0.0.1:{ui_port}/_stcore/health", ui_process, "UI")
-                captures, measurements = _capture(output, f"http://127.0.0.1:{ui_port}")
+                captures, measurements, firefox = _run_browser_qa(output, f"http://127.0.0.1:{ui_port}")
             finally:
                 _stop(ui_process)
                 _stop(api_process)
 
     report: dict[str, Any] = {
-        "artifact_type": "SkillPulse public-safe Chromium responsive QA",
+        "artifact_type": "SkillPulse public-safe cross-browser responsive QA",
         "generated_at": datetime.now(UTC).isoformat(),
         "commit": os.getenv("GITHUB_SHA", "local-uncommitted-run"),
-        "engine": "Playwright Chromium",
+        "engines": ["Playwright Chromium", "Playwright Firefox"],
         "status": "passed",
         "privacy": {
             "input_source": "repository public-safe examples only",
@@ -233,13 +276,17 @@ def capture_demo(output: Path, api_port: int, ui_port: int) -> dict[str, Any]:
         "assertions": {
             "horizontal_overflow_tolerance_px": OVERFLOW_TOLERANCE_PX,
             "all_states_within_viewport": True,
+            "keyboard_activation_verified": True,
+            "firefox_match_smoke": True,
             "api_access_log_disabled": True,
             "services_stopped_after_capture": True,
         },
         "measurements": measurements,
+        "firefox_smoke": firefox,
         "captures": captures,
         "limitations": [
-            "Chromium automation does not replace keyboard, screen-reader, or cross-browser human review.",
+            "Automated keyboard activation does not replace screen-reader or human usability review.",
+            "Chromium screenshots and a Firefox desktop smoke do not cover Safari/WebKit or every device.",
             "Captured media uses synthetic examples and is CI evidence, not public deployment evidence.",
         ],
     }
@@ -260,7 +307,7 @@ def main() -> None:
     report = capture_demo(args.output, args.api_port, args.ui_port)
     print(
         f"Browser QA: PASS ({len(report['captures'])} captures, "
-        f"{len(report['measurements'])} responsive states)"
+        f"{len(report['measurements'])} Chromium responsive states, Firefox smoke)"
     )
 
 
