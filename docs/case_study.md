@@ -138,7 +138,7 @@ the build context.
 | Product/UI | API-backed Streamlit journey, filterable aggregate market snapshot, three-engine chart QA, reviewed static media, and launcher |
 | Governance | No CV persistence, protected attributes excluded, open human/data gates |
 
-Latest engineering verification: Ruff passed and 129 tests passed. API container and
+Latest engineering verification: Ruff passed and 131 tests passed. API container and
 Streamlit health checks passed locally; widget-state tests cover aggregate filter changes without API
 calls. Playwright Chromium covers desktop/mobile market charts plus empty, loading, match, validation,
 extraction, and API-offline states; Firefox and WebKit each render all three dashboard charts before

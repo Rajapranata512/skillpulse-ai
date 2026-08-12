@@ -5,7 +5,7 @@
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 129,
+    "tests_passed": 131,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
     "salary_disclosure_rate": 0.1387,
@@ -124,14 +124,16 @@
     "market_dashboard_charts": 3,
     "market_dashboard_desktop_mobile_chromium": "passed_ci_31480441499",
     "market_dashboard_firefox_webkit": "passed_ci_31480441499",
-    "latest_ci_run": 31602756546,
-    "latest_ci_commit": "bb5475301f6dfe367cdfdc3e0dff4c8aaecf4469"
+    "latest_ci_run": 31604870965,
+    "latest_ci_commit": "4ca9fc0099204a04ea558a369219df1e80089a43",
+    "portfolio_document_contract_tests": 2,
+    "portfolio_markdown_files_link_checked": 9
   },
   "security_evidence": {
-    "dependency_audit_ci_run": 31602756546,
+    "dependency_audit_ci_run": 31604870965,
     "audited_third_party_dependencies": 72,
     "known_dependency_vulnerabilities": 0,
-    "codeql_ci_run": 31602756481,
+    "codeql_ci_run": 31604870696,
     "codeql_query_suite": "security-extended",
     "initial_codeql_alerts": 5,
     "fixed_codeql_alerts": 5,
@@ -139,6 +141,13 @@
     "open_secret_scanning_alerts": 0,
     "dependabot_version_updates_configured": true,
     "dependabot_vulnerability_alerts_enabled": false
+  },
+  "repository_metadata": {
+    "description_present": false,
+    "topics_count": 0,
+    "homepage_present": false,
+    "code_license_selected": false,
+    "owner_decision_required": true
   },
   "sources": [
     "reports/data_quality.json",
@@ -158,7 +167,8 @@
     "reports/release_readiness.json",
     ".github/workflows/ci.yml",
     ".github/workflows/codeql.yml",
-    "SECURITY.md"
+    "SECURITY.md",
+    "tests/test_portfolio_docs.py"
   ],
   "market_snapshot": {
     "status": "bounded_30_day_aggregate_active_no_trend_claim",

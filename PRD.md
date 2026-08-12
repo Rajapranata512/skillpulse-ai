@@ -24,26 +24,24 @@ with clean history, green CI, privacy/security publication controls, verified ex
 baselines, FastAPI, non-root container, Streamlit product journey, aggregate 30-day market snapshot,
 and a fail-closed accessibility/media review workflow. It is not portfolio-ready because independent
 human annotation/relevance, human accessibility/usability media, and public application deployment remain open.
-**Completed this session:** extended the existing demo launcher with explicit `-AllowLan` physical-device
-review access. Default/UI smoke and FastAPI remain loopback-only; the opt-in path exposes only Streamlit,
-prints private IPv4 URLs and strong privacy warnings, forces headless mode, and rejects `-SmokeTest`
-pairing before listener startup. Pushed implementation commit
-`bb5475301f6dfe367cdfdc3e0dff4c8aaecf4469`.
-**Verified baseline:** 129 tests, Ruff, PowerShell parsing, loopback start-health-stop smoke, listener
-cleanup, and the fail-closed automation guard passed. LAN mode was not activated by automation. CI run
-`31602756546` passed committed-snapshot guard, tests, dependency audit, and Chromium/Firefox/WebKit QA.
-CodeQL run `31602756481` passed with zero open CodeQL and secret-scanning alerts. Publication guard
-scanned the complete 120-file / 1,361,884-byte implementation snapshot; private evidence/data and
-credentials remain absent.
+**Completed this session:** corrected the stale legacy model-metadata endpoint to `/v1/models`, updated README
+test evidence and CodeQL visibility, and added regression QA for recruiter-facing local links plus
+documented/live API-route consistency. Pushed implementation commit
+`4ca9fc0099204a04ea558a369219df1e80089a43`.
+**Verified baseline:** 131 tests and Ruff passed. Nine recruiter-facing Markdown files have resolving
+local links and README/PRD/architecture match the live four-endpoint API. CI run `31604870965` passed
+committed-snapshot guard, tests, dependency audit, and Chromium/Firefox/WebKit QA. CodeQL run
+`31604870696` passed with zero open CodeQL and secret-scanning alerts. Publication guard scanned the
+complete 121-file / 1,365,491-byte implementation snapshot; private evidence/data and credentials remain absent.
 **Selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`.
 **Next completion check:** a human runs `scripts/run_demo.ps1 -AllowLan -NoBrowser` on a trusted Private
 network and completes `docs/human_accessibility_media_review.md`; the private JSON
 passes `skillpulse-release-review ... --require-complete`, no blocker/high finding remains open, and a
 120-240 second synthetic/redacted walkthrough passes human privacy review while automated QA stays green.
 **Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The snapshot is one source/
-one 30-day window, so trend, whole-market, and global claims remain blocked. Dependabot vulnerability
-alerts plus public hosting/privacy/monitoring/rollback decisions remain owner-gated; shared renderer
-overflow still blocks verified HTML.
+one 30-day window, so trend, whole-market, and global claims remain blocked. Code license, repository
+description/topics/homepage, Dependabot vulnerability alerts, and public hosting/privacy/monitoring/
+rollback decisions remain owner-gated; shared renderer overflow still blocks verified HTML.
 <!-- AUTO-SYNC:END -->
 
 ## 1. Executive summary
@@ -538,12 +536,14 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- Public `origin/main` has a parentless 120-file product history, green CI, a staged/commit publication
+- Public `origin/main` has a parentless 121-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
   SECURITY/PRIVACY policies, continuous `pip-audit`, CodeQL `security-extended`, Dependabot version
   updates, and official checkout/setup-python v7. All five initial CodeQL findings are fixed without
   dismissal; no CodeQL or secret-scanning alert remains open. Dependabot vulnerability alerts still
   require an owner-approved repository-setting change.
+- Recruiter-facing local links and README/PRD/architecture endpoint claims are regression-tested
+  against the live API. Code license and GitHub description/topics/homepage remain owner decisions.
 - Historical research is local-only and absent from public history. The portable report passed package-
   contract validation but shared browser verification still reports desktop overflow; no unverified HTML
   is delivered.
@@ -598,6 +598,7 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 ### Open, to resolve with evidence
 
 - Which API/UI hosting targets meet privacy, monitoring, rollback, region, and cost constraints.
+- Which code license applies, and which GitHub description/topics/homepage should represent the portfolio.
 
 - Which job families beyond data/analytics enter taxonomy v0.2?
 - Which licensed global source is comparable to the verified 30-day Indonesian snapshot?
