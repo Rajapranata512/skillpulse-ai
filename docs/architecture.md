@@ -105,3 +105,8 @@ portfolio walkthrough, but a public release still needs an explicit hosting desi
 environment configuration, browser QA, monitoring, and rollback evidence. Human M5c observations
 remain in a Git-ignored local record; the release validator checks completeness and fail-closed
 conditions but cannot attest that an accessibility or privacy judgment is true.
+
+For physical-device review, `scripts/run_demo.ps1 -AllowLan` is an explicit temporary boundary:
+Streamlit may bind to private IPv4 interfaces, while FastAPI remains on `127.0.0.1`. The mode is
+not used by automation, has no TLS/authentication, accepts synthetic samples only, and must be
+stopped immediately after review; it is not a public deployment design.

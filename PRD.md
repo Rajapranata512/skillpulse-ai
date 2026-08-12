@@ -16,27 +16,28 @@ Timpa isi di antara marker; jangan append session log.
 <!-- AUTO-SYNC:START -->
 **Last synchronized:** 2026-08-12
 **Current phase:** Phase 3 complete locally; Phase 4 aggregate market snapshot and three-engine
-automation are complete, and the M5c private human-review pack/validator is ready while actual
-screen-reader, real-device, and narrated-media evidence remains human-gated. Phase 5 public
+automation are complete, and the M5c private human-review pack/validator plus opt-in trusted-LAN
+physical-device access are ready while actual screen-reader, device, and narrated-media evidence remains human-gated. Phase 5 public
 source/story/security evidence is complete and application deployment remains owner-gated.
 **Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
 with clean history, green CI, privacy/security publication controls, verified extraction/matching
 baselines, FastAPI, non-root container, Streamlit product journey, aggregate 30-day market snapshot,
 and a fail-closed accessibility/media review workflow. It is not portfolio-ready because independent
 human annotation/relevance, human accessibility/usability media, and public application deployment remain open.
-**Completed this session:** added continuous `pip-audit` and CodeQL `security-extended`, then fixed all
-five initial CodeQL findings without dismissal: strict loopback/allowlist proxy targets, linear contextual
-term checks, and non-sensitive CLI completion messages. Pushed automation commit
-`c21e6981a3718a608b43cb9c1be535da8cde41d1` and remediation commit
-`0def1fc15b5457dda8bcdbaf59cfb13c3b36d9d7`.
-**Verified baseline:** 127 tests and Ruff passed. CI run `31572435653` passed committed-snapshot guard,
-tests, a 72-third-party-package audit with zero known vulnerabilities, and Chromium/Firefox/WebKit QA.
-CodeQL run `31572435689` passed; all five initial alerts are fixed, with zero open CodeQL and secret-
-scanning alerts. Publication guard scanned the complete 120-file / 1,354,078-byte remediation snapshot;
-private records/media, row-level data, annotations, workbooks, academic artifacts, credentials, PII
-patterns, and local paths remain absent.
+**Completed this session:** extended the existing demo launcher with explicit `-AllowLan` physical-device
+review access. Default/UI smoke and FastAPI remain loopback-only; the opt-in path exposes only Streamlit,
+prints private IPv4 URLs and strong privacy warnings, forces headless mode, and rejects `-SmokeTest`
+pairing before listener startup. Pushed implementation commit
+`bb5475301f6dfe367cdfdc3e0dff4c8aaecf4469`.
+**Verified baseline:** 129 tests, Ruff, PowerShell parsing, loopback start-health-stop smoke, listener
+cleanup, and the fail-closed automation guard passed. LAN mode was not activated by automation. CI run
+`31602756546` passed committed-snapshot guard, tests, dependency audit, and Chromium/Firefox/WebKit QA.
+CodeQL run `31602756481` passed with zero open CodeQL and secret-scanning alerts. Publication guard
+scanned the complete 120-file / 1,361,884-byte implementation snapshot; private evidence/data and
+credentials remain absent.
 **Selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`.
-**Next completion check:** a human completes `docs/human_accessibility_media_review.md`; the private JSON
+**Next completion check:** a human runs `scripts/run_demo.ps1 -AllowLan -NoBrowser` on a trusted Private
+network and completes `docs/human_accessibility_media_review.md`; the private JSON
 passes `skillpulse-release-review ... --require-complete`, no blocker/high finding remains open, and a
 120-240 second synthetic/redacted walkthrough passes human privacy review while automated QA stays green.
 **Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The snapshot is one source/
@@ -526,6 +527,8 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
   mobile market views, Firefox/WebKit chart renders and keyboard matches, and exact viewport widths.
   Eight synthetic captures stay in CI; three reviewed screenshots remain SHA-pinned without metadata.
 - The one-command PowerShell launcher starts API/UI, verifies both endpoints, and cleans both processes.
+  Its explicit trusted-LAN mode makes physical-device review possible without a public deployment:
+  only Streamlit binds to LAN, FastAPI remains loopback-only, and unsafe automation pairing is rejected.
 - A blank v1 M5c template, private-by-default workflow, and strict validator are ready; automation
   rejects incomplete/unsafe evidence but cannot create observations or attest their truth.
 - Exit remains open only for human screen-reader/focus/contrast, real Safari/device review, and a

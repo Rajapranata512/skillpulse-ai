@@ -5,7 +5,7 @@
 
 ## What is ready
 
-- Ruff passes and 114 Python tests pass.
+- Ruff passes and 129 Python tests pass.
 - The one-command launcher starts FastAPI and Streamlit, verifies both health endpoints,
   and removes both processes in smoke mode.
 - Four privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,
@@ -21,6 +21,8 @@
   checklist, and aggregate evaluation evidence exist.
 - A strict, privacy-minimizing M5c JSON template and validator reject premature accessibility/media
   completion, missing human attestation, unsafe media flags, and unresolved high-severity findings.
+- The explicit `-AllowLan` review mode enables a physical device on a trusted Private network while
+  keeping FastAPI loopback-only; automation cannot combine this mode with `-SmokeTest`.
 - Unsupported human-agreement, human-relevance, salary, and global-market claims are
   explicitly blocked.
 
@@ -58,6 +60,8 @@ Remaining completion evidence:
 
 - a human completes the private-by-default [M5c review pack](human_accessibility_media_review.md),
   including focus/contrast, screen-reader, mobile real-device, and real Safari evidence where available;
+- physical-device review uses `scripts/run_demo.ps1 -AllowLan -NoBrowser` with synthetic samples on
+  a trusted Private network, never public Wi-Fi, port forwarding, or a public tunnel;
 - `skillpulse-release-review artifacts/human_accessibility_media_review.json --require-complete` returns `0`;
 - a 2-4 minute public-safe video/GIF follows the condensed journey in `docs/demo_checklist.md`;
 - no real CV, third-party raw description, PII, credential, or local path appears in review evidence or media.

@@ -4,7 +4,7 @@
   "overall_status": "public_repository_published_local_demo_ready_release_gates_open",
   "engineering": {
     "ruff": "passed",
-    "tests_passed": 127,
+    "tests_passed": 129,
     "demo_launcher_smoke": "passed",
     "streamlit_automated_scenarios": 3,
     "ui_implementation_commit": "c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d",
@@ -37,8 +37,11 @@
     "human_review_template_status": "structurally_valid_incomplete",
     "human_review_validator_tests": 7,
     "human_review_completion_ready": false,
-    "security_ci_run": 31572435653,
-    "codeql_run": 31572435689
+    "physical_device_launcher": "explicit_trusted_lan_ready_not_executed_by_automation",
+    "physical_device_launcher_tests": 2,
+    "api_lan_exposure": false,
+    "security_ci_run": 31602756546,
+    "codeql_run": 31602756481
   },
   "documentation": {
     "model_card": "docs/model_card.md",
@@ -72,8 +75,8 @@
     "push_performed": true,
     "pull_request_opened_by_agent": false,
     "setup_python_v7_commit": "d705238",
-    "latest_product_commit": "0def1fc15b5457dda8bcdbaf59cfb13c3b36d9d7",
-    "latest_green_ci_run": 31572435653
+    "latest_product_commit": "bb5475301f6dfe367cdfdc3e0dff4c8aaecf4469",
+    "latest_green_ci_run": 31602756546
   },
   "sensitive_working_data_ignore_checks": {
     "raw_source_csv": "ignored",
@@ -130,13 +133,13 @@
     "actions_upload_artifact": "v7",
     "playwright": ">=1.61,<2.0",
     "pip_audit": "2.10.1",
-    "pip_audit_ci_run": 31572435653,
+    "pip_audit_ci_run": 31602756546,
     "pip_audit_dependencies_total": 73,
     "pip_audit_third_party_dependencies": 72,
     "pip_audit_known_vulnerabilities": 0,
     "codeql_enabled": true,
     "codeql_query_suite": "security-extended",
-    "codeql_ci_run": 31572435689,
+    "codeql_ci_run": 31602756481,
     "codeql_initial_alerts": 5,
     "codeql_fixed_alerts": 5,
     "codeql_open_alerts": 0,
