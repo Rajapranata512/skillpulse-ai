@@ -284,7 +284,9 @@ The repository uses a deny-by-default publication guard before every push. It bl
 and processed row-level data, annotations, evaluation labels, workbooks, academic/private
 artifacts, credentials, local paths, email addresses, phone numbers, and common secret
 patterns. Three reviewed PNG media paths are the only binary exception and must match pinned
-SHA-256 values without text-metadata chunks. CI audits the exact committed snapshot.
+SHA-256 values without text-metadata chunks. CI audits the exact committed snapshot, runs
+`pip-audit` on a clean dependency install, and executes CodeQL `security-extended`. Dependabot
+version updates are configured; vulnerability alerts remain an explicit repository-owner setting.
 
 See [SECURITY.md](SECURITY.md) for vulnerability reporting and security boundaries, and
 [PRIVACY.md](PRIVACY.md) for the verified local data flow and public-deployment requirements.

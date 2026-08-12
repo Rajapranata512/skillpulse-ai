@@ -1,11 +1,11 @@
 {
   "artifact_type": "SkillPulse AI portfolio release evidence snapshot",
-  "generated_at": "2026-08-11T00:00:00+07:00",
+  "generated_at": "2026-08-12T00:00:00+07:00",
   "claim_status": "local_portfolio_candidate_human_gates_open",
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 114,
+    "tests_passed": 127,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
     "salary_disclosure_rate": 0.1387,
@@ -121,8 +121,21 @@
     "market_dashboard_charts": 3,
     "market_dashboard_desktop_mobile_chromium": "passed_ci_31480441499",
     "market_dashboard_firefox_webkit": "passed_ci_31480441499",
-    "latest_ci_run": 31492708944,
-    "latest_ci_commit": "48ebf2624ea1111beb10ec1938f7c6b680095850"
+    "latest_ci_run": 31572435653,
+    "latest_ci_commit": "0def1fc15b5457dda8bcdbaf59cfb13c3b36d9d7"
+  },
+  "security_evidence": {
+    "dependency_audit_ci_run": 31572435653,
+    "audited_third_party_dependencies": 72,
+    "known_dependency_vulnerabilities": 0,
+    "codeql_ci_run": 31572435689,
+    "codeql_query_suite": "security-extended",
+    "initial_codeql_alerts": 5,
+    "fixed_codeql_alerts": 5,
+    "open_codeql_alerts": 0,
+    "open_secret_scanning_alerts": 0,
+    "dependabot_version_updates_configured": true,
+    "dependabot_vulnerability_alerts_enabled": false
   },
   "sources": [
     "reports/data_quality.json",
@@ -138,7 +151,11 @@
     "reports/market_snapshot_quality.json",
     "docs/market_snapshot_metrics.md",
     "docs/human_accessibility_media_review.md",
-    "configs/human_accessibility_review.template.json"
+    "configs/human_accessibility_review.template.json",
+    "reports/release_readiness.json",
+    ".github/workflows/ci.yml",
+    ".github/workflows/codeql.yml",
+    "SECURITY.md"
   ],
   "market_snapshot": {
     "status": "bounded_30_day_aggregate_active_no_trend_claim",

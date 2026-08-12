@@ -5,7 +5,7 @@
 **Status:** Active product direction
 **Version:** 1.1
 **Owner:** Portfolio project
-**Last updated:** 2026-08-11
+**Last updated:** 2026-08-12
 
 ## 0. Auto-Sync Delivery Snapshot
 
@@ -14,7 +14,7 @@ Ini adalah ringkasan delivery, bukan pengganti requirement detail atau Project S
 Timpa isi di antara marker; jangan append session log.
 
 <!-- AUTO-SYNC:START -->
-**Last synchronized:** 2026-08-11
+**Last synchronized:** 2026-08-12
 **Current phase:** Phase 3 complete locally; Phase 4 aggregate market snapshot and three-engine
 automation are complete, and the M5c private human-review pack/validator is ready while actual
 screen-reader, real-device, and narrated-media evidence remains human-gated. Phase 5 public
@@ -24,22 +24,25 @@ with clean history, green CI, privacy/security publication controls, verified ex
 baselines, FastAPI, non-root container, Streamlit product journey, aggregate 30-day market snapshot,
 and a fail-closed accessibility/media review workflow. It is not portfolio-ready because independent
 human annotation/relevance, human accessibility/usability media, and public application deployment remain open.
-**Completed this session:** added a blank v1 M5c JSON template, private-by-default reviewer workflow,
-strict completion validator/CLI, seven failure-path tests, condensed 2-4 minute recording guidance,
-and synchronized release/architecture/model/case-study evidence. The validator never creates or
-attests human judgments. Pushed implementation commit `48ebf2624ea1111beb10ec1938f7c6b680095850`.
-**Verified baseline:** 114 tests and Ruff passed. The untouched template is structurally valid but
-`completion_ready=false`, and `--require-complete` returns exit code 1. CI run `31492708944` passed
-committed-snapshot guard, tests, Chromium/Firefox/WebKit QA, and artifact upload. Publication guard
-scanned the complete 117-file / 1,344,349-byte implementation snapshot; private records/media,
-row-level data, annotations, workbooks, academic artifacts, credentials, PII patterns, and local paths remain absent.
+**Completed this session:** added continuous `pip-audit` and CodeQL `security-extended`, then fixed all
+five initial CodeQL findings without dismissal: strict loopback/allowlist proxy targets, linear contextual
+term checks, and non-sensitive CLI completion messages. Pushed automation commit
+`c21e6981a3718a608b43cb9c1be535da8cde41d1` and remediation commit
+`0def1fc15b5457dda8bcdbaf59cfb13c3b36d9d7`.
+**Verified baseline:** 127 tests and Ruff passed. CI run `31572435653` passed committed-snapshot guard,
+tests, a 72-third-party-package audit with zero known vulnerabilities, and Chromium/Firefox/WebKit QA.
+CodeQL run `31572435689` passed; all five initial alerts are fixed, with zero open CodeQL and secret-
+scanning alerts. Publication guard scanned the complete 120-file / 1,354,078-byte remediation snapshot;
+private records/media, row-level data, annotations, workbooks, academic artifacts, credentials, PII
+patterns, and local paths remain absent.
 **Selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`.
 **Next completion check:** a human completes `docs/human_accessibility_media_review.md`; the private JSON
 passes `skillpulse-release-review ... --require-complete`, no blocker/high finding remains open, and a
 120-240 second synthetic/redacted walkthrough passes human privacy review while automated QA stays green.
 **Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The snapshot is one source/
-one 30-day window, so trend, whole-market, and global claims remain blocked. Public hosting/privacy/
-monitoring/rollback decisions remain owner-gated; shared renderer overflow still blocks verified HTML.
+one 30-day window, so trend, whole-market, and global claims remain blocked. Dependabot vulnerability
+alerts plus public hosting/privacy/monitoring/rollback decisions remain owner-gated; shared renderer
+overflow still blocks verified HTML.
 <!-- AUTO-SYNC:END -->
 
 ## 1. Executive summary
@@ -426,7 +429,7 @@ workflow, atau decision yang nyata.
 - No CV persistence or request-body logging by default.
 - Redact/avoid PII in reports, tests, screenshots, and telemetry.
 - Explicit consent before any saved analysis.
-- File size/type limits, safe parsing, dependency scanning, and secrets outside Git.
+- File size/type limits, safe parsing, dependency scanning, CodeQL scanning, and secrets outside Git.
 
 ### Reliability and performance
 
@@ -532,9 +535,12 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- Public `origin/main` has a parentless 117-file product history, green CI, a staged/commit publication
+- Public `origin/main` has a parentless 120-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
-  SECURITY/PRIVACY policies, Dependabot, and official checkout/setup-python v7.
+  SECURITY/PRIVACY policies, continuous `pip-audit`, CodeQL `security-extended`, Dependabot version
+  updates, and official checkout/setup-python v7. All five initial CodeQL findings are fixed without
+  dismissal; no CodeQL or secret-scanning alert remains open. Dependabot vulnerability alerts still
+  require an owner-approved repository-setting change.
 - Historical research is local-only and absent from public history. The portable report passed package-
   contract validation but shared browser verification still reports desktop overflow; no unverified HTML
   is delivered.

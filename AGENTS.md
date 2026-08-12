@@ -156,6 +156,7 @@ Jangan ulangi pekerjaan berikut selama trigger pada kolom terakhir tidak terjadi
 | Explainable matcher | `src/skillpulse/matching/` | DONE v0.1 | gold labels atau matching requirements berubah |
 | Match demo | `reports/cv_job_match_example.json` | DONE | matcher/demo scenario berubah |
 | CI foundation | `.github/workflows/ci.yml`, `pyproject.toml` | DONE | dependency/commands/platform berubah |
+| CI security automation | `.github/workflows/codeql.yml`, `.github/workflows/ci.yml`, `tests/test_security_workflows.py`, `tests/test_security_regressions.py` | DONE v1 | dependency set, scan configuration, or a new alert changes |
 | Publication privacy/security guard | `scripts/publication_guard.py`, `.githooks/pre-push`, `tests/test_publication_guard.py`, `SECURITY.md`, `PRIVACY.md` | DONE v1 | public-scope policy, secret/PII patterns, or Git layout changes |
 | Clean public Git history | public `origin/main`, root `c9e2854`, local `research-history-local-20260810` | VERIFIED | owner changes repository/visibility or public-history policy |
 | Original research notebook | `RM.ipynb` | USER-OWNED | pengguna secara eksplisit meminta perubahan |
@@ -287,23 +288,23 @@ setelah pekerjaan selesai; jangan menambah riwayat sesi di sini. Evidence histor
 berada di Git/reports.
 
 <!-- HANDOFF:START -->
-**Last handoff:** 2026-08-11
-**Completed:** Delivered the privacy-preserving M5c execution pack without creating human evidence.
-The public template stays blank, completed records/media default to Git-ignored `artifacts/`, and the
-new validator fail-closes on malformed schemas, missing human attestation, missing screen-reader or
-real-device evidence, any of nine incomplete checks, unsafe/short/long narrated media, and unresolved
-blocker/high findings. Pushed implementation commit `48ebf2624ea1111beb10ec1938f7c6b680095850`
-to `origin/main`.
-**Evidence:** Ruff passed and `pytest -q` reports 114 passed, including seven focused validator tests.
-The blank v1 template is structurally valid but `completion_ready=false`; `--require-complete` returns
-exit code 1 as designed. Publication guard passed on the complete 117-file / 1,344,349-byte implementation
-snapshot. GitHub CI run `31492708944` passed committed-snapshot guard, dependency installation, Ruff,
-114 tests, three-engine browser QA, and artifact upload.
-**Limitations/blockers:** No human accessibility observation, attestation, real-device result, or narrated
-video was created; M5c human evidence remains 0 and automation cannot close it. Real Safari may be
-documented as unavailable with a reason, but screen-reader and physical-mobile review cannot be waived.
-ML-QG-2 remains 0/100, ML-QG-3 remains 0/50, salary remains 77/555, and public deployment remains
-owner-gated. Completed review JSON and media must stay private until separately checked and authorized.
+**Last handoff:** 2026-08-12
+**Completed:** Added continuous dependency auditing and CodeQL `security-extended`, then remediated every
+finding from the first scan without dismissals. The fixes constrain browser-QA proxying to exact loopback
+targets and allowlisted paths, replace two polynomial-regex paths with linear string checks, and prevent
+row-derived pipeline/market values from reaching CLI logs. Pushed security automation commit
+`c21e6981a3718a608b43cb9c1be535da8cde41d1` and remediation commit
+`0def1fc15b5457dda8bcdbaf59cfb13c3b36d9d7` to `origin/main`.
+**Evidence:** Ruff passed and `pytest -q` reports 127 passed. GitHub CI run `31572435653` passed tests,
+publication guard, a 72-third-party-package `pip-audit` with zero known vulnerabilities, and three-engine
+browser QA. CodeQL run `31572435689` passed; all five initial alerts (one critical SSRF, two high ReDoS,
+and two high sensitive-data logging findings) are `fixed`, with zero open CodeQL and secret-scanning
+alerts. Publication guard passed the complete 120-file / 1,354,078-byte remediation snapshot.
+**Limitations/blockers:** Security automation is defense in depth, not a penetration or legal review.
+Dependabot version-update PRs are configured, but GitHub vulnerability alerts are disabled and require an
+owner-approved repository-setting change. No human accessibility observation, attestation, real-device
+result, or narrated video exists; M5c remains human-gated. ML-QG-2 remains 0/100, ML-QG-3 remains 0/50,
+salary remains 77/555, and public deployment remains owner-gated. Private review records/media stay local.
 
 **Recommended next actions:**
 
@@ -312,21 +313,22 @@ owner-gated. Completed review JSON and media must stay private until separately 
    `docs/human_accessibility_media_review.md` with a screen reader and physical mobile device; complete
    when the private record passes `skillpulse-release-review ... --require-complete`, no blocker/high
    finding is open, and the 2-4 minute synthetic/redacted media passes human privacy review.
-2. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** - dependency:
+2. **[LATER][OWNER-GATE][M6f] Enable Dependabot vulnerability alerts and approve deployment controls** -
+   dependency: owner authorizes repository security settings plus hosting region/cost, retention, rate
+   limits, monitoring, and rollback; complete when alerts are enabled/triaged and a public deployment
+   smoke/rollback check passes without CV retention.
+3. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** - dependency:
    different humans use the frozen blind files/rubric; complete when 100 blind annotations and
    50 relevance scores are frozen, then agreement and both matcher evaluations rerun without tuning.
-3. **[LATER][HUMAN-GATE][M6f] Select and authorize a public deployment target** - dependency: owner decisions
-   for hosting region/cost, logging/retention, rate limits, monitoring, and rollback; complete when privacy
-   controls, health/latency monitoring, deployment smoke, and rollback evidence pass without CV retention.
 
 **Auto-selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`
-**PRD sync:** synchronized with the M5c review-pack/validator readiness, 114 passing tests, green
-implementation CI, guarded 117-file public source, and unchanged human/deployment/salary gates.
+**PRD sync:** synchronized with 127 passing tests, zero open CodeQL/secret-scanning alerts, a clean
+dependency audit, guarded 120-file public source, and unchanged human/deployment/salary gates.
 <!-- HANDOFF:END -->
 
 ## 10. Project State
 
-Last materially verified: **2026-08-11**
+Last materially verified: **2026-08-12**
 
 | ID | Milestone | Status | Evidence / notes |
 |---|---|---:|---|
@@ -340,13 +342,13 @@ Last materially verified: **2026-08-11**
 | M3b | Matching relevance dataset and semantic challenger | AI-EXPERIMENTAL / HUMAN-GATE | 50 pseudo-label diagnostics; semantic challenger evaluated and not promoted; ML-QG-3 remains 0/50 human |
 | M4 | FastAPI/domain service | DONE-LOCAL | contract v1; 4 endpoints; OpenAPI tests; healthy non-root container smoke |
 | M5 | Portfolio UI and market dashboard | DEMO-LOCAL / MARKET-SNAPSHOT-DONE / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / HUMAN-REVIEW-PACK-READY / HUMAN-EVIDENCE-0 | aggregate dashboard and three-engine automation pass; strict private review pack is ready, but no human accessibility/video evidence exists |
-| M6 | Containerized public portfolio release | PUBLIC-SOURCE / STATIC-MEDIA / APP-DEPLOYMENT-HUMAN-GATES | clean public repo, guard, CI, docs, story, API container, and reviewed media complete; public app and human gates remain |
+| M6 | Containerized public portfolio release | PUBLIC-SOURCE / SECURITY-AUTOMATION-DONE / STATIC-MEDIA / APP-DEPLOYMENT-HUMAN-GATES | clean public repo, guard, CI, dependency audit, CodeQL, docs, story, API container, and reviewed media complete; public app and human gates remain |
 | M7 | Salary prediction | BLOCKED-DATA | only 77/555 salary rows (13.9%); below PRD gate |
 
 Current verified engineering evidence:
 
 - `ruff check src tests`: passed.
-- `pytest -q`: 114 passed.
+- `pytest -q`: 127 passed.
 - Kaggle source: version 1, creator Rafli Rizkya Sakti Nugraha, CC-BY-4.0,
   observation window 2025-08-25 through 2025-09-24.
 - Local raw identity: 1,059,991 bytes and SHA-256
@@ -386,13 +388,16 @@ Current verified engineering evidence:
 - Portable portfolio artifact passed package-contract checks but browser verification remains
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
-- Public `origin/main` has a clean parentless 117-file product history; M5c implementation commit
-  `48ebf26` and earlier guarded release commits were pushed without force.
+- Public `origin/main` has a clean parentless 120-file product history; security automation commit
+  `c21e698` and remediation commit `0def1fc` were pushed without force.
 - Publication guard scans staged and committed snapshots, is enforced by the executable pre-push hook
-  and CI, and passed on the complete 1,344,349-byte / 117-file M5c implementation snapshot. Eight guard tests
+  and CI, and passed on the complete 1,354,078-byte / 120-file remediation snapshot. Eight guard tests
   cover allow/deny behavior plus exact-hash and PNG-metadata enforcement.
-- GitHub repository is PUBLIC with default `main`; M5c CI run `31492708944` passed both test
-  and browser-qa jobs. Dependabot is enabled; CI actions v7 are pinned.
+- GitHub repository is PUBLIC with default `main`; CI run `31572435653` passed tests, dependency audit,
+  and three-engine browser QA. Its pip-audit artifact contains 72 audited third-party packages and zero
+  known vulnerabilities. CodeQL `security-extended` run `31572435689` passed; five initial alerts were
+  fixed without dismissal and zero CodeQL/secret-scanning alerts remain open. Dependabot version updates
+  are configured, but vulnerability alerts are disabled pending owner authorization; CI actions v7 are pinned.
 - Historical research remains local only on `research-history-local-20260810`/`research-origin`;
   public commands must never push that branch, `--all`, `--mirror`, or tags.
 - Weak-label report remains micro F1 0.8273 on 332/555 evaluable documents; weak labels are not gold.

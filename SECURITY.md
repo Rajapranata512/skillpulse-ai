@@ -33,6 +33,19 @@ A future public deployment still requires TLS, rate limiting, allowed-origin pol
 abuse controls, dependency monitoring, secret management, retention verification,
 observability, and rollback procedures.
 
+## Automated security checks
+
+- CI runs `pip-audit` against a clean install of the API, UI, and security dependency sets.
+- CodeQL runs the Python `security-extended` query suite on pushes and pull requests to `main`
+  and on a weekly schedule.
+- Security regression tests cover loopback-only browser-QA proxy targets, non-sensitive CLI
+  output, and linear contextual extraction checks.
+- Dependabot version-update pull requests are configured. GitHub Dependabot vulnerability
+  alerts are currently disabled and require an explicit repository-owner setting change.
+
+These checks reduce known risk but do not replace threat modeling, penetration testing, legal
+review, or deployment-specific controls.
+
 ## Publication controls
 
 Every commit pushed by the project workflow must pass `scripts/publication_guard.py`. The
