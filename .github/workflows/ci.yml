@@ -24,6 +24,30 @@ jobs:
       - run: ruff check src tests
       - run: pytest -q
 
+  dependency-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install --upgrade pip setuptools
+      - run: python -m pip install -e ".[api,ui,security]"
+      - run: python scripts/publication_guard.py --commit HEAD
+      - run: mkdir -p artifacts
+      - run: python -m pip_audit --skip-editable --progress-spinner off --format json --output artifacts/pip-audit.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: skillpulse-dependency-audit-${{ github.sha }}
+          path: artifacts/pip-audit.json
+          if-no-files-found: error
+          retention-days: 14
+
   browser-qa:
     runs-on: ubuntu-24.04
     timeout-minutes: 15

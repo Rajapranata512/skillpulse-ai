@@ -34,6 +34,9 @@ ui = [
 browser = [
   "playwright>=1.61,<2.0",
 ]
+security = [
+  "pip-audit==2.10.1",
+]
 
 [project.scripts]
 skillpulse-prepare = "skillpulse.data.pipeline:main"
