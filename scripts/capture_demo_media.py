@@ -18,6 +18,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 CAPTURE_SPECS = (
@@ -35,10 +36,37 @@ MOBILE_VIEWPORT = {"width": 390, "height": 844}
 OVERFLOW_TOLERANCE_PX = 2
 
 
+def _loopback_targets(upstream_url: str) -> dict[str, str]:
+    parsed = urlsplit(upstream_url)
+    try:
+        port = parsed.port
+    except ValueError as exc:
+        raise ValueError("Loopback upstream URL has an invalid port.") from exc
+    if (
+        parsed.scheme != "http"
+        or parsed.hostname != "127.0.0.1"
+        or parsed.username is not None
+        or parsed.password is not None
+        or port is None
+        or not 1 <= port <= 65535
+        or parsed.path not in {"", "/"}
+        or parsed.query
+        or parsed.fragment
+    ):
+        raise ValueError("Loopback upstream must be an explicit http://127.0.0.1:<port> origin.")
+    paths = ("/health", "/v1/models", "/v1/extract", "/v1/match")
+    return {path: f"http://127.0.0.1:{port}{path}" for path in paths}
+
+
+def _validated_loopback_origin(upstream_url: str) -> str:
+    target = _loopback_targets(upstream_url)["/health"]
+    return target.removesuffix("/health")
+
+
 def build_service_commands(
     api_port: int, ui_port: int, *, api_base_url: str | None = None
 ) -> tuple[list[str], list[str], dict[str, str]]:
-    api_url = api_base_url or f"http://127.0.0.1:{api_port}"
+    api_url = _validated_loopback_origin(api_base_url or f"http://127.0.0.1:{api_port}")
     api_command = [
         sys.executable,
         "-m",
@@ -72,11 +100,12 @@ def build_service_commands(
 def _start_delay_proxy(
     upstream_url: str, proxy_port: int, delay_seconds: float
 ) -> tuple[ThreadingHTTPServer, threading.Thread]:
-    allowed_paths = {"/health", "/v1/models", "/v1/extract", "/v1/match"}
+    allowed_targets = _loopback_targets(upstream_url)
 
     class DelayProxyHandler(BaseHTTPRequestHandler):
         def _forward(self) -> None:
-            if self.path not in allowed_paths:
+            target_url = allowed_targets.get(self.path)
+            if target_url is None:
                 self.send_error(404)
                 return
             length = int(self.headers.get("Content-Length", "0"))
@@ -84,7 +113,7 @@ def _start_delay_proxy(
             if self.command == "POST" and self.path == "/v1/match":
                 time.sleep(delay_seconds)
             request = Request(
-                f"{upstream_url}{self.path}",
+                target_url,
                 data=body,
                 headers={"Content-Type": "application/json"} if body else {},
                 method=self.command,

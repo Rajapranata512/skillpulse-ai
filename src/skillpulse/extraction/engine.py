@@ -55,6 +55,19 @@ def _clause_around(text: str, start: int, end: int) -> str:
     return text[left + 1 : right]
 
 
+def _starts_with_term_after_whitespace(text: str, terms: tuple[str, ...]) -> bool:
+    if not text or not text[0].isspace():
+        return False
+    normalized = text.lstrip().casefold()
+    for term in terms:
+        if not normalized.startswith(term):
+            continue
+        boundary = normalized[len(term) : len(term) + 1]
+        if not boundary or (not boundary.isalnum() and boundary != "_"):
+            return True
+    return False
+
+
 def _contextually_valid(text: str, candidate: EntityMatch) -> bool:
     clause = _clause_around(text, candidate.start, candidate.end)
     if candidate.canonical == "Java" and re.search(
@@ -75,14 +88,12 @@ def _contextually_valid(text: str, candidate: EntityMatch) -> bool:
         )
     ):
         return False
-    if candidate.canonical == "Data Analysis" and re.match(
-        r"\s+(?:challenges|reliability)\b",
-        text[candidate.end : candidate.end + 30],
-        re.IGNORECASE,
+    if candidate.canonical == "Data Analysis" and _starts_with_term_after_whitespace(
+        text[candidate.end : candidate.end + 30], ("challenges", "reliability")
     ):
         return False
-    if candidate.canonical == "Leadership" and re.match(
-        r"\s+teams?\b", text[candidate.end : candidate.end + 20], re.IGNORECASE
+    if candidate.canonical == "Leadership" and _starts_with_term_after_whitespace(
+        text[candidate.end : candidate.end + 20], ("team", "teams")
     ):
         return False
     return True

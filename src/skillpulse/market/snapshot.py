@@ -405,7 +405,7 @@ def main() -> None:
     parser.add_argument("--min-public-count", type=int, default=DEFAULT_MIN_PUBLIC_COUNT)
     parser.add_argument("--min-slice-count", type=int, default=DEFAULT_MIN_SLICE_COUNT)
     args = parser.parse_args()
-    snapshot, quality = generate_market_snapshot(
+    generate_market_snapshot(
         args.input,
         args.provenance,
         args.output,
@@ -413,17 +413,7 @@ def main() -> None:
         min_public_count=args.min_public_count,
         min_slice_count=args.min_slice_count,
     )
-    print(
-        json.dumps(
-            {
-                "summary": snapshot["summary"],
-                "quality_verdict": quality["verdict"],
-                "output": str(args.output),
-            },
-            ensure_ascii=False,
-            indent=2,
-        )
-    )
+    print("Market snapshot generation completed; inspect the configured quality-report artifact.")
 
 
 if __name__ == "__main__":

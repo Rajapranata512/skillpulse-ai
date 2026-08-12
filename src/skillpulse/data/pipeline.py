@@ -135,8 +135,8 @@ def main() -> None:
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     args = parser.parse_args()
 
-    report = run(args.input, args.output, args.report)
-    print(json.dumps(report, indent=2, ensure_ascii=False))
+    run(args.input, args.output, args.report)
+    print("Data preparation completed; inspect the configured report artifact for aggregate metrics.")
 
 
 if __name__ == "__main__":
