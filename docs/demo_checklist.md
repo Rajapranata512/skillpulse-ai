@@ -31,6 +31,17 @@ Run a headless start-health-stop check without leaving either service running:
 powershell -ExecutionPolicy Bypass -File scripts/run_demo.ps1 -SmokeTest
 ```
 
+For the human physical-device gate only, `-AllowLan` explicitly binds the Streamlit UI
+to the computer's private LAN while keeping FastAPI on loopback:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_demo.ps1 -AllowLan -NoBrowser
+```
+
+Use the printed physical-device URL only on a trusted Private network with synthetic
+samples, then stop with `Ctrl+C`. Do not use public Wi-Fi, port forwarding, or a public
+tunnel. See `docs/human_accessibility_media_review.md` for the required human evidence.
+
 ## Pre-demo gate
 
 Before recording or sharing:

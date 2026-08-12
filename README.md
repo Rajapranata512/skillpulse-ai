@@ -254,6 +254,10 @@ with `Ctrl+C`; the launcher cleans up the API process it created. See
 `docs/human_accessibility_media_review.md` for the separate screen-reader, real-device,
 privacy-safe recording, and human-attestation gate.
 
+The physical-device review can use `-AllowLan -NoBrowser` on a trusted Private network.
+This explicitly exposes only the Streamlit UI to the LAN; FastAPI remains loopback-only.
+Use synthetic samples and stop the launcher immediately after the review.
+
 Text is session-only and file upload is intentionally disabled in v1. For manual startup,
 run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
 `SKILLPULSE_API_URL` when the API uses another host or port.

@@ -30,6 +30,25 @@ Run the local demo using `docs/demo_checklist.md`, then record all three environ
 
 `screen_reader` and `mobile_real_device` cannot be waived.
 
+### Physical-device access on a trusted LAN
+
+The default launcher remains loopback-only. For the physical-device check, connect the
+computer and phone/tablet to the same trusted private network, then run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_demo.ps1 -AllowLan -NoBrowser
+```
+
+Open one of the printed `SkillPulse UI (physical device)` URLs on the phone/tablet. The
+API remains bound to `127.0.0.1`; only Streamlit is reachable on the LAN. This temporary
+review mode has no TLS or authentication, so use only the built-in synthetic/public-safe
+samples, never enter a real CV or personal data, and stop it with `Ctrl+C` immediately
+after review. If Windows Firewall asks, allow only a trusted **Private network**, never a
+Public network.
+
+If no private-device URL is printed, do not create a public tunnel or port-forwarding rule.
+Keep `mobile_real_device` incomplete until an approved trusted-LAN environment is available.
+
 ## Required human checks
 
 For every check, set `status` to `pass` or `fail` and write a short `evidence_note` that

@@ -5,6 +5,7 @@ from pathlib import Path
 from skillpulse.release.human_review import validate_human_review
 
 TEMPLATE = Path("configs/human_accessibility_review.template.json")
+DEMO_LAUNCHER = Path("scripts/run_demo.ps1")
 
 
 def _template() -> dict:
@@ -118,3 +119,20 @@ def test_wrong_choice_types_return_validation_errors_instead_of_crashing() -> No
 
     assert result["structurally_valid"] is False
     assert len(result["errors"]) == 4
+
+
+def test_physical_device_mode_is_explicit_and_keeps_api_on_loopback() -> None:
+    launcher = DEMO_LAUNCHER.read_text(encoding="utf-8")
+
+    assert "[switch]$AllowLan" in launcher
+    assert '"--host", "127.0.0.1"' in launcher
+    assert '$uiBindAddress = if ($AllowLan) { "0.0.0.0" } else { "127.0.0.1" }' in launcher
+    assert '"--server.address", $uiBindAddress' in launcher
+
+
+def test_physical_device_mode_fails_closed_for_automation_and_warns_about_exposure() -> None:
+    launcher = DEMO_LAUNCHER.read_text(encoding="utf-8")
+
+    assert "if ($AllowLan -and $SmokeTest)" in launcher
+    assert "without TLS or authentication" in launcher
+    assert "Do not use port forwarding or a public tunnel" in launcher
