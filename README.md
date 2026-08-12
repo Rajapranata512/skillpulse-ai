@@ -1,6 +1,7 @@
 # SkillPulse AI
 
 [![CI](https://github.com/Rajapranata512/skillpulse-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Rajapranata512/skillpulse-ai/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/Rajapranata512/skillpulse-ai/actions/workflows/codeql.yml/badge.svg)](https://github.com/Rajapranata512/skillpulse-ai/actions/workflows/codeql.yml)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-0169CC)](pyproject.toml)
 [![Privacy guard](https://img.shields.io/badge/privacy-publication_guard-00692A)](SECURITY.md)
 
@@ -17,7 +18,7 @@ explainable CV-to-job matching product, and privacy-safe 30-day market snapshot.
 - A strict four-endpoint FastAPI contract, healthy non-root container, and API-backed
   Streamlit demo.
 - An aggregate-only market dashboard with requirement-category, location, and normalized-role slices.
-- 114 passing tests, model/data documentation, and explicit human/data release gates.
+- 131 passing tests, model/data documentation, and explicit human/data release gates.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human

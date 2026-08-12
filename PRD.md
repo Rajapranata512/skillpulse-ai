@@ -288,7 +288,7 @@ Minimum endpoints:
 | Method | Endpoint | Purpose |
 |---|---|---|
 | GET | `/health` | liveness/readiness dan version |
-| GET | `/metadata` | taxonomy/model/data version dan limitations |
+| GET | `/v1/models` | taxonomy/model version, privacy flags, dan limitations |
 | POST | `/v1/extract` | structured entity extraction |
 | POST | `/v1/match` | explainable CV–job match |
 
