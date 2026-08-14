@@ -14,7 +14,7 @@ keywords = ["job-intelligence", "nlp", "skill-extraction", "indonesian-nlp", "ml
 dependencies = [
   "fastapi>=0.139,<1.0",
   "openpyxl>=3.1,<4.0",
-  "pandas>=2.0,<3.0",
+  "pandas>=2.0,<4.0",
   "pydantic>=2.9,<3.0",
   "PyYAML>=6.0,<7.0",
 ]
