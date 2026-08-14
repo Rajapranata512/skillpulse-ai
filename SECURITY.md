@@ -40,8 +40,9 @@ observability, and rollback procedures.
   and on a weekly schedule.
 - Security regression tests cover loopback-only browser-QA proxy targets, non-sensitive CLI
   output, and linear contextual extraction checks.
-- Dependabot version-update pull requests are configured. GitHub Dependabot vulnerability
-  alerts are currently disabled and require an explicit repository-owner setting change.
+- Dependabot version-update pull requests and GitHub Dependabot vulnerability alerts are enabled.
+  Alert remediation still requires evidence-based review; automated dependency pull requests are
+  not merged without authorization and passing checks.
 
 These checks reduce known risk but do not replace threat modeling, penetration testing, legal
 review, or deployment-specific controls.

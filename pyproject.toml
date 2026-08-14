@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,6 +8,9 @@ version = "0.1.0"
 description = "Reproducible job-intelligence pipeline for Indonesian data and analytics roles."
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["job-intelligence", "nlp", "skill-extraction", "indonesian-nlp", "mlops"]
 dependencies = [
   "fastapi>=0.139,<1.0",
   "openpyxl>=3.1,<4.0",
@@ -15,6 +18,10 @@ dependencies = [
   "pydantic>=2.9,<3.0",
   "PyYAML>=6.0,<7.0",
 ]
+
+[project.urls]
+Repository = "https://github.com/Rajapranata512/skillpulse-ai"
+Issues = "https://github.com/Rajapranata512/skillpulse-ai/issues"
 
 [project.optional-dependencies]
 dev = [

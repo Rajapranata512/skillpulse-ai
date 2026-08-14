@@ -47,6 +47,7 @@ SPECIAL_TEXT_FILES = {
     ".gitignore",
     ".gitkeep",
     "Dockerfile",
+    "LICENSE",
     "pre-push",
 }
 TEXT_SUFFIXES = {

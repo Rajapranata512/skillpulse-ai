@@ -1,5 +1,8 @@
 # Data Attribution
 
+The [MIT License](LICENSE) covers repository-authored software. It does not replace or relicense
+the external dataset, third-party job-posting text, trademarks, or other materials described below.
+
 SkillPulse AI uses the following external dataset for local research and reproducible
 derived analysis:
 

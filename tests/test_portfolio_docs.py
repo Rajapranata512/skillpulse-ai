@@ -1,4 +1,5 @@
 import re
+import tomllib
 from pathlib import Path
 
 from skillpulse.api.app import create_app
@@ -50,3 +51,18 @@ def test_documented_api_endpoints_match_the_live_contract() -> None:
         for endpoint in DOCUMENTED_API_ENDPOINTS:
             assert endpoint in content
         assert "`/metadata`" not in content
+
+
+def test_public_license_and_package_metadata_are_consistent() -> None:
+    license_text = Path("LICENSE").read_text(encoding="utf-8")
+    readme = Path("README.md").read_text(encoding="utf-8")
+    attribution = Path("DATA_ATTRIBUTION.md").read_text(encoding="utf-8")
+    project = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))["project"]
+
+    assert license_text.startswith("MIT License\n")
+    assert "Copyright (c) 2026 Rajapranata512" in license_text
+    assert project["license"] == "MIT"
+    assert project["license-files"] == ["LICENSE"]
+    assert project["urls"]["Repository"] == "https://github.com/Rajapranata512/skillpulse-ai"
+    assert "[MIT License](LICENSE)" in readme
+    assert "Creative Commons Attribution 4.0 International" in attribution

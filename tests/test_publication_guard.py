@@ -51,6 +51,15 @@ def test_local_user_path_is_detected() -> None:
 def test_binary_content_is_denied() -> None:
     assert "binary content is not allowed" in publication_guard.content_violations(b"abc\x00def")
 
+
+def test_root_license_is_the_only_extensionless_legal_text_allowed() -> None:
+    license_file = publication_guard.PublicationFile("LICENSE", b"MIT License\n")
+    arbitrary_file = publication_guard.PublicationFile("PRIVATE_NOTES", b"internal\n")
+
+    assert publication_guard.audit_file(license_file) == []
+    assert "file type is not on the public text allowlist" in publication_guard.audit_file(arbitrary_file)
+
+
 def test_only_hash_pinned_reviewed_png_media_is_allowed(monkeypatch) -> None:  # type: ignore[no-untyped-def]
     png = b"\x89PNG\r\n\x1a\n" + (0).to_bytes(4, "big") + b"IEND" + b"\x00" * 4
     path = "docs/assets/reviewed.png"

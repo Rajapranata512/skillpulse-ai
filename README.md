@@ -18,7 +18,7 @@ explainable CV-to-job matching product, and privacy-safe 30-day market snapshot.
 - A strict four-endpoint FastAPI contract, healthy non-root container, and API-backed
   Streamlit demo.
 - An aggregate-only market dashboard with requirement-category, location, and normalized-role slices.
-- 131 passing tests, model/data documentation, and explicit human/data release gates.
+- 133 passing tests, model/data documentation, and explicit human/data release gates.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human
@@ -291,7 +291,7 @@ artifacts, credentials, local paths, email addresses, phone numbers, and common 
 patterns. Three reviewed PNG media paths are the only binary exception and must match pinned
 SHA-256 values without text-metadata chunks. CI audits the exact committed snapshot, runs
 `pip-audit` on a clean dependency install, and executes CodeQL `security-extended`. Dependabot
-version updates are configured; vulnerability alerts remain an explicit repository-owner setting.
+version updates and vulnerability alerts are enabled for the public repository.
 
 See [SECURITY.md](SECURITY.md) for vulnerability reporting and security boundaries, and
 [PRIVACY.md](PRIVACY.md) for the verified local data flow and public-deployment requirements.
@@ -302,7 +302,13 @@ ruff check src tests
 pytest -q
 ```
 
-Current local verification: 107 tests passed and Ruff is clean.
+Current local verification: 133 tests passed and Ruff is clean.
+
+## License
+
+Repository-authored software is released under the [MIT License](LICENSE). The source Kaggle
+dataset remains licensed separately under CC BY 4.0, and third-party job-posting text may be
+subject to additional rights or platform terms; see [DATA_ATTRIBUTION.md](DATA_ATTRIBUTION.md).
 
 ## Portfolio roadmap
 
