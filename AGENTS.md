@@ -158,6 +158,7 @@ Jangan ulangi pekerjaan berikut selama trigger pada kolom terakhir tidak terjadi
 | CI foundation | `.github/workflows/ci.yml`, `pyproject.toml` | DONE | dependency/commands/platform berubah |
 | CI security automation | `.github/workflows/codeql.yml`, `.github/workflows/ci.yml`, `tests/test_security_workflows.py`, `tests/test_security_regressions.py` | DONE v1 | dependency set, scan configuration, or a new alert changes |
 | Portfolio documentation contract QA | `tests/test_portfolio_docs.py`, `README.md`, `PRD.md` | DONE v1 | recruiter-facing docs, local links, or API routes change |
+| Repository license and metadata | `LICENSE`, `pyproject.toml`, GitHub description/topics/alerts | DONE MIT / VERIFIED | owner changes license, package metadata, description/topics, or alert setting |
 | Publication privacy/security guard | `scripts/publication_guard.py`, `.githooks/pre-push`, `tests/test_publication_guard.py`, `SECURITY.md`, `PRIVACY.md` | DONE v1 | public-scope policy, secret/PII patterns, or Git layout changes |
 | Clean public Git history | public `origin/main`, root `c9e2854`, local `research-history-local-20260810` | VERIFIED | owner changes repository/visibility or public-history policy |
 | Original research notebook | `RM.ipynb` | USER-OWNED | pengguna secara eksplisit meminta perubahan |
@@ -289,21 +290,20 @@ setelah pekerjaan selesai; jangan menambah riwayat sesi di sini. Evidence histor
 berada di Git/reports.
 
 <!-- HANDOFF:START -->
-**Last handoff:** 2026-08-12
-**Completed:** Reconciled recruiter-facing documentation with the live API contract: PRD now uses
-`/v1/models` instead of stale `/metadata`, README reports the verified test count and exposes a CodeQL
-badge, and two regression tests now fail on broken local portfolio links or endpoint drift. Audited
-`httpx2` and retained it because the installed Starlette TestClient explicitly supports that backend.
-Pushed implementation commit `4ca9fc0099204a04ea558a369219df1e80089a43` to `origin/main`.
-**Evidence:** Ruff and all 131 tests passed; nine recruiter-facing Markdown files have resolving local
-links, and the documented four endpoints match the routes created by FastAPI. Publication guard passed
-the complete 121-file / 1,365,491-byte snapshot. CI run `31604870965` passed tests, dependency audit,
-guard, and three-engine browser QA; CodeQL run `31604870696` passed with zero open CodeQL or
-secret-scanning alerts.
+**Last handoff:** 2026-08-14
+**Completed:** Added the MIT License and PEP 639 package metadata, extended the publication guard only
+for the root legal file, and added license/package consistency regression coverage. Configured the public
+GitHub description, nine portfolio topics, and Dependabot vulnerability alerts; homepage remains blank
+until a deployment target exists. Pushed implementation commit
+`ea8a5c946ff4394c97c3794fdf548c4ae544b771` to `origin/main`.
+**Evidence:** Ruff and all 133 tests passed. A local wheel contains `License-Expression: MIT`,
+`License-File: LICENSE`, and the packaged license file. Publication guard passed the complete
+122-file / 1,370,542-byte snapshot. GitHub detects MIT, the exact description and nine topics, and
+returns HTTP 204 for vulnerability-alert status. CI run `31795582539` passed tests, dependency audit,
+guard, and three-engine browser QA; CodeQL run `31795582566` passed.
 **Limitations/blockers:** M5c remains 0/9, ML-QG-2 remains 0/100, ML-QG-3 remains 0/50, salary remains
-77/555, and deployment remains owner-gated. The public GitHub repository has no code license, description,
-topics, or homepage; these are owner/external decisions and were not changed. Dependabot PR #3 proposes
-widening pandas to a new major range; it was inspected but not merged because PR actions need authorization.
+77/555, and public deployment remains owner-gated. Homepage is intentionally unset until deployment.
+Dependabot PR #3 remains open and unmerged because PR/major-version compatibility actions were not authorized.
 
 **Recommended next actions:**
 
@@ -313,22 +313,21 @@ widening pandas to a new major range; it was inspected but not merged because PR
    `docs/human_accessibility_media_review.md` with a screen reader and physical mobile device; complete
    when the private record passes `skillpulse-release-review ... --require-complete`, no blocker/high
    finding is open, and the 2-4 minute synthetic/redacted media passes human privacy review.
-2. **[LATER][OWNER-GATE][M6e/M6f] Decide repository license/metadata and deployment controls** -
-   dependency: owner selects the code license and authorizes GitHub description/topics/homepage,
-   vulnerability alerts, hosting region/cost, retention, monitoring, and rollback; complete when public
-   metadata is explicit and a deployment smoke/rollback check passes without CV retention.
-3. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** - dependency:
+2. **[LATER][HUMAN-GATE][M2b/M3b] Obtain independent annotation and relevance judgments** - dependency:
    different humans use the frozen blind files/rubric; complete when 100 blind annotations and
    50 relevance scores are frozen, then agreement and both matcher evaluations rerun without tuning.
+3. **[LATER][OWNER-GATE][M6f] Select and authorize a public deployment target** - dependency: owner
+   decisions cover hosting region/cost, logging/retention, rate limits, monitoring, and rollback; complete
+   when deployment smoke and rollback evidence pass without CV retention and the homepage can be set safely.
 
 **Auto-selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`
-**PRD sync:** synchronized with contract/link QA, 131 passing tests, green CI/CodeQL, guarded
-121-file public source, and explicit human/repository/deployment/salary gates.
+**PRD sync:** synchronized with MIT/package metadata, 133 passing tests, green CI/CodeQL, guarded
+122-file public source, completed repository metadata/alerts, and unchanged human/deployment/salary gates.
 <!-- HANDOFF:END -->
 
 ## 10. Project State
 
-Last materially verified: **2026-08-12**
+Last materially verified: **2026-08-14**
 
 | ID | Milestone | Status | Evidence / notes |
 |---|---|---:|---|
@@ -342,13 +341,13 @@ Last materially verified: **2026-08-12**
 | M3b | Matching relevance dataset and semantic challenger | AI-EXPERIMENTAL / HUMAN-GATE | 50 pseudo-label diagnostics; semantic challenger evaluated and not promoted; ML-QG-3 remains 0/50 human |
 | M4 | FastAPI/domain service | DONE-LOCAL | contract v1; 4 endpoints; OpenAPI tests; healthy non-root container smoke |
 | M5 | Portfolio UI and market dashboard | DEMO-LOCAL / MARKET-SNAPSHOT-DONE / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / TRUSTED-LAN-REVIEW-READY / HUMAN-EVIDENCE-0 | aggregate dashboard and three-engine automation pass; strict private review plus opt-in physical-device access are ready, but no human accessibility/video evidence exists |
-| M6 | Containerized public portfolio release | PUBLIC-SOURCE / DOC-CONTRACT-QA-DONE / SECURITY-AUTOMATION-DONE / STATIC-MEDIA / REPO-METADATA-OWNER-GATE / APP-DEPLOYMENT-HUMAN-GATES | clean public repo, guard, CI, dependency audit, CodeQL, docs, story, API container, and reviewed media complete; license/metadata, public app, and human gates remain |
+| M6 | Containerized public portfolio release | PUBLIC-SOURCE / MIT-METADATA-DONE / DOC-CONTRACT-QA-DONE / SECURITY-AUTOMATION-DONE / STATIC-MEDIA / APP-DEPLOYMENT-HUMAN-GATES | clean public repo, MIT/package metadata, description/topics/alerts, guard, CI, CodeQL, docs, API container, and reviewed media complete; public app and human gates remain |
 | M7 | Salary prediction | BLOCKED-DATA | only 77/555 salary rows (13.9%); below PRD gate |
 
 Current verified engineering evidence:
 
 - `ruff check src tests`: passed.
-- `pytest -q`: 131 passed.
+- `pytest -q`: 133 passed.
 - Kaggle source: version 1, creator Rafli Rizkya Sakti Nugraha, CC-BY-4.0,
   observation window 2025-08-25 through 2025-09-24.
 - Local raw identity: 1,059,991 bytes and SHA-256
@@ -386,23 +385,24 @@ Current verified engineering evidence:
   judgment, attestation, narrated media, or automated LAN exposure is claimed.
 - Portfolio evidence is reconciled in `docs/model_card.md`, `docs/architecture.md`,
   `docs/case_study.md`, and `reports/portfolio_release_metrics.json`; JSON/link QA passed.
-- Two portfolio-document regression tests verify that local links in nine recruiter-facing Markdown
-  files resolve and that README/PRD/architecture endpoint claims match the live four-route API.
+- Three portfolio-document regression tests verify that local links in nine recruiter-facing Markdown
+  files resolve, README/PRD/architecture endpoints match the live API, and MIT/package metadata agree.
 - Portable portfolio artifact passed package-contract checks but browser verification remains
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
-- Public `origin/main` has a clean parentless 121-file product history; documentation QA commit
-  `4ca9fc0` and earlier guarded implementation/security commits were pushed without force.
+- Public `origin/main` has a clean parentless 122-file product history; MIT/metadata commit
+  `ea8a5c9` and earlier guarded implementation/security commits were pushed without force.
 - Publication guard scans staged and committed snapshots, is enforced by the executable pre-push hook
-  and CI, and passed on the complete 1,365,491-byte / 121-file implementation snapshot. Eight guard tests
+  and CI, and passed on the complete 1,370,542-byte / 122-file implementation snapshot. Nine guard tests
   cover allow/deny behavior plus exact-hash and PNG-metadata enforcement.
-- GitHub repository is PUBLIC with default `main`; CI run `31604870965` passed tests, dependency audit,
+- GitHub repository is PUBLIC with default `main`; CI run `31795582539` passed tests, dependency audit,
   and three-engine browser QA. Its pip-audit artifact contains 72 audited third-party packages and zero
-  known vulnerabilities. CodeQL `security-extended` run `31604870696` passed; five initial alerts were
+  known vulnerabilities. CodeQL `security-extended` run `31795582566` passed; five initial alerts were
   fixed without dismissal and zero CodeQL/secret-scanning alerts remain open. Dependabot version updates
-  are configured, but vulnerability alerts are disabled pending owner authorization; CI actions v7 are pinned.
-- Repository description, topics, homepage, and code license are unset. Dependabot PR #3 widens the
-  pandas major-version range and remains open/unmerged pending explicit PR and compatibility decisions.
+  and vulnerability alerts are enabled; CI actions v7 are pinned.
+- GitHub detects the MIT License, an explicit bilingual job-intelligence description, and nine relevant
+  topics. Homepage is intentionally blank until deployment. Dependabot PR #3 widens the pandas major-version
+  range and remains open/unmerged pending explicit PR and compatibility decisions.
 - Historical research remains local only on `research-history-local-20260810`/`research-origin`;
   public commands must never push that branch, `--all`, `--mirror`, or tags.
 - Weak-label report remains micro F1 0.8273 on 332/555 evaluable documents; weak labels are not gold.

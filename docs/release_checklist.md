@@ -5,7 +5,7 @@
 
 ## What is ready
 
-- Ruff passes and 131 Python tests pass.
+- Ruff passes and 133 Python tests pass.
 - The one-command launcher starts FastAPI and Streamlit, verifies both health endpoints,
   and removes both processes in smoke mode.
 - Four privacy-safe Streamlit AppTest scenarios cover sample loading, empty input,

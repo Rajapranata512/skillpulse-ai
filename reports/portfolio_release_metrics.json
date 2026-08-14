@@ -1,11 +1,11 @@
 {
   "artifact_type": "SkillPulse AI portfolio release evidence snapshot",
-  "generated_at": "2026-08-12T00:00:00+07:00",
+  "generated_at": "2026-08-14T18:20:00+07:00",
   "claim_status": "local_portfolio_candidate_human_gates_open",
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 131,
+    "tests_passed": 133,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
     "salary_disclosure_rate": 0.1387,
@@ -124,30 +124,32 @@
     "market_dashboard_charts": 3,
     "market_dashboard_desktop_mobile_chromium": "passed_ci_31480441499",
     "market_dashboard_firefox_webkit": "passed_ci_31480441499",
-    "latest_ci_run": 31604870965,
-    "latest_ci_commit": "4ca9fc0099204a04ea558a369219df1e80089a43",
-    "portfolio_document_contract_tests": 2,
+    "latest_ci_run": 31795582539,
+    "latest_ci_commit": "ea8a5c946ff4394c97c3794fdf548c4ae544b771",
+    "portfolio_document_contract_tests": 3,
     "portfolio_markdown_files_link_checked": 9
   },
   "security_evidence": {
-    "dependency_audit_ci_run": 31604870965,
+    "dependency_audit_ci_run": 31795582539,
     "audited_third_party_dependencies": 72,
     "known_dependency_vulnerabilities": 0,
-    "codeql_ci_run": 31604870696,
+    "codeql_ci_run": 31795582566,
     "codeql_query_suite": "security-extended",
     "initial_codeql_alerts": 5,
     "fixed_codeql_alerts": 5,
     "open_codeql_alerts": 0,
     "open_secret_scanning_alerts": 0,
     "dependabot_version_updates_configured": true,
-    "dependabot_vulnerability_alerts_enabled": false
+    "dependabot_vulnerability_alerts_enabled": true
   },
   "repository_metadata": {
-    "description_present": false,
-    "topics_count": 0,
+    "description_present": true,
+    "topics_count": 9,
     "homepage_present": false,
-    "code_license_selected": false,
-    "owner_decision_required": true
+    "homepage_status": "intentionally_unset_until_deployment",
+    "code_license_selected": true,
+    "code_license": "MIT",
+    "owner_decision_required": false
   },
   "sources": [
     "reports/data_quality.json",

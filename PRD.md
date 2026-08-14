@@ -5,7 +5,7 @@
 **Status:** Active product direction
 **Version:** 1.1
 **Owner:** Portfolio project
-**Last updated:** 2026-08-12
+**Last updated:** 2026-08-14
 
 ## 0. Auto-Sync Delivery Snapshot
 
@@ -14,34 +14,34 @@ Ini adalah ringkasan delivery, bukan pengganti requirement detail atau Project S
 Timpa isi di antara marker; jangan append session log.
 
 <!-- AUTO-SYNC:START -->
-**Last synchronized:** 2026-08-12
+**Last synchronized:** 2026-08-14
 **Current phase:** Phase 3 complete locally; Phase 4 aggregate market snapshot and three-engine
 automation are complete, and the M5c private human-review pack/validator plus opt-in trusted-LAN
 physical-device access are ready while actual screen-reader, device, and narrated-media evidence remains human-gated. Phase 5 public
-source/story/security evidence is complete and application deployment remains owner-gated.
+source/story/security/license/repository metadata is complete and application deployment remains owner-gated.
 **Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
 with clean history, green CI, privacy/security publication controls, verified extraction/matching
 baselines, FastAPI, non-root container, Streamlit product journey, aggregate 30-day market snapshot,
 and a fail-closed accessibility/media review workflow. It is not portfolio-ready because independent
 human annotation/relevance, human accessibility/usability media, and public application deployment remain open.
-**Completed this session:** corrected the stale legacy model-metadata endpoint to `/v1/models`, updated README
-test evidence and CodeQL visibility, and added regression QA for recruiter-facing local links plus
-documented/live API-route consistency. Pushed implementation commit
-`4ca9fc0099204a04ea558a369219df1e80089a43`.
-**Verified baseline:** 131 tests and Ruff passed. Nine recruiter-facing Markdown files have resolving
-local links and README/PRD/architecture match the live four-endpoint API. CI run `31604870965` passed
-committed-snapshot guard, tests, dependency audit, and Chromium/Firefox/WebKit QA. CodeQL run
-`31604870696` passed with zero open CodeQL and secret-scanning alerts. Publication guard scanned the
-complete 121-file / 1,365,491-byte implementation snapshot; private evidence/data and credentials remain absent.
+**Completed this session:** added the MIT License, PEP 639 package metadata, narrow publication-guard
+support for the legal file, and license consistency QA. Configured the GitHub description, nine topics,
+and Dependabot vulnerability alerts while leaving homepage/deployment unchanged. Pushed implementation
+commit `ea8a5c946ff4394c97c3794fdf548c4ae544b771`.
+**Verified baseline:** 133 tests and Ruff passed. The built wheel contains the MIT expression and license
+file. CI run `31795582539` passed committed-snapshot guard, tests, dependency audit, and Chromium/
+Firefox/WebKit QA. CodeQL run `31795582566` passed. GitHub detects MIT, the exact description and nine
+topics, and enabled vulnerability alerts. Publication guard scanned the complete 122-file /
+1,370,542-byte implementation snapshot; private evidence/data and credentials remain absent.
 **Selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`.
 **Next completion check:** a human runs `scripts/run_demo.ps1 -AllowLan -NoBrowser` on a trusted Private
 network and completes `docs/human_accessibility_media_review.md`; the private JSON
 passes `skillpulse-release-review ... --require-complete`, no blocker/high finding remains open, and a
 120-240 second synthetic/redacted walkthrough passes human privacy review while automated QA stays green.
 **Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The snapshot is one source/
-one 30-day window, so trend, whole-market, and global claims remain blocked. Code license, repository
-description/topics/homepage, Dependabot vulnerability alerts, and public hosting/privacy/monitoring/
-rollback decisions remain owner-gated; shared renderer overflow still blocks verified HTML.
+one 30-day window, so trend, whole-market, and global claims remain blocked. Public hosting, homepage,
+privacy, monitoring, rollback, region, and cost decisions remain owner-gated; shared renderer overflow
+still blocks verified HTML.
 <!-- AUTO-SYNC:END -->
 
 ## 1. Executive summary
@@ -536,14 +536,14 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- Public `origin/main` has a parentless 121-file product history, green CI, a staged/commit publication
+- Public `origin/main` has a parentless 122-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
   SECURITY/PRIVACY policies, continuous `pip-audit`, CodeQL `security-extended`, Dependabot version
-  updates, and official checkout/setup-python v7. All five initial CodeQL findings are fixed without
-  dismissal; no CodeQL or secret-scanning alert remains open. Dependabot vulnerability alerts still
-  require an owner-approved repository-setting change.
+  updates and vulnerability alerts, and official checkout/setup-python v7. All five initial CodeQL findings
+  are fixed without dismissal; no CodeQL or secret-scanning alert remains open.
 - Recruiter-facing local links and README/PRD/architecture endpoint claims are regression-tested
-  against the live API. Code license and GitHub description/topics/homepage remain owner decisions.
+  against the live API. MIT/PEP 639 package metadata, GitHub description, and nine topics are verified;
+  homepage remains intentionally blank until a deployment target is approved.
 - Historical research is local-only and absent from public history. The portable report passed package-
   contract validation but shared browser verification still reports desktop overflow; no unverified HTML
   is delivered.
@@ -582,6 +582,8 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
   import or duplicate scoring logic.
 - Public source repository is `Rajapranata512/skillpulse-ai` on clean `main`; automatic pushes require
   staged/commit guard, passing tests, explicit product paths, no force, and no research-history refs.
+- Repository-authored software uses MIT with PEP 639 package metadata. GitHub description, nine portfolio
+  topics, and Dependabot vulnerability alerts are enabled; homepage remains blank until deployment.
 - Current salary data is insufficient for an active feature.
 - FR-05 v0.1 is a bounded aggregate snapshot: independent overall/location/role slices are active; time-series, whole-market, global, and salary claims remain gated.
 - Matching score is requirement coverage, not candidate worth.
@@ -598,8 +600,6 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 ### Open, to resolve with evidence
 
 - Which API/UI hosting targets meet privacy, monitoring, rollback, region, and cost constraints.
-- Which code license applies, and which GitHub description/topics/homepage should represent the portfolio.
-
 - Which job families beyond data/analytics enter taxonomy v0.2?
 - Which licensed global source is comparable to the verified 30-day Indonesian snapshot?
 - Whether a later Next.js rewrite adds enough value after Streamlit usability and reviewer feedback?
