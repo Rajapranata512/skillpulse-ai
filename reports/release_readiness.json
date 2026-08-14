@@ -1,11 +1,14 @@
 {
   "artifact_type": "SkillPulse AI portfolio release readiness audit",
-  "verified_date": "2026-08-14",
-  "overall_status": "public_repository_metadata_complete_local_demo_feedback_ready_release_gates_open",
+  "verified_date": "2026-08-15",
+  "overall_status": "public_deployment_source_ready_external_auth_and_human_gates_open",
   "engineering": {
     "ruff": "passed",
-    "tests_passed": 138,
+    "tests_passed": 155,
     "demo_launcher_smoke": "passed",
+    "public_runtime_loopback_smoke": "ui_api_landing_http_200_cleanup_passed",
+    "deployment_regression_tests": 17,
+    "deployment_target": "render_free_singapore_single_container",
     "streamlit_automated_scenarios": 4,
     "ui_implementation_commit": "c3ed33dc5d8b835d8679fb3d0504d0a8fd70fa8d",
     "ui_implementation_ci_run": 31409943647,
@@ -61,6 +64,8 @@
     "ui_automated_qa": "reports/ui_automated_qa.json",
     "ui_browser_qa": "reports/ui_browser_qa.json",
     "release_checklist": "docs/release_checklist.md",
+    "deployment_runbook": "docs/deployment_render.md",
+    "deployment_readiness": "reports/deployment_readiness.json",
     "human_accessibility_media_review": "docs/human_accessibility_media_review.md",
     "human_review_template": "configs/human_accessibility_review.template.json",
     "canonical_portfolio_report": "reports/portfolio_report_artifact.json",
@@ -70,7 +75,7 @@
     "repository_url": "https://github.com/Rajapranata512/skillpulse-ai",
     "visibility": "PUBLIC",
     "default_branch": "main",
-    "public_tree_files": 124,
+    "public_tree_files": 135,
     "clean_history_parent": "none",
     "root_commit": "c9e2854fb56280f8126d21df54d904ba6c39ec4d",
     "security_commit": "5a1f05d592ccfc11e018d21439c8d13a3c81be47",
@@ -125,9 +130,9 @@
     },
     {
       "id": "M6-deployment",
-      "status": "owner_external_gate",
-      "current": "local only",
-      "required": "hosting, privacy, monitoring, cost, and rollback decisions"
+      "status": "external_auth_gate",
+      "current": "Render Free Singapore source configuration and loopback smoke passed",
+      "required": "authenticated provisioning, public HTTPS/log smoke, monitoring, and rollback evidence"
     },
     {
       "id": "ML-QG-4",
@@ -139,7 +144,7 @@
   "limitations": [
     "The audit verifies deny rules, selected public scope, and common secret/PII patterns but is not a substitute for a full legal or penetration review.",
     "The feedback export is a privacy-safe local correction artifact, not collected user evidence or an online learning system.",
-    "The public repository has three-engine automation, reviewed static media, and a validated blank M5c review workflow, but no public deployment, screen-reader/real-device human review, narrated human media, independent annotation agreement, or human relevance evaluation is complete."
+    "Render deployment source and local loopback smoke are ready, but authenticated public provisioning, log inspection, rollback, human accessibility/media, independent annotation agreement, and human relevance evidence remain incomplete."
   ],
   "dependency_security": {
     "dependabot_version_updates_configured": true,

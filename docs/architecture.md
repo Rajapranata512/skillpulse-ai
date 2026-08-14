@@ -77,10 +77,10 @@ Browser session
 
 Raw CV/job text is not written by the application. The market tab loads only the committed
 aggregate JSON; company names, job IDs, raw descriptions, and salary values never enter that
-runtime path. The portfolio container excludes raw data, annotations, notebooks, reports, CSV,
-and XLSX files from its build context. Access
-logging is disabled by the packaged API command. Production deployment would still need
-TLS, rate limiting, abuse controls, retention verification, and operational monitoring.
+runtime path. Both portfolio containers exclude raw data, annotations, notebooks, reports, CSV,
+and XLSX files from their build context. API access logging and Streamlit usage telemetry are
+disabled. The Render runtime adds a 30-analysis/minute process budget without IP or identity
+collection; input contracts remain capped at 50,000 characters.
 
 The extraction feedback path is browser-download-only and adds no API endpoint or database.
 Its in-session context contains model/taxonomy versions and canonical labels only. Export is
@@ -105,12 +105,16 @@ their data and comparability gates are met.
 
 ## Deployment shape
 
-The API has a non-root Docker image with a health check. The Streamlit UI currently runs
-as a local process and targets `SKILLPULSE_API_URL`. This is enough for a reproducible local
-portfolio walkthrough, but a public release still needs an explicit hosting design,
-environment configuration, browser QA, monitoring, and rollback evidence. Human M5c observations
-remain in a Git-ignored local record; the release validator checks completeness and fail-closed
-conditions but cannot attest that an accessibility or privacy judgment is true.
+The approved Render Free shape is one non-root container in Singapore. Streamlit binds the
+platform port, while FastAPI binds only to loopback and is reached through
+`SKILLPULSE_API_URL`. There is no database, persistent disk, secret, or public API surface.
+Render provides managed TLS and health checks; GitHub checks gate deployment. The full target,
+free-tier constraints, monitoring, smoke test, and rollback procedure are frozen in
+`docs/deployment_render.md`. Actual provisioning and rollback evidence still require the
+owner's authenticated Render session.
+
+Human M5c observations remain in a Git-ignored local record; the release validator checks
+completeness and fail-closed conditions but cannot attest that a human judgment is true.
 
 For physical-device review, `scripts/run_demo.ps1 -AllowLan` is an explicit temporary boundary:
 Streamlit may bind to private IPv4 interfaces, while FastAPI remains on `127.0.0.1`. The mode is

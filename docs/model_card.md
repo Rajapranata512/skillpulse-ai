@@ -123,6 +123,8 @@ not silently penalize a candidate.
 - Inputs are capped at 50,000 characters and unknown contract fields are rejected.
 - Container access logging is disabled, and raw CSV/XLSX/report/notebook files are
   excluded from its build context.
+- The approved public container exposes only Streamlit, keeps FastAPI on loopback, provisions
+  no persistent storage, and limits total analysis work without collecting client identifiers.
 - Protected attributes are not inputs to the score.
 - Results include decision-support disclaimers and must remain reviewable by a human.
 
@@ -140,7 +142,9 @@ appropriately governed language and user segments.
 - Matching relevance has synthetic pseudo-labels only.
 - The semantic model may require a first-run model download and is not part of the default
   API/UI runtime.
-- No public load/security test, screen-reader audit, real Safari/device check, or human usability study has been completed.
+- The Render target and controls are frozen, but authenticated provisioning, public load/security
+  smoke, rollback evidence, screen-reader audit, real Safari/device check, and human usability
+  study have not been completed.
 
 ## Reproducibility and evidence
 
@@ -165,5 +169,5 @@ changes.
 
 The system may be shown as a transparent local portfolio demo now, provided the caveats
 above remain visible. It must not be presented as independently validated or production
-ready until blind annotation, human relevance, human accessibility/usability, narrated media, public
-deployment, and monitoring gates are completed.
+ready until blind annotation, human relevance, human accessibility/usability, narrated media,
+authenticated public deployment, smoke/rollback, and monitoring gates are completed.

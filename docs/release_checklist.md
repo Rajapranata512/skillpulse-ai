@@ -76,16 +76,17 @@ Agents and AI tools must not fill those labels because automation would invalida
 independence claim. The local demo may proceed with visible caveats; an independently
 validated claim may not.
 
-### 4. Public deployment needs a hosting decision
+### 4. Public deployment target is frozen; provisioning evidence is open
 
-The local container and UI are ready for target selection, but no public infrastructure is
-authorized. Before deployment, document:
+The owner approved a Render Free service in Singapore with a zero-cost ceiling. The checked-in
+Blueprint defines one non-root container: Streamlit is public through managed TLS, FastAPI remains
+loopback-only, and no database, disk, or secret is provisioned. Request-body access logging and
+usage telemetry are disabled; a process-wide 30-analysis/minute budget collects no identifiers.
 
-- API and UI hosting targets, region, and cost ceiling;
-- TLS, allowed origins, rate limits, abuse controls, and secret handling;
-- retention/logging behavior that preserves the no-raw-CV-persistence contract;
-- health, latency, failure-rate, and availability monitoring;
-- rollback procedure and ownership.
+The target decision, health checks, free-tier limitations, smoke command, monitoring, and rollback
+procedure are documented in the Render deployment runbook. Portfolio-ready status still requires an
+authenticated owner to provision the service, run the HTTPS/loopback smoke test, confirm operational
+logs contain no submitted content, and capture a successful rollback check.
 
 ## Pre-publication commands
 

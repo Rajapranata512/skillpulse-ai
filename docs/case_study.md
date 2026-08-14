@@ -169,8 +169,10 @@ decision instead of a hidden exception or inflated claim.
 
 SkillPulse is decision support, not an automated hiring authority. It does not persist raw
 CV text, does not accept file uploads in UI v1, and does not score protected attributes.
-Inputs are capped at 50,000 characters. A public deployment would still require TLS, rate
-limits, abuse controls, accessibility checks, monitoring, and a verified retention policy.
+Inputs are capped at 50,000 characters. The approved Render design adds managed TLS, a
+privacy-preserving process budget, a loopback-only API, stateless storage, health checks, and
+documented rollback. Authenticated provisioning, log inspection, public smoke/load evidence,
+and accessibility checks remain open.
 
 ## Current limitations
 
@@ -178,7 +180,8 @@ limits, abuse controls, accessibility checks, monitoring, and a verified retenti
 - Primary extraction results are development-set evidence.
 - No independent annotation agreement yet.
 - No independent human matching relevance yet.
-- No public deployment, load test, independent usability study, screen-reader audit, or real Safari/device QA.
+- No authenticated public deployment, load test, independent usability study, screen-reader audit,
+  or real Safari/device QA.
 - The market view is a single-window descriptive snapshot; no trend, global-market, or salary
   capability is supported by current evidence.
 
@@ -190,7 +193,8 @@ limits, abuse controls, accessibility checks, monitoring, and a verified retenti
 2. Have a different human complete the 100-row blind annotation and publish agreement.
 3. Freeze 50 independent human relevance judgments and rerun both matchers without tuning
    on the evaluation set.
-4. Document hosting, monitoring, privacy, and rollback decisions before public deployment.
+4. Provision the approved Render Blueprint, then capture HTTPS smoke, operational-log, monitoring,
+   and rollback evidence.
 
 ## Review the project
 

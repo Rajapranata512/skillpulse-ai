@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: skillpulse-ai
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: ./deploy/render/Dockerfile
+    dockerContext: .
+    healthCheckPath: /_stcore/health
+    autoDeployTrigger: checksPass
+    maxShutdownDelaySeconds: 30
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: SKILLPULSE_PUBLIC_HOST
+        value: "0.0.0.0"
+      - key: SKILLPULSE_INTERNAL_API_PORT
+        value: "8000"
+      - key: SKILLPULSE_API_RATE_LIMIT_PER_MINUTE
+        value: "30"

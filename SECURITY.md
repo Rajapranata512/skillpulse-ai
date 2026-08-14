@@ -25,13 +25,16 @@ Include:
 - API v1 is stateless and does not persist submitted CV or job text.
 - Access logging is disabled by the packaged API command.
 - Inputs are strict-schema validated and capped at 50,000 characters.
+- Public analysis endpoints can use a process-wide budget without collecting client identifiers.
 - The container runs as a non-root user and excludes raw data, annotations, reports,
   notebooks, CSV, and XLSX files from its build context.
 - Protected personal attributes are not accepted as scoring features.
 
-A future public deployment still requires TLS, rate limiting, allowed-origin policy,
-abuse controls, dependency monitoring, secret management, retention verification,
-observability, and rollback procedures.
+The approved Render design exposes only Streamlit through managed TLS; FastAPI stays on
+loopback in the same non-root container. It provisions no secret, database, or persistent disk,
+disables request access logs and usage telemetry, and enables a 30-analysis/minute process budget.
+Authenticated provisioning, operational-log inspection, public smoke/load evidence, and a tested
+rollback remain release gates; see the Render deployment runbook.
 
 ## Automated security checks
 

@@ -41,9 +41,15 @@ SkillPulse scores explicit job requirements against explicit CV evidence. It doe
 protected attributes and must not be used for automatic hiring, rejection, or candidate
 ranking. Outputs are decision support and include limitations and explanations.
 
-## Public-deployment requirement
+## Public-deployment boundary
 
-This document describes the verified local application. Before any public deployment,
-the owner must document hosting region, transport security, request logging, retention,
-third-party processors, deletion handling, rate limits, abuse prevention, and incident
-response. A public URL must not be advertised until those controls are verified.
+The approved target is one Render Free container in Singapore. Render terminates managed TLS;
+Streamlit is public and FastAPI remains loopback-only. No database, persistent disk, secret,
+feedback endpoint, or application-level retention is configured. API access logging and
+Streamlit usage telemetry are disabled. Input length limits and a process-wide 30-analysis/minute
+budget provide bounded abuse control without collecting IP addresses or identifiers.
+
+Render remains a third-party processor for network and platform operational metadata under the
+owner's workspace terms. The application does not intentionally put submitted text in logs.
+The public URL must not be advertised until authenticated provisioning, log inspection, public
+smoke verification, and rollback evidence pass according to the deployment runbook.

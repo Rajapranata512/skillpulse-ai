@@ -1,0 +1,68 @@
+{
+  "artifact_type": "SkillPulse AI public deployment readiness",
+  "verified_date": "2026-08-15",
+  "status": "source_ready_external_auth_gate",
+  "owner_authorization": {
+    "approved": true,
+    "cost_ceiling": "Render Free only",
+    "region": "Singapore",
+    "privacy_constraints": "no raw-text persistence, minimal operational logging",
+    "monitoring_and_rollback_required": true
+  },
+  "target": {
+    "provider": "Render",
+    "service_type": "single Docker web service",
+    "blueprint": "render.yaml",
+    "dockerfile": "deploy/render/Dockerfile",
+    "plan": "free",
+    "region": "singapore",
+    "auto_deploy_trigger": "checksPass",
+    "health_path": "/_stcore/health",
+    "database": false,
+    "persistent_disk": false,
+    "application_secrets": false
+  },
+  "runtime_boundary": {
+    "public_surface": "Streamlit on platform PORT",
+    "internal_surface": "FastAPI on 127.0.0.1:8000",
+    "managed_tls_expected": true,
+    "api_access_logging": false,
+    "streamlit_usage_telemetry": false,
+    "input_character_limit": 50000,
+    "analysis_rate_limit_per_minute": 30,
+    "rate_limit_identifier_collection": false,
+    "raw_text_persistence": false,
+    "feedback_persistence": false
+  },
+  "verified_source_evidence": {
+    "ruff": "passed",
+    "tests_passed": 155,
+    "deployment_regression_tests": 17,
+    "runtime_help_opens_listener": false,
+    "loopback_runtime_smoke": "UI, internal API, and landing returned HTTP 200 on two loopback-only listeners; cleanup passed",
+    "docker_daemon_available": false,
+    "render_cli_authenticated": false,
+    "render_api_key_available": false
+  },
+  "external_completion_gates": [
+    "Owner authenticates an account with Render and provisions the checked-in Blueprint",
+    "Assigned HTTPS URL passes skillpulse-deployment-smoke without submitted text",
+    "Owner confirms operational logs contain no submitted CV or job text",
+    "A known-good deploy rollback is executed and the smoke check passes again",
+    "Repository homepage is updated only after all deployment checks pass"
+  ],
+  "limitations": [
+    "Render Free has a single 512 MB instance, an ephemeral filesystem, and idle spin-down",
+    "Cold start can take about one minute after 15 minutes without inbound traffic",
+    "The free workspace provides 750 running instance-hours per month",
+    "Source readiness is not evidence that public provisioning, monitoring, or rollback passed"
+  ],
+  "official_references": [
+    "https://render.com/docs/free",
+    "https://render.com/docs/regions",
+    "https://render.com/docs/health-checks",
+    "https://render.com/docs/rollbacks",
+    "https://render.com/docs/tls",
+    "https://render.com/docs/blueprint-spec"
+  ]
+}

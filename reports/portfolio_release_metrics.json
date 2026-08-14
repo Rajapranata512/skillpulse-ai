@@ -1,11 +1,11 @@
 {
   "artifact_type": "SkillPulse AI portfolio release evidence snapshot",
-  "generated_at": "2026-08-14T19:25:00+07:00",
-  "claim_status": "local_portfolio_candidate_human_gates_open",
+  "generated_at": "2026-08-15T01:26:23+07:00",
+  "claim_status": "deployment_source_ready_external_auth_and_human_gates_open",
   "headline": {
     "source_rows": 555,
     "primary_reviewed_documents": 100,
-    "tests_passed": 138,
+    "tests_passed": 155,
     "public_api_endpoints": 4,
     "salary_disclosed_rows": 77,
     "salary_disclosure_rate": 0.1387,
@@ -83,6 +83,14 @@
       "limitation": "The blank template and validator are ready, but no human attestation or observation exists"
     },
     {
+      "gate": "M6f",
+      "evidence": "Public deployment and rollback",
+      "current": 0,
+      "minimum": 1,
+      "status": "source_ready_external_auth_gate",
+      "limitation": "Render target, controls, tests, and loopback smoke pass; authenticated provisioning, public smoke/log inspection, and rollback remain open"
+    },
+    {
       "gate": "Salary data gate",
       "evidence": "Rows with disclosed salary",
       "current": 77,
@@ -94,6 +102,14 @@
   "runtime_evidence": {
     "api_container_health": "healthy",
     "container_runs_as_non_root": true,
+    "public_deployment_target": "Render Free Singapore single container",
+    "public_deployment_status": "source_ready_external_auth_gate",
+    "public_runtime_loopback_smoke": "ui_api_landing_http_200_cleanup_passed",
+    "public_runtime_regression_tests": 17,
+    "public_api_loopback_only": true,
+    "analysis_rate_limit_per_minute": 30,
+    "rate_limit_collects_identity": false,
+    "persistent_deployment_storage": false,
     "streamlit_health": "ok",
     "streamlit_http_status": 200,
     "streamlit_automated_scenarios": 4,
@@ -179,7 +195,13 @@
     "PRIVACY.md",
     "src/skillpulse/feedback.py",
     "tests/test_feedback.py",
-    "tests/test_portfolio_docs.py"
+    "tests/test_portfolio_docs.py",
+    "docs/deployment_render.md",
+    "reports/deployment_readiness.json",
+    "render.yaml",
+    "deploy/render/Dockerfile",
+    "tests/test_public_deployment.py",
+    "tests/test_api_rate_limit.py"
   ],
   "market_snapshot": {
     "status": "bounded_30_day_aggregate_active_no_trend_claim",

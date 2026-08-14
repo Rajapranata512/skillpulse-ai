@@ -46,6 +46,8 @@ security = [
 ]
 
 [project.scripts]
+skillpulse-public = 'skillpulse.release.public_runtime:main'
+skillpulse-deployment-smoke = 'skillpulse.release.deployment:main'
 skillpulse-prepare = "skillpulse.data.pipeline:main"
 skillpulse-market-snapshot = "skillpulse.market.snapshot:main"
 skillpulse-verify-source = "skillpulse.data.provenance:main"

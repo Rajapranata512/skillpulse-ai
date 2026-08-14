@@ -19,12 +19,13 @@ explainable CV-to-job matching product, and privacy-safe 30-day market snapshot.
   Streamlit demo.
 - An aggregate-only market dashboard with requirement-category, location, and normalized-role slices.
 - Download-only extraction feedback containing canonical labels and verdicts, never source text or spans.
-- 138 passing tests, model/data documentation, and explicit human/data release gates.
+- A check-gated Render Free Blueprint for a single non-root service with a loopback-only API.
+- 155 passing tests, model/data/deployment documentation, and explicit human/data release gates.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human
-relevance (0/50), human screen-reader/real-device usability review, a narrated walkthrough, public
-deployment, and salary modelling remain open. Start with the [case study](docs/case_study.md),
+relevance (0/50), human screen-reader/real-device usability review, a narrated walkthrough, authenticated
+Render provisioning/smoke, and salary modelling remain open. Start with the [case study](docs/case_study.md),
 [architecture](docs/architecture.md), and [model card](docs/model_card.md).
 
 ## Product preview
@@ -38,6 +39,21 @@ These captures use only repository synthetic examples. Chromium verifies desktop
 validation, and API-offline states; Firefox and Playwright WebKit repeat the keyboard-triggered desktop
 match without horizontal overflow. Exact hashes and limitations are in
 [`reports/ui_browser_qa.json`](reports/ui_browser_qa.json).
+
+## Public deployment target
+
+The approved target is one Render Free Docker service in Singapore. Streamlit is the only
+public surface; FastAPI remains on container loopback, request-body access logging is disabled,
+and no database, disk, secret, or submitted-text retention is configured. Autodeploy waits for
+GitHub checks, while a privacy-preserving process-wide budget caps analysis work at 30 requests
+per minute.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Rajapranata512/skillpulse-ai)
+
+Provisioning requires the repository owner's authenticated Render session. After Render assigns
+an HTTPS URL, run skillpulse-deployment-smoke with that URL. See the
+[deployment and rollback runbook](docs/deployment_render.md) for the exact free-tier limitations,
+privacy boundary, verification, monitoring, and rollback procedure.
 
 ## Current dataset
 
