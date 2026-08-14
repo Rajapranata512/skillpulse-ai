@@ -189,6 +189,7 @@ Jangan ulangi pekerjaan berikut selama trigger pada kolom terakhir tidak terjadi
 | FastAPI service | `src/skillpulse/api/`, `tests/test_api.py` | DONE-LOCAL | contract or endpoint requirement changes |
 | API container | `Dockerfile`, `.dockerignore`, `reports/api_container_smoke.json` | DONE-LOCAL | dependencies, service command, or deployment target changes |
 | Streamlit demo slice | `src/skillpulse/ui/`, `reports/ui_smoke.json`, `reports/ui_automated_qa.json`, `reports/ui_browser_qa.json` | DONE-THREE-ENGINE-RESILIENCE / STATIC-MEDIA / HUMAN-A11Y-VIDEO-GATE | contract, journey, browser, resilience, or media requirement changes |
+| Privacy-safe extraction feedback | `src/skillpulse/feedback.py`, `tests/test_feedback.py`, extraction UI | DONE v1 / DOWNLOAD-ONLY | feedback schema, extraction contract, privacy policy, or user research changes |
 | Human accessibility/media review pack | `configs/human_accessibility_review.template.json`, `docs/human_accessibility_media_review.md`, `src/skillpulse/release/human_review.py`, `scripts/run_demo.ps1` | READY-HUMAN-GATE v1.1 / TRUSTED-LAN-READY | review schema/completion rules change or genuine human evidence becomes available |
 | Aggregate market snapshot | `src/skillpulse/market/`, `configs/market_snapshot.json`, `reports/market_snapshot_quality.json`, `docs/market_snapshot_metrics.md` | DONE-SNAPSHOT-v0.1 | processed source, taxonomy/extractor, metric contract, or snapshot window changes |
 | Annotation rules | `docs/annotation_guidelines.md` | DONE v0.2 | ambiguity berulang ditemukan |
@@ -330,19 +331,21 @@ berada di Git/reports.
 
 <!-- HANDOFF:START -->
 **Last handoff:** 2026-08-14
-**Completed:** Added the MIT License and PEP 639 package metadata, extended the publication guard only
-for the root legal file, and added license/package consistency regression coverage. Configured the public
-GitHub description, nine portfolio topics, and Dependabot vulnerability alerts; homepage remains blank
-until a deployment target exists. Pushed implementation commit
-`ea8a5c946ff4394c97c3794fdf548c4ae544b771` to `origin/main`.
-**Evidence:** Ruff and all 133 tests passed. A local wheel contains `License-Expression: MIT`,
-`License-File: LICENSE`, and the packaged license file. Publication guard passed the complete
-122-file / 1,370,542-byte snapshot. GitHub detects MIT, the exact description and nine topics, and
-returns HTTP 204 for vulnerability-alert status. CI run `31795582539` passed tests, dependency audit,
-guard, and three-engine browser QA; CodeQL run `31795582566` passed.
+**Completed:** Added a standing autonomous execution loop to this root `AGENTS.md` and delivered P1
+privacy-safe extraction feedback. Reviewers can mark canonical entities incorrect, explicitly confirm
+the full review, and download deterministic JSON containing only versions, canonical labels, verdicts,
+counts, and privacy flags. No feedback endpoint, raw/matched text, span, identity, telemetry, or server
+persistence was added. Pushed implementation commit `13bb8d3bb70e2bf7bf2521793ebb456e7418f86b`
+to `origin/main`.
+**Evidence:** Ruff and all 138 tests passed. Five feedback tests cover redaction, determinism, duplicates,
+unknown candidates, missing confirmation, and empty extraction; the Streamlit journey proves download
+stays disabled until confirmation and adds no API POST. Publication guard passed the complete
+124-file / 1,386,879-byte snapshot. CI run `31799968049` passed tests, dependency audit, guard, and
+three-engine browser QA; CodeQL run `31799968040` passed with zero CodeQL/secret-scanning alerts.
 **Limitations/blockers:** M5c remains 0/9, ML-QG-2 remains 0/100, ML-QG-3 remains 0/50, salary remains
 77/555, and public deployment remains owner-gated. Homepage is intentionally unset until deployment.
-Dependabot PR #3 remains open and unmerged because PR/major-version compatibility actions were not authorized.
+The multi-label classifier has only one current role family, and curated learning catalog provenance is
+not selected; neither is a valid automatic task. Dependabot PR #3 remains open and unmerged.
 
 **Recommended next actions:**
 
@@ -360,8 +363,8 @@ Dependabot PR #3 remains open and unmerged because PR/major-version compatibilit
    when deployment smoke and rollback evidence pass without CV retention and the homepage can be set safely.
 
 **Auto-selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`
-**PRD sync:** synchronized with MIT/package metadata, 133 passing tests, green CI/CodeQL, guarded
-122-file public source, completed repository metadata/alerts, and unchanged human/deployment/salary gates.
+**PRD sync:** synchronized with the autonomous loop, feedback FR-09, 138 passing tests, green CI/CodeQL,
+guarded 124-file public source, and unchanged human/deployment/data gates.
 <!-- HANDOFF:END -->
 
 ## 10. Project State
@@ -379,14 +382,14 @@ Last materially verified: **2026-08-14**
 | M3a | Explainable CV–job matcher baseline | DONE | CLI + report + unit tests |
 | M3b | Matching relevance dataset and semantic challenger | AI-EXPERIMENTAL / HUMAN-GATE | 50 pseudo-label diagnostics; semantic challenger evaluated and not promoted; ML-QG-3 remains 0/50 human |
 | M4 | FastAPI/domain service | DONE-LOCAL | contract v1; 4 endpoints; OpenAPI tests; healthy non-root container smoke |
-| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / MARKET-SNAPSHOT-DONE / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / TRUSTED-LAN-REVIEW-READY / HUMAN-EVIDENCE-0 | aggregate dashboard and three-engine automation pass; strict private review plus opt-in physical-device access are ready, but no human accessibility/video evidence exists |
+| M5 | Portfolio UI and market dashboard | DEMO-LOCAL / MARKET-SNAPSHOT-DONE / FEEDBACK-EXPORT-DONE / THREE-ENGINE-RESILIENCE-DONE / STATIC-MEDIA-DONE / TRUSTED-LAN-REVIEW-READY / HUMAN-EVIDENCE-0 | dashboard, confirmation-gated redacted feedback, and three-engine automation pass; no human accessibility/video evidence exists |
 | M6 | Containerized public portfolio release | PUBLIC-SOURCE / MIT-METADATA-DONE / DOC-CONTRACT-QA-DONE / SECURITY-AUTOMATION-DONE / STATIC-MEDIA / APP-DEPLOYMENT-HUMAN-GATES | clean public repo, MIT/package metadata, description/topics/alerts, guard, CI, CodeQL, docs, API container, and reviewed media complete; public app and human gates remain |
 | M7 | Salary prediction | BLOCKED-DATA | only 77/555 salary rows (13.9%); below PRD gate |
 
 Current verified engineering evidence:
 
 - `ruff check src tests`: passed.
-- `pytest -q`: 133 passed.
+- `pytest -q`: 138 passed.
 - Kaggle source: version 1, creator Rafli Rizkya Sakti Nugraha, CC-BY-4.0,
   observation window 2025-08-25 through 2025-09-24.
 - Local raw identity: 1,059,991 bytes and SHA-256
@@ -416,6 +419,9 @@ Current verified engineering evidence:
   charts on desktop/mobile, safe loading/offline behavior, Firefox/WebKit chart renders and keyboard
   matches, exact viewport widths, and eight synthetic artifact captures; three reviewed screenshots
   remain SHA-pinned. Invalid local crash captures remain excluded.
+- Extraction feedback v1 retains only contract/model/taxonomy versions and canonical labels in session,
+  requires explicit full-review confirmation, exports correct/incorrect verdicts as JSON, and adds no
+  API POST or persistence. Five fail-closed/redaction tests and the UI confirmation journey pass.
 - One-command demo smoke started API/UI on ports 18280/18701, verified both health endpoints,
   stopped both processes, and left no listeners. The opt-in trusted-LAN path exposes only Streamlit,
   keeps FastAPI loopback-only, prints private IPv4 URLs/warnings, and rejects automation pairing.
@@ -429,14 +435,14 @@ Current verified engineering evidence:
 - Portable portfolio artifact passed package-contract checks but browser verification remains
   blocked by shared-renderer desktop overflow; `reports/portfolio_report_qa.md` records the failure
   and no unverified HTML is delivered.
-- Public `origin/main` has a clean parentless 122-file product history; MIT/metadata commit
-  `ea8a5c9` and earlier guarded implementation/security commits were pushed without force.
+- Public `origin/main` has a clean parentless 124-file product history; autonomy/feedback commit
+  `13bb8d3` and earlier guarded implementation/security commits were pushed without force.
 - Publication guard scans staged and committed snapshots, is enforced by the executable pre-push hook
-  and CI, and passed on the complete 1,370,542-byte / 122-file implementation snapshot. Nine guard tests
+  and CI, and passed on the complete 1,386,879-byte / 124-file implementation snapshot. Nine guard tests
   cover allow/deny behavior plus exact-hash and PNG-metadata enforcement.
-- GitHub repository is PUBLIC with default `main`; CI run `31795582539` passed tests, dependency audit,
+- GitHub repository is PUBLIC with default `main`; CI run `31799968049` passed tests, dependency audit,
   and three-engine browser QA. Its pip-audit artifact contains 72 audited third-party packages and zero
-  known vulnerabilities. CodeQL `security-extended` run `31795582566` passed; five initial alerts were
+  known vulnerabilities. CodeQL `security-extended` run `31799968040` passed; five initial alerts were
   fixed without dismissal and zero CodeQL/secret-scanning alerts remain open. Dependabot version updates
   and vulnerability alerts are enabled; CI actions v7 are pinned.
 - GitHub detects the MIT License, an explicit bilingual job-intelligence description, and nine relevant

@@ -308,7 +308,7 @@ ruff check src tests
 pytest -q
 ```
 
-Current local verification: 133 tests passed and Ruff is clean.
+Current local verification: 138 tests passed and Ruff is clean.
 
 ## License
 

@@ -17,22 +17,23 @@ Timpa isi di antara marker; jangan append session log.
 **Last synchronized:** 2026-08-14
 **Current phase:** Phase 3 complete locally; Phase 4 aggregate market snapshot and three-engine
 automation are complete, and the M5c private human-review pack/validator plus opt-in trusted-LAN
-physical-device access are ready while actual screen-reader, device, and narrated-media evidence remains human-gated. Phase 5 public
+physical-device access are ready while actual screen-reader, device, and narrated-media evidence remains
+human-gated. P1 privacy-safe extraction feedback is delivered. Phase 5 public
 source/story/security/license/repository metadata is complete and application deployment remains owner-gated.
 **Status:** Working portfolio product published at `https://github.com/Rajapranata512/skillpulse-ai`
 with clean history, green CI, privacy/security publication controls, verified extraction/matching
 baselines, FastAPI, non-root container, Streamlit product journey, aggregate 30-day market snapshot,
 and a fail-closed accessibility/media review workflow. It is not portfolio-ready because independent
 human annotation/relevance, human accessibility/usability media, and public application deployment remain open.
-**Completed this session:** added the MIT License, PEP 639 package metadata, narrow publication-guard
-support for the legal file, and license consistency QA. Configured the GitHub description, nine topics,
-and Dependabot vulnerability alerts while leaving homepage/deployment unchanged. Pushed implementation
-commit `ea8a5c946ff4394c97c3794fdf548c4ae544b771`.
-**Verified baseline:** 133 tests and Ruff passed. The built wheel contains the MIT expression and license
-file. CI run `31795582539` passed committed-snapshot guard, tests, dependency audit, and Chromium/
-Firefox/WebKit QA. CodeQL run `31795582566` passed. GitHub detects MIT, the exact description and nine
-topics, and enabled vulnerability alerts. Publication guard scanned the complete 122-file /
-1,370,542-byte implementation snapshot; private evidence/data and credentials remain absent.
+**Completed this session:** added the root-AGENTS autonomous execution loop and delivered FR-09:
+confirmation-gated extraction feedback exported as canonical-label-only JSON with no feedback endpoint,
+raw/matched text, span, identity, telemetry, or persistence. Pushed implementation commit
+`13bb8d3bb70e2bf7bf2521793ebb456e7418f86b`.
+**Verified baseline:** 138 tests and Ruff passed. Five feedback tests prove deterministic redaction and
+fail-closed behavior; Streamlit proves confirmation is required and feedback adds no API POST. CI run
+`31799968049` passed committed-snapshot guard, tests, dependency audit, and Chromium/Firefox/WebKit QA.
+CodeQL run `31799968040` passed with zero CodeQL/secret-scanning alerts. Publication guard scanned the
+complete 124-file / 1,386,879-byte implementation snapshot; private evidence/data and credentials remain absent.
 **Selected next task:** `M5c - execute private human screen-reader/real-device review and public-safe narration (HUMAN-GATE)`.
 **Next completion check:** a human runs `scripts/run_demo.ps1 -AllowLan -NoBrowser` on a trusted Private
 network and completes `docs/human_accessibility_media_review.md`; the private JSON
@@ -41,7 +42,8 @@ passes `skillpulse-release-review ... --require-complete`, no blocker/high findi
 **Other gates:** ML-QG-2 is 0/100, ML-QG-3 is 0/50, and salary is 77/555. The snapshot is one source/
 one 30-day window, so trend, whole-market, and global claims remain blocked. Public hosting, homepage,
 privacy, monitoring, rollback, region, and cost decisions remain owner-gated; shared renderer overflow
-still blocks verified HTML.
+still blocks verified HTML. Job-family classification has only one current role family, while a curated
+learning catalog still lacks selected provenance/legal metadata; neither is currently a `READY` task.
 <!-- AUTO-SYNC:END -->
 
 ## 1. Executive summary
@@ -555,7 +557,7 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
 
 - Model card, architecture diagram, demo checklist, answer-first README, recruiter case study, release
   checklist/audit, and source-backed portfolio report JSON are complete and reconciled with evidence.
-- Public `origin/main` has a parentless 122-file product history, green CI, a staged/commit publication
+- Public `origin/main` has a parentless 124-file product history, green CI, a staged/commit publication
   guard, executable pre-push hook, deny-by-default data/private-file policy, read-only CI permissions,
   SECURITY/PRIVACY policies, continuous `pip-audit`, CodeQL `security-extended`, Dependabot version
   updates and vulnerability alerts, and official checkout/setup-python v7. All five initial CodeQL findings
