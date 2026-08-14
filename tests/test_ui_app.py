@@ -41,10 +41,12 @@ MATCH_RESPONSE = {
 
 EXTRACTION_RESPONSE = {
     "contract_version": "1.0.0",
+    "model_version": "taxonomy-rules-0.2.0",
     "taxonomy_version": "0.2.0",
     "technical_skills": [{"canonical": "Python"}, {"canonical": "SQL"}],
     "tools": [{"canonical": "Power BI"}],
     "soft_skills": [{"canonical": "Communication"}],
+    "education": ["Bachelor"],
     "experience_years": 0.0,
     "seniority": "entry",
     "work_arrangement": "hybrid",
@@ -154,6 +156,15 @@ def test_sample_match_and_extraction_journeys_render_contract_evidence(ui_api: d
         "Work mode": "Hybrid",
     }
     assert any("Python" in item.value and "SQL" in item.value for item in app.markdown)
+    assert app.multiselect(key="extraction_feedback_incorrect").value == []
+    assert app.checkbox(key="extraction_feedback_confirmed").value is False
+    assert any("canonical label dan verdict" in item.value for item in app.caption)
+    assert app.download_button[0].disabled is True
+
+    app.multiselect(key="extraction_feedback_incorrect").select("tools::Power BI").run()
+    app.checkbox(key="extraction_feedback_confirmed").check().run()
+    assert app.multiselect(key="extraction_feedback_incorrect").value == ["tools::Power BI"]
+    assert app.download_button[0].disabled is False
 
     post_paths = [request[1] for request in ui_api["requests"] if request[0] == "POST"]
     assert post_paths == ["/v1/match", "/v1/extract"]

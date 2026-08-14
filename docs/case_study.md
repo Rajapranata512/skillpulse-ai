@@ -89,6 +89,14 @@ re-normalizes component weights over those categories and returns:
 This makes the score inspectable and prevents an unstated category from silently reducing
 the result.
 
+## Privacy-safe correction loop
+
+The extraction screen now lets a reviewer mark returned canonical entities as correct or
+incorrect and download a versioned JSON record. Feedback is disabled until the reviewer
+explicitly confirms the full entity set. The export contains canonical labels, verdicts,
+version identifiers, counts, and privacy flags only; it excludes job text, matched text,
+source spans, free-form notes, and identity, and it is not posted to a server.
+
 ## A model that was not promoted
 
 A 20% hybrid using `paraphrase-multilingual-MiniLM-L12-v2` was compared with the exact

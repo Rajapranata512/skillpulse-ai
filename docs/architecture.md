@@ -72,6 +72,7 @@ Browser session
   -> in-memory extraction and matching
   -> structured response
   -> browser rendering
+  -> optional redacted canonical-feedback JSON download
 ```
 
 Raw CV/job text is not written by the application. The market tab loads only the committed
@@ -80,6 +81,11 @@ runtime path. The portfolio container excludes raw data, annotations, notebooks,
 and XLSX files from its build context. Access
 logging is disabled by the packaged API command. Production deployment would still need
 TLS, rate limiting, abuse controls, retention verification, and operational monitoring.
+
+The extraction feedback path is browser-download-only and adds no API endpoint or database.
+Its in-session context contains model/taxonomy versions and canonical labels only. Export is
+disabled until explicit review confirmation and excludes source text, matched text, spans,
+free-form notes, and identity.
 
 ## Evaluation boundaries
 

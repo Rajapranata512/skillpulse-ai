@@ -7,6 +7,12 @@ from typing import Any
 
 import streamlit as st
 
+from skillpulse.feedback import (
+    ExtractionFeedbackContext,
+    build_extraction_feedback,
+    extraction_feedback_context,
+    feedback_json,
+)
 from skillpulse.ui.api_client import SkillPulseAPIClient, SkillPulseAPIError
 from skillpulse.ui.examples import EXAMPLE_CV, EXAMPLE_EXTRACTION, EXAMPLE_JOB
 from skillpulse.ui.market import (
@@ -76,6 +82,56 @@ def _render_extraction(payload: dict[str, Any]) -> None:
         f"Contract {payload['contract_version']} · Taxonomy {payload['taxonomy_version']} · "
         "Klik evidence JSON melalui API docs untuk melihat source spans lengkap."
     )
+
+
+def _clear_extraction_feedback() -> None:
+    for key in (
+        "extraction_feedback_context",
+        "extraction_feedback_incorrect",
+        "extraction_feedback_confirmed",
+    ):
+        st.session_state.pop(key, None)
+
+
+def _render_extraction_feedback(context: ExtractionFeedbackContext) -> None:
+    st.markdown("### Koreksi hasil extraction")
+    st.caption(
+        "Review ini hanya mengekspor canonical label dan verdict. Job text, matched text, source span, "
+        "dan identitas tidak disertakan atau dikirim ke server."
+    )
+    if not context.candidates:
+        st.info("Belum ada canonical entity yang dapat direview.")
+        return
+
+    labels = {candidate.id: candidate.label for candidate in context.candidates}
+    incorrect = st.multiselect(
+        "Tandai entity yang tidak tepat",
+        options=list(labels),
+        format_func=labels.__getitem__,
+        key="extraction_feedback_incorrect",
+        help="Entity yang tidak dipilih akan ditandai correct setelah review dikonfirmasi.",
+    )
+    confirmed = st.checkbox(
+        "Saya telah memeriksa seluruh entity di atas",
+        key="extraction_feedback_confirmed",
+    )
+    data = ""
+    if confirmed:
+        record = build_extraction_feedback(
+            context,
+            incorrect_ids=set(incorrect),
+            review_confirmed=True,
+        )
+        data = feedback_json(record)
+    st.download_button(
+        "Unduh feedback tanpa teks mentah",
+        data=data,
+        file_name="skillpulse_extraction_feedback.json",
+        mime="application/json",
+        disabled=not confirmed,
+        use_container_width=True,
+    )
+    st.caption("Download dibuat di memori sesi browser dan tidak disimpan otomatis oleh SkillPulse.")
 
 
 @st.cache_data(show_spinner=False)
@@ -285,6 +341,7 @@ def render(client: SkillPulseAPIClient | None = None) -> None:
             st.info("Hasil explainable match akan muncul di sini setelah analisis.")
     with extraction_tab:
         if st.button("Gunakan contoh extraction", key="load_extraction_example", use_container_width=True):
+            _clear_extraction_feedback()
             st.session_state["extraction_job_text"] = EXAMPLE_EXTRACTION
         extraction_text = st.text_area(
             "Job description to extract",
@@ -292,6 +349,7 @@ def render(client: SkillPulseAPIClient | None = None) -> None:
             key="extraction_job_text",
             height=250,
             placeholder="Tempel job description untuk mengekstrak requirement eksplisit.",
+            on_change=_clear_extraction_feedback,
         )
         if st.button("Extract requirements", key="extract_requirements", use_container_width=True):
             if not extraction_text.strip():
@@ -299,11 +357,17 @@ def render(client: SkillPulseAPIClient | None = None) -> None:
             else:
                 try:
                     with st.spinner("Mengekstrak requirement eksplisit…"):
-                        _render_extraction(client.extract(extraction_text))
+                        payload = client.extract(extraction_text)
+                        _render_extraction(payload)
+                        _clear_extraction_feedback()
+                        st.session_state["extraction_feedback_context"] = extraction_feedback_context(payload)
                 except SkillPulseAPIError as error:
                     st.error(str(error))
         else:
             st.info("Entity hasil extraction akan muncul di sini setelah diproses.")
+        feedback_context = st.session_state.get("extraction_feedback_context")
+        if isinstance(feedback_context, ExtractionFeedbackContext):
+            _render_extraction_feedback(feedback_context)
     with market_tab:
         _render_market_snapshot()
     with methodology_tab:

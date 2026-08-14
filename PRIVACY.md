@@ -12,6 +12,9 @@ priorities.
 - The application does not write submitted CV/job text to files or a database.
 - UI file upload is disabled.
 - API access logs are disabled by the packaged launch command.
+- Optional extraction feedback is generated only after explicit review as a browser download.
+  It contains canonical labels and verdicts, not submitted text, matched text, source spans,
+  or user identity; the application does not upload or persist it.
 - Closing the local processes ends the application session.
 
 Users should still use synthetic or redacted text for demonstrations. Do not paste names,

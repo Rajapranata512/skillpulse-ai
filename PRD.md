@@ -182,6 +182,8 @@ Demo harus tetap bekerja memakai example text tanpa CV pribadi.
 2. Multi-label job-family classifier.
 3. Market skill dashboard dengan location/role filters.
 4. User feedback untuk “correct/incorrect extraction” tanpa menyimpan CV mentah.
+   Delivered for extraction review as a confirmed, canonical-label-only browser download
+   with no feedback endpoint or persistence.
 5. Learning roadmap menggunakan curated skill prerequisites dan demand ranking.
 6. Indonesian versus global comparison setelah dataset provenance sebanding.
 
@@ -305,6 +307,21 @@ Minimum screens:
 
 **Accept:** recruiter can complete sample journey in <3 minutes; mobile-readable;
 loading/error/empty states present; no sign-in needed for demo.
+
+### FR-09 - Privacy-safe extraction feedback (P1, delivered)
+
+- Reviewer dapat menandai setiap canonical entity hasil extraction sebagai correct/incorrect.
+- Export memerlukan konfirmasi eksplisit bahwa seluruh entity sudah diperiksa.
+- JSON hanya memuat schema/model/taxonomy version, canonical category/value, verdict, count,
+  dan privacy flags.
+- Job/CV text, matched text, source span, free-form note, user identity, timestamp, dan protected
+  attribute tidak boleh masuk export.
+- Feedback dibuat in-memory untuk browser download; tidak ada endpoint, telemetry, database,
+  atau automatic upload.
+
+**Accept:** deterministic unit tests membuktikan raw fields dibuang dan unknown/unconfirmed/empty
+review gagal tertutup; Streamlit test membuktikan download baru aktif setelah confirmation dan
+tidak menambah API POST.
 
 ## 9. Data requirements and governance
 
@@ -529,6 +546,8 @@ Vanity metrics seperti jumlah model, library, atau baris kode bukan success metr
   only Streamlit binds to LAN, FastAPI remains loopback-only, and unsafe automation pairing is rejected.
 - A blank v1 M5c template, private-by-default workflow, and strict validator are ready; automation
   rejects incomplete/unsafe evidence but cannot create observations or attest their truth.
+- P1 extraction feedback is delivered as a confirmation-gated, canonical-label-only browser JSON
+  download with no raw text, spans, identity, endpoint, telemetry, or server persistence.
 - Exit remains open only for human screen-reader/focus/contrast, real Safari/device review, and a
   2-4 minute public-safe narrated walkthrough.
 

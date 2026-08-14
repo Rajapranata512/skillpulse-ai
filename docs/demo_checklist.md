@@ -64,7 +64,8 @@ Before recording or sharing:
    analytics postings, not the whole labour market.
 2. **Extraction — 60 seconds.** Open the included bilingual example. Run extraction and
    point to canonical technical skills, tools, education, experience, seniority, and work
-   arrangement. Emphasize that only explicit text is extracted.
+   arrangement. Mark one entity as incorrect, confirm review, and show that the downloadable
+   feedback contains canonical labels/verdicts without source text or server submission.
 3. **Matching — 75 seconds.** Run the example match. Show the overall verdict, component
    weights, matched evidence, missing evidence, and learning priorities. Explain that an
    absent requirement category is not silently scored as a failure.

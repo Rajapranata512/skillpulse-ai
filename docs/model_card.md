@@ -1,7 +1,7 @@
 # SkillPulse AI System Model Card
 
 **Version:** 0.1.0  
-**Last verified:** 11 August 2026
+**Last verified:** 14 August 2026
 **Status:** local portfolio candidate; human validation gates remain open
 
 ## Summary
@@ -11,6 +11,8 @@ explicit requirements from CV and job-description text, then produces an explain
 CV-to-job match with matched evidence, missing requirements, component scores, and
 learning priorities. A separate aggregate-only dashboard describes canonical requirement demand
 within the documented 30-day source window; it is not a predictive model output.
+The extraction UI can also export explicit correct/incorrect review of canonical entities
+without including source text or sending feedback to an API.
 
 The public demo uses two deterministic production candidates:
 
@@ -116,6 +118,8 @@ not silently penalize a candidate.
 
 - API v1 is stateless and does not persist request text.
 - The UI accepts pasted text only; file upload is disabled.
+- Extraction feedback requires explicit confirmation and is download-only; it contains
+  canonical labels/verdicts and versions, not raw text, matched text, spans, notes, or identity.
 - Inputs are capped at 50,000 characters and unknown contract fields are rejected.
 - Container access logging is disabled, and raw CSV/XLSX/report/notebook files are
   excluded from its build context.

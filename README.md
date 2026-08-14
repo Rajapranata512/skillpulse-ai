@@ -18,7 +18,8 @@ explainable CV-to-job matching product, and privacy-safe 30-day market snapshot.
 - A strict four-endpoint FastAPI contract, healthy non-root container, and API-backed
   Streamlit demo.
 - An aggregate-only market dashboard with requirement-category, location, and normalized-role slices.
-- 133 passing tests, model/data documentation, and explicit human/data release gates.
+- Download-only extraction feedback containing canonical labels and verdicts, never source text or spans.
+- 138 passing tests, model/data documentation, and explicit human/data release gates.
 
 The exact-taxonomy matcher remains the incumbent after a multilingual semantic challenger
 failed to improve the frozen synthetic diagnostic. Independent annotation (0/100), human
@@ -262,6 +263,11 @@ Use synthetic samples and stop the launcher immediately after the review.
 Text is session-only and file upload is intentionally disabled in v1. For manual startup,
 run `skillpulse-api` and `skillpulse-ui` in separate terminals and set
 `SKILLPULSE_API_URL` when the API uses another host or port.
+
+After extraction, a reviewer can mark canonical entities as incorrect, confirm the review,
+and download a versioned JSON record. The record contains only canonical labels, verdicts,
+model/taxonomy versions, counts, and explicit privacy flags. It excludes job text, matched
+text, source spans, and user identity; no feedback endpoint or automatic server storage exists.
 
 ## Portfolio evidence
 

@@ -52,6 +52,45 @@ perubahan lokal, reversible, dan sesuai PRD.
   perubahan memerlukannya.
 - Jangan meregenerasi report/data yang input dan implementasinya tidak berubah.
 - Session Handoff Snapshot harus ditimpa, bukan ditambah terus, agar context tetap kecil.
+
+### Autonomous execution loop - standing owner request
+
+Pemilik meminta agent melanjutkan pengembangan secara otomatis sampai tidak ada task aman,
+bernilai, dan tidak terblokir yang dapat diselesaikan pada sesi aktif. Karena agent tidak
+berjalan di background setelah turn berakhir, setiap invocation baru harus melanjutkan dari
+`Auto-selected next task` tanpa meminta pengguna mengulang konteks.
+
+Jalankan loop berikut, bukan berhenti otomatis setelah satu perubahan kecil:
+
+1. Bentuk kandidat task hanya dari requirement/roadmap PRD, open quality gate, regression,
+   dependency/security signal baru, atau gap yang terbukti dari evidence repository.
+2. Klasifikasikan setiap kandidat sebagai `READY`, `HUMAN-GATE`, `OWNER-GATE`,
+   `DATA-GATE`, atau `DONE`. Hanya `READY` yang boleh dikerjakan otomatis.
+3. Prioritaskan P0 belum selesai, lalu P1 tidak terblokir, release/security hardening yang
+   memiliki acceptance check, dan terakhir maintenance yang dipicu perubahan nyata.
+4. Kerjakan satu vertical slice pada satu waktu, verifikasi acceptance criteria, lalu
+   jalankan seleksi lagi. Jika masih ada kandidat `READY`, lanjutkan pada sesi yang sama
+   tanpa menunggu perintah “lanjutkan”.
+5. Gabungkan perubahan yang koheren dalam satu delivery batch; jangan membuat commit kecil
+   berulang hanya untuk memperbarui status. Setelah batch stabil, jalankan end-of-work
+   protocol, commit, push, dan sinkronkan handoff/PRD.
+6. Setelah semua kandidat `READY` habis, jangan menciptakan fitur spekulatif untuk terlihat
+   sibuk. Catat gate tersisa, bukti yang dibutuhkan, dan tepat satu next task yang valid.
+
+Agent wajib berhenti dan meminta tindakan/otorisasi hanya jika semua jalur bernilai tersisa
+memerlukan salah satu kondisi berikut:
+
+- judgment atau attestation manusia independen;
+- keputusan owner tentang biaya, hosting, deployment, visibility, PR/release, atau external
+  communication yang belum diotorisasi;
+- dataset/licensing baru, credential, secret, atau akses eksternal yang belum tersedia;
+- acceptance criteria yang saling bertentangan atau perubahan scope material;
+- test, publication guard, privasi, atau security tidak dapat dibuktikan aman.
+
+Autonomi tidak pernah mengizinkan agent mengisi human evidence, mengubah label independen,
+menurunkan quality gate, mengarang metric/data, menjalankan scraping agresif, mem-publish
+data privat, atau melewati otorisasi eksternal. “Maksimal” berarti semua scope PRD yang
+aman dan dapat diverifikasi sudah dikerjakan, bukan jumlah fitur atau commit sebanyak mungkin.
 ## 3. End-of-work protocol — wajib dan otomatis
 
 Sebelum menyerahkan hasil, agent wajib melakukan urutan ini tanpa menunggu perintah baru:
